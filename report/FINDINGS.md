@@ -262,3 +262,14 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Actual: The runner guards update and remove well when a flow has a create step ("A failed create must not turn a later update/remove into a write against an arbitrary record"). A flow with no create step still runs its update or create with synthesised example values. On Todoist that means `notification_setting.update` (changes the user's notification settings), `top_up.create` (`POST /usage_billing/top_up` with `amount: 1000`, which opens a Stripe checkout), `billing_portal_url.create` (`POST /payments/cancel_plan_with_redirect_to_stripe`) and `subscription_info.create` (`reactivate_plan` as an action). None of these ran: 28 write ops outside the five core resources were excluded in `sdk-test-control.json` first.
 - Workaround: Exclude every write op on entities without a create step (script: `report/scripts/live-allowlist.mjs`, generated from the model).
 - Suggested fix: Make writes on an entity with no create step opt-in for live runs (excluded by default, with the reason in the report), and treat routes whose path or summary names payment, billing, plan, cancel or delete-account as never-live unless named explicitly.
+
+### F23 — On Windows, the generated .gitignore lets the CLI and MCP binaries into git
+- Stage: Generate (repository files)
+- Severity: papercut, with a privacy side effect
+- Who is affected: Windows users who build go-cli or go-mcp in place.
+- Upstream: No existing issue found.
+- Steps: `cd go-cli && go build ./...` (or the same in `go-mcp`), then `git add -A`.
+- Expected: The binaries are ignored.
+- Actual: `go-cli/.gitignore` lists `/dist/`, `/todoist-cli` and `/go-cli`, and `go-mcp/.gitignore` lists `/dist/`, `/todoist-mcp` and `/go-mcp`: the Unix names only. On Windows `go build` writes `go-cli.exe` and `go-mcp.exe` (20 MB and 18 MB here), which git picks up. Go embeds build paths in the binary, so a committed binary also publishes the builder's local directory names. I caught this in the pre-publish scan and removed both files from the unpublished history.
+- Workaround: `*.exe` in the repository's root `.gitignore`.
+- Suggested fix: Add `/go-cli.exe`, `/go-mcp.exe` and `/todoist-*.exe` (or `*.exe`) to the generated `.gitignore` files.

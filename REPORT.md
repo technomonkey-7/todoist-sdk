@@ -8,7 +8,7 @@ I generated unofficial Todoist clients for **TypeScript, Python and Go**, plus a
 
 - **It works.** Projects, tasks, sections, comments and labels can be created, read, updated and deleted from the SDK, and Claude Code can drive the MCP server.
 - **It needed shaping.** Out of the box the SDK had 51 entities named after internal schemas, no `update`, and no authentication, and its offline tests still passed. About 250 lines of corrections in the generator's guide file brought it to 34 entities and full CRUD, without editing the definition or any generated code.
-- **22 findings.** 13 look new, 4 are already tracked upstream (fully or in part), 3 relate to open issues, and 2 are things that worked well. Most affect every SDK the generator makes, not just this one.
+- **23 findings.** 14 look new, 4 are already tracked upstream (fully or in part), 3 relate to open issues, and 2 are things that worked well. Most affect every SDK the generator makes, not just this one.
 - **Time:** about 25 to 30 minutes of my own time; Claude Code did the hands-on work.
 
 **Why Todoist:** it is not in the voxgig-sdk catalogue, and a free account gives an API token, so I could test everything live. Todoist (the company, formerly Doist) publishes official SDKs for TypeScript and Python, an official CLI and a hosted MCP server, but nothing for Go. Its definition is produced by FastAPI, which made it a good test of how the generator reads framework-generated definitions.
@@ -34,7 +34,7 @@ I generated unofficial Todoist clients for **TypeScript, Python and Go**, plus a
 | F5 | If the definition does not declare authentication, the SDK is built without it and no warning is shown. | APIs built with FastAPI and similar | New |
 | F6, F7 | Resources are split by internal schema names, and `POST /tasks/{id}` is read as "create" instead of "update". | APIs built with FastAPI and similar | F6 partly apidef #103 (closed, still happens); F7 new |
 
-The other 12, mostly small documentation and test-runner issues, are in [report/FINDINGS.md](report/FINDINGS.md). Each finding there has steps to reproduce, the cause in the generator's code, and a suggested fix.
+The other 13, mostly small documentation and test-runner issues, are in [report/FINDINGS.md](report/FINDINGS.md). Each finding there has steps to reproduce, the cause in the generator's code, and a suggested fix.
 
 **Specific to my computer?** No. Where a finding comes from the generator's templates, I checked that the same code is in [buggie-sdk](https://github.com/voxgig-sdk/buggie-sdk), an SDK Voxgig generated and published. I also checked every finding against the issue trackers of sdkgen, apidef, create-sdkgen and model. The Windows problems hit every Windows user, and other contributors have reported them. The rows marked "APIs built with FastAPI" depend on how an API's definition is written.
 

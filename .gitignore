@@ -22,3 +22,7 @@ logs/
 .env.*
 .venv/
 .bin/
+
+# Go builds on Windows add .exe, which the generated go-cli and go-mcp
+# .gitignore files (/go-cli, /go-mcp, /todoist-mcp) do not cover.
+*.exe
