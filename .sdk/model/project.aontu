@@ -73,7 +73,57 @@ The test suite needs no account or network: each SDK has a test mode that replac
 
 ### Authentication
 
-Create a personal API token in Todoist under Settings, Integrations, Developer. Pass it as \`apikey\`; the SDK sends it as \`Authorization: Bearer <token>\`. The CLI and the MCP server read it from \`TODOIST_APIKEY\`.`
+Create a personal API token in Todoist under Settings, Integrations, Developer. Pass it as \`apikey\`; the SDK sends it as \`Authorization: Bearer <token>\`. The CLI and the MCP server read it from \`TODOIST_APIKEY\`.
+
+### Work with tasks
+
+\`\`\`ts
+import { TodoistSDK } from '@technomonkey-7/todoist-sdk'
+
+const client = new TodoistSDK({ apikey: process.env.TODOIST_APIKEY ?? '' })
+
+// A task with no project_id goes to the Inbox. The cast is needed because the
+// generated create type requires every field of a task record (see Honest state).
+const task = await client.Task().create({ content: 'Write the release notes' } as any)
+
+// Item verbs are actions on update; search and filter are actions on list.
+await client.Task().update({ id: task.data().id, $action: 'close' })
+await client.Task().update({ id: task.data().id, $action: 'reopen' })
+
+const inbox = await client.Task().list({ project_id: task.data().project_id })
+console.log(inbox.map((t) => t.data().content))
+
+await client.Task().remove({ id: task.data().id })
+\`\`\`
+
+Every call above was run against the live API (see Honest state).
+
+### Using the MCP server
+
+\`\`\`bash
+cd go-mcp && go build -o todoist-mcp .
+export TODOIST_APIKEY=<token>
+claude mcp add --scope user todoist -- "$PWD/todoist-mcp" -transport stdio
+\`\`\`
+
+The server registers \`todoist_list\`, \`todoist_load\`, \`todoist_create\`, \`todoist_update\` and \`todoist_remove\`. The last three change your Todoist data when an agent calls them; sdkgen leaves them off by default and this project turns them on. To build a read-only server, set \`main: kit: target: 'go-mcp': tool: write: false\` in \`.sdk/model/project.aontu\` and regenerate.
+
+### Coverage
+
+34 entities cover 105 of the 108 operations in Doist's definition. Task, Project, Section, Comment and Label have \`load\`, \`list\`, \`create\`, \`update\` and \`remove\`, with item verbs (\`close\`, \`reopen\`, \`move\`, \`archive\`, \`unarchive\`) as update actions and \`search\`/\`filter\` as list actions. Left out: \`POST /revoke\`, \`DELETE /access_tokens\` and \`POST /access_tokens/migrate_personal_token\`, which need an OAuth application's client secret. The corrections to how the generator reads the definition are in \`.sdk/model/guide/guide.aontu\`, each with its reason.
+
+### Honest state
+
+Generated on 2026-10-15 with create-sdkgen 0.30.7, @voxgig/sdkgen 4.34.7 and @voxgig/apidef 8.25.2, on Windows. Not production-tuned; use it as a starting point.
+
+Verified against the live API with a personal token: create, load, list, update and remove for Project, Task, Section, Comment and Label, and Task close and reopen, through the TypeScript SDK; reads across the API through the generated live suites in TypeScript, Python and Go; \`list\`, \`load\` and \`update\` through the CLI; \`create\` and \`load\` through the MCP server, driven by Claude Code.
+
+Known rough edges:
+
+- The MCP server's \`todoist_list\` returns its records as an array in \`structuredContent\`, which the MCP specification does not allow, so schema-validating clients such as Claude Code reject the result. \`todoist_load\` and the SDKs are not affected.
+- In TypeScript, the create input types (\`TaskCreateData\`, \`ProjectCreateData\`, ...) require every field the API's response marks as required, including ones the server assigns, such as \`id\` and \`added_at\`. Doist's definition marks nearly every response field required, so a plain \`create({ content })\` does not type-check; cast the argument as the example above does. \`ProjectCreateData\` also lists the list page's \`next_cursor\` and \`results\`, because Todoist's project record is a union of personal and workspace projects. The requests themselves work (verified live).
+- Workspace, folder and billing endpoints are generated but not exercised: they need a Business plan, and writes to them are excluded from the live tests.
+- The generated live suites do not pass in full against Todoist. Each failure is classified in [REPORT.md](REPORT.md), which also covers the developer experience of building this SDK.`
 }
 
 # Auth. Doist's definition declares no securitySchemes, so apidef writes
