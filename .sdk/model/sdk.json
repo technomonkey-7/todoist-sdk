@@ -1,6 +1,15 @@
 {
+  "NAME": "TODOIST",
+  "Name": "Todoist",
   "def": "todoist-openapi.json",
   "main": {
+    "api": {
+      "entity": {},
+      "guide": {}
+    },
+    "custom": {
+      "plurals": {}
+    },
     "def": {
       "desc": ""
     },
@@ -12889,5 +12898,8 @@
     }
   },
   "name": "todoist",
+  "name-": "todoist",
+  "name_": "todoist",
+  "name__orig": "todoist",
   "origin": "voxgig-sdk"
 }
