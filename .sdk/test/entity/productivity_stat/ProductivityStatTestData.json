@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "productivity_stat": {
+      "PRODUCTIVITY_STAT00": {
+        "completed_count": 100,
+        "days_items": [],
+        "goals": {},
+        "karma": 103,
+        "karma_graph_data": [],
+        "karma_last_update": 105,
+        "karma_trend": "s6a",
+        "karma_update_reasons": [],
+        "project_colors": {},
+        "week_items": []
+      },
+      "PRODUCTIVITY_STAT01": {
+        "completed_count": 200,
+        "days_items": [],
+        "goals": {},
+        "karma": 203,
+        "karma_graph_data": [],
+        "karma_last_update": 205,
+        "karma_trend": "sce",
+        "karma_update_reasons": [],
+        "project_colors": {},
+        "week_items": []
+      },
+      "PRODUCTIVITY_STAT02": {
+        "completed_count": 300,
+        "days_items": [],
+        "goals": {},
+        "karma": 303,
+        "karma_graph_data": [],
+        "karma_last_update": 305,
+        "karma_trend": "s132",
+        "karma_update_reasons": [],
+        "project_colors": {},
+        "week_items": []
+      }
+    }
+  },
+  "new": {
+    "productivity_stat": {
+      "productivity_stat_ref01": {
+        "completed_count": 400,
+        "days_items": [],
+        "goals": {},
+        "karma": 403,
+        "karma_graph_data": [],
+        "karma_last_update": 405,
+        "karma_trend": "s196",
+        "karma_update_reasons": [],
+        "project_colors": {},
+        "week_items": []
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/tasks/completed/stats": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

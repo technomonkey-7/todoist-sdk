@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "subscription_info": {
+      "SUBSCRIPTION_INFO00": {
+        "activation_method": "s6e",
+        "billing_portal_switch_to_annual_url": "s6f",
+        "billing_portal_url": "s70",
+        "expiration_date": "s71",
+        "has_billing_portal": true,
+        "has_billing_portal_switch_to_annual": false,
+        "has_switch_legacy_to_current": true,
+        "invoice_credit_balance": "s75",
+        "plan": "s76",
+        "plan_price": "s77",
+        "status": "s78",
+        "id": "SUBSCRIPTION_INFO00"
+      },
+      "SUBSCRIPTION_INFO01": {
+        "activation_method": "sdc",
+        "billing_portal_switch_to_annual_url": "sdd",
+        "billing_portal_url": "sde",
+        "expiration_date": "sdf",
+        "has_billing_portal": true,
+        "has_billing_portal_switch_to_annual": false,
+        "has_switch_legacy_to_current": true,
+        "invoice_credit_balance": "se3",
+        "plan": "se4",
+        "plan_price": "se5",
+        "status": "se6",
+        "id": "SUBSCRIPTION_INFO01"
+      },
+      "SUBSCRIPTION_INFO02": {
+        "activation_method": "s14a",
+        "billing_portal_switch_to_annual_url": "s14b",
+        "billing_portal_url": "s14c",
+        "expiration_date": "s14d",
+        "has_billing_portal": true,
+        "has_billing_portal_switch_to_annual": false,
+        "has_switch_legacy_to_current": true,
+        "invoice_credit_balance": "s151",
+        "plan": "s152",
+        "plan_price": "s153",
+        "status": "s154",
+        "id": "SUBSCRIPTION_INFO02"
+      }
+    }
+  },
+  "new": {
+    "subscription_info": {
+      "subscription_info_ref01": {
+        "activation_method": "s1b8",
+        "billing_portal_switch_to_annual_url": "s1b9",
+        "billing_portal_url": "s1ba",
+        "expiration_date": "s1bb",
+        "has_billing_portal": true,
+        "has_billing_portal_switch_to_annual": false,
+        "has_switch_legacy_to_current": true,
+        "invoice_credit_balance": "s1bf",
+        "plan": "s1c0",
+        "plan_price": "s1c1",
+        "status": "s1c2"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/payments/get_subscription_info": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/payments/reactivate_plan": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

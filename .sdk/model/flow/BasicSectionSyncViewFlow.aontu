@@ -1,0 +1,34 @@
+# BasicSectionSyncViewFlow
+
+main: kit: flow: BasicSectionSyncViewFlow:
+{
+  entity: "section_sync_view",
+  kind: "basic",
+  name: "BasicSectionSyncViewFlow",
+  step: [
+    {
+      i: {
+        ref: "section_sync_view_ref01"
+      }
+
+      m: {
+        section_id: "section01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "section_sync_view_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSectionSyncViewFlow"
+}

@@ -1,0 +1,40 @@
+# BasicBackupFlow
+
+main: kit: flow: BasicBackupFlow:
+{
+  entity: "backup",
+  kind: "basic",
+  name: "BasicBackupFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "backup_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "backup_ref01",
+        srcdatavar: "backup_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-backup_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBackupFlow"
+}

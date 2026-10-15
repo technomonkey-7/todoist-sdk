@@ -1,0 +1,42 @@
+{
+  "existing": {
+    "comment": {
+      "COMMENT00": {
+        "content": "s14",
+        "id": "COMMENT00"
+      },
+      "COMMENT01": {
+        "content": "s28",
+        "id": "COMMENT01"
+      },
+      "COMMENT02": {
+        "content": "s3c",
+        "id": "COMMENT02"
+      }
+    }
+  },
+  "new": {
+    "comment": {
+      "comment_ref01": {
+        "content": "s50"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/comments/{comment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/comments/{comment_id}/reactions/remove": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api/v1/comments/{comment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

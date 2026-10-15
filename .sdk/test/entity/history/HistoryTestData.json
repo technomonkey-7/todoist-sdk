@@ -1,0 +1,68 @@
+{
+  "existing": {
+    "history": {
+      "HISTORY00": {
+        "category": "s6e",
+        "charged_amount": "s6f",
+        "charged_units": "s70",
+        "created_at": "s71",
+        "credited_amount": "s72",
+        "credited_units": "s73",
+        "description": "s74",
+        "id": "HISTORY00",
+        "refs": {},
+        "status": "s77",
+        "type": "s78"
+      },
+      "HISTORY01": {
+        "category": "sdc",
+        "charged_amount": "sdd",
+        "charged_units": "sde",
+        "created_at": "sdf",
+        "credited_amount": "se0",
+        "credited_units": "se1",
+        "description": "se2",
+        "id": "HISTORY01",
+        "refs": {},
+        "status": "se5",
+        "type": "se6"
+      },
+      "HISTORY02": {
+        "category": "s14a",
+        "charged_amount": "s14b",
+        "charged_units": "s14c",
+        "created_at": "s14d",
+        "credited_amount": "s14e",
+        "credited_units": "s14f",
+        "description": "s150",
+        "id": "HISTORY02",
+        "refs": {},
+        "status": "s153",
+        "type": "s154"
+      }
+    }
+  },
+  "new": {
+    "history": {
+      "history_ref01": {
+        "category": "s1b8",
+        "charged_amount": "s1b9",
+        "charged_units": "s1ba",
+        "created_at": "s1bb",
+        "credited_amount": "s1bc",
+        "credited_units": "s1bd",
+        "description": "s1be",
+        "refs": {},
+        "status": "s1c1",
+        "type": "s1c2"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/usage_billing/history": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

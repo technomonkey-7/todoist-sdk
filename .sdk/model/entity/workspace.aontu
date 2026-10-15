@@ -1,0 +1,459 @@
+# Entity: workspace
+
+main: kit: entity: workspace: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Updated workspace description."
+      t: "`$STRING`"
+    }
+    domain_discovery: {
+      h: "Domain Discovery"
+      n: "domain_discovery"
+      r: false
+      sh: "Updated domain discovery setting."
+      t: "`$ANY`"
+    }
+    domain_name: {
+      h: "Domain Name"
+      n: "domain_name"
+      r: false
+      sh: "Updated workspace email domain."
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    invite_code: {
+      h: "Invite Code"
+      n: "invite_code"
+      r: false
+      sh: "Regenerate workspace invite code when set."
+      t: "`$ANY`"
+    }
+    is_collapsed: {
+      h: "Is Collapsed"
+      n: "is_collapsed"
+      r: false
+      sh: "Updated collapse state for current user."
+      t: "`$BOOLEAN`"
+    }
+    is_guest_allowed: {
+      h: "Is Guest Allowed"
+      n: "is_guest_allowed"
+      r: false
+      sh: "Updated guest access status."
+      t: "`$BOOLEAN`"
+    }
+    is_link_sharing_enabled: {
+      h: "Is Link Sharing Enabled"
+      n: "is_link_sharing_enabled"
+      r: false
+      sh: "Updated link sharing status."
+      t: "`$BOOLEAN`"
+    }
+    is_trial_pending: {
+      h: "Is Trial Pending"
+      n: "is_trial_pending"
+      r: false
+      sh: "Updated trial pending state."
+      t: "`$BOOLEAN`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Updated workspace name."
+      t: "`$STRING`"
+    }
+    properties: {
+      h: "Properties"
+      n: "properties"
+      r: false
+      sh: "Updated workspace properties."
+      t: "`$ANY`"
+    }
+    restrict_email_domains: {
+      h: "Restrict Email Domains"
+      n: "restrict_email_domains"
+      r: false
+      sh: "Updated email domain restriction setting."
+      t: "`$ANY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "workspace"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "description"
+            "domain_discovery"
+            "domain_name"
+            "invite_code"
+            "is_collapsed"
+            "is_guest_allowed"
+            "is_link_sharing_enabled"
+            "is_trial_pending"
+            "name"
+            "properties"
+            "restrict_email_domains"
+          ]
+          co: {
+            id: "POST /api/v1/workspaces/{workspace_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/workspaces/{workspace_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              workspace_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "description"
+            "domain_discovery"
+            "domain_name"
+            "is_guest_allowed"
+            "is_link_sharing_enabled"
+            "is_trial_pending"
+            "name"
+            "properties"
+            "restrict_email_domains"
+          ]
+          co: {
+            id: "POST /api/v1/workspaces"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/workspaces"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/workspaces/logo"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/workspaces/logo"
+          q: {
+            "$action": "logo"
+          }
+          rb: {
+            fields: [
+              {
+                name: "delete"
+              }
+              {
+                binary: true
+                media: "application/octet-stream"
+                name: "file"
+              }
+              {
+                name: "workspace_id"
+              }
+            ]
+            kind: "multipart"
+            media: "multipart/form-data"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              lit: "logo"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/workspaces/invitations"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/workspaces/invitations"
+          q: {
+            "$action": "invitation"
+            exist: [
+              "workspace_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              lit: "invitations"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/workspaces"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/workspaces"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/workspaces/{workspace_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/workspaces/{workspace_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              workspace_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /api/v1/workspaces/{workspace_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/api/v1/workspaces/{workspace_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              workspace_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,18 @@
+# BasicProjectImportCreateResponseWithObjectFlow
+
+main: kit: flow: BasicProjectImportCreateResponseWithObjectFlow:
+{
+  entity: "project_import_create_response_with_object",
+  kind: "basic",
+  name: "BasicProjectImportCreateResponseWithObjectFlow",
+  step: [
+    {
+      i: {
+        ref: "project_import_create_response_with_object_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicProjectImportCreateResponseWithObjectFlow"
+}

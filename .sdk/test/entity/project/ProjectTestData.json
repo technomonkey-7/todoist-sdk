@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "project": {
+      "PROJECT00": {
+        "id": "PROJECT00"
+      },
+      "PROJECT01": {
+        "id": "PROJECT01"
+      },
+      "PROJECT02": {
+        "id": "PROJECT02"
+      }
+    }
+  },
+  "new": {
+    "project": {
+      "project_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /api/v1/projects/{project_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

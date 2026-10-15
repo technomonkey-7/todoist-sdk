@@ -1,0 +1,78 @@
+{
+  "existing": {
+    "label": {
+      "LABEL00": {
+        "color": "s3c",
+        "id": "LABEL00",
+        "is_favorite": true,
+        "name": "s3f",
+        "new_name": "s40",
+        "order": "s41"
+      },
+      "LABEL01": {
+        "color": "s78",
+        "id": "LABEL01",
+        "is_favorite": true,
+        "name": "s7b",
+        "new_name": "s7c",
+        "order": "s7d"
+      },
+      "LABEL02": {
+        "color": "sb4",
+        "id": "LABEL02",
+        "is_favorite": true,
+        "name": "sb7",
+        "new_name": "sb8",
+        "order": "sb9"
+      }
+    }
+  },
+  "new": {
+    "label": {
+      "label_ref01": {
+        "color": "sf0",
+        "is_favorite": true,
+        "name": "sf3",
+        "new_name": "sf4",
+        "order": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/labels/{label_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/labels": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/labels/shared/remove": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/labels/shared/rename": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/labels": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/labels/{label_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api/v1/labels/{label_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "existing": {
+    "section_sync_view": {
+      "SECTION_SYNC_VIEW00": {
+        "added_at": "s82",
+        "archived_at": "s83",
+        "description": "s84",
+        "id": "SECTION_SYNC_VIEW00",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s89",
+        "order_key": "s8a",
+        "project_id": "PROJECT01",
+        "section_order": 140,
+        "updated_at": "s8d",
+        "user_id": "USER01"
+      },
+      "SECTION_SYNC_VIEW01": {
+        "added_at": "s104",
+        "archived_at": "s105",
+        "description": "s106",
+        "id": "SECTION_SYNC_VIEW01",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s10b",
+        "order_key": "s10c",
+        "project_id": "PROJECT01",
+        "section_order": 270,
+        "updated_at": "s10f",
+        "user_id": "USER01"
+      },
+      "SECTION_SYNC_VIEW02": {
+        "added_at": "s186",
+        "archived_at": "s187",
+        "description": "s188",
+        "id": "SECTION_SYNC_VIEW02",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s18d",
+        "order_key": "s18e",
+        "project_id": "PROJECT01",
+        "section_order": 400,
+        "updated_at": "s191",
+        "user_id": "USER01"
+      }
+    }
+  },
+  "new": {
+    "section_sync_view": {
+      "section_sync_view_ref01": {
+        "added_at": "s208",
+        "archived_at": "s209",
+        "description": "s20a",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s20f",
+        "order_key": "s210",
+        "project_id": "PROJECT01",
+        "section_order": 530,
+        "updated_at": "s213",
+        "user_id": "USER01"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/sections/{section_id}/archive": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/sections/{section_id}/unarchive": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/sections/search": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

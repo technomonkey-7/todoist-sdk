@@ -1,0 +1,496 @@
+# Entity: any_project_sync_view
+
+main: kit: entity: any_project_sync_view: {
+
+  alias: field: {}
+
+  fields: {
+    child_order: {
+      h: "Child Order"
+      n: "child_order"
+      r: false
+      sh: "Updated position of the project in the hierarchy."
+      t: "`$ANY`"
+    }
+    color: {
+      h: "Color"
+      n: "color"
+      r: false
+      sh: "Updated project color."
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 2
+      }
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Updated project description."
+      t: "`$STRING`"
+    }
+    folder_id: {
+      h: "Folder Id"
+      n: "folder_id"
+      r: false
+      sh: "Folder to move the project into."
+      t: "`$STRING`"
+    }
+    icon: {
+      h: "Icon"
+      n: "icon"
+      r: false
+      sh: "Updated project icon name."
+      t: "`$ANY`"
+    }
+    is_collapsed: {
+      h: "Is Collapsed"
+      n: "is_collapsed"
+      r: false
+      sh: "Whether the project is collapsed."
+      t: "`$BOOLEAN`"
+    }
+    is_favorite: {
+      h: "Is Favorite"
+      n: "is_favorite"
+      r: false
+      sh: "Whether the project is marked as a favorite."
+      t: "`$BOOLEAN`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Updated project name."
+      t: "`$STRING`"
+    }
+    next_cursor: {
+      h: "Next Cursor"
+      n: "next_cursor"
+      r: true
+      sh: "Cursor for the next page of results, or `null` when there are no more results."
+      t: "`$ANY`"
+    }
+    parent_id: {
+      h: "Parent Id"
+      n: "parent_id"
+      r: false
+      sh: "Parent project ID."
+      t: "`$STRING`"
+    }
+    results: {
+      h: "Results"
+      n: "results"
+      r: true
+      sh: "Objects in the current page of results."
+      t: "`$ARRAY`"
+      union: {
+        branches: 3
+        count: 2
+        depth: 9
+      }
+    }
+    view_style: {
+      h: "View Style"
+      n: "view_style"
+      r: false
+      sh: "Updated project view style."
+      t: "`$ANY`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: false
+      sh: "Workspace ID."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "any_project_sync_view"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "child_order"
+            "color"
+            "description"
+            "folder_id"
+            "icon"
+            "is_collapsed"
+            "is_favorite"
+            "name"
+            "view_style"
+          ]
+          co: {
+            id: "POST /api/v1/projects/{project_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/projects/{project_id}"
+          q: {
+            exist: [
+              "project_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/projects/{project_id}/archive"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/projects/{project_id}/archive"
+          q: {
+            exist: [
+              "project_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "archive"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/projects/{project_id}/join"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/projects/{project_id}/join"
+          q: {
+            "$action": "join"
+            exist: [
+              "project_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "join"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/projects/{project_id}/unarchive"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/projects/{project_id}/unarchive"
+          q: {
+            exist: [
+              "project_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+            {
+              lit: "unarchive"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "color"
+            "description"
+            "icon"
+            "is_favorite"
+            "name"
+            "parent_id"
+            "view_style"
+            "workspace_id"
+          ]
+          co: {
+            id: "POST /api/v1/projects"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/projects"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/projects"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "folder_id"
+                or: "folder_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/projects"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/projects/{project_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/projects/{project_id}"
+          q: {
+            exist: [
+              "project_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              var: "project_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.project")]
+  ]
+
+}

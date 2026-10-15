@@ -1,0 +1,31 @@
+# BasicTaskFlow
+
+main: kit: flow: BasicTaskFlow:
+{
+  entity: "task",
+  kind: "basic",
+  name: "BasicTaskFlow",
+  step: [
+    {
+      i: {
+        ref: "task_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "task_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "task01"
+      }
+
+      o: "remove"
+    }
+  ],
+  "key$": "BasicTaskFlow"
+}

@@ -1,0 +1,166 @@
+# Entity: project_import_create_response_with_object
+
+main: kit: entity: project_import_create_response_with_object: {
+
+  alias: field: {}
+
+  fields: {
+    comments: {
+      h: "Comments"
+      n: "comments"
+      r: true
+      sh: "Task comments created by the import."
+      t: "`$ARRAY`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 6
+      }
+    }
+    discarded_fields: {
+      h: "Discarded Fields"
+      n: "discarded_fields"
+      r: true
+      sh: "Task properties the importer dropped from one or more imported tasks because the plan in force does not include them."
+      t: "`$ARRAY`"
+    }
+    project_id: {
+      h: "Project Id"
+      n: "project_id"
+      r: true
+      sh: "ID of the project created from the template."
+      t: "`$STRING`"
+    }
+    project_notes: {
+      h: "Project Notes"
+      n: "project_notes"
+      r: true
+      sh: "Project comments created by the import."
+      t: "`$ARRAY`"
+      union: {
+        branches: 4
+        count: 1
+        depth: 6
+      }
+    }
+    project_view_options_defaults: {
+      h: "Project View Options Defaults"
+      n: "project_view_options_defaults"
+      r: true
+      sh: "View options defaults applied to the imported project."
+      t: "`$ARRAY`"
+    }
+    projects: {
+      h: "Projects"
+      n: "projects"
+      r: true
+      sh: "Projects created by the import."
+      t: "`$ARRAY`"
+      union: {
+        branches: 3
+        count: 2
+        depth: 9
+      }
+    }
+    reminders: {
+      h: "Reminders"
+      n: "reminders"
+      r: true
+      sh: "Reminders created by the import."
+      t: "`$ARRAY`"
+    }
+    sections: {
+      h: "Sections"
+      n: "sections"
+      r: true
+      sh: "Sections created by the import."
+      t: "`$ARRAY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      sh: "Always `ok` on success."
+      t: "`$STRING`"
+    }
+    tasks: {
+      h: "Tasks"
+      n: "tasks"
+      r: true
+      sh: "Tasks created by the import."
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 6
+      }
+    }
+    template_type: {
+      h: "Template Type"
+      n: "template_type"
+      r: true
+      sh: "Type of template that was imported."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "project_import_create_response_with_object"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/templates/create_project_from_file"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/templates/create_project_from_file"
+          rb: {
+            fields: [
+              {
+                binary: true
+                media: "application/octet-stream"
+                name: "file"
+              }
+              {
+                name: "name"
+              }
+              {
+                name: "workspace_id"
+              }
+            ]
+            kind: "multipart"
+            media: "multipart/form-data"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "create_project_from_file"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

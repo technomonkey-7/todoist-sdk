@@ -1,0 +1,39 @@
+{
+  "existing": {
+    "collaborator": {
+      "COLLABORATOR00": {
+        "email": "s1e",
+        "id": "COLLABORATOR00",
+        "name": "s20",
+        "project_id": "PROJECT01"
+      },
+      "COLLABORATOR01": {
+        "email": "s3c",
+        "id": "COLLABORATOR01",
+        "name": "s3e",
+        "project_id": "PROJECT01"
+      },
+      "COLLABORATOR02": {
+        "email": "s5a",
+        "id": "COLLABORATOR02",
+        "name": "s5c",
+        "project_id": "PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "collaborator": {
+      "collaborator_ref01": {
+        "email": "s78",
+        "name": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/projects/{project_id}/collaborators": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

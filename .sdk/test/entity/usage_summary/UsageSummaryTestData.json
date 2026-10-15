@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "usage_summary": {
+      "USAGE_SUMMARY00": {
+        "automation_id": "AUTOMATION01",
+        "charged_amount": 51,
+        "charged_units": 52,
+        "description": "s35",
+        "usage_count": 54
+      },
+      "USAGE_SUMMARY01": {
+        "automation_id": "AUTOMATION01",
+        "charged_amount": 101,
+        "charged_units": 102,
+        "description": "s67",
+        "usage_count": 104
+      },
+      "USAGE_SUMMARY02": {
+        "automation_id": "AUTOMATION01",
+        "charged_amount": 151,
+        "charged_units": 152,
+        "description": "s99",
+        "usage_count": 154
+      }
+    }
+  },
+  "new": {
+    "usage_summary": {
+      "usage_summary_ref01": {
+        "automation_id": "AUTOMATION01",
+        "charged_amount": 201,
+        "charged_units": 202,
+        "description": "scb",
+        "usage_count": 204
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/usage_billing/usage_summary": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

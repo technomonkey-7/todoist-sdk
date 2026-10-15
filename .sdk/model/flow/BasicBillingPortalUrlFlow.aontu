@@ -1,0 +1,18 @@
+# BasicBillingPortalUrlFlow
+
+main: kit: flow: BasicBillingPortalUrlFlow:
+{
+  entity: "billing_portal_url",
+  kind: "basic",
+  name: "BasicBillingPortalUrlFlow",
+  step: [
+    {
+      i: {
+        ref: "billing_portal_url_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBillingPortalUrlFlow"
+}

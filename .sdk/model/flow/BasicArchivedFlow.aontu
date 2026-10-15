@@ -1,0 +1,26 @@
+# BasicArchivedFlow
+
+main: kit: flow: BasicArchivedFlow:
+{
+  entity: "archived",
+  kind: "basic",
+  name: "BasicArchivedFlow",
+  step: [
+    {
+      m: {
+        workspace_id: "workspace01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "archived_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicArchivedFlow"
+}

@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "paginated_list_any_project_sync_view": {
+      "PAGINATED_LIST_ANY_PROJECT_SYNC_VIEW00": {
+        "next_cursor": "s14",
+        "results": []
+      },
+      "PAGINATED_LIST_ANY_PROJECT_SYNC_VIEW01": {
+        "next_cursor": "s28",
+        "results": []
+      },
+      "PAGINATED_LIST_ANY_PROJECT_SYNC_VIEW02": {
+        "next_cursor": "s3c",
+        "results": []
+      }
+    }
+  },
+  "new": {
+    "paginated_list_any_project_sync_view": {
+      "paginated_list_any_project_sync_view_ref01": {
+        "next_cursor": "s50",
+        "results": []
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/projects/search": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/projects/archived": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

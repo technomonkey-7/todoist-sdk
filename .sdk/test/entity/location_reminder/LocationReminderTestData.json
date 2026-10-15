@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "location_reminder": {
+      "LOCATION_REMINDER00": {
+        "id": "LOCATION_REMINDER00"
+      },
+      "LOCATION_REMINDER01": {
+        "id": "LOCATION_REMINDER01"
+      },
+      "LOCATION_REMINDER02": {
+        "id": "LOCATION_REMINDER02"
+      }
+    }
+  },
+  "new": {
+    "location_reminder": {
+      "location_reminder_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /api/v1/location_reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

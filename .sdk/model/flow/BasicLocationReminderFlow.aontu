@@ -1,0 +1,9 @@
+# BasicLocationReminderFlow
+
+main: kit: flow: BasicLocationReminderFlow:
+{
+  entity: "location_reminder",
+  kind: "basic",
+  name: "BasicLocationReminderFlow",
+  "key$": "BasicLocationReminderFlow"
+}

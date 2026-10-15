@@ -1,0 +1,52 @@
+# BasicItemSyncViewFlow
+
+main: kit: flow: BasicItemSyncViewFlow:
+{
+  entity: "item_sync_view",
+  kind: "basic",
+  name: "BasicItemSyncViewFlow",
+  step: [
+    {
+      i: {
+        ref: "item_sync_view_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "item_sync_view_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "item_sync_view_ref01",
+        srcdatavar: "item_sync_view_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "item_sync_view01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-item_sync_view_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicItemSyncViewFlow"
+}

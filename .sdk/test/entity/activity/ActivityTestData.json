@@ -1,0 +1,64 @@
+{
+  "existing": {
+    "activity": {
+      "ACTIVITY00": {
+        "event_date": "s64",
+        "event_type": "s65",
+        "extra_data": "s66",
+        "extra_data_id": "EXTRA_DATA01",
+        "id": "ACTIVITY00",
+        "initiator_id": "INITIATOR01",
+        "object_id": "OBJECT01",
+        "object_type": "s6b",
+        "parent_item_id": "PARENT_ITEM01",
+        "parent_project_id": "PARENT_PROJECT01"
+      },
+      "ACTIVITY01": {
+        "event_date": "sc8",
+        "event_type": "sc9",
+        "extra_data": "sca",
+        "extra_data_id": "EXTRA_DATA01",
+        "id": "ACTIVITY01",
+        "initiator_id": "INITIATOR01",
+        "object_id": "OBJECT01",
+        "object_type": "scf",
+        "parent_item_id": "PARENT_ITEM01",
+        "parent_project_id": "PARENT_PROJECT01"
+      },
+      "ACTIVITY02": {
+        "event_date": "s12c",
+        "event_type": "s12d",
+        "extra_data": "s12e",
+        "extra_data_id": "EXTRA_DATA01",
+        "id": "ACTIVITY02",
+        "initiator_id": "INITIATOR01",
+        "object_id": "OBJECT01",
+        "object_type": "s133",
+        "parent_item_id": "PARENT_ITEM01",
+        "parent_project_id": "PARENT_PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "activity": {
+      "activity_ref01": {
+        "event_date": "s190",
+        "event_type": "s191",
+        "extra_data": "s192",
+        "extra_data_id": "EXTRA_DATA01",
+        "initiator_id": "INITIATOR01",
+        "object_id": "OBJECT01",
+        "object_type": "s197",
+        "parent_item_id": "PARENT_ITEM01",
+        "parent_project_id": "PARENT_PROJECT01"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/activities": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "existing": {
+    "upload": {
+      "UPLOAD00": {
+        "file_name": "s5a",
+        "file_size": 91,
+        "file_type": "s5c",
+        "file_url": "s5d",
+        "image": "s5e",
+        "image_height": "s5f",
+        "image_width": "s60",
+        "resource_type": "s61",
+        "upload_state": "s62",
+        "id": "UPLOAD00"
+      },
+      "UPLOAD01": {
+        "file_name": "sb4",
+        "file_size": 181,
+        "file_type": "sb6",
+        "file_url": "sb7",
+        "image": "sb8",
+        "image_height": "sb9",
+        "image_width": "sba",
+        "resource_type": "sbb",
+        "upload_state": "sbc",
+        "id": "UPLOAD01"
+      },
+      "UPLOAD02": {
+        "file_name": "s10e",
+        "file_size": 271,
+        "file_type": "s110",
+        "file_url": "s111",
+        "image": "s112",
+        "image_height": "s113",
+        "image_width": "s114",
+        "resource_type": "s115",
+        "upload_state": "s116",
+        "id": "UPLOAD02"
+      }
+    }
+  },
+  "new": {
+    "upload": {
+      "upload_ref01": {
+        "file_name": "s168",
+        "file_size": 361,
+        "file_type": "s16a",
+        "file_url": "s16b",
+        "image": "s16c",
+        "image_height": "s16d",
+        "image_width": "s16e",
+        "resource_type": "s16f",
+        "upload_state": "s170"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/uploads": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api/v1/uploads": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

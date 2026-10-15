@@ -1,0 +1,22 @@
+# BasicPaginatedListAnyProjectSyncViewFlow
+
+main: kit: flow: BasicPaginatedListAnyProjectSyncViewFlow:
+{
+  entity: "paginated_list_any_project_sync_view",
+  kind: "basic",
+  name: "BasicPaginatedListAnyProjectSyncViewFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "paginated_list_any_project_sync_view_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPaginatedListAnyProjectSyncViewFlow"
+}

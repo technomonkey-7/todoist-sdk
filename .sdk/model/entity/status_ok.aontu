@@ -1,0 +1,73 @@
+# Entity: status_ok
+
+main: kit: entity: status_ok: {
+
+  alias: field: {}
+
+  name: "status_ok"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /api/v1/emails"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "obj_id"
+                or: "obj_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "obj_type"
+                or: "obj_type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/api/v1/emails"
+          q: {
+            exist: [
+              "obj_id"
+              "obj_type"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "emails"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

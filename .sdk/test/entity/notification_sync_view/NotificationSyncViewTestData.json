@@ -1,0 +1,86 @@
+{
+  "existing": {
+    "notification_sync_view": {
+      "NOTIFICATION_SYNC_VIEW00": {
+        "due": "s6e",
+        "id": "NOTIFICATION_SYNC_VIEW00",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "s73",
+        "notify_uid": "s74",
+        "reminder_type": "s75",
+        "service": "s76",
+        "task_id": "TASK01",
+        "type": "s78",
+        "reminder_id": "REMINDER01"
+      },
+      "NOTIFICATION_SYNC_VIEW01": {
+        "due": "sdc",
+        "id": "NOTIFICATION_SYNC_VIEW01",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "se1",
+        "notify_uid": "se2",
+        "reminder_type": "se3",
+        "service": "se4",
+        "task_id": "TASK01",
+        "type": "se6",
+        "reminder_id": "REMINDER01"
+      },
+      "NOTIFICATION_SYNC_VIEW02": {
+        "due": "s14a",
+        "id": "NOTIFICATION_SYNC_VIEW02",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "s14f",
+        "notify_uid": "s150",
+        "reminder_type": "s151",
+        "service": "s152",
+        "task_id": "TASK01",
+        "type": "s154",
+        "reminder_id": "REMINDER01"
+      }
+    }
+  },
+  "new": {
+    "notification_sync_view": {
+      "notification_sync_view_ref01": {
+        "due": "s1b8",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "s1bd",
+        "notify_uid": "s1be",
+        "reminder_type": "s1bf",
+        "service": "s1c0",
+        "task_id": "TASK01",
+        "type": "s1c2"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/reminders": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/reminders": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

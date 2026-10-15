@@ -1,0 +1,22 @@
+# BasicPlanDetailFlow
+
+main: kit: flow: BasicPlanDetailFlow:
+{
+  entity: "plan_detail",
+  kind: "basic",
+  name: "BasicPlanDetailFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "plan_detail_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPlanDetailFlow"
+}

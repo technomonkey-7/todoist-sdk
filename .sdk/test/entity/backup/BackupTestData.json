@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "backup": {
+      "BACKUP00": {
+        "url": "s14",
+        "version": "s15",
+        "id": "BACKUP00"
+      },
+      "BACKUP01": {
+        "url": "s28",
+        "version": "s29",
+        "id": "BACKUP01"
+      },
+      "BACKUP02": {
+        "url": "s3c",
+        "version": "s3d",
+        "id": "BACKUP02"
+      }
+    }
+  },
+  "new": {
+    "backup": {
+      "backup_ref01": {
+        "url": "s50",
+        "version": "s51"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/backups": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/backups/download": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

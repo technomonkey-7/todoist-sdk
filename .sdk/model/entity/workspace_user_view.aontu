@@ -1,0 +1,177 @@
+# Entity: workspace_user_view
+
+main: kit: entity: workspace_user_view: {
+
+  alias: field: {}
+
+  fields: {
+    custom_sorting_applied: {
+      h: "Custom Sorting Applied"
+      n: "custom_sorting_applied"
+      r: false
+      sh: "Whether the user has custom project sorting enabled."
+      t: "`$BOOLEAN`"
+    }
+    invite_code: {
+      h: "Invite Code"
+      n: "invite_code"
+      r: false
+      sh: "Workspace invite code to join with."
+      t: "`$ANY`"
+    }
+    project_sort_preference: {
+      h: "Project Sort Preference"
+      n: "project_sort_preference"
+      r: false
+      sh: "Project sorting preference for the user."
+      t: "`$STRING`"
+    }
+    role: {
+      h: "Role"
+      n: "role"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Workspace role assigned to the user."
+      t: "`$STRING`"
+    }
+    user_id: {
+      h: "User Id"
+      n: "user_id"
+      r: true
+      sh: "String ID of the workspace user."
+      t: "`$STRING`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "String ID of the workspace."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "workspace_user_view"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "role"
+          ]
+          co: {
+            id: "POST /api/v1/workspaces/{workspace_id}/users/{user_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "user_id"
+                or: "user_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                k: "param"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/workspaces/{workspace_id}/users/{user_id}"
+          q: {
+            exist: [
+              "user_id"
+              "workspace_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "users"
+            }
+            {
+              var: "user_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "invite_code"
+            "workspace_id"
+          ]
+          co: {
+            id: "POST /api/v1/workspaces/join"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/workspaces/join"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              lit: "join"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.workspace") path("$.main.kit.entity.user")]
+  ]
+
+}

@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "top_up": {
+      "TOP_UP00": {
+        "amount": 50,
+        "checkout_url": "s33",
+        "currency": "s34",
+        "return_url": "s35",
+        "session_id": "SESSION01",
+        "id": "TOP_UP00"
+      },
+      "TOP_UP01": {
+        "amount": 100,
+        "checkout_url": "s65",
+        "currency": "s66",
+        "return_url": "s67",
+        "session_id": "SESSION01",
+        "id": "TOP_UP01"
+      },
+      "TOP_UP02": {
+        "amount": 150,
+        "checkout_url": "s97",
+        "currency": "s98",
+        "return_url": "s99",
+        "session_id": "SESSION01",
+        "id": "TOP_UP02"
+      }
+    }
+  },
+  "new": {
+    "top_up": {
+      "top_up_ref01": {
+        "amount": 200,
+        "checkout_url": "sc9",
+        "currency": "sca",
+        "return_url": "scb",
+        "session_id": "SESSION01"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/usage_billing/top_up": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

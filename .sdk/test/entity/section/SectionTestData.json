@@ -1,0 +1,100 @@
+{
+  "existing": {
+    "section": {
+      "SECTION00": {
+        "added_at": "s8c",
+        "archived_at": "s8d",
+        "description": "s8e",
+        "id": "SECTION00",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s93",
+        "order": "s94",
+        "order_key": "s95",
+        "project_id": "PROJECT01",
+        "section_order": 151,
+        "updated_at": "s98",
+        "user_id": "USER01"
+      },
+      "SECTION01": {
+        "added_at": "s118",
+        "archived_at": "s119",
+        "description": "s11a",
+        "id": "SECTION01",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s11f",
+        "order": "s120",
+        "order_key": "s121",
+        "project_id": "PROJECT01",
+        "section_order": 291,
+        "updated_at": "s124",
+        "user_id": "USER01"
+      },
+      "SECTION02": {
+        "added_at": "s1a4",
+        "archived_at": "s1a5",
+        "description": "s1a6",
+        "id": "SECTION02",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s1ab",
+        "order": "s1ac",
+        "order_key": "s1ad",
+        "project_id": "PROJECT01",
+        "section_order": 431,
+        "updated_at": "s1b0",
+        "user_id": "USER01"
+      }
+    }
+  },
+  "new": {
+    "section": {
+      "section_ref01": {
+        "added_at": "s230",
+        "archived_at": "s231",
+        "description": "s232",
+        "is_archived": true,
+        "is_collapsed": false,
+        "is_deleted": true,
+        "name": "s237",
+        "order": "s238",
+        "order_key": "s239",
+        "project_id": "PROJECT01",
+        "section_order": 571,
+        "updated_at": "s23c",
+        "user_id": "USER01"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/sections/{section_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/sections": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/sections": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/sections/{section_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api/v1/sections/{section_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

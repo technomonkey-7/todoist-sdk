@@ -1,0 +1,22 @@
+# BasicUsageSummaryFlow
+
+main: kit: flow: BasicUsageSummaryFlow:
+{
+  entity: "usage_summary",
+  kind: "basic",
+  name: "BasicUsageSummaryFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "usage_summary_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUsageSummaryFlow"
+}

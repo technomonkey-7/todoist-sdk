@@ -1,0 +1,160 @@
+# Entity: subscription_info
+
+main: kit: entity: subscription_info: {
+
+  alias: field: {}
+
+  fields: {
+    activation_method: {
+      h: "Activation Method"
+      n: "activation_method"
+      r: true
+      sh: "How the active subscription was purchased."
+      t: "`$STRING`"
+    }
+    billing_portal_switch_to_annual_url: {
+      h: "Billing Portal Switch To Annual Url"
+      n: "billing_portal_switch_to_annual_url"
+      r: true
+      sh: "One-time URL to a Stripe portal flow for switching from monthly to annual billing, if eligible."
+      t: "`$ANY`"
+    }
+    billing_portal_url: {
+      h: "Billing Portal Url"
+      n: "billing_portal_url"
+      r: true
+      sh: "One-time URL to the Stripe customer portal, if available."
+      t: "`$ANY`"
+    }
+    expiration_date: {
+      h: "Expiration Date"
+      n: "expiration_date"
+      r: true
+      sh: "Date the current paid period ends, in `YYYY-MM-DD` format."
+      t: "`$ANY`"
+    }
+    has_billing_portal: {
+      h: "Has Billing Portal"
+      n: "has_billing_portal"
+      r: true
+      sh: "`true` when the user has a Stripe customer with a portal session."
+      t: "`$BOOLEAN`"
+    }
+    has_billing_portal_switch_to_annual: {
+      h: "Has Billing Portal Switch To Annual"
+      n: "has_billing_portal_switch_to_annual"
+      r: true
+      sh: "`true` when a switch-to-annual flow is available in Stripe."
+      t: "`$BOOLEAN`"
+    }
+    has_switch_legacy_to_current: {
+      h: "Has Switch Legacy To Current"
+      n: "has_switch_legacy_to_current"
+      r: true
+      sh: "`true` when the user is eligible to switch from a legacy Pro price to the current one."
+      t: "`$BOOLEAN`"
+    }
+    invoice_credit_balance: {
+      h: "Invoice Credit Balance"
+      n: "invoice_credit_balance"
+      r: true
+      sh: "Stripe customer credit balance, keyed by ISO 4217 currency code, with values in the smallest currency unit (e.g."
+      t: "`$ANY`"
+    }
+    plan: {
+      h: "Plan"
+      n: "plan"
+      r: true
+      sh: "Plan tier the user is currently on."
+      t: "`$STRING`"
+    }
+    plan_price: {
+      h: "Plan Price"
+      n: "plan_price"
+      r: true
+      sh: "Price of the active plan, when known."
+      t: "`$ANY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: true
+      sh: "Current subscription status."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "subscription_info"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/payments/get_subscription_info"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/payments/get_subscription_info"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "payments"
+            }
+            {
+              lit: "get_subscription_info"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/payments/reactivate_plan"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/payments/reactivate_plan"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "payments"
+            }
+            {
+              lit: "reactivate_plan"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

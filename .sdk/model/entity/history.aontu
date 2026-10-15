@@ -1,0 +1,168 @@
+# Entity: history
+
+main: kit: entity: history: {
+
+  alias: field: {}
+
+  fields: {
+    category: {
+      h: "Category"
+      n: "category"
+      r: false
+      sh: "What produced the entry, within its `type`: `automation_run`, `paid`, `promotional` or `stripe`."
+      t: "`$STRING`"
+    }
+    charged_amount: {
+      h: "Charged Amount"
+      n: "charged_amount"
+      r: true
+      sh: "`charged_units` in money, in microdollars (millionths of one page-level `currency` unit), so 27400 is $0.0274."
+      t: "`$ANY`"
+    }
+    charged_units: {
+      h: "Charged Units"
+      n: "charged_units"
+      r: true
+      sh: "Units taken off the balance, as a positive number, or `null` on a credit, which has no debit side."
+      t: "`$ANY`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: true
+      sh: "When the entry was written, UTC."
+      t: "`$STRING`"
+    }
+    credited_amount: {
+      h: "Credited Amount"
+      n: "credited_amount"
+      r: true
+      sh: "`credited_units` in money, in microdollars (millionths of one page-level `currency` unit), so 10000000 is $10.00."
+      t: "`$ANY`"
+    }
+    credited_units: {
+      h: "Credited Units"
+      n: "credited_units"
+      r: true
+      sh: "Units added to the balance, as a positive number, or `null` on a debit."
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Human-readable summary of the entry."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "Ledger entry id."
+      t: "`$INTEGER`"
+    }
+    refs: {
+      h: "Refs"
+      n: "refs"
+      r: false
+      sh: "Free-form attribution for the entry."
+      t: "`$OBJECT`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Outcome of the run this entry settles: `success`, `failed`, `cancelled`, `timed_out` or `partial`."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: true
+      sh: "What moved the balance: `usage_settled`, `top_up`, `adjustment`, `void`, `expiry` or `chargeback`."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "history"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/usage_billing/history"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "automations"
+                k: "query"
+                n: "product"
+                or: "product"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "types"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/usage_billing/history"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "usage_billing"
+            }
+            {
+              lit: "history"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.entries`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

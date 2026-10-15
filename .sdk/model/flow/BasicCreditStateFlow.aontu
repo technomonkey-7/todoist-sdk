@@ -1,0 +1,28 @@
+# BasicCreditStateFlow
+
+main: kit: flow: BasicCreditStateFlow:
+{
+  entity: "credit_state",
+  kind: "basic",
+  name: "BasicCreditStateFlow",
+  step: [
+    {
+      i: {
+        ref: "credit_state_ref01",
+        srcdatavar: "credit_state_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-credit_state_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCreditStateFlow"
+}

@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "template": {
+      "TEMPLATE00": {
+        "id": "TEMPLATE00"
+      },
+      "TEMPLATE01": {
+        "id": "TEMPLATE01"
+      },
+      "TEMPLATE02": {
+        "id": "TEMPLATE02"
+      }
+    }
+  },
+  "new": {
+    "template": {
+      "template_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /api/v1/templates/file": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

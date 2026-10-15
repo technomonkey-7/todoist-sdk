@@ -1,0 +1,22 @@
+# BasicProductivityStatFlow
+
+main: kit: flow: BasicProductivityStatFlow:
+{
+  entity: "productivity_stat",
+  kind: "basic",
+  name: "BasicProductivityStatFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "productivity_stat_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicProductivityStatFlow"
+}

@@ -1,0 +1,18 @@
+# BasicSubscriptionInfoFlow
+
+main: kit: flow: BasicSubscriptionInfoFlow:
+{
+  entity: "subscription_info",
+  kind: "basic",
+  name: "BasicSubscriptionInfoFlow",
+  step: [
+    {
+      i: {
+        ref: "subscription_info_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicSubscriptionInfoFlow"
+}

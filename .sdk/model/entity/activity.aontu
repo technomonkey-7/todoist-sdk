@@ -1,0 +1,260 @@
+# Entity: activity
+
+main: kit: entity: activity: {
+
+  alias: field: {}
+
+  fields: {
+    event_date: {
+      fo: "date-time"
+      h: "Event Date"
+      n: "event_date"
+      r: true
+      sh: "The timestamp when this activity occurred."
+      t: "`$STRING`"
+    }
+    event_type: {
+      h: "Event Type"
+      n: "event_type"
+      r: true
+      sh: "The type of event that occurred."
+      t: "`$STRING`"
+    }
+    extra_data: {
+      h: "Extra Data"
+      n: "extra_data"
+      r: false
+      sh: "This object contains at least the `name` of the project, or the `content` of an item or comment, and optionally the `last_name` if a project was renamed, the `last_content` if an item or note was renamed, the `due_date` and `last_due_date`…"
+      t: "`$ANY`"
+    }
+    extra_data_id: {
+      h: "Extra Data Id"
+      n: "extra_data_id"
+      r: false
+      sh: "Internal ID for the extra activity data row."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The internal unique identifier for this activity log entry."
+      t: "`$STRING`"
+    }
+    initiator_id: {
+      h: "Initiator Id"
+      n: "initiator_id"
+      r: false
+      t: "`$STRING`"
+    }
+    object_id: {
+      h: "Object Id"
+      n: "object_id"
+      r: true
+      sh: "The unique identifier of the object this activity relates to (project, item, note, or section ID)."
+      t: "`$STRING`"
+    }
+    object_type: {
+      h: "Object Type"
+      n: "object_type"
+      r: true
+      sh: "The type of object this activity relates to."
+      t: "`$STRING`"
+    }
+    parent_item_id: {
+      h: "Parent Item Id"
+      n: "parent_item_id"
+      r: false
+      sh: "For note (comment) activities, the ID of the item (task) that the note is attached to."
+      t: "`$STRING`"
+    }
+    parent_project_id: {
+      h: "Parent Project Id"
+      n: "parent_project_id"
+      r: false
+      sh: "The ID of the project that contains the object this activity relates to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "activity"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/activities"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: false
+                k: "query"
+                n: "annotate_note"
+                or: "annotate_notes"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "annotate_parent"
+                or: "annotate_parents"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "date_from"
+                or: "date_from"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "date_to"
+                or: "date_to"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "ensure_last_state"
+                or: "ensure_last_state"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "event_type"
+                or: "event_type"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "include_child_object"
+                or: "include_child_objects"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "include_parent_object"
+                or: "include_parent_object"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "initiator_id"
+                or: "initiator_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "initiator_id_null"
+                or: "initiator_id_null"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "object_event_type"
+                or: "object_event_types"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "object_id"
+                or: "object_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "object_type"
+                or: "object_type"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "parent_item_id"
+                or: "parent_item_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "parent_project_id"
+                or: "parent_project_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/activities"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "activities"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

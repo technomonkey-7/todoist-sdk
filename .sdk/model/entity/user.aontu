@@ -1,0 +1,568 @@
+# Entity: user
+
+main: kit: entity: user: {
+
+  alias: field: {}
+
+  fields: {
+    activated_user: {
+      h: "Activated User"
+      n: "activated_user"
+      r: true
+      sh: "Whether the user is considered activated (completed key onboarding actions)"
+      t: "`$BOOLEAN`"
+    }
+    auto_reminder: {
+      h: "Auto Reminder"
+      n: "auto_reminder"
+      r: true
+      sh: "The default time in minutes for the automatic reminders set, whenever a due date has been specified for a task"
+      t: "`$INTEGER`"
+    }
+    avatar_big: {
+      h: "Avatar Big"
+      n: "avatar_big"
+      r: false
+      sh: "The link to a 195x195 pixels image of the user's avatar"
+      t: "`$ANY`"
+    }
+    avatar_medium: {
+      h: "Avatar Medium"
+      n: "avatar_medium"
+      r: false
+      sh: "The link to a 60x60 pixels image of the user's avatar"
+      t: "`$ANY`"
+    }
+    avatar_s640: {
+      h: "Avatar S640"
+      n: "avatar_s640"
+      r: false
+      sh: "The link to a 640x640 pixels image of the user's avatar"
+      t: "`$ANY`"
+    }
+    avatar_small: {
+      h: "Avatar Small"
+      n: "avatar_small"
+      r: false
+      sh: "The link to a 35x35 pixels image of the user's avatar"
+      t: "`$ANY`"
+    }
+    business_account_id: {
+      h: "Business Account Id"
+      n: "business_account_id"
+      r: false
+      sh: "The ID of the user's business account"
+      t: "`$STRING`"
+    }
+    completed_count: {
+      h: "Completed Count"
+      n: "completed_count"
+      r: true
+      sh: "Total number of tasks completed by user"
+      t: "`$INTEGER`"
+    }
+    completed_today: {
+      h: "Completed Today"
+      n: "completed_today"
+      r: true
+      sh: "Number of tasks completed today by the user"
+      t: "`$INTEGER`"
+    }
+    daily_goal: {
+      h: "Daily Goal"
+      n: "daily_goal"
+      r: true
+      sh: "The daily goal number of completed tasks for karma"
+      t: "`$INTEGER`"
+    }
+    date_format: {
+      h: "Date Format"
+      n: "date_format"
+      r: true
+      sh: "Whether to use the DD-MM-YYYY date format (if set to 0), or the MM-DD-YYYY format (if set to 1)"
+      t: "`$INTEGER`"
+    }
+    days_off: {
+      h: "Days Off"
+      n: "days_off"
+      r: true
+      sh: "Array of integers representing user's days off (between 1 and 7, where 1 is Monday and 7 is Sunday)"
+      t: "`$ARRAY`"
+    }
+    deleted_at: {
+      h: "Deleted At"
+      n: "deleted_at"
+      r: false
+      sh: "Date when user was deleted (ISO 8601 format)"
+      t: "`$ANY`"
+    }
+    dont_notify: {
+      h: "Dont Notify"
+      n: "dont_notify"
+      r: false
+      sh: "Whether notifications should be disabled for the selected type and channel."
+      t: "`$ANY`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: true
+      sh: "User's email address"
+      t: "`$STRING`"
+    }
+    feature_identifier: {
+      h: "Feature Identifier"
+      n: "feature_identifier"
+      r: true
+      sh: "Feature identifier for feature flag evaluations"
+      t: "`$STRING`"
+    }
+    features: {
+      h: "Features"
+      n: "features"
+      r: true
+      sh: "Feature flags and settings for the user"
+      t: "`$OBJECT`"
+    }
+    free_trial_expires: {
+      h: "Free Trial Expires"
+      n: "free_trial_expires"
+      r: false
+      sh: "Date when free trial expires (ISO 8601 format)"
+      t: "`$ANY`"
+    }
+    full_name: {
+      h: "Full Name"
+      n: "full_name"
+      r: true
+      sh: "The user's real name formatted as Firstname Lastname"
+      t: "`$STRING`"
+    }
+    getting_started_guide_projects: {
+      h: "Getting Started Guide Projects"
+      n: "getting_started_guide_projects"
+      r: false
+      sh: "List of project IDs for getting started guide"
+      t: "`$ANY`"
+    }
+    has_magic_number: {
+      h: "Has Magic Number"
+      n: "has_magic_number"
+      r: true
+      sh: "Whether the user has reached a magic number milestone"
+      t: "`$BOOLEAN`"
+    }
+    has_password: {
+      h: "Has Password"
+      n: "has_password"
+      r: true
+      sh: "Whether the user has a password set on the account."
+      t: "`$BOOLEAN`"
+    }
+    has_started_a_trial: {
+      h: "Has Started A Trial"
+      n: "has_started_a_trial"
+      r: true
+      sh: "Whether the user has ever started a free trial"
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "User ID"
+      t: "`$STRING`"
+    }
+    image_id: {
+      h: "Image Id"
+      n: "image_id"
+      r: false
+      sh: "The ID of the user's avatar"
+      t: "`$STRING`"
+    }
+    inbox_project_id: {
+      h: "Inbox Project Id"
+      n: "inbox_project_id"
+      r: false
+      sh: "The ID of the user's Inbox project"
+      t: "`$STRING`"
+    }
+    is_celebrations_enabled: {
+      h: "Is Celebrations Enabled"
+      n: "is_celebrations_enabled"
+      r: true
+      sh: "Whether celebration animations are enabled"
+      t: "`$BOOLEAN`"
+    }
+    is_deleted: {
+      h: "Is Deleted"
+      n: "is_deleted"
+      r: false
+      sh: "Whether the user is deleted"
+      t: "`$BOOLEAN`"
+    }
+    is_onboarded: {
+      h: "Is Onboarded"
+      n: "is_onboarded"
+      r: false
+      sh: "Composite flag: true once all four onboarded_* criteria above are met."
+      t: "`$BOOLEAN`"
+    }
+    is_premium: {
+      h: "Is Premium"
+      n: "is_premium"
+      r: true
+      sh: "Whether the user has a Todoist Pro subscription (a true or false value)"
+      t: "`$BOOLEAN`"
+    }
+    joinable_workspace: {
+      h: "Joinable Workspace"
+      n: "joinable_workspace"
+      r: true
+      sh: "Information about workspaces the user can join"
+      t: "`$ANY`"
+    }
+    joined_at: {
+      h: "Joined At"
+      n: "joined_at"
+      r: false
+      sh: "Date when user joined Todoist (ISO 8601 format)"
+      t: "`$ANY`"
+    }
+    karma: {
+      h: "Karma"
+      n: "karma"
+      r: true
+      sh: "The user's karma score"
+      t: "`$NUMBER`"
+    }
+    karma_trend: {
+      h: "Karma Trend"
+      n: "karma_trend"
+      r: false
+      sh: "The user's karma trend."
+      t: "`$ANY`"
+    }
+    lang: {
+      h: "Lang"
+      n: "lang"
+      r: true
+      sh: "The user's language"
+      t: "`$STRING`"
+    }
+    mfa_enabled: {
+      h: "Mfa Enabled"
+      n: "mfa_enabled"
+      r: true
+      sh: "Whether multi-factor authentication is enabled"
+      t: "`$BOOLEAN`"
+    }
+    next_week: {
+      h: "Next Week"
+      n: "next_week"
+      r: true
+      sh: "The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday)"
+      t: "`$INTEGER`"
+    }
+    notification_type: {
+      h: "Notification Type"
+      n: "notification_type"
+      r: true
+      sh: "Notification type to update."
+      t: "`$STRING`"
+    }
+    onboarded_dated_tasks_created: {
+      h: "Onboarded Dated Tasks Created"
+      n: "onboarded_dated_tasks_created"
+      r: false
+      sh: "True once the user has created at least 1 task with a due date that includes a time component (excluding auto-seeded getting-started-guide tasks)."
+      t: "`$ANY`"
+    }
+    onboarded_desktop_accessed: {
+      h: "Onboarded Desktop Accessed"
+      n: "onboarded_desktop_accessed"
+      r: false
+      sh: "True once the user has synced from Web, macOS, or Windows."
+      t: "`$ANY`"
+    }
+    onboarded_mobile_accessed: {
+      h: "Onboarded Mobile Accessed"
+      n: "onboarded_mobile_accessed"
+      r: false
+      sh: "True once the user has synced from iOS or Android."
+      t: "`$ANY`"
+    }
+    onboarded_tasks_completed: {
+      h: "Onboarded Tasks Completed"
+      n: "onboarded_tasks_completed"
+      r: false
+      sh: "True once the user has completed at least 3 tasks."
+      t: "`$ANY`"
+    }
+    onboarding_completed: {
+      h: "Onboarding Completed"
+      n: "onboarding_completed"
+      r: true
+      sh: "Whether the user has completed onboarding"
+      t: "`$BOOLEAN`"
+    }
+    onboarding_initiated: {
+      h: "Onboarding Initiated"
+      n: "onboarding_initiated"
+      r: true
+      sh: "Whether the user has initiated onboarding"
+      t: "`$BOOLEAN`"
+    }
+    onboarding_level: {
+      h: "Onboarding Level"
+      n: "onboarding_level"
+      r: false
+      sh: "User's self-reported skill level during onboarding"
+      t: "`$ANY`"
+    }
+    onboarding_persona: {
+      h: "Onboarding Persona"
+      n: "onboarding_persona"
+      r: false
+      sh: "User's onboarding persona selection"
+      t: "`$ANY`"
+    }
+    onboarding_role: {
+      h: "Onboarding Role"
+      n: "onboarding_role"
+      r: false
+      sh: "User's role selection during onboarding"
+      t: "`$ANY`"
+    }
+    onboarding_started: {
+      h: "Onboarding Started"
+      n: "onboarding_started"
+      r: true
+      sh: "Whether the user has started onboarding"
+      t: "`$BOOLEAN`"
+    }
+    onboarding_team_mode: {
+      h: "Onboarding Team Mode"
+      n: "onboarding_team_mode"
+      r: false
+      sh: "Whether user selected team mode during onboarding"
+      t: "`$ANY`"
+    }
+    onboarding_use_cases: {
+      h: "Onboarding Use Cases"
+      n: "onboarding_use_cases"
+      r: false
+      sh: "Use cases the user selected during onboarding"
+      t: "`$ANY`"
+    }
+    premium_status: {
+      h: "Premium Status"
+      n: "premium_status"
+      r: false
+      sh: "Outlines why a user is premium, possible values are: not_premium, current_personal_plan, legacy_personal_plan or teams_business_member"
+      t: "`$ANY`"
+    }
+    premium_until: {
+      h: "Premium Until"
+      n: "premium_until"
+      r: false
+      sh: "The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user)."
+      t: "`$ANY`"
+    }
+    service: {
+      h: "Service"
+      n: "service"
+      r: true
+      sh: "Notification channel to update."
+      t: "`$STRING`"
+    }
+    share_limit: {
+      h: "Share Limit"
+      n: "share_limit"
+      r: true
+      sh: "Maximum number of collaborators allowed in shared projects"
+      t: "`$INTEGER`"
+    }
+    sort_order: {
+      h: "Sort Order"
+      n: "sort_order"
+      r: true
+      sh: "Whether to show projects in an oldest dates first order (if set to 0), or a oldest dates last order (if set to 1)"
+      t: "`$INTEGER`"
+    }
+    start_day: {
+      h: "Start Day"
+      n: "start_day"
+      r: true
+      sh: "The first day of the week (between 1 and 7, where 1 is Monday and 7 is Sunday)"
+      t: "`$INTEGER`"
+    }
+    start_page: {
+      h: "Start Page"
+      n: "start_page"
+      r: true
+      sh: "The user's default view on Todoist."
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The user's status, shared across Todoist and Comms."
+      t: "`$ANY`"
+    }
+    theme_appearance: {
+      h: "Theme Appearance"
+      n: "theme_appearance"
+      r: true
+      sh: "Whether Todoist uses a light theme, a dark theme, or follows the system appearance"
+      t: "`$STRING`"
+    }
+    theme_id: {
+      h: "Theme Id"
+      n: "theme_id"
+      r: true
+      sh: "The currently selected Todoist theme (a number between 0 and 13)"
+      t: "`$STRING`"
+    }
+    time_format: {
+      h: "Time Format"
+      n: "time_format"
+      r: false
+      sh: "Whether to use a 24h format such as 13:00 (if set to 0) when displaying time, or a 12h format such as 1:00pm (if set to 1)"
+      t: "`$ANY`"
+    }
+    token: {
+      h: "Token"
+      n: "token"
+      r: false
+      sh: "The user's token that should be used to call the other API methods"
+      t: "`$STRING`"
+    }
+    tz_info: {
+      h: "Tz Info"
+      n: "tz_info"
+      r: true
+      sh: "The user's timezone (a dictionary structure), which includes the following elements: the timezone as a string value, the hours and minutes difference from GMT, whether daylight saving time applies denoted by is_dst, and a string value of t…"
+      t: "`$OBJECT`"
+    }
+    urgent_reminder_device: {
+      h: "Urgent Reminder Device"
+      n: "urgent_reminder_device"
+      r: false
+      sh: "The device that should ring urgent reminders."
+      t: "`$ANY`"
+    }
+    verification_status: {
+      h: "Verification Status"
+      n: "verification_status"
+      r: true
+      sh: "User's email verification status."
+      t: "`$STRING`"
+    }
+    websocket_url: {
+      h: "Websocket Url"
+      n: "websocket_url"
+      r: true
+      sh: "WebSocket URL for real-time updates"
+      t: "`$STRING`"
+    }
+    weekend_start_day: {
+      h: "Weekend Start Day"
+      n: "weekend_start_day"
+      r: true
+      sh: "The day used when a user chooses to schedule a task for the 'Weekend' (between 1 and 7, where 1 is Monday and 7 is Sunday)"
+      t: "`$INTEGER`"
+    }
+    weekly_goal: {
+      h: "Weekly Goal"
+      n: "weekly_goal"
+      r: true
+      sh: "The target number of tasks to complete per week"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "user"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/user"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/user"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "user"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "dont_notify"
+            "notification_type"
+            "service"
+          ]
+          co: {
+            id: "PUT /api/v1/notification_setting"
+            source: "openapi3"
+            version: 2
+          }
+          m: "PUT"
+          o: "/api/v1/notification_setting"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "notification_setting"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,175 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { TodoistSDK, BaseFeature, config, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('IdMappingEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when TODOIST_TEST_LIVE=TRUE.
+  afterEach(liveDelay('TODOIST_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = TodoistSDK.test()
+    const ent = testsdk.IdMapping()
+    assert(null != ent)
+  })
+
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = TodoistSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.IdMapping().list({"obj_id":1,"obj_name":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.TODOIST_TEST_LIVE
+    for (const op of ['list']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'id_mapping.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"new_id":{"a":true,"h":"New Id","n":"new_id","r":true,"sh":"Curent ID for the object.","t":"`$STRING`","key$":"new_id","index$":0},"old_id":{"a":true,"h":"Old Id","n":"old_id","r":true,"sh":"Legacy ID for the object.","t":"`$STRING`","key$":"old_id","index$":1}},"name":"id_mapping","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/v1/id_mappings/{obj_name}/{obj_ids}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"obj_id","or":"obj_ids","r":true,"t":"`$STRING`","index$":0},{"a":true,"k":"param","n":"obj_name","or":"obj_name","r":true,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/api/v1/id_mappings/{obj_name}/{obj_ids}","q":{"exist":["obj_id","obj_name"]},"r":{"param":{"obj_ids":"obj_id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"id_mappings"},{"var":"obj_name"},{"var":"obj_id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"id_mapping","name__orig":"id_mapping","Name":"IdMapping","name_":"id_mapping","name-":"id-mapping","NAME":"ID_MAPPING","index$":16}, {"active":true,"entity":"id_mapping","key$":"BasicIdMappingFlow","kind":"basic","name":"BasicIdMappingFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{"obj_id":"obj01","obj_name":"obj_name01"},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"id_mapping_ref01"}}],"index$":0}]}, 'IdMapping', {"GET /api/v1/id_mappings/{obj_name}/{obj_ids}":{"protocol":"http","parameters":[{"name":"obj_name","in":"path","required":true,"schema":{"enum":["sections","tasks","comments","reminders","location_reminders","projects"],"type":"string","description":"Object type for the IDs to translate.","examples":["tasks"],"title":"Obj Name"},"index$":0},{"name":"obj_ids","in":"path","required":true,"schema":{"type":"string","description":"A comma-separated list of IDs","examples":["6VfWjjjFg2xqX6Pa","918273645","6VfWjjjFg2xqX6Pa,6WMVPf8Hm8JP6mC8"],"title":"Obj Ids"},"index$":1}]}}, { strict: LIVE_STRICT, t })
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+    let id_mapping_ref01_data = Object.values(setup.data.existing.id_mapping)[0] as any
+
+    // LIST
+    const id_mapping_ref01_ent = client.IdMapping()
+    const id_mapping_ref01_match: any = {}
+    id_mapping_ref01_match['obj_id'] = setup.idmap['obj01']
+    id_mapping_ref01_match['obj_name'] = setup.idmap['obj_name01']
+
+    const id_mapping_ref01_list = (await id_mapping_ref01_ent.list(id_mapping_ref01_match)).map((e: any) => e.data())
+
+
+  })
+})
+
+
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/id_mapping/IdMappingTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = TodoistSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['id_mapping01','id_mapping02','id_mapping03','obj01','obj_name01'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'TODOIST_TEST_ID_MAPPING_ENTID': idmap,
+    'TODOIST_TEST_LIVE': 'FALSE',
+    'TODOIST_TEST_EXPLAIN': 'FALSE',
+  })
+
+  idmap = env['TODOIST_TEST_ID_MAPPING_ENTID']
+
+  const live = 'TRUE' === env.TODOIST_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['TODOIST_TEST_ID_MAPPING_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new TodoistSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.TODOIST_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

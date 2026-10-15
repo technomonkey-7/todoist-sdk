@@ -1,0 +1,9 @@
+# BasicReminderFlow
+
+main: kit: flow: BasicReminderFlow:
+{
+  entity: "reminder",
+  kind: "basic",
+  name: "BasicReminderFlow",
+  "key$": "BasicReminderFlow"
+}

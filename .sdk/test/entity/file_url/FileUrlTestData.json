@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "file_url": {
+      "FILE_URL00": {
+        "file_name": "s14",
+        "file_url": "s15",
+        "id": "FILE_URL00"
+      },
+      "FILE_URL01": {
+        "file_name": "s28",
+        "file_url": "s29",
+        "id": "FILE_URL01"
+      },
+      "FILE_URL02": {
+        "file_name": "s3c",
+        "file_url": "s3d",
+        "id": "FILE_URL02"
+      }
+    }
+  },
+  "new": {
+    "file_url": {
+      "file_url_ref01": {
+        "file_name": "s50",
+        "file_url": "s51"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/templates/url": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

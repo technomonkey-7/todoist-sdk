@@ -1,0 +1,771 @@
+# Entity: item_sync_view
+
+main: kit: entity: item_sync_view: {
+
+  alias: field: {}
+
+  fields: {
+    added_at: {
+      fo: "date-time"
+      h: "Added At"
+      n: "added_at"
+      r: true
+      sh: "Date and time when the task was created, or `null` if unknown."
+      t: "`$ANY`"
+    }
+    added_by_uid: {
+      h: "Added By Uid"
+      n: "added_by_uid"
+      r: true
+      sh: "String ID of the user who created the task, or `null` if unknown."
+      t: "`$ANY`"
+    }
+    assigned_by_uid: {
+      h: "Assigned By Uid"
+      n: "assigned_by_uid"
+      r: true
+      sh: "String ID of the user who assigned the task, or `null` if unassigned."
+      t: "`$ANY`"
+    }
+    assignee_id: {
+      h: "Assignee Id"
+      n: "assignee_id"
+      r: false
+      sh: "ID of the user to assign the task to."
+      t: "`$STRING`"
+    }
+    checked: {
+      h: "Checked"
+      n: "checked"
+      r: true
+      sh: "Whether the task is completed."
+      t: "`$BOOLEAN`"
+    }
+    child_order: {
+      h: "Child Order"
+      n: "child_order"
+      op: {
+        create: {
+          req: false
+          type: "`$INTEGER`"
+        }
+      }
+      r: true
+      sh: "Position of the task among sibling tasks."
+      t: "`$INTEGER`"
+    }
+    completed_at: {
+      fo: "date-time"
+      h: "Completed At"
+      n: "completed_at"
+      r: true
+      sh: "Date and time when the task was completed, or `null` if active."
+      t: "`$ANY`"
+    }
+    completed_by_uid: {
+      h: "Completed By Uid"
+      n: "completed_by_uid"
+      r: true
+      sh: "String ID of the user who completed the task, or `null` if active."
+      t: "`$ANY`"
+    }
+    completed_count: {
+      h: "Completed Count"
+      n: "completed_count"
+      r: true
+      sh: "Number of times the task has been marked as completed."
+      t: "`$INTEGER`"
+    }
+    content: {
+      h: "Content"
+      n: "content"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Task content."
+      t: "`$STRING`"
+    }
+    day_order: {
+      h: "Day Order"
+      n: "day_order"
+      op: {
+        create: {
+          req: false
+          type: "`$INTEGER`"
+        }
+      }
+      r: true
+      sh: "Task order for day-based views."
+      t: "`$INTEGER`"
+    }
+    deadline: {
+      h: "Deadline"
+      n: "deadline"
+      r: true
+      sh: "Deadline details for the task, or `null` when the task has no deadline."
+      t: "`$ANY`"
+    }
+    deadline_date: {
+      fo: "date"
+      h: "Deadline Date"
+      n: "deadline_date"
+      r: false
+      sh: "Updated deadline date in YYYY-MM-DD format."
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Task description."
+      t: "`$STRING`"
+    }
+    due: {
+      h: "Due"
+      n: "due"
+      r: true
+      sh: "Due date details for the task, or `null` when the task has no due date."
+      t: "`$ANY`"
+    }
+    due_date: {
+      h: "Due Date"
+      n: "due_date"
+      r: false
+      sh: "Updated due date in RFC 3339 format or similar."
+      t: "`$STRING`"
+    }
+    due_datetime: {
+      h: "Due Datetime"
+      n: "due_datetime"
+      r: false
+      sh: "Updated due date and time."
+      t: "`$STRING`"
+    }
+    due_lang: {
+      h: "Due Lang"
+      n: "due_lang"
+      r: false
+      sh: "Updated due date language code."
+      t: "`$STRING`"
+    }
+    due_string: {
+      h: "Due String"
+      n: "due_string"
+      r: false
+      sh: "Updated human-readable representation of the due date."
+      t: "`$STRING`"
+    }
+    duration: {
+      h: "Duration"
+      n: "duration"
+      op: {
+        create: {
+          req: false
+          type: "`$NUMBER`"
+        }
+      }
+      r: true
+      sh: "Task duration details, or `null` when the task has no duration."
+      t: "`$NUMBER`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 3
+      }
+    }
+    duration_unit: {
+      h: "Duration Unit"
+      n: "duration_unit"
+      r: false
+      sh: "Unit of time for duration."
+      t: "`$ANY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      sh: "String ID of the task."
+      t: "`$STRING`"
+    }
+    is_collapsed: {
+      h: "Is Collapsed"
+      n: "is_collapsed"
+      op: {
+        create: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
+      }
+      r: true
+      sh: "Whether the task is collapsed in the user's view."
+      t: "`$BOOLEAN`"
+    }
+    is_deleted: {
+      h: "Is Deleted"
+      n: "is_deleted"
+      r: true
+      sh: "Whether the task is deleted."
+      t: "`$BOOLEAN`"
+    }
+    labels: {
+      h: "Labels"
+      n: "labels"
+      op: {
+        create: {
+          req: false
+          type: "`$ANY`"
+        }
+      }
+      r: true
+      sh: "Names of labels attached to the task."
+      t: "`$ARRAY`"
+    }
+    note_count: {
+      h: "Note Count"
+      n: "note_count"
+      r: true
+      sh: "**Deprecated**: only returns 0 and is marked for removal."
+      t: "`$INTEGER`"
+    }
+    order: {
+      h: "Order"
+      n: "order"
+      r: false
+      sh: "Position of the task in the project or section"
+      t: "`$ANY`"
+    }
+    order_key: {
+      h: "Order Key"
+      n: "order_key"
+      r: true
+      sh: "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task."
+      t: "`$ANY`"
+    }
+    parent_id: {
+      h: "Parent Id"
+      n: "parent_id"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "String ID of the parent task, or `null` if this is a top-level task."
+      t: "`$STRING`"
+    }
+    postponed_count: {
+      h: "Postponed Count"
+      n: "postponed_count"
+      r: true
+      sh: "Number of times the task's due date has been rescheduled by the user."
+      t: "`$INTEGER`"
+    }
+    priority: {
+      h: "Priority"
+      n: "priority"
+      op: {
+        create: {
+          req: false
+          type: "`$ANY`"
+        }
+      }
+      r: true
+      sh: "Task priority from 1 (normal) to 4 (urgent)."
+      t: "`$INTEGER`"
+    }
+    project_id: {
+      h: "Project Id"
+      n: "project_id"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "String ID of the project that contains the task."
+      t: "`$STRING`"
+    }
+    responsible_uid: {
+      h: "Responsible Uid"
+      n: "responsible_uid"
+      r: true
+      sh: "String ID of the user responsible for the task, or `null` if unassigned."
+      t: "`$ANY`"
+    }
+    section_id: {
+      h: "Section Id"
+      n: "section_id"
+      op: {
+        create: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "String ID of the section that contains the task, or `null` if the task is not in a section."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      fo: "date-time"
+      h: "Updated At"
+      n: "updated_at"
+      r: true
+      sh: "Date and time when the task was last updated, or `null` if unknown."
+      t: "`$ANY`"
+    }
+    user_id: {
+      h: "User Id"
+      n: "user_id"
+      r: true
+      sh: "String ID of the user who owns the task."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "item_sync_view"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "assignee_id"
+            "child_order"
+            "content"
+            "day_order"
+            "deadline_date"
+            "description"
+            "due_date"
+            "due_datetime"
+            "due_lang"
+            "due_string"
+            "duration"
+            "duration_unit"
+            "is_collapsed"
+            "labels"
+            "priority"
+          ]
+          co: {
+            id: "POST /api/v1/tasks/{task_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "task_id"
+                or: "task_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/tasks/{task_id}"
+          q: {
+            exist: [
+              "task_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+            {
+              var: "task_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/tasks/{task_id}/close"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "task_id"
+                or: "task_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/tasks/{task_id}/close"
+          q: {
+            "$action": "close"
+            exist: [
+              "task_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+            {
+              var: "task_id"
+            }
+            {
+              lit: "close"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "parent_id"
+            "project_id"
+            "section_id"
+          ]
+          co: {
+            id: "POST /api/v1/tasks/{task_id}/move"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "task_id"
+                or: "task_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/tasks/{task_id}/move"
+          q: {
+            exist: [
+              "task_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+            {
+              var: "task_id"
+            }
+            {
+              lit: "move"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/tasks/{task_id}/reopen"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "task_id"
+                or: "task_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/tasks/{task_id}/reopen"
+          q: {
+            "$action": "reopen"
+            exist: [
+              "task_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+            {
+              var: "task_id"
+            }
+            {
+              lit: "reopen"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          bf: [
+            "assignee_id"
+            "content"
+            "deadline_date"
+            "description"
+            "due_date"
+            "due_datetime"
+            "due_lang"
+            "due_string"
+            "duration"
+            "duration_unit"
+            "labels"
+            "order"
+            "parent_id"
+            "priority"
+            "project_id"
+            "section_id"
+          ]
+          co: {
+            id: "POST /api/v1/tasks"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/tasks"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/tasks"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "ids"
+                or: "ids"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "label"
+                or: "label"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "parent_id"
+                or: "parent_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "project_id"
+                or: "project_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "section_id"
+                or: "section_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/tasks"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/tasks/{task_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "task_id"
+                or: "task_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "public_key"
+                or: "public_key"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/tasks/{task_id}"
+          q: {
+            exist: [
+              "task_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+            {
+              var: "task_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.task")]
+  ]
+
+}

@@ -1,0 +1,82 @@
+# Entity: plan_detail
+
+main: kit: entity: plan_detail: {
+
+  alias: field: {}
+
+  fields: {
+    billing_cycle: {
+      h: "Billing Cycle"
+      n: "billing_cycle"
+      r: true
+      sh: "Billing cycle for the listed prices."
+      t: "`$STRING`"
+    }
+    prices: {
+      h: "Prices"
+      n: "prices"
+      r: true
+      sh: "Prices available for the billing cycle."
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "plan_detail"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/workspaces/plan_details"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/workspaces/plan_details"
+          q: {
+            exist: [
+              "workspace_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              lit: "plan_details"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

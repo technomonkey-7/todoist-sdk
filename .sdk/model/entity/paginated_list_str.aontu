@@ -1,0 +1,93 @@
+# Entity: paginated_list_str
+
+main: kit: entity: paginated_list_str: {
+
+  alias: field: {}
+
+  fields: {
+    next_cursor: {
+      h: "Next Cursor"
+      n: "next_cursor"
+      r: true
+      sh: "Cursor for the next page of results, or `null` when there are no more results."
+      t: "`$ANY`"
+    }
+    results: {
+      h: "Results"
+      n: "results"
+      r: true
+      sh: "Objects in the current page of results."
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "paginated_list_str"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/labels/shared"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: false
+                k: "query"
+                n: "omit_personal"
+                or: "omit_personal"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/labels/shared"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "labels"
+            }
+            {
+              lit: "shared"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

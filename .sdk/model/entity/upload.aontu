@@ -1,0 +1,178 @@
+# Entity: upload
+
+main: kit: entity: upload: {
+
+  alias: field: {}
+
+  fields: {
+    file_name: {
+      h: "File Name"
+      n: "file_name"
+      r: true
+      sh: "Name of the uploaded file."
+      t: "`$STRING`"
+    }
+    file_size: {
+      h: "File Size"
+      n: "file_size"
+      r: true
+      sh: "Size of the uploaded file in bytes."
+      t: "`$INTEGER`"
+    }
+    file_type: {
+      h: "File Type"
+      n: "file_type"
+      r: true
+      sh: "MIME type of the uploaded file."
+      t: "`$STRING`"
+    }
+    file_url: {
+      h: "File Url"
+      n: "file_url"
+      r: true
+      sh: "URL of the uploaded file."
+      t: "`$STRING`"
+    }
+    image: {
+      h: "Image"
+      n: "image"
+      r: false
+      sh: "Image URL for image uploads, or `null` for non-image files."
+      t: "`$ANY`"
+    }
+    image_height: {
+      h: "Image Height"
+      n: "image_height"
+      r: false
+      sh: "Image height in pixels, or `null` for non-image files."
+      t: "`$ANY`"
+    }
+    image_width: {
+      h: "Image Width"
+      n: "image_width"
+      r: false
+      sh: "Image width in pixels, or `null` for non-image files."
+      t: "`$ANY`"
+    }
+    resource_type: {
+      h: "Resource Type"
+      n: "resource_type"
+      r: true
+      sh: "Detected resource type of the upload."
+      t: "`$STRING`"
+    }
+    upload_state: {
+      h: "Upload State"
+      n: "upload_state"
+      r: false
+      sh: "Upload processing state."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "upload"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /api/v1/uploads"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/uploads"
+          rb: {
+            fields: [
+              {
+                binary: true
+                media: "application/octet-stream"
+                name: "file"
+              }
+              {
+                name: "file_name"
+              }
+              {
+                name: "project_id"
+              }
+            ]
+            kind: "multipart"
+            media: "multipart/form-data"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "uploads"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /api/v1/uploads"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "file_url"
+                or: "file_url"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/api/v1/uploads"
+          q: {
+            exist: [
+              "file_url"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "uploads"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

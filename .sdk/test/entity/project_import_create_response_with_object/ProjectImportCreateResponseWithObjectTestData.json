@@ -1,0 +1,72 @@
+{
+  "existing": {
+    "project_import_create_response_with_object": {
+      "PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT00": {
+        "comments": [],
+        "discarded_fields": [],
+        "project_id": "PROJECT01",
+        "project_notes": [],
+        "project_view_options_defaults": [],
+        "projects": [],
+        "reminders": [],
+        "sections": [],
+        "status": "s76",
+        "tasks": [],
+        "template_type": "s78",
+        "id": "PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT00"
+      },
+      "PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT01": {
+        "comments": [],
+        "discarded_fields": [],
+        "project_id": "PROJECT01",
+        "project_notes": [],
+        "project_view_options_defaults": [],
+        "projects": [],
+        "reminders": [],
+        "sections": [],
+        "status": "se4",
+        "tasks": [],
+        "template_type": "se6",
+        "id": "PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT01"
+      },
+      "PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT02": {
+        "comments": [],
+        "discarded_fields": [],
+        "project_id": "PROJECT01",
+        "project_notes": [],
+        "project_view_options_defaults": [],
+        "projects": [],
+        "reminders": [],
+        "sections": [],
+        "status": "s152",
+        "tasks": [],
+        "template_type": "s154",
+        "id": "PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT02"
+      }
+    }
+  },
+  "new": {
+    "project_import_create_response_with_object": {
+      "project_import_create_response_with_object_ref01": {
+        "comments": [],
+        "discarded_fields": [],
+        "project_id": "PROJECT01",
+        "project_notes": [],
+        "project_view_options_defaults": [],
+        "projects": [],
+        "reminders": [],
+        "sections": [],
+        "status": "s1c0",
+        "tasks": [],
+        "template_type": "s1c2"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/templates/create_project_from_file": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

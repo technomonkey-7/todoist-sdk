@@ -1,0 +1,49 @@
+# BasicWorkspaceInvitationViewFlow
+
+main: kit: flow: BasicWorkspaceInvitationViewFlow:
+{
+  entity: "workspace_invitation_view",
+  kind: "basic",
+  name: "BasicWorkspaceInvitationViewFlow",
+  step: [
+    {
+      i: {
+        ref: "workspace_invitation_view_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "workspace_invitation_view_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "workspace_invitation_view_ref01",
+        srcdatavar: "workspace_invitation_view_ref01_data",
+        suffix: "_up0",
+        textfield: "app"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-workspace_invitation_view_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWorkspaceInvitationViewFlow"
+}

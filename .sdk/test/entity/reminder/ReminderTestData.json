@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "reminder": {
+      "REMINDER00": {
+        "id": "REMINDER00"
+      },
+      "REMINDER01": {
+        "id": "REMINDER01"
+      },
+      "REMINDER02": {
+        "id": "REMINDER02"
+      }
+    }
+  },
+  "new": {
+    "reminder": {
+      "reminder_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /api/v1/reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

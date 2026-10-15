@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "email": {
+      "EMAIL00": {
+        "email": "s1e",
+        "obj_id": "OBJ01",
+        "obj_type": "s20",
+        "id": "EMAIL00"
+      },
+      "EMAIL01": {
+        "email": "s3c",
+        "obj_id": "OBJ01",
+        "obj_type": "s3e",
+        "id": "EMAIL01"
+      },
+      "EMAIL02": {
+        "email": "s5a",
+        "obj_id": "OBJ01",
+        "obj_type": "s5c",
+        "id": "EMAIL02"
+      }
+    }
+  },
+  "new": {
+    "email": {
+      "email_ref01": {
+        "email": "s78",
+        "obj_id": "OBJ01",
+        "obj_type": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "PUT /api/v1/emails": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

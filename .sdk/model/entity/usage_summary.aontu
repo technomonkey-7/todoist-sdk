@@ -1,0 +1,127 @@
+# Entity: usage_summary
+
+main: kit: entity: usage_summary: {
+
+  alias: field: {}
+
+  fields: {
+    automation_id: {
+      h: "Automation Id"
+      n: "automation_id"
+      r: true
+      sh: "The automation this usage belongs to."
+      t: "`$STRING`"
+    }
+    charged_amount: {
+      h: "Charged Amount"
+      n: "charged_amount"
+      r: true
+      sh: "`charged_units` in money, in microdollars."
+      t: "`$INTEGER`"
+    }
+    charged_units: {
+      h: "Charged Units"
+      n: "charged_units"
+      r: true
+      sh: "Units the group took off the balance, as a positive number."
+      t: "`$INTEGER`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: true
+      sh: "The label of the newest usage in the group, so a renamed automation shows its current name."
+      t: "`$STRING`"
+    }
+    usage_count: {
+      h: "Usage Count"
+      n: "usage_count"
+      r: true
+      sh: "How many usage events settled in the group."
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "usage_summary"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/usage_billing/usage_summary"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "group_by"
+                or: "group_by"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: "automations"
+                k: "query"
+                n: "product"
+                or: "product"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "since"
+                or: "since"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                k: "query"
+                n: "until"
+                or: "until"
+                r: false
+                t: "`$ANY`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/usage_billing/usage_summary"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "usage_billing"
+            }
+            {
+              lit: "usage_summary"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.groups`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

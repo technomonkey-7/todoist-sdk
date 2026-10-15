@@ -1,0 +1,92 @@
+# Entity: billing_portal_url
+
+main: kit: entity: billing_portal_url: {
+
+  alias: field: {}
+
+  fields: {
+    billing_portal_url: {
+      h: "Billing Portal Url"
+      n: "billing_portal_url"
+      r: true
+      t: "`$STRING`"
+    }
+    reason_description: {
+      h: "Reason Description"
+      n: "reason_description"
+      r: false
+      sh: "Human-readable label of the cancellation reason."
+      t: "`$STRING`"
+    }
+    reason_flag: {
+      h: "Reason Flag"
+      n: "reason_flag"
+      r: false
+      sh: "Short identifier of the cancellation reason category."
+      t: "`$STRING`"
+    }
+    reason_text: {
+      h: "Reason Text"
+      n: "reason_text"
+      r: false
+      sh: "Free-form feedback from the user about the cancellation."
+      t: "`$STRING`"
+    }
+    return_url: {
+      h: "Return Url"
+      n: "return_url"
+      r: false
+      sh: "URL the user is redirected to after completing the flow."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "billing_portal_url"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "reason_description"
+            "reason_flag"
+            "reason_text"
+            "return_url"
+          ]
+          co: {
+            id: "POST /api/v1/payments/cancel_plan_with_redirect_to_stripe"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/payments/cancel_plan_with_redirect_to_stripe"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "payments"
+            }
+            {
+              lit: "cancel_plan_with_redirect_to_stripe"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

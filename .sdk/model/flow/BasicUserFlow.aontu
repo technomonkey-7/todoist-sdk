@@ -1,0 +1,41 @@
+# BasicUserFlow
+
+main: kit: flow: BasicUserFlow:
+{
+  entity: "user",
+  kind: "basic",
+  name: "BasicUserFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "user_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "user_ref01",
+        srcdatavar: "user_ref01_data",
+        suffix: "_up0",
+        textfield: "business_account_id"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-user_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUserFlow"
+}

@@ -1,0 +1,18 @@
+# BasicTopUpFlow
+
+main: kit: flow: BasicTopUpFlow:
+{
+  entity: "top_up",
+  kind: "basic",
+  name: "BasicTopUpFlow",
+  step: [
+    {
+      i: {
+        ref: "top_up_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicTopUpFlow"
+}

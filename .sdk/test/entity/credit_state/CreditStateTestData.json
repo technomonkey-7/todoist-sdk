@@ -1,0 +1,68 @@
+{
+  "existing": {
+    "credit_state": {
+      "CREDIT_STATE00": {
+        "available_amount": 100,
+        "available_units": 101,
+        "currency": "s66",
+        "depleted": false,
+        "is_settled_low_balance": true,
+        "low_balance": false,
+        "settled_amount": 106,
+        "settled_units": 107,
+        "usage_allowed": true,
+        "usage_block_reason": "s6d",
+        "id": "CREDIT_STATE00"
+      },
+      "CREDIT_STATE01": {
+        "available_amount": 200,
+        "available_units": 201,
+        "currency": "sca",
+        "depleted": false,
+        "is_settled_low_balance": true,
+        "low_balance": false,
+        "settled_amount": 206,
+        "settled_units": 207,
+        "usage_allowed": true,
+        "usage_block_reason": "sd1",
+        "id": "CREDIT_STATE01"
+      },
+      "CREDIT_STATE02": {
+        "available_amount": 300,
+        "available_units": 301,
+        "currency": "s12e",
+        "depleted": false,
+        "is_settled_low_balance": true,
+        "low_balance": false,
+        "settled_amount": 306,
+        "settled_units": 307,
+        "usage_allowed": true,
+        "usage_block_reason": "s135",
+        "id": "CREDIT_STATE02"
+      }
+    }
+  },
+  "new": {
+    "credit_state": {
+      "credit_state_ref01": {
+        "available_amount": 400,
+        "available_units": 401,
+        "currency": "s192",
+        "depleted": false,
+        "is_settled_low_balance": true,
+        "low_balance": false,
+        "settled_amount": 406,
+        "settled_units": 407,
+        "usage_allowed": true,
+        "usage_block_reason": "s199"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/usage_billing/state": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

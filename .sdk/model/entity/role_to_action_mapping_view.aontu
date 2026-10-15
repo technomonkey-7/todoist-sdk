@@ -1,0 +1,76 @@
+# Entity: role_to_action_mapping_view
+
+main: kit: entity: role_to_action_mapping_view: {
+
+  alias: field: {}
+
+  fields: {
+    project_collaborator_actions: {
+      h: "Project Collaborator Actions"
+      n: "project_collaborator_actions"
+      r: true
+      sh: "Project collaborator roles and their allowed actions."
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 3
+      }
+    }
+    workspace_collaborator_actions: {
+      h: "Workspace Collaborator Actions"
+      n: "workspace_collaborator_actions"
+      r: true
+      sh: "Workspace collaborator roles and their allowed actions."
+      t: "`$ARRAY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 3
+      }
+    }
+  }
+
+  name: "role_to_action_mapping_view"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/projects/permissions"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/projects/permissions"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              lit: "permissions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

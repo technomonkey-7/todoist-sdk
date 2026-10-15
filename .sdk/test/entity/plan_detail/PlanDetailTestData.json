@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "plan_detail": {
+      "PLAN_DETAIL00": {
+        "billing_cycle": "s14",
+        "prices": []
+      },
+      "PLAN_DETAIL01": {
+        "billing_cycle": "s28",
+        "prices": []
+      },
+      "PLAN_DETAIL02": {
+        "billing_cycle": "s3c",
+        "prices": []
+      }
+    }
+  },
+  "new": {
+    "plan_detail": {
+      "plan_detail_ref01": {
+        "billing_cycle": "s50",
+        "prices": []
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/workspaces/plan_details": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

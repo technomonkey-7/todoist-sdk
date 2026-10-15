@@ -1,0 +1,18 @@
+# BasicMigratePersonalTokenFlow
+
+main: kit: flow: BasicMigratePersonalTokenFlow:
+{
+  entity: "migrate_personal_token",
+  kind: "basic",
+  name: "BasicMigratePersonalTokenFlow",
+  step: [
+    {
+      i: {
+        ref: "migrate_personal_token_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicMigratePersonalTokenFlow"
+}

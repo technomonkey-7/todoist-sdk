@@ -1,0 +1,77 @@
+# Entity: template
+
+main: kit: entity: template: {
+
+  alias: field: {}
+
+  name: "template"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/templates/file"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "use_relative_date"
+                or: "use_relative_dates"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/templates/file"
+          q: {
+            "$action": "file"
+            exist: [
+              "project_id"
+            ]
+          }
+          rs: {
+            kind: "raw"
+            media: "text/plain"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "file"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

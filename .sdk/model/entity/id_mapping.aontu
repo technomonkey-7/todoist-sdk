@@ -1,0 +1,98 @@
+# Entity: id_mapping
+
+main: kit: entity: id_mapping: {
+
+  alias: field: {}
+
+  fields: {
+    new_id: {
+      h: "New Id"
+      n: "new_id"
+      r: true
+      sh: "Curent ID for the object."
+      t: "`$STRING`"
+    }
+    old_id: {
+      h: "Old Id"
+      n: "old_id"
+      r: true
+      sh: "Legacy ID for the object."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "id_mapping"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/id_mappings/{obj_name}/{obj_ids}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "obj_id"
+                or: "obj_ids"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "obj_name"
+                or: "obj_name"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/id_mappings/{obj_name}/{obj_ids}"
+          q: {
+            exist: [
+              "obj_id"
+              "obj_name"
+            ]
+          }
+          r: {
+            param: {
+              obj_ids: "obj_id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "id_mappings"
+            }
+            {
+              var: "obj_name"
+            }
+            {
+              var: "obj_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

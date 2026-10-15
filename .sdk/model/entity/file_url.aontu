@@ -1,0 +1,91 @@
+# Entity: file_url
+
+main: kit: entity: file_url: {
+
+  alias: field: {}
+
+  fields: {
+    file_name: {
+      h: "File Name"
+      n: "file_name"
+      r: true
+      sh: "Name of the exported template file."
+      t: "`$STRING`"
+    }
+    file_url: {
+      fo: "uri"
+      h: "File Url"
+      n: "file_url"
+      r: true
+      sh: "Temporary URL for downloading the exported template."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "file_url"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/templates/url"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "project_id"
+                or: "project_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: true
+                k: "query"
+                n: "use_relative_date"
+                or: "use_relative_dates"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/templates/url"
+          q: {
+            exist: [
+              "project_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "templates"
+            }
+            {
+              lit: "url"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

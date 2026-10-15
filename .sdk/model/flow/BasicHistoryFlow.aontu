@@ -1,0 +1,22 @@
+# BasicHistoryFlow
+
+main: kit: flow: BasicHistoryFlow:
+{
+  entity: "history",
+  kind: "basic",
+  name: "BasicHistoryFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "history_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicHistoryFlow"
+}

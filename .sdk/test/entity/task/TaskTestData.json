@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "task": {
+      "TASK00": {
+        "id": "TASK00"
+      },
+      "TASK01": {
+        "id": "TASK01"
+      },
+      "TASK02": {
+        "id": "TASK02"
+      }
+    }
+  },
+  "new": {
+    "task": {
+      "task_ref01": {}
+    }
+  },
+  "requests": {
+    "POST /api/v1/tasks/quick": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api/v1/tasks/{task_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

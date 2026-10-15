@@ -1,0 +1,125 @@
+# Entity: productivity_stat
+
+main: kit: entity: productivity_stat: {
+
+  alias: field: {}
+
+  fields: {
+    completed_count: {
+      h: "Completed Count"
+      n: "completed_count"
+      r: true
+      sh: "Total number of tasks completed by the user (all time)"
+      t: "`$INTEGER`"
+    }
+    days_items: {
+      h: "Days Items"
+      n: "days_items"
+      r: true
+      sh: "Daily completion statistics for the last 7 days, ordered chronologically"
+      t: "`$ARRAY`"
+    }
+    goals: {
+      h: "Goals"
+      n: "goals"
+      r: true
+      sh: "User goals, streaks, and productivity settings"
+      t: "`$OBJECT`"
+    }
+    karma: {
+      h: "Karma"
+      n: "karma"
+      r: true
+      sh: "Current karma score"
+      t: "`$NUMBER`"
+    }
+    karma_graph_data: {
+      h: "Karma Graph Data"
+      n: "karma_graph_data"
+      r: true
+      sh: "Historical karma data points for graphing, each containing date and karma_avg"
+      t: "`$ARRAY`"
+    }
+    karma_last_update: {
+      h: "Karma Last Update"
+      n: "karma_last_update"
+      r: true
+      sh: "Net karma change from the most recent update (positive_karma + negative_karma)"
+      t: "`$NUMBER`"
+    }
+    karma_trend: {
+      h: "Karma Trend"
+      n: "karma_trend"
+      r: true
+      sh: "Karma trend indicator ('up' or 'down')"
+      t: "`$STRING`"
+    }
+    karma_update_reasons: {
+      h: "Karma Update Reasons"
+      n: "karma_update_reasons"
+      r: true
+      sh: "Recent karma update events with reasons and amounts"
+      t: "`$ARRAY`"
+    }
+    project_colors: {
+      h: "Project Colors"
+      n: "project_colors"
+      r: true
+      sh: "Mapping of project IDs to their color names (e.g., {'2aB3cD4eF5gH6iJ7': 'blue', '8kL9mN0oP1qR2sT3': 'red'})"
+      t: "`$OBJECT`"
+    }
+    week_items: {
+      h: "Week Items"
+      n: "week_items"
+      r: true
+      sh: "Weekly completion statistics for the last 4 weeks, ordered chronologically."
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "productivity_stat"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/tasks/completed/stats"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/v1/tasks/completed/stats"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "tasks"
+            }
+            {
+              lit: "completed"
+            }
+            {
+              lit: "stats"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,27 @@
+# BasicIdMappingFlow
+
+main: kit: flow: BasicIdMappingFlow:
+{
+  entity: "id_mapping",
+  kind: "basic",
+  name: "BasicIdMappingFlow",
+  step: [
+    {
+      m: {
+        obj_id: "obj01",
+        obj_name: "obj_name01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "id_mapping_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIdMappingFlow"
+}

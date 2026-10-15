@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "role_to_action_mapping_view": {
+      "ROLE_TO_ACTION_MAPPING_VIEW00": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      },
+      "ROLE_TO_ACTION_MAPPING_VIEW01": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      },
+      "ROLE_TO_ACTION_MAPPING_VIEW02": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      }
+    }
+  },
+  "new": {
+    "role_to_action_mapping_view": {
+      "role_to_action_mapping_view_ref01": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/projects/permissions": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

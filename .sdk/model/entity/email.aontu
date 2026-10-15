@@ -1,0 +1,74 @@
+# Entity: email
+
+main: kit: entity: email: {
+
+  alias: field: {}
+
+  fields: {
+    email: {
+      h: "Email"
+      n: "email"
+      r: true
+      sh: "Email address for the Todoist object."
+      t: "`$STRING`"
+    }
+    obj_id: {
+      h: "Obj Id"
+      n: "obj_id"
+      r: true
+      sh: "String ID of the Todoist object."
+      t: "`$STRING`"
+    }
+    obj_type: {
+      h: "Obj Type"
+      n: "obj_type"
+      r: true
+      sh: "Type of Todoist object to create an email for."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "email"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "obj_id"
+            "obj_type"
+          ]
+          co: {
+            id: "PUT /api/v1/emails"
+            source: "openapi3"
+            version: 2
+          }
+          m: "PUT"
+          o: "/api/v1/emails"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "emails"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

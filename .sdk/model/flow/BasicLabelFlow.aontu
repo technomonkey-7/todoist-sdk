@@ -1,0 +1,81 @@
+# BasicLabelFlow
+
+main: kit: flow: BasicLabelFlow:
+{
+  entity: "label",
+  kind: "basic",
+  name: "BasicLabelFlow",
+  step: [
+    {
+      i: {
+        ref: "label_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "label_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "label_ref01",
+        srcdatavar: "label_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "label01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-label_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "label_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "label01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "label_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLabelFlow"
+}

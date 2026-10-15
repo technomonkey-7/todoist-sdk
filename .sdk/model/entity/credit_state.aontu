@@ -1,0 +1,134 @@
+# Entity: credit_state
+
+main: kit: entity: credit_state: {
+
+  alias: field: {}
+
+  fields: {
+    available_amount: {
+      h: "Available Amount"
+      n: "available_amount"
+      r: true
+      sh: "`available_units` in money, in microdollars (millionths of one `currency` unit), so 8372600 is $8.3726."
+      t: "`$INTEGER`"
+    }
+    available_units: {
+      h: "Available Units"
+      n: "available_units"
+      r: true
+      sh: "Balance net of in-flight holds (`available_cached - held`)."
+      t: "`$INTEGER`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: true
+      sh: "ISO currency code every amount in this response is in."
+      t: "`$STRING`"
+    }
+    depleted: {
+      h: "Depleted"
+      n: "depleted"
+      r: true
+      sh: "No further runs may start."
+      t: "`$BOOLEAN`"
+    }
+    is_settled_low_balance: {
+      h: "Is Settled Low Balance"
+      n: "is_settled_low_balance"
+      r: true
+      sh: "Whether the settled balance before in-flight holds is at or below the low-balance threshold."
+      t: "`$BOOLEAN`"
+    }
+    low_balance: {
+      h: "Low Balance"
+      n: "low_balance"
+      r: true
+      sh: "Balance is at or below the low-balance threshold."
+      t: "`$BOOLEAN`"
+    }
+    settled_amount: {
+      h: "Settled Amount"
+      n: "settled_amount"
+      r: true
+      sh: "`settled_units` in money, in microdollars (millionths of one `currency` unit), using the account's pinned price."
+      t: "`$INTEGER`"
+    }
+    settled_units: {
+      h: "Settled Units"
+      n: "settled_units"
+      r: true
+      sh: "Balance after settled credits and debits, before in-flight holds (`available_cached`)."
+      t: "`$INTEGER`"
+    }
+    usage_allowed: {
+      h: "Usage Allowed"
+      n: "usage_allowed"
+      r: true
+      sh: "Whether a new run may start right now."
+      t: "`$BOOLEAN`"
+    }
+    usage_block_reason: {
+      h: "Usage Block Reason"
+      n: "usage_block_reason"
+      r: true
+      sh: "Why a new run cannot start, or `null` when it can."
+      t: "`$ANY`"
+    }
+  }
+
+  name: "credit_state"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/usage_billing/state"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "automations"
+                k: "query"
+                n: "product"
+                or: "product"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/usage_billing/state"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "usage_billing"
+            }
+            {
+              lit: "state"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,26 @@
+# BasicActiveFlow
+
+main: kit: flow: BasicActiveFlow:
+{
+  entity: "active",
+  kind: "basic",
+  name: "BasicActiveFlow",
+  step: [
+    {
+      m: {
+        workspace_id: "workspace01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "active_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicActiveFlow"
+}

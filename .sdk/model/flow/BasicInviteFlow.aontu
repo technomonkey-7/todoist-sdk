@@ -1,0 +1,22 @@
+# BasicInviteFlow
+
+main: kit: flow: BasicInviteFlow:
+{
+  entity: "invite",
+  kind: "basic",
+  name: "BasicInviteFlow",
+  step: [
+    {
+      i: {
+        ref: "invite_ref01"
+      }
+
+      m: {
+        workspace_id: "workspace01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicInviteFlow"
+}

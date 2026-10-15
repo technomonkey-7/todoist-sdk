@@ -1,0 +1,92 @@
+# Entity: top_up
+
+main: kit: entity: top_up: {
+
+  alias: field: {}
+
+  fields: {
+    amount: {
+      h: "Amount"
+      n: "amount"
+      r: true
+      sh: "Amount to buy, in the currency's minor unit (1000 = $10.00)."
+      t: "`$INTEGER`"
+    }
+    checkout_url: {
+      h: "Checkout Url"
+      n: "checkout_url"
+      r: true
+      sh: "Hosted Stripe Checkout URL to redirect the user to for payment."
+      t: "`$STRING`"
+    }
+    currency: {
+      h: "Currency"
+      n: "currency"
+      r: true
+      sh: "ISO currency code."
+      t: "`$STRING`"
+    }
+    return_url: {
+      h: "Return Url"
+      n: "return_url"
+      r: true
+      sh: "URL Checkout returns the user to."
+      t: "`$STRING`"
+    }
+    session_id: {
+      h: "Session Id"
+      n: "session_id"
+      r: true
+      sh: "The created Stripe Checkout session id."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "top_up"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "amount"
+            "currency"
+            "return_url"
+          ]
+          co: {
+            id: "POST /api/v1/usage_billing/top_up"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/usage_billing/top_up"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "usage_billing"
+            }
+            {
+              lit: "top_up"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

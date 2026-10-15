@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "billing_portal_url": {
+      "BILLING_PORTAL_URL00": {
+        "billing_portal_url": "s32",
+        "reason_description": "s33",
+        "reason_flag": "s34",
+        "reason_text": "s35",
+        "return_url": "s36",
+        "id": "BILLING_PORTAL_URL00"
+      },
+      "BILLING_PORTAL_URL01": {
+        "billing_portal_url": "s64",
+        "reason_description": "s65",
+        "reason_flag": "s66",
+        "reason_text": "s67",
+        "return_url": "s68",
+        "id": "BILLING_PORTAL_URL01"
+      },
+      "BILLING_PORTAL_URL02": {
+        "billing_portal_url": "s96",
+        "reason_description": "s97",
+        "reason_flag": "s98",
+        "reason_text": "s99",
+        "return_url": "s9a",
+        "id": "BILLING_PORTAL_URL02"
+      }
+    }
+  },
+  "new": {
+    "billing_portal_url": {
+      "billing_portal_url_ref01": {
+        "billing_portal_url": "sc8",
+        "reason_description": "sc9",
+        "reason_flag": "sca",
+        "reason_text": "scb",
+        "return_url": "scc"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/payments/cancel_plan_with_redirect_to_stripe": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

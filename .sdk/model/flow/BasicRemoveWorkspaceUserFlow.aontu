@@ -1,0 +1,9 @@
+# BasicRemoveWorkspaceUserFlow
+
+main: kit: flow: BasicRemoveWorkspaceUserFlow:
+{
+  entity: "remove_workspace_user",
+  kind: "basic",
+  name: "BasicRemoveWorkspaceUserFlow",
+  "key$": "BasicRemoveWorkspaceUserFlow"
+}

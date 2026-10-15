@@ -1,0 +1,35 @@
+# BasicCommentFlow
+
+main: kit: flow: BasicCommentFlow:
+{
+  entity: "comment",
+  kind: "basic",
+  name: "BasicCommentFlow",
+  step: [
+    {
+      i: {
+        ref: "comment_ref01"
+      }
+
+      m: {
+        comment_id: "comment01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "comment_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "comment01"
+      }
+
+      o: "remove"
+    }
+  ],
+  "key$": "BasicCommentFlow"
+}

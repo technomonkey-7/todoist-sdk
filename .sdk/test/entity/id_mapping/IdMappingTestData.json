@@ -1,0 +1,39 @@
+{
+  "existing": {
+    "id_mapping": {
+      "ID_MAPPING00": {
+        "new_id": "NEW01",
+        "old_id": "OLD01",
+        "obj_id": "OBJ01",
+        "obj_name": "OBJ_NAME01"
+      },
+      "ID_MAPPING01": {
+        "new_id": "NEW01",
+        "old_id": "OLD01",
+        "obj_id": "OBJ01",
+        "obj_name": "OBJ_NAME01"
+      },
+      "ID_MAPPING02": {
+        "new_id": "NEW01",
+        "old_id": "OLD01",
+        "obj_id": "OBJ01",
+        "obj_name": "OBJ_NAME01"
+      }
+    }
+  },
+  "new": {
+    "id_mapping": {
+      "id_mapping_ref01": {
+        "new_id": "NEW01",
+        "old_id": "OLD01"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/id_mappings/{obj_name}/{obj_ids}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}
