@@ -72,12 +72,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-creditstate, err := client.CreditState(nil).Load(nil, nil)
+activitys, err := client.Activity(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = creditstate
+_ = activitys
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -141,13 +141,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-creditState, err := client.CreditState(nil).Load(
+activitys, err := client.Activity(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(creditState.(sdk.Entity).Data()) // the entity's mock record
+// A []any of entities, one per mock record.
+for _, item := range activitys.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -228,15 +231,13 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Active` | `(data map[string]any) TodoistEntity` | Create an Active entity instance. |
 | `Activity` | `(data map[string]any) TodoistEntity` | Create an Activity entity instance. |
-| `AnyProjectSyncView` | `(data map[string]any) TodoistEntity` | Create an AnyProjectSyncView entity instance. |
 | `Archived` | `(data map[string]any) TodoistEntity` | Create an Archived entity instance. |
 | `Authorization` | `(data map[string]any) TodoistEntity` | Create an Authorization entity instance. |
 | `Backup` | `(data map[string]any) TodoistEntity` | Create a Backup entity instance. |
 | `BillingPortalUrl` | `(data map[string]any) TodoistEntity` | Create a BillingPortalUrl entity instance. |
-| `ByCompletionDate` | `(data map[string]any) TodoistEntity` | Create a ByCompletionDate entity instance. |
-| `ByDueDate` | `(data map[string]any) TodoistEntity` | Create a ByDueDate entity instance. |
 | `Collaborator` | `(data map[string]any) TodoistEntity` | Create a Collaborator entity instance. |
 | `Comment` | `(data map[string]any) TodoistEntity` | Create a Comment entity instance. |
+| `CompletedTask` | `(data map[string]any) TodoistEntity` | Create a CompletedTask entity instance. |
 | `CreditState` | `(data map[string]any) TodoistEntity` | Create a CreditState entity instance. |
 | `Email` | `(data map[string]any) TodoistEntity` | Create an Email entity instance. |
 | `FileUrl` | `(data map[string]any) TodoistEntity` | Create a FileUrl entity instance. |
@@ -244,18 +245,12 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `History` | `(data map[string]any) TodoistEntity` | Create a History entity instance. |
 | `IdMapping` | `(data map[string]any) TodoistEntity` | Create an IdMapping entity instance. |
 | `Invite` | `(data map[string]any) TodoistEntity` | Create an Invite entity instance. |
-| `ItemSyncView` | `(data map[string]any) TodoistEntity` | Create an ItemSyncView entity instance. |
 | `Label` | `(data map[string]any) TodoistEntity` | Create a Label entity instance. |
-| `LabelRestView` | `(data map[string]any) TodoistEntity` | Create a LabelRestView entity instance. |
 | `LocationReminder` | `(data map[string]any) TodoistEntity` | Create a LocationReminder entity instance. |
 | `MemberView` | `(data map[string]any) TodoistEntity` | Create a MemberView entity instance. |
 | `MigratePersonalToken` | `(data map[string]any) TodoistEntity` | Create a MigratePersonalToken entity instance. |
-| `NoteSyncView` | `(data map[string]any) TodoistEntity` | Create a NoteSyncView entity instance. |
 | `NotificationLocationSyncView` | `(data map[string]any) TodoistEntity` | Create a NotificationLocationSyncView entity instance. |
 | `NotificationSyncView` | `(data map[string]any) TodoistEntity` | Create a NotificationSyncView entity instance. |
-| `PaginatedListAnyProjectSyncView` | `(data map[string]any) TodoistEntity` | Create a PaginatedListAnyProjectSyncView entity instance. |
-| `PaginatedListItemSyncView` | `(data map[string]any) TodoistEntity` | Create a PaginatedListItemSyncView entity instance. |
-| `PaginatedListStr` | `(data map[string]any) TodoistEntity` | Create a PaginatedListStr entity instance. |
 | `PlanDetail` | `(data map[string]any) TodoistEntity` | Create a PlanDetail entity instance. |
 | `ProductivityStat` | `(data map[string]any) TodoistEntity` | Create a ProductivityStat entity instance. |
 | `Project` | `(data map[string]any) TodoistEntity` | Create a Project entity instance. |
@@ -265,7 +260,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `RemoveWorkspaceUser` | `(data map[string]any) TodoistEntity` | Create a RemoveWorkspaceUser entity instance. |
 | `RoleToActionMappingView` | `(data map[string]any) TodoistEntity` | Create a RoleToActionMappingView entity instance. |
 | `Section` | `(data map[string]any) TodoistEntity` | Create a Section entity instance. |
-| `SectionSyncView` | `(data map[string]any) TodoistEntity` | Create a SectionSyncView entity instance. |
+| `SharedLabel` | `(data map[string]any) TodoistEntity` | Create a SharedLabel entity instance. |
 | `StatusOk` | `(data map[string]any) TodoistEntity` | Create a StatusOk entity instance. |
 | `SubscriptionInfo` | `(data map[string]any) TodoistEntity` | Create a SubscriptionInfo entity instance. |
 | `Task` | `(data map[string]any) TodoistEntity` | Create a Task entity instance. |
@@ -366,28 +361,6 @@ Operations: List.
 
 API path: `/api/v1/activities`
 
-#### AnyProjectSyncView
-
-| Field | Description |
-| --- | --- |
-| `"child_order"` | Updated position of the project in the hierarchy. |
-| `"color"` | Updated project color. |
-| `"description"` | Updated project description. |
-| `"folder_id"` | Folder to move the project into. |
-| `"icon"` | Updated project icon name. |
-| `"is_collapsed"` | Whether the project is collapsed. |
-| `"is_favorite"` | Whether the project is marked as a favorite. |
-| `"name"` | Updated project name. |
-| `"next_cursor"` | Cursor for the next page of results, or `null` when there are no more results. |
-| `"parent_id"` | Parent project ID. |
-| `"results"` | Objects in the current page of results. |
-| `"view_style"` | Updated project view style. |
-| `"workspace_id"` | Workspace ID. |
-
-Operations: Create, List, Load.
-
-API path: `/api/v1/projects/{project_id}`
-
 #### Archived
 
 | Field | Description |
@@ -454,7 +427,39 @@ Operations: Create.
 
 API path: `/api/v1/payments/cancel_plan_with_redirect_to_stripe`
 
-#### ByCompletionDate
+#### Collaborator
+
+| Field | Description |
+| --- | --- |
+| `"email"` | The user's email address |
+| `"id"` | The user's ID |
+| `"name"` | The user's full name |
+
+Operations: List.
+
+API path: `/api/v1/projects/{project_id}/collaborators`
+
+#### Comment
+
+| Field | Description |
+| --- | --- |
+| `"attachment"` | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
+| `"content"` | Comment content. |
+| `"file_attachment"` | File attachment metadata, or `null` when the comment has no attachment. |
+| `"id"` | String ID of the comment. |
+| `"is_deleted"` | Whether the comment is deleted. |
+| `"posted_at"` | Date and time when the comment was posted, or `null` if unknown. |
+| `"posted_uid"` | String ID of the user who posted the comment. |
+| `"project_id"` | String ID of the project |
+| `"reactions"` | Reaction emoji mapped to user IDs that reacted. |
+| `"task_id"` | String ID of the task |
+| `"uids_to_notify"` | String IDs of users notified by the comment. |
+
+Operations: Create, List, Load, Remove, Update.
+
+API path: `/api/v1/comments`
+
+#### CompletedTask
 
 | Field | Description |
 | --- | --- |
@@ -490,66 +495,6 @@ API path: `/api/v1/payments/cancel_plan_with_redirect_to_stripe`
 Operations: List.
 
 API path: `/api/v1/tasks/completed/by_completion_date`
-
-#### ByDueDate
-
-| Field | Description |
-| --- | --- |
-| `"added_at"` | Date and time when the task was created, or `null` if unknown. |
-| `"added_by_uid"` | String ID of the user who created the task, or `null` if unknown. |
-| `"assigned_by_uid"` | String ID of the user who assigned the task, or `null` if unassigned. |
-| `"checked"` | Whether the task is completed. |
-| `"child_order"` | Position of the task among sibling tasks. |
-| `"completed_at"` | Date and time when the task was completed, or `null` if active. |
-| `"completed_by_uid"` | String ID of the user who completed the task, or `null` if active. |
-| `"completed_count"` | Number of times the task has been marked as completed. |
-| `"content"` | Task content. |
-| `"day_order"` | Task order for day-based views. |
-| `"deadline"` | Deadline details for the task, or `null` when the task has no deadline. |
-| `"description"` | Task description. |
-| `"due"` | Due date details for the task, or `null` when the task has no due date. |
-| `"duration"` | Task duration details, or `null` when the task has no duration. |
-| `"id"` | String ID of the task. |
-| `"is_collapsed"` | Whether the task is collapsed in the user's view. |
-| `"is_deleted"` | Whether the task is deleted. |
-| `"labels"` | Names of labels attached to the task. |
-| `"note_count"` | **Deprecated**: only returns 0 and is marked for removal. |
-| `"order_key"` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `"parent_id"` | String ID of the parent task, or `null` if this is a top-level task. |
-| `"postponed_count"` | Number of times the task's due date has been rescheduled by the user. |
-| `"priority"` | Task priority from 1 (normal) to 4 (urgent). |
-| `"project_id"` | String ID of the project that contains the task. |
-| `"responsible_uid"` | String ID of the user responsible for the task, or `null` if unassigned. |
-| `"section_id"` | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `"updated_at"` | Date and time when the task was last updated, or `null` if unknown. |
-| `"user_id"` | String ID of the user who owns the task. |
-
-Operations: List.
-
-API path: `/api/v1/tasks/completed/by_due_date`
-
-#### Collaborator
-
-| Field | Description |
-| --- | --- |
-| `"email"` | The user's email address |
-| `"id"` | The user's ID |
-| `"name"` | The user's full name |
-
-Operations: List.
-
-API path: `/api/v1/projects/{project_id}/collaborators`
-
-#### Comment
-
-| Field | Description |
-| --- | --- |
-| `"content"` | New content for the comment. |
-| `"id"` |  |
-
-Operations: Create, Remove.
-
-API path: `/api/v1/comments/{comment_id}`
 
 #### CreditState
 
@@ -653,51 +598,6 @@ Operations: Create.
 
 API path: `/api/v1/workspaces/{workspace_id}/users/invite`
 
-#### ItemSyncView
-
-| Field | Description |
-| --- | --- |
-| `"added_at"` | Date and time when the task was created, or `null` if unknown. |
-| `"added_by_uid"` | String ID of the user who created the task, or `null` if unknown. |
-| `"assigned_by_uid"` | String ID of the user who assigned the task, or `null` if unassigned. |
-| `"assignee_id"` | ID of the user to assign the task to. |
-| `"checked"` | Whether the task is completed. |
-| `"child_order"` | Position of the task among sibling tasks. |
-| `"completed_at"` | Date and time when the task was completed, or `null` if active. |
-| `"completed_by_uid"` | String ID of the user who completed the task, or `null` if active. |
-| `"completed_count"` | Number of times the task has been marked as completed. |
-| `"content"` | Task content. |
-| `"day_order"` | Task order for day-based views. |
-| `"deadline"` | Deadline details for the task, or `null` when the task has no deadline. |
-| `"deadline_date"` | Updated deadline date in YYYY-MM-DD format. |
-| `"description"` | Task description. |
-| `"due"` | Due date details for the task, or `null` when the task has no due date. |
-| `"due_date"` | Updated due date in RFC 3339 format or similar. |
-| `"due_datetime"` | Updated due date and time. |
-| `"due_lang"` | Updated due date language code. |
-| `"due_string"` | Updated human-readable representation of the due date. |
-| `"duration"` | Task duration details, or `null` when the task has no duration. |
-| `"duration_unit"` | Unit of time for duration. |
-| `"id"` | String ID of the task. |
-| `"is_collapsed"` | Whether the task is collapsed in the user's view. |
-| `"is_deleted"` | Whether the task is deleted. |
-| `"labels"` | Names of labels attached to the task. |
-| `"note_count"` | **Deprecated**: only returns 0 and is marked for removal. |
-| `"order"` | Position of the task in the project or section |
-| `"order_key"` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `"parent_id"` | String ID of the parent task, or `null` if this is a top-level task. |
-| `"postponed_count"` | Number of times the task's due date has been rescheduled by the user. |
-| `"priority"` | Task priority from 1 (normal) to 4 (urgent). |
-| `"project_id"` | String ID of the project that contains the task. |
-| `"responsible_uid"` | String ID of the user responsible for the task, or `null` if unassigned. |
-| `"section_id"` | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `"updated_at"` | Date and time when the task was last updated, or `null` if unknown. |
-| `"user_id"` | String ID of the user who owns the task. |
-
-Operations: Create, List, Load.
-
-API path: `/api/v1/tasks/{task_id}`
-
 #### Label
 
 | Field | Description |
@@ -706,26 +606,11 @@ API path: `/api/v1/tasks/{task_id}`
 | `"id"` | String ID of the label. |
 | `"is_favorite"` | Whether the label is marked as a favorite. |
 | `"name"` | Label name. |
-| `"new_name"` | New shared label name to apply to matching tasks. |
 | `"order"` | Position of the label in the label list, or `null` when no explicit order is set. |
 
-Operations: Create, List, Load, Remove.
+Operations: Create, List, Load, Remove, Update.
 
-API path: `/api/v1/labels/{label_id}`
-
-#### LabelRestView
-
-| Field | Description |
-| --- | --- |
-| `"color"` | Label color name. |
-| `"id"` | String ID of the label. |
-| `"is_favorite"` | Whether the label is marked as a favorite. |
-| `"name"` | Label name. |
-| `"order"` | Position of the label in the label list, or `null` when no explicit order is set. |
-
-Operations: List.
-
-API path: `/api/v1/labels/search`
+API path: `/api/v1/labels`
 
 #### LocationReminder
 
@@ -770,27 +655,6 @@ Operations: Create.
 
 API path: `/api/v1/access_tokens/migrate_personal_token`
 
-#### NoteSyncView
-
-| Field | Description |
-| --- | --- |
-| `"attachment"` | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
-| `"content"` | Comment content. |
-| `"file_attachment"` | File attachment metadata, or `null` when the comment has no attachment. |
-| `"id"` | String ID of the comment. |
-| `"is_deleted"` | Whether the comment is deleted. |
-| `"posted_at"` | Date and time when the comment was posted, or `null` if unknown. |
-| `"posted_uid"` | String ID of the user who posted the comment. |
-| `"project_id"` | String ID of the project |
-| `"reaction"` | Reaction emoji. |
-| `"reactions"` | Reaction emoji mapped to user IDs that reacted. |
-| `"task_id"` | String ID of the task |
-| `"uids_to_notify"` | String IDs of users notified by the comment. |
-
-Operations: Create, List, Load.
-
-API path: `/api/v1/comments/{comment_id}/reactions`
-
 #### NotificationLocationSyncView
 
 | Field | Description |
@@ -832,65 +696,6 @@ Operations: Create, List, Load.
 
 API path: `/api/v1/reminders/{reminder_id}`
 
-#### PaginatedListAnyProjectSyncView
-
-| Field | Description |
-| --- | --- |
-| `"next_cursor"` | Cursor for the next page of results, or `null` when there are no more results. |
-| `"results"` | Objects in the current page of results. |
-
-Operations: List.
-
-API path: `/api/v1/projects/search`
-
-#### PaginatedListItemSyncView
-
-| Field | Description |
-| --- | --- |
-| `"added_at"` | Date and time when the task was created, or `null` if unknown. |
-| `"added_by_uid"` | String ID of the user who created the task, or `null` if unknown. |
-| `"assigned_by_uid"` | String ID of the user who assigned the task, or `null` if unassigned. |
-| `"checked"` | Whether the task is completed. |
-| `"child_order"` | Position of the task among sibling tasks. |
-| `"completed_at"` | Date and time when the task was completed, or `null` if active. |
-| `"completed_by_uid"` | String ID of the user who completed the task, or `null` if active. |
-| `"completed_count"` | Number of times the task has been marked as completed. |
-| `"content"` | Task content. |
-| `"day_order"` | Task order for day-based views. |
-| `"deadline"` | Deadline details for the task, or `null` when the task has no deadline. |
-| `"description"` | Task description. |
-| `"due"` | Due date details for the task, or `null` when the task has no due date. |
-| `"duration"` | Task duration details, or `null` when the task has no duration. |
-| `"id"` | String ID of the task. |
-| `"is_collapsed"` | Whether the task is collapsed in the user's view. |
-| `"is_deleted"` | Whether the task is deleted. |
-| `"labels"` | Names of labels attached to the task. |
-| `"note_count"` | **Deprecated**: only returns 0 and is marked for removal. |
-| `"order_key"` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `"parent_id"` | String ID of the parent task, or `null` if this is a top-level task. |
-| `"postponed_count"` | Number of times the task's due date has been rescheduled by the user. |
-| `"priority"` | Task priority from 1 (normal) to 4 (urgent). |
-| `"project_id"` | String ID of the project that contains the task. |
-| `"responsible_uid"` | String ID of the user responsible for the task, or `null` if unassigned. |
-| `"section_id"` | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `"updated_at"` | Date and time when the task was last updated, or `null` if unknown. |
-| `"user_id"` | String ID of the user who owns the task. |
-
-Operations: List.
-
-API path: `/api/v1/tasks/filter`
-
-#### PaginatedListStr
-
-| Field | Description |
-| --- | --- |
-| `"next_cursor"` | Cursor for the next page of results, or `null` when there are no more results. |
-| `"results"` | Objects in the current page of results. |
-
-Operations: List.
-
-API path: `/api/v1/labels/shared`
-
 #### PlanDetail
 
 | Field | Description |
@@ -925,11 +730,24 @@ API path: `/api/v1/tasks/completed/stats`
 
 | Field | Description |
 | --- | --- |
+| `"child_order"` | Updated position of the project in the hierarchy. |
+| `"color"` | Color of the project icon. |
+| `"description"` | Description of the project. |
+| `"folder_id"` | Folder to move the project into. |
+| `"icon"` | Project icon name. |
 | `"id"` |  |
+| `"is_collapsed"` | Whether the project is collapsed. |
+| `"is_favorite"` | Whether the project is a favorite for the user. |
+| `"name"` | Name of the project. |
+| `"next_cursor"` | Cursor for the next page of results, or `null` when there are no more results. |
+| `"parent_id"` | Parent project ID. |
+| `"results"` | Objects in the current page of results. |
+| `"view_style"` | View style of the project. |
+| `"workspace_id"` | Workspace ID. |
 
-Operations: Remove.
+Operations: Create, List, Load, Remove, Update.
 
-API path: `/api/v1/projects/{project_id}`
+API path: `/api/v1/projects`
 
 #### ProjectImport
 
@@ -1023,31 +841,22 @@ API path: `/api/v1/projects/permissions`
 | `"updated_at"` | Date and time when the section was last updated, or `null` if unknown. |
 | `"user_id"` | String ID of the user who owns the section. |
 
-Operations: Create, List, Load, Remove.
+Operations: Create, List, Load, Remove, Update.
 
-API path: `/api/v1/sections/{section_id}`
+API path: `/api/v1/sections`
 
-#### SectionSyncView
+#### SharedLabel
 
 | Field | Description |
 | --- | --- |
-| `"added_at"` | Date and time when the section was created. |
-| `"archived_at"` | Date and time when the section was archived, or `null` if it is active. |
-| `"description"` | Section description, or `null` if it has none. |
-| `"id"` | String ID of the section. |
-| `"is_archived"` | Whether the section is archived. |
-| `"is_collapsed"` | Whether the section is collapsed in the user's view. |
-| `"is_deleted"` | Whether the section is deleted. |
-| `"name"` | Section name. |
-| `"order_key"` | Fractional-indexing order key: sections sort by comparing keys lexicographically within a project. |
-| `"project_id"` | String ID of the project that contains the section. |
-| `"section_order"` | Position of the section in the project. |
-| `"updated_at"` | Date and time when the section was last updated, or `null` if unknown. |
-| `"user_id"` | String ID of the user who owns the section. |
+| `"name"` | Current shared label name to rename. |
+| `"new_name"` | New shared label name to apply to matching tasks. |
+| `"next_cursor"` | Cursor for the next page of results, or `null` when there are no more results. |
+| `"results"` | Objects in the current page of results. |
 
-Operations: Create, List.
+Operations: List, Remove, Update.
 
-API path: `/api/v1/sections/{section_id}/archive`
+API path: `/api/v1/labels/shared`
 
 #### StatusOk
 
@@ -1082,11 +891,46 @@ API path: `/api/v1/payments/get_subscription_info`
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
+| `"added_at"` | Date and time when the task was created, or `null` if unknown. |
+| `"added_by_uid"` | String ID of the user who created the task, or `null` if unknown. |
+| `"assigned_by_uid"` | String ID of the user who assigned the task, or `null` if unassigned. |
+| `"assignee_id"` | ID of the user to assign the task to. |
+| `"checked"` | Whether the task is completed. |
+| `"child_order"` | Position of the task among sibling tasks. |
+| `"completed_at"` | Date and time when the task was completed, or `null` if active. |
+| `"completed_by_uid"` | String ID of the user who completed the task, or `null` if active. |
+| `"completed_count"` | Number of times the task has been marked as completed. |
+| `"content"` | Task content. |
+| `"day_order"` | Task order for day-based views. |
+| `"deadline"` | Deadline details for the task, or `null` when the task has no deadline. |
+| `"deadline_date"` | Deadline date in YYYY-MM-DD format |
+| `"description"` | Task description. |
+| `"due"` | Due date details for the task, or `null` when the task has no due date. |
+| `"due_date"` | Due date in RFC 3339 format or similar. |
+| `"due_datetime"` | Due date and time. |
+| `"due_lang"` | Due date language code. |
+| `"due_string"` | Human-readable representation of the due date. |
+| `"duration"` | Task duration details, or `null` when the task has no duration. |
+| `"duration_unit"` | Unit of time for duration. |
+| `"id"` | String ID of the task. |
+| `"is_collapsed"` | Whether the task is collapsed in the user's view. |
+| `"is_deleted"` | Whether the task is deleted. |
+| `"labels"` | Names of labels attached to the task. |
+| `"note_count"` | **Deprecated**: only returns 0 and is marked for removal. |
+| `"order"` | Position of the task in the project or section |
+| `"order_key"` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `"parent_id"` | String ID of the parent task, or `null` if this is a top-level task. |
+| `"postponed_count"` | Number of times the task's due date has been rescheduled by the user. |
+| `"priority"` | Task priority from 1 (normal) to 4 (urgent). |
+| `"project_id"` | String ID of the project that contains the task. |
+| `"responsible_uid"` | String ID of the user responsible for the task, or `null` if unassigned. |
+| `"section_id"` | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `"updated_at"` | Date and time when the task was last updated, or `null` if unknown. |
+| `"user_id"` | String ID of the user who owns the task. |
 
-Operations: Create, Remove.
+Operations: Create, List, Load, Remove, Update.
 
-API path: `/api/v1/tasks/quick`
+API path: `/api/v1/tasks`
 
 #### Template
 
@@ -1365,74 +1209,6 @@ for _, item := range activitys.([]any) {
 ```
 
 
-### AnyProjectSyncView
-
-Create an instance: `anyProjectSyncView := client.AnyProjectSyncView(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-| `Load(match, ctrl)` | Load a single entity by match criteria. |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `child_order` | `any` | Updated position of the project in the hierarchy. |
-| `color` | `any` | Updated project color. |
-| `description` | `string` | Updated project description. |
-| `folder_id` | `string` | Folder to move the project into. |
-| `icon` | `any` | Updated project icon name. |
-| `is_collapsed` | `bool` | Whether the project is collapsed. |
-| `is_favorite` | `bool` | Whether the project is marked as a favorite. |
-| `name` | `string` | Updated project name. |
-| `next_cursor` | `any` | Cursor for the next page of results, or `null` when there are no more results. |
-| `parent_id` | `string` | Parent project ID. |
-| `results` | `[]any` | Objects in the current page of results. |
-| `view_style` | `any` | Updated project view style. |
-| `workspace_id` | `string` | Workspace ID. |
-
-#### Example: Load
-
-```go
-anyProjectSyncView, err := client.AnyProjectSyncView(nil).Load(map[string]any{"project_id": "project_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(anyProjectSyncView.(sdk.Entity).Data()) // the loaded entity's record
-```
-
-#### Example: List
-
-```go
-anyProjectSyncViews, err := client.AnyProjectSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range anyProjectSyncViews.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### Example: Create
-
-```go
-result, err := client.AnyProjectSyncView(nil).Create(map[string]any{
-    "project_id": "example_project_id",
-    "next_cursor": "example_next_cursor",
-    "results": []any{},
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
-```
-
-
 ### Archived
 
 Create an instance: `archived := client.Archived(nil)`
@@ -1589,120 +1365,6 @@ fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
-### ByCompletionDate
-
-Create an instance: `byCompletionDate := client.ByCompletionDate(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `added_at` | `any` | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Whether the task is completed. |
-| `child_order` | `int` | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Number of times the task has been marked as completed. |
-| `content` | `string` | Task content. |
-| `day_order` | `int` | Task order for day-based views. |
-| `deadline` | `any` | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Task description. |
-| `due` | `any` | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float64` | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | String ID of the task. |
-| `is_collapsed` | `bool` | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Whether the task is deleted. |
-| `labels` | `[]any` | Names of labels attached to the task. |
-| `note_count` | `int` | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | String ID of the user who owns the task. |
-
-#### Example: List
-
-```go
-byCompletionDates, err := client.ByCompletionDate(nil).List(map[string]any{"since": "example", "until": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range byCompletionDates.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-
-### ByDueDate
-
-Create an instance: `byDueDate := client.ByDueDate(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `added_at` | `any` | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Whether the task is completed. |
-| `child_order` | `int` | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Number of times the task has been marked as completed. |
-| `content` | `string` | Task content. |
-| `day_order` | `int` | Task order for day-based views. |
-| `deadline` | `any` | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Task description. |
-| `due` | `any` | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float64` | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | String ID of the task. |
-| `is_collapsed` | `bool` | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Whether the task is deleted. |
-| `labels` | `[]any` | Names of labels attached to the task. |
-| `note_count` | `int` | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | String ID of the user who owns the task. |
-
-#### Example: List
-
-```go
-byDueDates, err := client.ByDueDate(nil).List(map[string]any{"since": "example", "until": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range byDueDates.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-
 ### Collaborator
 
 Create an instance: `collaborator := client.Collaborator(nil)`
@@ -1743,27 +1405,124 @@ Create an instance: `comment := client.Comment(nil)`
 
 | Method | Description |
 | --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
+| `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `any` | New content for the comment. |
-| `id` | `string` |  |
+| `attachment` | `any` | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
+| `content` | `string` | Comment content. |
+| `file_attachment` | `any` | File attachment metadata, or `null` when the comment has no attachment. |
+| `id` | `string` | String ID of the comment. |
+| `is_deleted` | `bool` | Whether the comment is deleted. |
+| `posted_at` | `any` | Date and time when the comment was posted, or `null` if unknown. |
+| `posted_uid` | `any` | String ID of the user who posted the comment. |
+| `project_id` | `string` | String ID of the project |
+| `reactions` | `any` | Reaction emoji mapped to user IDs that reacted. |
+| `task_id` | `string` | String ID of the task |
+| `uids_to_notify` | `any` | String IDs of users notified by the comment. |
+
+#### Example: Load
+
+```go
+comment, err := client.Comment(nil).Load(map[string]any{"id": "comment_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(comment.(sdk.Entity).Data()) // the loaded entity's record
+```
+
+#### Example: List
+
+```go
+comments, err := client.Comment(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+// A []any of entities, one per record.
+for _, item := range comments.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
 
 #### Example: Create
 
 ```go
 result, err := client.Comment(nil).Create(map[string]any{
+    "file_attachment": "example_file_attachment",
     "id": "example_id",
-    "content": "example_content",
+    "is_deleted": true,
+    "posted_at": "example_posted_at",
+    "posted_uid": "example_posted_uid",
+    "reactions": "example_reactions",
+    "uids_to_notify": "example_uids_to_notify",
 }, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
+```
+
+
+### CompletedTask
+
+Create an instance: `completedTask := client.CompletedTask(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `added_at` | `any` | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `any` | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `any` | String ID of the user who assigned the task, or `null` if unassigned. |
+| `checked` | `bool` | Whether the task is completed. |
+| `child_order` | `int` | Position of the task among sibling tasks. |
+| `completed_at` | `any` | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `any` | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `int` | Number of times the task has been marked as completed. |
+| `content` | `string` | Task content. |
+| `day_order` | `int` | Task order for day-based views. |
+| `deadline` | `any` | Deadline details for the task, or `null` when the task has no deadline. |
+| `description` | `string` | Task description. |
+| `due` | `any` | Due date details for the task, or `null` when the task has no due date. |
+| `duration` | `float64` | Task duration details, or `null` when the task has no duration. |
+| `id` | `string` | String ID of the task. |
+| `is_collapsed` | `bool` | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `bool` | Whether the task is deleted. |
+| `labels` | `[]any` | Names of labels attached to the task. |
+| `note_count` | `int` | **Deprecated**: only returns 0 and is marked for removal. |
+| `order_key` | `any` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `string` | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `int` | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `int` | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `string` | String ID of the project that contains the task. |
+| `responsible_uid` | `any` | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `string` | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `any` | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `string` | String ID of the user who owns the task. |
+
+#### Example: List
+
+```go
+completedTasks, err := client.CompletedTask(nil).List(map[string]any{"since": "example", "until": "example"}, nil)
+if err != nil {
+    panic(err)
+}
+// A []any of entities, one per record.
+for _, item := range completedTasks.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -2021,123 +1780,6 @@ fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
-### ItemSyncView
-
-Create an instance: `itemSyncView := client.ItemSyncView(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-| `Load(match, ctrl)` | Load a single entity by match criteria. |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `added_at` | `any` | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | String ID of the user who assigned the task, or `null` if unassigned. |
-| `assignee_id` | `string` | ID of the user to assign the task to. |
-| `checked` | `bool` | Whether the task is completed. |
-| `child_order` | `int` | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Number of times the task has been marked as completed. |
-| `content` | `string` | Task content. |
-| `day_order` | `int` | Task order for day-based views. |
-| `deadline` | `any` | Deadline details for the task, or `null` when the task has no deadline. |
-| `deadline_date` | `any` | Updated deadline date in YYYY-MM-DD format. |
-| `description` | `string` | Task description. |
-| `due` | `any` | Due date details for the task, or `null` when the task has no due date. |
-| `due_date` | `string` | Updated due date in RFC 3339 format or similar. |
-| `due_datetime` | `string` | Updated due date and time. |
-| `due_lang` | `string` | Updated due date language code. |
-| `due_string` | `string` | Updated human-readable representation of the due date. |
-| `duration` | `float64` | Task duration details, or `null` when the task has no duration. |
-| `duration_unit` | `any` | Unit of time for duration. |
-| `id` | `string` | String ID of the task. |
-| `is_collapsed` | `bool` | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Whether the task is deleted. |
-| `labels` | `[]any` | Names of labels attached to the task. |
-| `note_count` | `int` | **Deprecated**: only returns 0 and is marked for removal. |
-| `order` | `any` | Position of the task in the project or section |
-| `order_key` | `any` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | String ID of the user who owns the task. |
-
-#### Example: Load
-
-```go
-itemSyncView, err := client.ItemSyncView(nil).Load(map[string]any{"task_id": "task_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(itemSyncView.(sdk.Entity).Data()) // the loaded entity's record
-```
-
-#### Example: List
-
-```go
-itemSyncViews, err := client.ItemSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range itemSyncViews.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### Example: Create
-
-```go
-result, err := client.ItemSyncView(nil).Create(map[string]any{
-    "task_id": "example_task_id",
-    "added_at": "example_added_at",
-    "added_by_uid": "example_added_by_uid",
-    "assigned_by_uid": "example_assigned_by_uid",
-    "checked": true,
-    "child_order": 1,
-    "completed_at": "example_completed_at",
-    "completed_by_uid": "example_completed_by_uid",
-    "completed_count": 1,
-    "content": "example_content",
-    "day_order": 1,
-    "deadline": "example_deadline",
-    "description": "example_description",
-    "due": "example_due",
-    "duration": 1,
-    "id": "example_id",
-    "is_collapsed": true,
-    "is_deleted": true,
-    "labels": []any{},
-    "note_count": 1,
-    "order_key": "example_order_key",
-    "parent_id": "example_parent_id",
-    "postponed_count": 1,
-    "priority": 1,
-    "project_id": "example_project_id",
-    "responsible_uid": "example_responsible_uid",
-    "section_id": "example_section_id",
-    "updated_at": "example_updated_at",
-    "user_id": "example_user_id",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
-```
-
-
 ### Label
 
 Create an instance: `label := client.Label(nil)`
@@ -2149,6 +1791,7 @@ Create an instance: `label := client.Label(nil)`
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
+| `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
@@ -2159,7 +1802,6 @@ Create an instance: `label := client.Label(nil)`
 | `id` | `string` | String ID of the label. |
 | `is_favorite` | `bool` | Whether the label is marked as a favorite. |
 | `name` | `string` | Label name. |
-| `new_name` | `string` | New shared label name to apply to matching tasks. |
 | `order` | `any` | Position of the label in the label list, or `null` when no explicit order is set. |
 
 #### Example: Load
@@ -2189,51 +1831,16 @@ for _, item := range labels.([]any) {
 
 ```go
 result, err := client.Label(nil).Create(map[string]any{
-    "id": 1,
     "color": "example_color",
+    "id": "example_id",
     "is_favorite": true,
     "name": "example_name",
-    "new_name": "example_new_name",
     "order": "example_order",
 }, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
-```
-
-
-### LabelRestView
-
-Create an instance: `labelRestView := client.LabelRestView(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `color` | `string` | Label color name. |
-| `id` | `string` | String ID of the label. |
-| `is_favorite` | `bool` | Whether the label is marked as a favorite. |
-| `name` | `string` | Label name. |
-| `order` | `any` | Position of the label in the label list, or `null` when no explicit order is set. |
-
-#### Example: List
-
-```go
-labelRestViews, err := client.LabelRestView(nil).List(map[string]any{"query": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range labelRestViews.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
 ```
 
 
@@ -2324,78 +1931,6 @@ result, err := client.MigratePersonalToken(nil).Create(map[string]any{
     "personal_token": "example_personal_token",
     "scope": "example_scope",
     "token_type": "example_token_type",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
-```
-
-
-### NoteSyncView
-
-Create an instance: `noteSyncView := client.NoteSyncView(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-| `Load(match, ctrl)` | Load a single entity by match criteria. |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `attachment` | `any` | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
-| `content` | `string` | Comment content. |
-| `file_attachment` | `any` | File attachment metadata, or `null` when the comment has no attachment. |
-| `id` | `string` | String ID of the comment. |
-| `is_deleted` | `bool` | Whether the comment is deleted. |
-| `posted_at` | `any` | Date and time when the comment was posted, or `null` if unknown. |
-| `posted_uid` | `any` | String ID of the user who posted the comment. |
-| `project_id` | `string` | String ID of the project |
-| `reaction` | `string` | Reaction emoji. |
-| `reactions` | `any` | Reaction emoji mapped to user IDs that reacted. |
-| `task_id` | `string` | String ID of the task |
-| `uids_to_notify` | `any` | String IDs of users notified by the comment. |
-
-#### Example: Load
-
-```go
-noteSyncView, err := client.NoteSyncView(nil).Load(map[string]any{"comment_id": "comment_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(noteSyncView.(sdk.Entity).Data()) // the loaded entity's record
-```
-
-#### Example: List
-
-```go
-noteSyncViews, err := client.NoteSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range noteSyncViews.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### Example: Create
-
-```go
-result, err := client.NoteSyncView(nil).Create(map[string]any{
-    "file_attachment": "example_file_attachment",
-    "id": "example_id",
-    "is_deleted": true,
-    "posted_at": "example_posted_at",
-    "posted_uid": "example_posted_uid",
-    "reaction": "example_reaction",
-    "reactions": "example_reactions",
-    "uids_to_notify": "example_uids_to_notify",
 }, nil)
 if err != nil {
     panic(err)
@@ -2553,125 +2088,6 @@ fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
-### PaginatedListAnyProjectSyncView
-
-Create an instance: `paginatedListAnyProjectSyncView := client.PaginatedListAnyProjectSyncView(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `next_cursor` | `any` | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `[]any` | Objects in the current page of results. |
-
-#### Example: List
-
-```go
-paginatedListAnyProjectSyncViews, err := client.PaginatedListAnyProjectSyncView(nil).List(map[string]any{"query": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range paginatedListAnyProjectSyncViews.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-
-### PaginatedListItemSyncView
-
-Create an instance: `paginatedListItemSyncView := client.PaginatedListItemSyncView(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `added_at` | `any` | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Whether the task is completed. |
-| `child_order` | `int` | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Number of times the task has been marked as completed. |
-| `content` | `string` | Task content. |
-| `day_order` | `int` | Task order for day-based views. |
-| `deadline` | `any` | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Task description. |
-| `due` | `any` | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float64` | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | String ID of the task. |
-| `is_collapsed` | `bool` | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Whether the task is deleted. |
-| `labels` | `[]any` | Names of labels attached to the task. |
-| `note_count` | `int` | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | String ID of the user who owns the task. |
-
-#### Example: List
-
-```go
-paginatedListItemSyncViews, err := client.PaginatedListItemSyncView(nil).List(map[string]any{"query": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range paginatedListItemSyncViews.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-
-### PaginatedListStr
-
-Create an instance: `paginatedListStr := client.PaginatedListStr(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `next_cursor` | `any` | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `[]any` | Objects in the current page of results. |
-
-#### Example: List
-
-```go
-paginatedListStrs, err := client.PaginatedListStr(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-// A []any of entities, one per record.
-for _, item := range paginatedListStrs.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-
 ### PlanDetail
 
 Create an instance: `planDetail := client.PlanDetail(nil)`
@@ -2750,13 +2166,67 @@ Create an instance: `project := client.Project(nil)`
 
 | Method | Description |
 | --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
+| `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
+| `child_order` | `any` | Updated position of the project in the hierarchy. |
+| `color` | `any` | Color of the project icon. |
+| `description` | `string` | Description of the project. |
+| `folder_id` | `string` | Folder to move the project into. |
+| `icon` | `any` | Project icon name. |
 | `id` | `string` |  |
+| `is_collapsed` | `bool` | Whether the project is collapsed. |
+| `is_favorite` | `bool` | Whether the project is a favorite for the user. |
+| `name` | `string` | Name of the project. |
+| `next_cursor` | `any` | Cursor for the next page of results, or `null` when there are no more results. |
+| `parent_id` | `string` | Parent project ID. |
+| `results` | `[]any` | Objects in the current page of results. |
+| `view_style` | `any` | View style of the project. |
+| `workspace_id` | `string` | Workspace ID. |
+
+#### Example: Load
+
+```go
+project, err := client.Project(nil).Load(map[string]any{"id": "project_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(project.(sdk.Entity).Data()) // the loaded entity's record
+```
+
+#### Example: List
+
+```go
+projects, err := client.Project(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+// A []any of entities, one per record.
+for _, item := range projects.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+#### Example: Create
+
+```go
+result, err := client.Project(nil).Create(map[string]any{
+    "name": "example_name",
+    "next_cursor": "example_next_cursor",
+    "results": []any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
+```
 
 
 ### ProjectImport
@@ -2936,6 +2406,7 @@ Create an instance: `section := client.Section(nil)`
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
+| `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
@@ -2984,10 +2455,10 @@ for _, item := range sections.([]any) {
 
 ```go
 result, err := client.Section(nil).Create(map[string]any{
-    "id": "example_id",
     "added_at": "example_added_at",
     "archived_at": "example_archived_at",
     "description": "example_description",
+    "id": "example_id",
     "is_archived": true,
     "is_collapsed": true,
     "is_deleted": true,
@@ -3005,43 +2476,36 @@ fmt.Println(result.(sdk.Entity).Data()) // the created entity's record
 ```
 
 
-### SectionSyncView
+### SharedLabel
 
-Create an instance: `sectionSyncView := client.SectionSyncView(nil)`
+Create an instance: `sharedLabel := client.SharedLabel(nil)`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
 | `List(match, ctrl)` | List entities matching the criteria. |
+| `Update(data, ctrl)` | Update an existing entity. |
+| `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `added_at` | `string` | Date and time when the section was created. |
-| `archived_at` | `any` | Date and time when the section was archived, or `null` if it is active. |
-| `description` | `string` | Section description, or `null` if it has none. |
-| `id` | `string` | String ID of the section. |
-| `is_archived` | `bool` | Whether the section is archived. |
-| `is_collapsed` | `bool` | Whether the section is collapsed in the user's view. |
-| `is_deleted` | `bool` | Whether the section is deleted. |
-| `name` | `string` | Section name. |
-| `order_key` | `any` | Fractional-indexing order key: sections sort by comparing keys lexicographically within a project. |
-| `project_id` | `string` | String ID of the project that contains the section. |
-| `section_order` | `int` | Position of the section in the project. |
-| `updated_at` | `any` | Date and time when the section was last updated, or `null` if unknown. |
-| `user_id` | `string` | String ID of the user who owns the section. |
+| `name` | `string` | Current shared label name to rename. |
+| `new_name` | `string` | New shared label name to apply to matching tasks. |
+| `next_cursor` | `any` | Cursor for the next page of results, or `null` when there are no more results. |
+| `results` | `[]any` | Objects in the current page of results. |
 
 #### Example: List
 
 ```go
-sectionSyncViews, err := client.SectionSyncView(nil).List(map[string]any{"query": "example"}, nil)
+sharedLabels, err := client.SharedLabel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
 // A []any of entities, one per record.
-for _, item := range sectionSyncViews.([]any) {
+for _, item := range sharedLabels.([]any) {
     fmt.Println(item.(sdk.Entity).Data())
 }
 ```
@@ -3115,19 +2579,108 @@ Create an instance: `task := client.Task(nil)`
 
 | Method | Description |
 | --- | --- |
+| `List(match, ctrl)` | List entities matching the criteria. |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
 | `Create(data, ctrl)` | Create a new entity with the given data. |
+| `Update(data, ctrl)` | Update an existing entity. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `string` |  |
+| `added_at` | `any` | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `any` | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `any` | String ID of the user who assigned the task, or `null` if unassigned. |
+| `assignee_id` | `string` | ID of the user to assign the task to. |
+| `checked` | `bool` | Whether the task is completed. |
+| `child_order` | `int` | Position of the task among sibling tasks. |
+| `completed_at` | `any` | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `any` | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `int` | Number of times the task has been marked as completed. |
+| `content` | `string` | Task content. |
+| `day_order` | `int` | Task order for day-based views. |
+| `deadline` | `any` | Deadline details for the task, or `null` when the task has no deadline. |
+| `deadline_date` | `any` | Deadline date in YYYY-MM-DD format |
+| `description` | `string` | Task description. |
+| `due` | `any` | Due date details for the task, or `null` when the task has no due date. |
+| `due_date` | `any` | Due date in RFC 3339 format or similar. |
+| `due_datetime` | `any` | Due date and time. |
+| `due_lang` | `any` | Due date language code. |
+| `due_string` | `any` | Human-readable representation of the due date. |
+| `duration` | `float64` | Task duration details, or `null` when the task has no duration. |
+| `duration_unit` | `any` | Unit of time for duration. |
+| `id` | `string` | String ID of the task. |
+| `is_collapsed` | `bool` | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `bool` | Whether the task is deleted. |
+| `labels` | `[]any` | Names of labels attached to the task. |
+| `note_count` | `int` | **Deprecated**: only returns 0 and is marked for removal. |
+| `order` | `any` | Position of the task in the project or section |
+| `order_key` | `any` | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `string` | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `int` | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `int` | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `string` | String ID of the project that contains the task. |
+| `responsible_uid` | `any` | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `string` | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `any` | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `string` | String ID of the user who owns the task. |
+
+#### Example: Load
+
+```go
+task, err := client.Task(nil).Load(map[string]any{"id": "task_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(task.(sdk.Entity).Data()) // the loaded entity's record
+```
+
+#### Example: List
+
+```go
+tasks, err := client.Task(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+// A []any of entities, one per record.
+for _, item := range tasks.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
 
 #### Example: Create
 
 ```go
 result, err := client.Task(nil).Create(map[string]any{
+    "added_at": "example_added_at",
+    "added_by_uid": "example_added_by_uid",
+    "assigned_by_uid": "example_assigned_by_uid",
+    "checked": true,
+    "child_order": 1,
+    "completed_at": "example_completed_at",
+    "completed_by_uid": "example_completed_by_uid",
+    "completed_count": 1,
+    "content": "example_content",
+    "day_order": 1,
+    "deadline": "example_deadline",
+    "description": "example_description",
+    "due": "example_due",
+    "duration": 1,
+    "id": "example_id",
+    "is_collapsed": true,
+    "is_deleted": true,
+    "labels": []any{},
+    "note_count": 1,
+    "order_key": "example_order_key",
+    "parent_id": "example_parent_id",
+    "postponed_count": 1,
+    "priority": 1,
+    "project_id": "example_project_id",
+    "responsible_uid": "example_responsible_uid",
+    "section_id": "example_section_id",
+    "updated_at": "example_updated_at",
+    "user_id": "example_user_id",
 }, nil)
 if err != nil {
     panic(err)
@@ -3546,7 +3099,7 @@ Set `feature.test.active` to enable it, then override any of the options above.
 
 ## Open types
 
-11 fields are carried as open values rather than typed structures.
+10 fields are carried as open values rather than typed structures.
 This follows from the API definition, not from a gap in this SDK: the
 definition describes them with untagged unions —
 `oneOf`/`anyOf` branches with no `discriminator` — so it never states which
@@ -3556,15 +3109,14 @@ guarantee.
 
 | Entity | Field | Variants | Nesting |
 | --- | --- | --- | --- |
-| `note_sync_view` | `file_attachment` | 4 | 3 levels |
+| `comment` | `file_attachment` | 4 | 3 levels |
 | `project_import` | `comments` | 4 | 6 levels |
 | `project_import` | `project_notes` | 4 | 6 levels |
 | `project_import_create_response_with_object` | `comments` | 4 | 6 levels |
 | `project_import_create_response_with_object` | `project_notes` | 4 | 6 levels |
 | `active` | `access` | 3 | 4 levels |
-| `any_project_sync_view` | `results` | 3 | 9 levels |
 | `archived` | `access` | 3 | 4 levels |
-| `paginated_list_any_project_sync_view` | `results` | 3 | 9 levels |
+| `project` | `results` | 3 | 9 levels |
 | `project_import` | `projects` | 3 | 9 levels |
 | `project_import_create_response_with_object` | `projects` | 3 | 9 levels |
 
@@ -3643,15 +3195,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-creditstate := client.CreditState(nil)
-creditstate.Load(nil, nil)
+activity := client.Activity(nil)
+activity.List(nil, nil)
 
-// creditstate.Data() now returns the creditstate data from the last load
-// creditstate.Match() returns the last match criteria
+// activity.Data() now returns the activity data from the last list
+// activity.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

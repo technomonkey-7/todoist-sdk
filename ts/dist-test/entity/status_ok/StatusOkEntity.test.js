@@ -70,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "status_ok", "op": { "remove": { "input": "data", "name": "remove", "points": [{ "a": true, "co": { "id": "DELETE /api/v1/emails", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "obj_id", "or": "obj_id", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "obj_type", "or": "obj_type", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "DELETE", "o": "/api/v1/emails", "q": { "exist": ["obj_id", "obj_type"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "emails" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "remove" } }, "relations": { "ancestors": [] }, "key$": "status_ok", "name__orig": "status_ok", "Name": "StatusOk", "name_": "status_ok", "name-": "status-ok", "NAME": "STATUS_OK", "index$": 40 }, { "active": true, "entity": "status_ok", "key$": "BasicStatusOkFlow", "kind": "basic", "name": "BasicStatusOkFlow", "param": {}, "step": [] }, 'StatusOk', { "DELETE /api/v1/emails": { "protocol": "http", "parameters": [{ "name": "obj_type", "in": "query", "required": true, "schema": { "type": "string", "enum": ["project", "project_comments", "task", "item"], "title": "EmailObjectType", "x-enumDescriptions": { "item": "Deprecated alias of `task`", "project": "Project", "project_comments": "Project Comments", "task": "Task" }, "description": "Type of Todoist object whose email should be disabled.", "examples": ["project", "project_comments", "task"], "x-ref": "#/components/schemas/EmailObjectType" }, "index$": 0 }, { "name": "obj_id", "in": "query", "required": true, "schema": { "type": "string", "description": "String ID of the Todoist object.", "examples": ["6XGgm6PHrGgMpCFX"], "title": "Obj Id" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "status_ok", "op": { "remove": { "input": "data", "name": "remove", "points": [{ "a": true, "co": { "id": "DELETE /api/v1/emails", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "obj_id", "or": "obj_id", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "obj_type", "or": "obj_type", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "DELETE", "o": "/api/v1/emails", "q": { "exist": ["obj_id", "obj_type"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "emails" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "remove" } }, "relations": { "ancestors": [] }, "key$": "status_ok", "name__orig": "status_ok", "Name": "StatusOk", "name_": "status_ok", "name-": "status-ok", "NAME": "STATUS_OK", "index$": 32 }, { "active": true, "entity": "status_ok", "key$": "BasicStatusOkFlow", "kind": "basic", "name": "BasicStatusOkFlow", "param": {}, "step": [] }, 'StatusOk', { "DELETE /api/v1/emails": { "protocol": "http", "parameters": [{ "name": "obj_type", "in": "query", "required": true, "schema": { "type": "string", "enum": ["project", "project_comments", "task", "item"], "title": "EmailObjectType", "x-enumDescriptions": { "item": "Deprecated alias of `task`", "project": "Project", "project_comments": "Project Comments", "task": "Task" }, "description": "Type of Todoist object whose email should be disabled.", "examples": ["project", "project_comments", "task"], "x-ref": "#/components/schemas/EmailObjectType" }, "index$": 0 }, { "name": "obj_id", "in": "query", "required": true, "schema": { "type": "string", "description": "String ID of the Todoist object.", "examples": ["6XGgm6PHrGgMpCFX"], "title": "Obj Id" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -108,6 +108,7 @@ function basicSetup(extra) {
         'TODOIST_TEST_STATUS_OK_ENTID': idmap,
         'TODOIST_TEST_LIVE': 'FALSE',
         'TODOIST_TEST_EXPLAIN': 'FALSE',
+        'TODOIST_APIKEY': '',
     });
     idmap = env['TODOIST_TEST_STATUS_OK_ENTID'];
     const live = 'TRUE' === env.TODOIST_TEST_LIVE;
@@ -122,7 +123,9 @@ function basicSetup(extra) {
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
             (0, utility_1.liveClientOptions)(),
-            {},
+            {
+                apikey: env.TODOIST_APIKEY,
+            },
             // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
             // last entry is undefined, and basicSetup is normally called with no
             // argument at all - so a bare 'extra' silently discarded the apikey

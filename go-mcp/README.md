@@ -34,13 +34,13 @@ Tool-call arguments (what an agent sends):
 { "entity": "active", "query": { "workspace_id": 1 } }
 
 // todoist_load: one record
-{ "entity": "any_project_sync_view", "query": { "project_id": "example" } }
+{ "entity": "backup", "query": { "file": "example" } }
 
 // todoist_create: a new record
-{ "entity": "any_project_sync_view", "data": { "project_id": "example", "next_cursor": "example", "results": [] } }
+{ "entity": "authorization", "data": { "token": "example" } }
 
 // todoist_update: change a record's fields
-{ "entity": "email", "data": { "email": "example", "obj_id": "example", "obj_type": "example" } }
+{ "entity": "comment", "data": { "id": "example", "attachment": "example" } }
 
 // todoist_remove: delete a record
 { "entity": "authorization", "query": { "access_token": "example", "client_id": "example", "client_secret": "example" } }
@@ -113,7 +113,7 @@ Args: `entity` (required), `query` (required: match map naming the record, such 
 Returns the record as JSON:
 
 ```jsonc
-{ "entity": "any_project_sync_view", "query": { "project_id": "example" } }
+{ "entity": "backup", "query": { "file": "example" } }
 ```
 
 ### Call the `todoist_create` tool
@@ -122,7 +122,7 @@ Args: `entity` (required), `data` (required: the new record's fields).
 Returns the created record as JSON:
 
 ```jsonc
-{ "entity": "any_project_sync_view", "data": { "project_id": "example", "next_cursor": "example", "results": [] } }
+{ "entity": "authorization", "data": { "token": "example" } }
 ```
 
 ### Call the `todoist_update` tool
@@ -131,7 +131,7 @@ Args: `entity` (required), `data` (required: the record's id and the fields to c
 Returns the updated record as JSON:
 
 ```jsonc
-{ "entity": "email", "data": { "email": "example", "obj_id": "example", "obj_type": "example" } }
+{ "entity": "comment", "data": { "id": "example", "attachment": "example" } }
 ```
 
 ### Call the `todoist_remove` tool
@@ -176,15 +176,15 @@ failure message (e.g. unknown entity, or an API error).
 ### Entities
 
 Each tool takes as its `entity` argument one of the entities that has its
-operation, of the 51 the SDK has:
+operation, of the 43 the SDK has:
 
 | Tool | Entities |
 |------|----------|
-| `todoist_list` | active, activity, any_project_sync_view, archived, backup, by_completion_date, by_due_date, collaborator, folder, history, id_mapping, item_sync_view, label, label_rest_view, member_view, note_sync_view, notification_location_sync_view, notification_sync_view, paginated_list_any_project_sync_view, paginated_list_item_sync_view, paginated_list_str, plan_detail, productivity_stat, role_to_action_mapping_view, section, section_sync_view, usage_summary, user, workspace, workspace_invitation_view |
-| `todoist_load` | any_project_sync_view, backup, credit_state, file_url, folder, item_sync_view, label, note_sync_view, notification_location_sync_view, notification_sync_view, section, template, workspace |
-| `todoist_create` | any_project_sync_view, authorization, billing_portal_url, comment, folder, invite, item_sync_view, label, migrate_personal_token, note_sync_view, notification_location_sync_view, notification_sync_view, project_import, project_import_create_response_with_object, section, subscription_info, task, top_up, upload, workspace, workspace_invitation_view, workspace_user_view |
-| `todoist_update` | email, user, workspace_invitation_view |
-| `todoist_remove` | authorization, comment, folder, label, location_reminder, project, reminder, remove_workspace_user, section, status_ok, task, upload, workspace |
+| `todoist_list` | active, activity, archived, backup, collaborator, comment, completed_task, folder, history, id_mapping, label, member_view, notification_location_sync_view, notification_sync_view, plan_detail, productivity_stat, project, role_to_action_mapping_view, section, shared_label, task, usage_summary, user, workspace, workspace_invitation_view |
+| `todoist_load` | backup, comment, credit_state, file_url, folder, label, notification_location_sync_view, notification_sync_view, project, section, task, template, workspace |
+| `todoist_create` | authorization, billing_portal_url, comment, folder, invite, label, migrate_personal_token, notification_location_sync_view, notification_sync_view, project, project_import, project_import_create_response_with_object, section, subscription_info, task, top_up, upload, workspace, workspace_invitation_view, workspace_user_view |
+| `todoist_update` | comment, email, label, project, section, shared_label, task, user, workspace_invitation_view |
+| `todoist_remove` | authorization, comment, folder, label, location_reminder, project, reminder, remove_workspace_user, section, shared_label, status_ok, task, upload, workspace |
 
 JSON schemas are emitted by the SDK from each tool's argument struct's
 `json` / `jsonschema` tags — no schema is hand-written. Each tool's

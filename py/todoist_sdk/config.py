@@ -64,15 +64,13 @@ def make_config():
             "entity": {
                 "active": {},
                 "activity": {},
-                "any_project_sync_view": {},
                 "archived": {},
                 "authorization": {},
                 "backup": {},
                 "billing_portal_url": {},
-                "by_completion_date": {},
-                "by_due_date": {},
                 "collaborator": {},
                 "comment": {},
+                "completed_task": {},
                 "credit_state": {},
                 "email": {},
                 "file_url": {},
@@ -80,18 +78,12 @@ def make_config():
                 "history": {},
                 "id_mapping": {},
                 "invite": {},
-                "item_sync_view": {},
                 "label": {},
-                "label_rest_view": {},
                 "location_reminder": {},
                 "member_view": {},
                 "migrate_personal_token": {},
-                "note_sync_view": {},
                 "notification_location_sync_view": {},
                 "notification_sync_view": {},
-                "paginated_list_any_project_sync_view": {},
-                "paginated_list_item_sync_view": {},
-                "paginated_list_str": {},
                 "plan_detail": {},
                 "productivity_stat": {},
                 "project": {},
@@ -101,7 +93,7 @@ def make_config():
                 "remove_workspace_user": {},
                 "role_to_action_mapping_view": {},
                 "section": {},
-                "section_sync_view": {},
+                "shared_label": {},
                 "status_ok": {},
                 "subscription_info": {},
                 "task": {},
@@ -576,481 +568,6 @@ def make_config():
         },
         "relations": {
           "ancestors": [],
-        },
-      },
-      "any_project_sync_view": {
-        "fields": [
-          {
-            "name": "child_order",
-            "title": "Child Order",
-            "type": "`$ANY`",
-            "short": "Updated position of the project in the hierarchy.",
-          },
-          {
-            "name": "color",
-            "title": "Color",
-            "type": "`$ANY`",
-            "short": "Updated project color.",
-          },
-          {
-            "name": "description",
-            "title": "Description",
-            "type": "`$STRING`",
-            "short": "Updated project description.",
-          },
-          {
-            "name": "folder_id",
-            "title": "Folder Id",
-            "type": "`$STRING`",
-            "short": "Folder to move the project into.",
-          },
-          {
-            "name": "icon",
-            "title": "Icon",
-            "type": "`$ANY`",
-            "short": "Updated project icon name.",
-          },
-          {
-            "name": "is_collapsed",
-            "title": "Is Collapsed",
-            "type": "`$BOOLEAN`",
-            "short": "Whether the project is collapsed.",
-          },
-          {
-            "name": "is_favorite",
-            "title": "Is Favorite",
-            "type": "`$BOOLEAN`",
-            "short": "Whether the project is marked as a favorite.",
-          },
-          {
-            "name": "name",
-            "title": "Name",
-            "type": "`$STRING`",
-            "op": {
-              "create": {
-                "req": True,
-                "type": "`$STRING`",
-              },
-            },
-            "short": "Updated project name.",
-          },
-          {
-            "name": "next_cursor",
-            "title": "Next Cursor",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Cursor for the next page of results, or `null` when there are no more results.",
-          },
-          {
-            "name": "parent_id",
-            "title": "Parent Id",
-            "type": "`$STRING`",
-            "short": "Parent project ID.",
-          },
-          {
-            "name": "results",
-            "title": "Results",
-            "type": "`$ARRAY`",
-            "req": True,
-            "short": "Objects in the current page of results.",
-          },
-          {
-            "name": "view_style",
-            "title": "View Style",
-            "type": "`$ANY`",
-            "short": "Updated project view style.",
-          },
-          {
-            "name": "workspace_id",
-            "title": "Workspace Id",
-            "type": "`$STRING`",
-            "short": "Workspace ID.",
-          },
-        ],
-        "name": "any_project_sync_view",
-        "op": {
-          "create": {
-            "input": "data",
-            "name": "create",
-            "points": [
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/projects/{project_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "var": "project_id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "{project_id}",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "project_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/projects/{project_id}/archive",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "var": "project_id",
-                  },
-                  {
-                    "lit": "archive",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "{project_id}",
-                  "archive",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "project_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/projects/{project_id}/join",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "var": "project_id",
-                  },
-                  {
-                    "lit": "join",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "{project_id}",
-                  "join",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "$action": "join",
-                  "exist": [
-                    "project_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/projects/{project_id}/unarchive",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "var": "project_id",
-                  },
-                  {
-                    "lit": "unarchive",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "{project_id}",
-                  "unarchive",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "project_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/projects",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {},
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/projects",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "folder_id",
-                      "orig": "folder_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "field": True,
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "field": True,
-                    },
-                  ],
-                },
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-          "load": {
-            "input": "data",
-            "name": "load",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/projects/{project_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "var": "project_id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "{project_id}",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "project_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [
-            [
-              "$.main.kit.entity.project",
-            ],
-          ],
         },
       },
       "archived": {
@@ -1615,7 +1132,640 @@ def make_config():
           "ancestors": [],
         },
       },
-      "by_completion_date": {
+      "collaborator": {
+        "fields": [
+          {
+            "name": "email",
+            "title": "Email",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "The user's email address",
+          },
+          {
+            "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "The user's ID",
+          },
+          {
+            "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "The user's full name",
+          },
+        ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
+        "name": "collaborator",
+        "op": {
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/projects/{project_id}/collaborators",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "project_id",
+                  },
+                  {
+                    "lit": "collaborators",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "{project_id}",
+                  "collaborators",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "project_id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "public_key",
+                      "orig": "public_key",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "project_id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [
+            [
+              "$.main.kit.entity.project",
+            ],
+          ],
+        },
+      },
+      "comment": {
+        "fields": [
+          {
+            "name": "attachment",
+            "title": "Attachment",
+            "type": "`$ANY`",
+            "short": "A [File attachment](#tag/Sync/Comments/File-Attachments) object",
+          },
+          {
+            "name": "content",
+            "title": "Content",
+            "type": "`$STRING`",
+            "op": {
+              "create": {
+                "req": True,
+                "type": "`$STRING`",
+              },
+              "update": {
+                "req": True,
+                "type": "`$ANY`",
+              },
+            },
+            "short": "Comment content.",
+          },
+          {
+            "name": "file_attachment",
+            "title": "File Attachment",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "File attachment metadata, or `null` when the comment has no attachment.",
+          },
+          {
+            "name": "id",
+            "title": "Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "String ID of the comment.",
+          },
+          {
+            "name": "is_deleted",
+            "title": "Is Deleted",
+            "type": "`$BOOLEAN`",
+            "req": True,
+            "short": "Whether the comment is deleted.",
+          },
+          {
+            "name": "posted_at",
+            "title": "Posted At",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Date and time when the comment was posted, or `null` if unknown.",
+            "format": "date-time",
+          },
+          {
+            "name": "posted_uid",
+            "title": "Posted Uid",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "String ID of the user who posted the comment.",
+          },
+          {
+            "name": "project_id",
+            "title": "Project Id",
+            "type": "`$STRING`",
+            "short": "String ID of the project",
+          },
+          {
+            "name": "reactions",
+            "title": "Reactions",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Reaction emoji mapped to user IDs that reacted.",
+          },
+          {
+            "name": "task_id",
+            "title": "Task Id",
+            "type": "`$STRING`",
+            "short": "String ID of the task",
+          },
+          {
+            "name": "uids_to_notify",
+            "title": "Uids To Notify",
+            "type": "`$ANY`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$ANY`",
+              },
+            },
+            "short": "String IDs of users notified by the comment.",
+          },
+        ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
+        "name": "comment",
+        "op": {
+          "create": {
+            "input": "data",
+            "name": "create",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/comments",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "comments",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "comments",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/comments",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "comments",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "comments",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "project_id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                    {
+                      "name": "public_key",
+                      "orig": "public_key",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "task_id",
+                      "orig": "task_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                  ],
+                },
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "load": {
+            "input": "data",
+            "name": "load",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/comments/{comment_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "comments",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "comment_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "comment_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "remove": {
+            "input": "data",
+            "name": "remove",
+            "points": [
+              {
+                "kind": "http",
+                "method": "DELETE",
+                "orig": "/api/v1/comments/{comment_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "comments",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "comment_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "comment_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "update": {
+            "input": "data",
+            "name": "update",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/comments/{comment_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "comments",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "comment_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "comment_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/comments/{comment_id}/reactions",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "reactions",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "comments",
+                  "{id}",
+                  "reactions",
+                ],
+                "rename": {
+                  "param": {
+                    "comment_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "comment_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "reaction_add",
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/comments/{comment_id}/reactions/remove",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "comments",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "reactions",
+                  },
+                  {
+                    "lit": "remove",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "comments",
+                  "{id}",
+                  "reactions",
+                  "remove",
+                ],
+                "rename": {
+                  "param": {
+                    "comment_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "comment_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "reaction_remove",
+                  "exist": [
+                    "id",
+                  ],
+                },
+              },
+            ],
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "completed_task": {
         "fields": [
           {
             "name": "added_at",
@@ -1821,7 +1971,7 @@ def make_config():
           "field": "id",
           "name": "id",
         },
-        "name": "by_completion_date",
+        "name": "completed_task",
         "op": {
           "list": {
             "input": "data",
@@ -1947,225 +2097,6 @@ def make_config():
                   "media": "application/json",
                 },
               },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "by_due_date": {
-        "fields": [
-          {
-            "name": "added_at",
-            "title": "Added At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was created, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "added_by_uid",
-            "title": "Added By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who created the task, or `null` if unknown.",
-          },
-          {
-            "name": "assigned_by_uid",
-            "title": "Assigned By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who assigned the task, or `null` if unassigned.",
-          },
-          {
-            "name": "checked",
-            "title": "Checked",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is completed.",
-          },
-          {
-            "name": "child_order",
-            "title": "Child Order",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Position of the task among sibling tasks.",
-          },
-          {
-            "name": "completed_at",
-            "title": "Completed At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was completed, or `null` if active.",
-            "format": "date-time",
-          },
-          {
-            "name": "completed_by_uid",
-            "title": "Completed By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who completed the task, or `null` if active.",
-          },
-          {
-            "name": "completed_count",
-            "title": "Completed Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Number of times the task has been marked as completed.",
-          },
-          {
-            "name": "content",
-            "title": "Content",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Task content.",
-          },
-          {
-            "name": "day_order",
-            "title": "Day Order",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Task order for day-based views.",
-          },
-          {
-            "name": "deadline",
-            "title": "Deadline",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Deadline details for the task, or `null` when the task has no deadline.",
-          },
-          {
-            "name": "description",
-            "title": "Description",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Task description.",
-          },
-          {
-            "name": "due",
-            "title": "Due",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Due date details for the task, or `null` when the task has no due date.",
-          },
-          {
-            "name": "duration",
-            "title": "Duration",
-            "type": "`$NUMBER`",
-            "req": True,
-            "short": "Task duration details, or `null` when the task has no duration.",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the task.",
-          },
-          {
-            "name": "is_collapsed",
-            "title": "Is Collapsed",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is collapsed in the user's view.",
-          },
-          {
-            "name": "is_deleted",
-            "title": "Is Deleted",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is deleted.",
-          },
-          {
-            "name": "labels",
-            "title": "Labels",
-            "type": "`$ARRAY`",
-            "req": True,
-            "short": "Names of labels attached to the task.",
-          },
-          {
-            "name": "note_count",
-            "title": "Note Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "**Deprecated**: only returns 0 and is marked for removal.",
-          },
-          {
-            "name": "order_key",
-            "title": "Order Key",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
-          },
-          {
-            "name": "parent_id",
-            "title": "Parent Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the parent task, or `null` if this is a top-level task.",
-          },
-          {
-            "name": "postponed_count",
-            "title": "Postponed Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Number of times the task's due date has been rescheduled by the user.",
-          },
-          {
-            "name": "priority",
-            "title": "Priority",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Task priority from 1 (normal) to 4 (urgent).",
-          },
-          {
-            "name": "project_id",
-            "title": "Project Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the project that contains the task.",
-          },
-          {
-            "name": "responsible_uid",
-            "title": "Responsible Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user responsible for the task, or `null` if unassigned.",
-          },
-          {
-            "name": "section_id",
-            "title": "Section Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
-          },
-          {
-            "name": "updated_at",
-            "title": "Updated At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was last updated, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "user_id",
-            "title": "User Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the user who owns the task.",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "by_due_date",
-        "op": {
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
               {
                 "kind": "http",
                 "method": "GET",
@@ -2270,334 +2201,10 @@ def make_config():
                   ],
                 },
                 "select": {
+                  "$action": "by_due_date",
                   "exist": [
                     "since",
                     "until",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "collaborator": {
-        "fields": [
-          {
-            "name": "email",
-            "title": "Email",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "The user's email address",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "The user's ID",
-          },
-          {
-            "name": "name",
-            "title": "Name",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "The user's full name",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "collaborator",
-        "op": {
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/projects/{project_id}/collaborators",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "var": "project_id",
-                  },
-                  {
-                    "lit": "collaborators",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "{project_id}",
-                  "collaborators",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "public_key",
-                      "orig": "public_key",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "project_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [
-            [
-              "$.main.kit.entity.project",
-            ],
-          ],
-        },
-      },
-      "comment": {
-        "fields": [
-          {
-            "name": "content",
-            "title": "Content",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "New content for the comment.",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "comment",
-        "op": {
-          "create": {
-            "input": "data",
-            "name": "create",
-            "points": [
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/comments/{comment_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "comments",
-                  },
-                  {
-                    "var": "id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "comments",
-                  "{id}",
-                ],
-                "rename": {
-                  "param": {
-                    "comment_id": "id",
-                  },
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "id",
-                      "orig": "comment_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/comments/{comment_id}/reactions/remove",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "comments",
-                  },
-                  {
-                    "var": "id",
-                  },
-                  {
-                    "lit": "reactions",
-                  },
-                  {
-                    "lit": "remove",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "comments",
-                  "{id}",
-                  "reactions",
-                  "remove",
-                ],
-                "rename": {
-                  "param": {
-                    "comment_id": "id",
-                  },
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "id",
-                      "orig": "comment_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "$action": "reaction_remove",
-                  "exist": [
-                    "id",
-                  ],
-                },
-              },
-            ],
-          },
-          "remove": {
-            "input": "data",
-            "name": "remove",
-            "points": [
-              {
-                "kind": "http",
-                "method": "DELETE",
-                "orig": "/api/v1/comments/{comment_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "comments",
-                  },
-                  {
-                    "var": "id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "comments",
-                  "{id}",
-                ],
-                "rename": {
-                  "param": {
-                    "comment_id": "id",
-                  },
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "id",
-                      "orig": "comment_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "id",
                   ],
                 },
                 "response": {
@@ -3615,730 +3222,6 @@ def make_config():
           ],
         },
       },
-      "item_sync_view": {
-        "fields": [
-          {
-            "name": "added_at",
-            "title": "Added At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was created, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "added_by_uid",
-            "title": "Added By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who created the task, or `null` if unknown.",
-          },
-          {
-            "name": "assigned_by_uid",
-            "title": "Assigned By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who assigned the task, or `null` if unassigned.",
-          },
-          {
-            "name": "assignee_id",
-            "title": "Assignee Id",
-            "type": "`$STRING`",
-            "short": "ID of the user to assign the task to.",
-          },
-          {
-            "name": "checked",
-            "title": "Checked",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is completed.",
-          },
-          {
-            "name": "child_order",
-            "title": "Child Order",
-            "type": "`$INTEGER`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$INTEGER`",
-              },
-            },
-            "short": "Position of the task among sibling tasks.",
-          },
-          {
-            "name": "completed_at",
-            "title": "Completed At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was completed, or `null` if active.",
-            "format": "date-time",
-          },
-          {
-            "name": "completed_by_uid",
-            "title": "Completed By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who completed the task, or `null` if active.",
-          },
-          {
-            "name": "completed_count",
-            "title": "Completed Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Number of times the task has been marked as completed.",
-          },
-          {
-            "name": "content",
-            "title": "Content",
-            "type": "`$STRING`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
-            "short": "Task content.",
-          },
-          {
-            "name": "day_order",
-            "title": "Day Order",
-            "type": "`$INTEGER`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$INTEGER`",
-              },
-            },
-            "short": "Task order for day-based views.",
-          },
-          {
-            "name": "deadline",
-            "title": "Deadline",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Deadline details for the task, or `null` when the task has no deadline.",
-          },
-          {
-            "name": "deadline_date",
-            "title": "Deadline Date",
-            "type": "`$ANY`",
-            "short": "Updated deadline date in YYYY-MM-DD format.",
-            "format": "date",
-          },
-          {
-            "name": "description",
-            "title": "Description",
-            "type": "`$STRING`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
-            "short": "Task description.",
-          },
-          {
-            "name": "due",
-            "title": "Due",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Due date details for the task, or `null` when the task has no due date.",
-          },
-          {
-            "name": "due_date",
-            "title": "Due Date",
-            "type": "`$STRING`",
-            "short": "Updated due date in RFC 3339 format or similar.",
-          },
-          {
-            "name": "due_datetime",
-            "title": "Due Datetime",
-            "type": "`$STRING`",
-            "short": "Updated due date and time.",
-          },
-          {
-            "name": "due_lang",
-            "title": "Due Lang",
-            "type": "`$STRING`",
-            "short": "Updated due date language code.",
-          },
-          {
-            "name": "due_string",
-            "title": "Due String",
-            "type": "`$STRING`",
-            "short": "Updated human-readable representation of the due date.",
-          },
-          {
-            "name": "duration",
-            "title": "Duration",
-            "type": "`$NUMBER`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$NUMBER`",
-              },
-            },
-            "short": "Task duration details, or `null` when the task has no duration.",
-          },
-          {
-            "name": "duration_unit",
-            "title": "Duration Unit",
-            "type": "`$ANY`",
-            "short": "Unit of time for duration.",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the task.",
-          },
-          {
-            "name": "is_collapsed",
-            "title": "Is Collapsed",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$BOOLEAN`",
-              },
-            },
-            "short": "Whether the task is collapsed in the user's view.",
-          },
-          {
-            "name": "is_deleted",
-            "title": "Is Deleted",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is deleted.",
-          },
-          {
-            "name": "labels",
-            "title": "Labels",
-            "type": "`$ARRAY`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$ANY`",
-              },
-            },
-            "short": "Names of labels attached to the task.",
-          },
-          {
-            "name": "note_count",
-            "title": "Note Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "**Deprecated**: only returns 0 and is marked for removal.",
-          },
-          {
-            "name": "order",
-            "title": "Order",
-            "type": "`$ANY`",
-            "short": "Position of the task in the project or section",
-          },
-          {
-            "name": "order_key",
-            "title": "Order Key",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
-          },
-          {
-            "name": "parent_id",
-            "title": "Parent Id",
-            "type": "`$STRING`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
-            "short": "String ID of the parent task, or `null` if this is a top-level task.",
-          },
-          {
-            "name": "postponed_count",
-            "title": "Postponed Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Number of times the task's due date has been rescheduled by the user.",
-          },
-          {
-            "name": "priority",
-            "title": "Priority",
-            "type": "`$INTEGER`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$ANY`",
-              },
-            },
-            "short": "Task priority from 1 (normal) to 4 (urgent).",
-          },
-          {
-            "name": "project_id",
-            "title": "Project Id",
-            "type": "`$STRING`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
-            "short": "String ID of the project that contains the task.",
-          },
-          {
-            "name": "responsible_uid",
-            "title": "Responsible Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user responsible for the task, or `null` if unassigned.",
-          },
-          {
-            "name": "section_id",
-            "title": "Section Id",
-            "type": "`$STRING`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$STRING`",
-              },
-            },
-            "short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
-          },
-          {
-            "name": "updated_at",
-            "title": "Updated At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was last updated, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "user_id",
-            "title": "User Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the user who owns the task.",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "item_sync_view",
-        "op": {
-          "create": {
-            "input": "data",
-            "name": "create",
-            "points": [
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/tasks/{task_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                  {
-                    "var": "task_id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                  "{task_id}",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "task_id",
-                      "orig": "task_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "task_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/tasks/{task_id}/close",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                  {
-                    "var": "task_id",
-                  },
-                  {
-                    "lit": "close",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                  "{task_id}",
-                  "close",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "task_id",
-                      "orig": "task_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "$action": "close",
-                  "exist": [
-                    "task_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/tasks/{task_id}/move",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                  {
-                    "var": "task_id",
-                  },
-                  {
-                    "lit": "move",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                  "{task_id}",
-                  "move",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "task_id",
-                      "orig": "task_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "task_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/tasks/{task_id}/reopen",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                  {
-                    "var": "task_id",
-                  },
-                  {
-                    "lit": "reopen",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                  "{task_id}",
-                  "reopen",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "task_id",
-                      "orig": "task_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "$action": "reopen",
-                  "exist": [
-                    "task_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/tasks",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {},
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/tasks",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "ids",
-                      "orig": "ids",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "label",
-                      "orig": "label",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "parent_id",
-                      "orig": "parent_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "field": True,
-                    },
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "field": True,
-                    },
-                    {
-                      "name": "section_id",
-                      "orig": "section_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "field": True,
-                    },
-                  ],
-                },
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-          "load": {
-            "input": "data",
-            "name": "load",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/tasks/{task_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                  {
-                    "var": "task_id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                  "{task_id}",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "task_id",
-                      "orig": "task_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                  "query": [
-                    {
-                      "name": "public_key",
-                      "orig": "public_key",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "task_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [
-            [
-              "$.main.kit.entity.task",
-            ],
-          ],
-        },
-      },
       "label": {
         "fields": [
           {
@@ -4348,6 +3231,9 @@ def make_config():
             "req": True,
             "op": {
               "create": {
+                "type": "`$ANY`",
+              },
+              "update": {
                 "type": "`$ANY`",
               },
             },
@@ -4369,6 +3255,9 @@ def make_config():
               "create": {
                 "type": "`$BOOLEAN`",
               },
+              "update": {
+                "type": "`$BOOLEAN`",
+              },
             },
             "short": "Whether the label is marked as a favorite.",
           },
@@ -4378,18 +3267,11 @@ def make_config():
             "type": "`$STRING`",
             "req": True,
             "op": {
-              "create": {
+              "update": {
                 "type": "`$STRING`",
               },
             },
             "short": "Label name.",
-          },
-          {
-            "name": "new_name",
-            "title": "New Name",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "New shared label name to apply to matching tasks.",
           },
           {
             "name": "order",
@@ -4398,6 +3280,9 @@ def make_config():
             "req": True,
             "op": {
               "create": {
+                "type": "`$ANY`",
+              },
+              "update": {
                 "type": "`$ANY`",
               },
             },
@@ -4414,60 +3299,6 @@ def make_config():
             "input": "data",
             "name": "create",
             "points": [
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/labels/{label_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "labels",
-                  },
-                  {
-                    "var": "id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "labels",
-                  "{id}",
-                ],
-                "rename": {
-                  "param": {
-                    "label_id": "id",
-                  },
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "id",
-                      "orig": "label_id",
-                      "type": "`$INTEGER`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
               {
                 "kind": "http",
                 "method": "POST",
@@ -4500,92 +3331,76 @@ def make_config():
                   "media": "application/json",
                 },
               },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/labels/shared/remove",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "labels",
-                  },
-                  {
-                    "lit": "shared",
-                  },
-                  {
-                    "lit": "remove",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "labels",
-                  "shared",
-                  "remove",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {},
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/labels/shared/rename",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "labels",
-                  },
-                  {
-                    "lit": "shared",
-                  },
-                  {
-                    "lit": "rename",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "labels",
-                  "shared",
-                  "rename",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {},
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
             ],
           },
           "list": {
             "input": "data",
             "name": "list",
             "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/labels/search",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "labels",
+                  },
+                  {
+                    "lit": "search",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "labels",
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "search",
+                  "exist": [
+                    "query",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
               {
                 "kind": "http",
                 "method": "GET",
@@ -4756,63 +3571,14 @@ def make_config():
               },
             ],
           },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "label_rest_view": {
-        "fields": [
-          {
-            "name": "color",
-            "title": "Color",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Label color name.",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the label.",
-          },
-          {
-            "name": "is_favorite",
-            "title": "Is Favorite",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the label is marked as a favorite.",
-          },
-          {
-            "name": "name",
-            "title": "Name",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Label name.",
-          },
-          {
-            "name": "order",
-            "title": "Order",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Position of the label in the label list, or `null` when no explicit order is set.",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "label_rest_view",
-        "op": {
-          "list": {
+          "update": {
             "input": "data",
-            "name": "list",
+            "name": "update",
             "points": [
               {
                 "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/labels/search",
+                "method": "POST",
+                "orig": "/api/v1/labels/{label_id}",
                 "segments": [
                   {
                     "lit": "api",
@@ -4824,47 +3590,38 @@ def make_config():
                     "lit": "labels",
                   },
                   {
-                    "lit": "search",
+                    "var": "id",
                   },
                 ],
                 "parts": [
                   "api",
                   "v1",
                   "labels",
-                  "search",
+                  "{id}",
                 ],
-                "rename": {},
+                "rename": {
+                  "param": {
+                    "label_id": "id",
+                  },
+                },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.results`",
+                  "res": "`body`",
                 },
                 "args": {
-                  "query": [
+                  "params": [
                     {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
+                      "name": "id",
+                      "orig": "label_id",
                       "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "query",
-                      "orig": "query",
-                      "type": "`$STRING`",
-                      "kind": "query",
+                      "kind": "param",
                       "reqd": True,
                     },
                   ],
                 },
                 "select": {
                   "exist": [
-                    "query",
+                    "id",
                   ],
                 },
                 "response": {
@@ -5193,338 +3950,6 @@ def make_config():
         },
         "relations": {
           "ancestors": [],
-        },
-      },
-      "note_sync_view": {
-        "fields": [
-          {
-            "name": "attachment",
-            "title": "Attachment",
-            "type": "`$ANY`",
-            "short": "A [File attachment](#tag/Sync/Comments/File-Attachments) object",
-          },
-          {
-            "name": "content",
-            "title": "Content",
-            "type": "`$STRING`",
-            "op": {
-              "create": {
-                "req": True,
-                "type": "`$STRING`",
-              },
-            },
-            "short": "Comment content.",
-          },
-          {
-            "name": "file_attachment",
-            "title": "File Attachment",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "File attachment metadata, or `null` when the comment has no attachment.",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the comment.",
-          },
-          {
-            "name": "is_deleted",
-            "title": "Is Deleted",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the comment is deleted.",
-          },
-          {
-            "name": "posted_at",
-            "title": "Posted At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the comment was posted, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "posted_uid",
-            "title": "Posted Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who posted the comment.",
-          },
-          {
-            "name": "project_id",
-            "title": "Project Id",
-            "type": "`$STRING`",
-            "short": "String ID of the project",
-          },
-          {
-            "name": "reaction",
-            "title": "Reaction",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Reaction emoji.",
-          },
-          {
-            "name": "reactions",
-            "title": "Reactions",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Reaction emoji mapped to user IDs that reacted.",
-          },
-          {
-            "name": "task_id",
-            "title": "Task Id",
-            "type": "`$STRING`",
-            "short": "String ID of the task",
-          },
-          {
-            "name": "uids_to_notify",
-            "title": "Uids To Notify",
-            "type": "`$ANY`",
-            "req": True,
-            "op": {
-              "create": {
-                "type": "`$ANY`",
-              },
-            },
-            "short": "String IDs of users notified by the comment.",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "note_sync_view",
-        "op": {
-          "create": {
-            "input": "data",
-            "name": "create",
-            "points": [
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/comments/{comment_id}/reactions",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "comments",
-                  },
-                  {
-                    "var": "comment_id",
-                  },
-                  {
-                    "lit": "reactions",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "comments",
-                  "{comment_id}",
-                  "reactions",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "comment_id",
-                      "orig": "comment_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "comment_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/comments",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "comments",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "comments",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {},
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/comments",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "comments",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "comments",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "field": True,
-                    },
-                    {
-                      "name": "public_key",
-                      "orig": "public_key",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "task_id",
-                      "orig": "task_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "field": True,
-                    },
-                  ],
-                },
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-          "load": {
-            "input": "data",
-            "name": "load",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/comments/{comment_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "comments",
-                  },
-                  {
-                    "var": "comment_id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "comments",
-                  "{comment_id}",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "comment_id",
-                      "orig": "comment_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "comment_id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [
-            [
-              "$.main.kit.entity.comment",
-            ],
-          ],
         },
       },
       "notification_location_sync_view": {
@@ -6171,528 +4596,6 @@ def make_config():
           ],
         },
       },
-      "paginated_list_any_project_sync_view": {
-        "fields": [
-          {
-            "name": "next_cursor",
-            "title": "Next Cursor",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Cursor for the next page of results, or `null` when there are no more results.",
-          },
-          {
-            "name": "results",
-            "title": "Results",
-            "type": "`$ARRAY`",
-            "req": True,
-            "short": "Objects in the current page of results.",
-          },
-        ],
-        "name": "paginated_list_any_project_sync_view",
-        "op": {
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/projects/search",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "lit": "search",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "search",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "query",
-                      "orig": "query",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "query",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/projects/archived",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "projects",
-                  },
-                  {
-                    "lit": "archived",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "projects",
-                  "archived",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                  ],
-                },
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "paginated_list_item_sync_view": {
-        "fields": [
-          {
-            "name": "added_at",
-            "title": "Added At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was created, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "added_by_uid",
-            "title": "Added By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who created the task, or `null` if unknown.",
-          },
-          {
-            "name": "assigned_by_uid",
-            "title": "Assigned By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who assigned the task, or `null` if unassigned.",
-          },
-          {
-            "name": "checked",
-            "title": "Checked",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is completed.",
-          },
-          {
-            "name": "child_order",
-            "title": "Child Order",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Position of the task among sibling tasks.",
-          },
-          {
-            "name": "completed_at",
-            "title": "Completed At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was completed, or `null` if active.",
-            "format": "date-time",
-          },
-          {
-            "name": "completed_by_uid",
-            "title": "Completed By Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user who completed the task, or `null` if active.",
-          },
-          {
-            "name": "completed_count",
-            "title": "Completed Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Number of times the task has been marked as completed.",
-          },
-          {
-            "name": "content",
-            "title": "Content",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Task content.",
-          },
-          {
-            "name": "day_order",
-            "title": "Day Order",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Task order for day-based views.",
-          },
-          {
-            "name": "deadline",
-            "title": "Deadline",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Deadline details for the task, or `null` when the task has no deadline.",
-          },
-          {
-            "name": "description",
-            "title": "Description",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Task description.",
-          },
-          {
-            "name": "due",
-            "title": "Due",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Due date details for the task, or `null` when the task has no due date.",
-          },
-          {
-            "name": "duration",
-            "title": "Duration",
-            "type": "`$NUMBER`",
-            "req": True,
-            "short": "Task duration details, or `null` when the task has no duration.",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the task.",
-          },
-          {
-            "name": "is_collapsed",
-            "title": "Is Collapsed",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is collapsed in the user's view.",
-          },
-          {
-            "name": "is_deleted",
-            "title": "Is Deleted",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the task is deleted.",
-          },
-          {
-            "name": "labels",
-            "title": "Labels",
-            "type": "`$ARRAY`",
-            "req": True,
-            "short": "Names of labels attached to the task.",
-          },
-          {
-            "name": "note_count",
-            "title": "Note Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "**Deprecated**: only returns 0 and is marked for removal.",
-          },
-          {
-            "name": "order_key",
-            "title": "Order Key",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
-          },
-          {
-            "name": "parent_id",
-            "title": "Parent Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the parent task, or `null` if this is a top-level task.",
-          },
-          {
-            "name": "postponed_count",
-            "title": "Postponed Count",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Number of times the task's due date has been rescheduled by the user.",
-          },
-          {
-            "name": "priority",
-            "title": "Priority",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Task priority from 1 (normal) to 4 (urgent).",
-          },
-          {
-            "name": "project_id",
-            "title": "Project Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the project that contains the task.",
-          },
-          {
-            "name": "responsible_uid",
-            "title": "Responsible Uid",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "String ID of the user responsible for the task, or `null` if unassigned.",
-          },
-          {
-            "name": "section_id",
-            "title": "Section Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
-          },
-          {
-            "name": "updated_at",
-            "title": "Updated At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the task was last updated, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "user_id",
-            "title": "User Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the user who owns the task.",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "paginated_list_item_sync_view",
-        "op": {
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/tasks/filter",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "tasks",
-                  },
-                  {
-                    "lit": "filter",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "tasks",
-                  "filter",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "lang",
-                      "orig": "lang",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "query",
-                      "orig": "query",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "query",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "paginated_list_str": {
-        "fields": [
-          {
-            "name": "next_cursor",
-            "title": "Next Cursor",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Cursor for the next page of results, or `null` when there are no more results.",
-          },
-          {
-            "name": "results",
-            "title": "Results",
-            "type": "`$ARRAY`",
-            "req": True,
-            "short": "Objects in the current page of results.",
-          },
-        ],
-        "name": "paginated_list_str",
-        "op": {
-          "list": {
-            "input": "data",
-            "name": "list",
-            "points": [
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/api/v1/labels/shared",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "labels",
-                  },
-                  {
-                    "lit": "shared",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "labels",
-                  "shared",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "cursor",
-                      "orig": "cursor",
-                      "type": "`$ANY`",
-                      "kind": "query",
-                    },
-                    {
-                      "name": "limit",
-                      "orig": "limit",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "example": 50,
-                    },
-                    {
-                      "name": "omit_personal",
-                      "orig": "omit_personal",
-                      "type": "`$BOOLEAN`",
-                      "kind": "query",
-                      "example": False,
-                    },
-                  ],
-                },
-                "select": {},
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
-            ],
-          },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
       "plan_detail": {
         "fields": [
           {
@@ -6902,9 +4805,95 @@ def make_config():
       "project": {
         "fields": [
           {
+            "name": "child_order",
+            "title": "Child Order",
+            "type": "`$ANY`",
+            "short": "Updated position of the project in the hierarchy.",
+          },
+          {
+            "name": "color",
+            "title": "Color",
+            "type": "`$ANY`",
+            "short": "Color of the project icon.",
+          },
+          {
+            "name": "description",
+            "title": "Description",
+            "type": "`$STRING`",
+            "short": "Description of the project.",
+          },
+          {
+            "name": "folder_id",
+            "title": "Folder Id",
+            "type": "`$STRING`",
+            "short": "Folder to move the project into.",
+          },
+          {
+            "name": "icon",
+            "title": "Icon",
+            "type": "`$ANY`",
+            "short": "Project icon name.",
+          },
+          {
             "name": "id",
             "title": "Id",
             "type": "`$STRING`",
+          },
+          {
+            "name": "is_collapsed",
+            "title": "Is Collapsed",
+            "type": "`$BOOLEAN`",
+            "short": "Whether the project is collapsed.",
+          },
+          {
+            "name": "is_favorite",
+            "title": "Is Favorite",
+            "type": "`$BOOLEAN`",
+            "short": "Whether the project is a favorite for the user.",
+          },
+          {
+            "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
+            "req": True,
+            "op": {
+              "update": {
+                "type": "`$STRING`",
+              },
+            },
+            "short": "Name of the project.",
+          },
+          {
+            "name": "next_cursor",
+            "title": "Next Cursor",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Cursor for the next page of results, or `null` when there are no more results.",
+          },
+          {
+            "name": "parent_id",
+            "title": "Parent Id",
+            "type": "`$STRING`",
+            "short": "Parent project ID.",
+          },
+          {
+            "name": "results",
+            "title": "Results",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "Objects in the current page of results.",
+          },
+          {
+            "name": "view_style",
+            "title": "View Style",
+            "type": "`$ANY`",
+            "short": "View style of the project.",
+          },
+          {
+            "name": "workspace_id",
+            "title": "Workspace Id",
+            "type": "`$STRING`",
+            "short": "Workspace ID.",
           },
         ],
         "id": {
@@ -6913,6 +4902,290 @@ def make_config():
         },
         "name": "project",
         "op": {
+          "create": {
+            "input": "data",
+            "name": "create",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/projects",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/projects/search",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "lit": "search",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "search",
+                  "exist": [
+                    "query",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/projects",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "folder_id",
+                      "orig": "folder_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                  ],
+                },
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/projects/archived",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "lit": "archived",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "archived",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "archived",
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "load": {
+            "input": "data",
+            "name": "load",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/projects/{project_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "project_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
           "remove": {
             "input": "data",
             "name": "remove",
@@ -6962,6 +5235,243 @@ def make_config():
                   ],
                 },
                 "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "update": {
+            "input": "data",
+            "name": "update",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/projects/{project_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "project_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/projects/{project_id}/archive",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "archive",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "{id}",
+                  "archive",
+                ],
+                "rename": {
+                  "param": {
+                    "project_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "archive",
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/projects/{project_id}/join",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "join",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "{id}",
+                  "join",
+                ],
+                "rename": {
+                  "param": {
+                    "project_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "join",
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/projects/{project_id}/unarchive",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "projects",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "unarchive",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "projects",
+                  "{id}",
+                  "unarchive",
+                ],
+                "rename": {
+                  "param": {
+                    "project_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "unarchive",
                   "exist": [
                     "id",
                   ],
@@ -7587,6 +6097,9 @@ def make_config():
               "create": {
                 "type": "`$STRING`",
               },
+              "update": {
+                "type": "`$STRING`",
+              },
             },
             "short": "Section description, or `null` if it has none.",
           },
@@ -7610,7 +6123,7 @@ def make_config():
             "type": "`$BOOLEAN`",
             "req": True,
             "op": {
-              "create": {
+              "update": {
                 "type": "`$BOOLEAN`",
               },
             },
@@ -7629,7 +6142,7 @@ def make_config():
             "type": "`$STRING`",
             "req": True,
             "op": {
-              "create": {
+              "update": {
                 "type": "`$STRING`",
               },
             },
@@ -7661,7 +6174,7 @@ def make_config():
             "type": "`$INTEGER`",
             "req": True,
             "op": {
-              "create": {
+              "update": {
                 "type": "`$ANY`",
               },
             },
@@ -7693,60 +6206,6 @@ def make_config():
             "input": "data",
             "name": "create",
             "points": [
-              {
-                "kind": "http",
-                "method": "POST",
-                "orig": "/api/v1/sections/{section_id}",
-                "segments": [
-                  {
-                    "lit": "api",
-                  },
-                  {
-                    "lit": "v1",
-                  },
-                  {
-                    "lit": "sections",
-                  },
-                  {
-                    "var": "id",
-                  },
-                ],
-                "parts": [
-                  "api",
-                  "v1",
-                  "sections",
-                  "{id}",
-                ],
-                "rename": {
-                  "param": {
-                    "section_id": "id",
-                  },
-                },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "params": [
-                    {
-                      "name": "id",
-                      "orig": "section_id",
-                      "type": "`$STRING`",
-                      "kind": "param",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
-                },
-                "response": {
-                  "kind": "json",
-                  "media": "application/json",
-                },
-              },
               {
                 "kind": "http",
                 "method": "POST",
@@ -7785,6 +6244,83 @@ def make_config():
             "input": "data",
             "name": "list",
             "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/sections/search",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "sections",
+                  },
+                  {
+                    "lit": "search",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "sections",
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "project_id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                    {
+                      "name": "workspace_id",
+                      "orig": "workspace_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "search",
+                  "exist": [
+                    "query",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
               {
                 "kind": "http",
                 "method": "GET",
@@ -7982,118 +6518,64 @@ def make_config():
               },
             ],
           },
-        },
-        "relations": {
-          "ancestors": [],
-        },
-      },
-      "section_sync_view": {
-        "fields": [
-          {
-            "name": "added_at",
-            "title": "Added At",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Date and time when the section was created.",
-            "format": "date-time",
-          },
-          {
-            "name": "archived_at",
-            "title": "Archived At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the section was archived, or `null` if it is active.",
-            "format": "date-time",
-          },
-          {
-            "name": "description",
-            "title": "Description",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Section description, or `null` if it has none.",
-          },
-          {
-            "name": "id",
-            "title": "Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the section.",
-          },
-          {
-            "name": "is_archived",
-            "title": "Is Archived",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the section is archived.",
-          },
-          {
-            "name": "is_collapsed",
-            "title": "Is Collapsed",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the section is collapsed in the user's view.",
-          },
-          {
-            "name": "is_deleted",
-            "title": "Is Deleted",
-            "type": "`$BOOLEAN`",
-            "req": True,
-            "short": "Whether the section is deleted.",
-          },
-          {
-            "name": "name",
-            "title": "Name",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "Section name.",
-          },
-          {
-            "name": "order_key",
-            "title": "Order Key",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Fractional-indexing order key: sections sort by comparing keys lexicographically within a project.",
-          },
-          {
-            "name": "project_id",
-            "title": "Project Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the project that contains the section.",
-          },
-          {
-            "name": "section_order",
-            "title": "Section Order",
-            "type": "`$INTEGER`",
-            "req": True,
-            "short": "Position of the section in the project.",
-          },
-          {
-            "name": "updated_at",
-            "title": "Updated At",
-            "type": "`$ANY`",
-            "req": True,
-            "short": "Date and time when the section was last updated, or `null` if unknown.",
-            "format": "date-time",
-          },
-          {
-            "name": "user_id",
-            "title": "User Id",
-            "type": "`$STRING`",
-            "req": True,
-            "short": "String ID of the user who owns the section.",
-          },
-        ],
-        "id": {
-          "field": "id",
-          "name": "id",
-        },
-        "name": "section_sync_view",
-        "op": {
-          "create": {
+          "update": {
             "input": "data",
-            "name": "create",
+            "name": "update",
             "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/sections/{section_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "sections",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "sections",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "section_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "section_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
               {
                 "kind": "http",
                 "method": "POST",
@@ -8214,6 +6696,44 @@ def make_config():
               },
             ],
           },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "shared_label": {
+        "fields": [
+          {
+            "name": "name",
+            "title": "Name",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "Current shared label name to rename.",
+          },
+          {
+            "name": "new_name",
+            "title": "New Name",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "New shared label name to apply to matching tasks.",
+          },
+          {
+            "name": "next_cursor",
+            "title": "Next Cursor",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Cursor for the next page of results, or `null` when there are no more results.",
+          },
+          {
+            "name": "results",
+            "title": "Results",
+            "type": "`$ARRAY`",
+            "req": True,
+            "short": "Objects in the current page of results.",
+          },
+        ],
+        "name": "shared_label",
+        "op": {
           "list": {
             "input": "data",
             "name": "list",
@@ -8221,7 +6741,7 @@ def make_config():
               {
                 "kind": "http",
                 "method": "GET",
-                "orig": "/api/v1/sections/search",
+                "orig": "/api/v1/labels/shared",
                 "segments": [
                   {
                     "lit": "api",
@@ -8230,17 +6750,17 @@ def make_config():
                     "lit": "v1",
                   },
                   {
-                    "lit": "sections",
+                    "lit": "labels",
                   },
                   {
-                    "lit": "search",
+                    "lit": "shared",
                   },
                 ],
                 "parts": [
                   "api",
                   "v1",
-                  "sections",
-                  "search",
+                  "labels",
+                  "shared",
                 ],
                 "rename": {},
                 "transform": {
@@ -8263,32 +6783,107 @@ def make_config():
                       "example": 50,
                     },
                     {
-                      "name": "project_id",
-                      "orig": "project_id",
-                      "type": "`$STRING`",
+                      "name": "omit_personal",
+                      "orig": "omit_personal",
+                      "type": "`$BOOLEAN`",
                       "kind": "query",
-                      "field": True,
-                    },
-                    {
-                      "name": "query",
-                      "orig": "query",
-                      "type": "`$STRING`",
-                      "kind": "query",
-                      "reqd": True,
-                    },
-                    {
-                      "name": "workspace_id",
-                      "orig": "workspace_id",
-                      "type": "`$STRING`",
-                      "kind": "query",
+                      "example": False,
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "query",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
+              },
+            ],
+          },
+          "remove": {
+            "input": "data",
+            "name": "remove",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/labels/shared/remove",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "labels",
+                  },
+                  {
+                    "lit": "shared",
+                  },
+                  {
+                    "lit": "remove",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "labels",
+                  "shared",
+                  "remove",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "update": {
+            "input": "data",
+            "name": "update",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/labels/shared/rename",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "labels",
+                  },
+                  {
+                    "lit": "shared",
+                  },
+                  {
+                    "lit": "rename",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "labels",
+                  "shared",
+                  "rename",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
                 "response": {
                   "kind": "json",
                   "media": "application/json",
@@ -8538,9 +7133,319 @@ def make_config():
       "task": {
         "fields": [
           {
+            "name": "added_at",
+            "title": "Added At",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Date and time when the task was created, or `null` if unknown.",
+            "format": "date-time",
+          },
+          {
+            "name": "added_by_uid",
+            "title": "Added By Uid",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "String ID of the user who created the task, or `null` if unknown.",
+          },
+          {
+            "name": "assigned_by_uid",
+            "title": "Assigned By Uid",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "String ID of the user who assigned the task, or `null` if unassigned.",
+          },
+          {
+            "name": "assignee_id",
+            "title": "Assignee Id",
+            "type": "`$STRING`",
+            "short": "ID of the user to assign the task to.",
+          },
+          {
+            "name": "checked",
+            "title": "Checked",
+            "type": "`$BOOLEAN`",
+            "req": True,
+            "short": "Whether the task is completed.",
+          },
+          {
+            "name": "child_order",
+            "title": "Child Order",
+            "type": "`$INTEGER`",
+            "req": True,
+            "op": {
+              "update": {
+                "type": "`$INTEGER`",
+              },
+            },
+            "short": "Position of the task among sibling tasks.",
+          },
+          {
+            "name": "completed_at",
+            "title": "Completed At",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Date and time when the task was completed, or `null` if active.",
+            "format": "date-time",
+          },
+          {
+            "name": "completed_by_uid",
+            "title": "Completed By Uid",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "String ID of the user who completed the task, or `null` if active.",
+          },
+          {
+            "name": "completed_count",
+            "title": "Completed Count",
+            "type": "`$INTEGER`",
+            "req": True,
+            "short": "Number of times the task has been marked as completed.",
+          },
+          {
+            "name": "content",
+            "title": "Content",
+            "type": "`$STRING`",
+            "req": True,
+            "op": {
+              "update": {
+                "type": "`$STRING`",
+              },
+            },
+            "short": "Task content.",
+          },
+          {
+            "name": "day_order",
+            "title": "Day Order",
+            "type": "`$INTEGER`",
+            "req": True,
+            "op": {
+              "update": {
+                "type": "`$INTEGER`",
+              },
+            },
+            "short": "Task order for day-based views.",
+          },
+          {
+            "name": "deadline",
+            "title": "Deadline",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Deadline details for the task, or `null` when the task has no deadline.",
+          },
+          {
+            "name": "deadline_date",
+            "title": "Deadline Date",
+            "type": "`$ANY`",
+            "short": "Deadline date in YYYY-MM-DD format",
+            "format": "date",
+          },
+          {
+            "name": "description",
+            "title": "Description",
+            "type": "`$STRING`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$STRING`",
+              },
+              "update": {
+                "type": "`$STRING`",
+              },
+            },
+            "short": "Task description.",
+          },
+          {
+            "name": "due",
+            "title": "Due",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Due date details for the task, or `null` when the task has no due date.",
+          },
+          {
+            "name": "due_date",
+            "title": "Due Date",
+            "type": "`$ANY`",
+            "short": "Due date in RFC 3339 format or similar.",
+          },
+          {
+            "name": "due_datetime",
+            "title": "Due Datetime",
+            "type": "`$ANY`",
+            "short": "Due date and time.",
+          },
+          {
+            "name": "due_lang",
+            "title": "Due Lang",
+            "type": "`$ANY`",
+            "short": "Due date language code.",
+          },
+          {
+            "name": "due_string",
+            "title": "Due String",
+            "type": "`$ANY`",
+            "short": "Human-readable representation of the due date.",
+          },
+          {
+            "name": "duration",
+            "title": "Duration",
+            "type": "`$NUMBER`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$NUMBER`",
+              },
+              "update": {
+                "type": "`$NUMBER`",
+              },
+            },
+            "short": "Task duration details, or `null` when the task has no duration.",
+          },
+          {
+            "name": "duration_unit",
+            "title": "Duration Unit",
+            "type": "`$ANY`",
+            "short": "Unit of time for duration.",
+          },
+          {
             "name": "id",
             "title": "Id",
             "type": "`$STRING`",
+            "req": True,
+            "short": "String ID of the task.",
+          },
+          {
+            "name": "is_collapsed",
+            "title": "Is Collapsed",
+            "type": "`$BOOLEAN`",
+            "req": True,
+            "op": {
+              "update": {
+                "type": "`$BOOLEAN`",
+              },
+            },
+            "short": "Whether the task is collapsed in the user's view.",
+          },
+          {
+            "name": "is_deleted",
+            "title": "Is Deleted",
+            "type": "`$BOOLEAN`",
+            "req": True,
+            "short": "Whether the task is deleted.",
+          },
+          {
+            "name": "labels",
+            "title": "Labels",
+            "type": "`$ARRAY`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$ANY`",
+              },
+              "update": {
+                "type": "`$ARRAY`",
+              },
+            },
+            "short": "Names of labels attached to the task.",
+          },
+          {
+            "name": "note_count",
+            "title": "Note Count",
+            "type": "`$INTEGER`",
+            "req": True,
+            "short": "**Deprecated**: only returns 0 and is marked for removal.",
+          },
+          {
+            "name": "order",
+            "title": "Order",
+            "type": "`$ANY`",
+            "short": "Position of the task in the project or section",
+          },
+          {
+            "name": "order_key",
+            "title": "Order Key",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
+          },
+          {
+            "name": "parent_id",
+            "title": "Parent Id",
+            "type": "`$STRING`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$STRING`",
+              },
+            },
+            "short": "String ID of the parent task, or `null` if this is a top-level task.",
+          },
+          {
+            "name": "postponed_count",
+            "title": "Postponed Count",
+            "type": "`$INTEGER`",
+            "req": True,
+            "short": "Number of times the task's due date has been rescheduled by the user.",
+          },
+          {
+            "name": "priority",
+            "title": "Priority",
+            "type": "`$INTEGER`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$ANY`",
+              },
+              "update": {
+                "type": "`$INTEGER`",
+              },
+            },
+            "short": "Task priority from 1 (normal) to 4 (urgent).",
+          },
+          {
+            "name": "project_id",
+            "title": "Project Id",
+            "type": "`$STRING`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$STRING`",
+              },
+            },
+            "short": "String ID of the project that contains the task.",
+          },
+          {
+            "name": "responsible_uid",
+            "title": "Responsible Uid",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "String ID of the user responsible for the task, or `null` if unassigned.",
+          },
+          {
+            "name": "section_id",
+            "title": "Section Id",
+            "type": "`$STRING`",
+            "req": True,
+            "op": {
+              "create": {
+                "type": "`$STRING`",
+              },
+            },
+            "short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
+          },
+          {
+            "name": "updated_at",
+            "title": "Updated At",
+            "type": "`$ANY`",
+            "req": True,
+            "short": "Date and time when the task was last updated, or `null` if unknown.",
+            "format": "date-time",
+          },
+          {
+            "name": "user_id",
+            "title": "User Id",
+            "type": "`$STRING`",
+            "req": True,
+            "short": "String ID of the user who owns the task.",
           },
         ],
         "id": {
@@ -8553,6 +7458,38 @@ def make_config():
             "input": "data",
             "name": "create",
             "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/tasks",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
               {
                 "kind": "http",
                 "method": "POST",
@@ -8585,6 +7522,231 @@ def make_config():
                 "args": {},
                 "select": {
                   "$action": "quick",
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "list": {
+            "input": "data",
+            "name": "list",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/tasks/filter",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                  {
+                    "lit": "filter",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                  "filter",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "lang",
+                      "orig": "lang",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "filter",
+                  "exist": [
+                    "query",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/tasks",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "cursor",
+                      "orig": "cursor",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "ids",
+                      "orig": "ids",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "label",
+                      "orig": "label",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "limit",
+                      "orig": "limit",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "example": 50,
+                    },
+                    {
+                      "name": "parent_id",
+                      "orig": "parent_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                    {
+                      "name": "project_id",
+                      "orig": "project_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                    {
+                      "name": "section_id",
+                      "orig": "section_id",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "field": True,
+                    },
+                  ],
+                },
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "load": {
+            "input": "data",
+            "name": "load",
+            "points": [
+              {
+                "kind": "http",
+                "method": "GET",
+                "orig": "/api/v1/tasks/{task_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "task_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "task_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                  "query": [
+                    {
+                      "name": "public_key",
+                      "orig": "public_key",
+                      "type": "`$ANY`",
+                      "kind": "query",
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
                 },
                 "response": {
                   "kind": "json",
@@ -8642,6 +7804,243 @@ def make_config():
                   ],
                 },
                 "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+            ],
+          },
+          "update": {
+            "input": "data",
+            "name": "update",
+            "points": [
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/tasks/{task_id}",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "task_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "task_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/tasks/{task_id}/close",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "close",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                  "{id}",
+                  "close",
+                ],
+                "rename": {
+                  "param": {
+                    "task_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "task_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "close",
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/tasks/{task_id}/move",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "move",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                  "{id}",
+                  "move",
+                ],
+                "rename": {
+                  "param": {
+                    "task_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "task_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "move",
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "POST",
+                "orig": "/api/v1/tasks/{task_id}/reopen",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "tasks",
+                  },
+                  {
+                    "var": "id",
+                  },
+                  {
+                    "lit": "reopen",
+                  },
+                ],
+                "parts": [
+                  "api",
+                  "v1",
+                  "tasks",
+                  "{id}",
+                  "reopen",
+                ],
+                "rename": {
+                  "param": {
+                    "task_id": "id",
+                  },
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "params": [
+                    {
+                      "name": "id",
+                      "orig": "task_id",
+                      "type": "`$STRING`",
+                      "kind": "param",
+                      "reqd": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "$action": "reopen",
                   "exist": [
                     "id",
                   ],

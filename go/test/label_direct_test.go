@@ -37,7 +37,7 @@ func TestLabelDirect(t *testing.T) {
 
 
 		result, err := client.Direct(map[string]any{
-			"path":   "api/v1/labels",
+			"path":   "api/v1/labels/search",
 			"method": "GET",
 			"params": map[string]any{},
 		})
@@ -98,7 +98,7 @@ func TestLabelDirect(t *testing.T) {
 		if setup.live {
 			listParams := map[string]any{}
 			listResult, listErr := client.Direct(map[string]any{
-				"path":   "api/v1/labels",
+				"path":   "api/v1/labels/search",
 				"method": "GET",
 				"params": listParams,
 			})

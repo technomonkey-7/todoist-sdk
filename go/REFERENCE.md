@@ -56,10 +56,6 @@ Create a new `Active` entity instance. Pass `nil` for no initial data.
 
 Create a new `Activity` entity instance. Pass `nil` for no initial data.
 
-#### `AnyProjectSyncView(data map[string]any) TodoistEntity`
-
-Create a new `AnyProjectSyncView` entity instance. Pass `nil` for no initial data.
-
 #### `Archived(data map[string]any) TodoistEntity`
 
 Create a new `Archived` entity instance. Pass `nil` for no initial data.
@@ -76,14 +72,6 @@ Create a new `Backup` entity instance. Pass `nil` for no initial data.
 
 Create a new `BillingPortalUrl` entity instance. Pass `nil` for no initial data.
 
-#### `ByCompletionDate(data map[string]any) TodoistEntity`
-
-Create a new `ByCompletionDate` entity instance. Pass `nil` for no initial data.
-
-#### `ByDueDate(data map[string]any) TodoistEntity`
-
-Create a new `ByDueDate` entity instance. Pass `nil` for no initial data.
-
 #### `Collaborator(data map[string]any) TodoistEntity`
 
 Create a new `Collaborator` entity instance. Pass `nil` for no initial data.
@@ -91,6 +79,10 @@ Create a new `Collaborator` entity instance. Pass `nil` for no initial data.
 #### `Comment(data map[string]any) TodoistEntity`
 
 Create a new `Comment` entity instance. Pass `nil` for no initial data.
+
+#### `CompletedTask(data map[string]any) TodoistEntity`
+
+Create a new `CompletedTask` entity instance. Pass `nil` for no initial data.
 
 #### `CreditState(data map[string]any) TodoistEntity`
 
@@ -120,17 +112,9 @@ Create a new `IdMapping` entity instance. Pass `nil` for no initial data.
 
 Create a new `Invite` entity instance. Pass `nil` for no initial data.
 
-#### `ItemSyncView(data map[string]any) TodoistEntity`
-
-Create a new `ItemSyncView` entity instance. Pass `nil` for no initial data.
-
 #### `Label(data map[string]any) TodoistEntity`
 
 Create a new `Label` entity instance. Pass `nil` for no initial data.
-
-#### `LabelRestView(data map[string]any) TodoistEntity`
-
-Create a new `LabelRestView` entity instance. Pass `nil` for no initial data.
 
 #### `LocationReminder(data map[string]any) TodoistEntity`
 
@@ -144,10 +128,6 @@ Create a new `MemberView` entity instance. Pass `nil` for no initial data.
 
 Create a new `MigratePersonalToken` entity instance. Pass `nil` for no initial data.
 
-#### `NoteSyncView(data map[string]any) TodoistEntity`
-
-Create a new `NoteSyncView` entity instance. Pass `nil` for no initial data.
-
 #### `NotificationLocationSyncView(data map[string]any) TodoistEntity`
 
 Create a new `NotificationLocationSyncView` entity instance. Pass `nil` for no initial data.
@@ -155,18 +135,6 @@ Create a new `NotificationLocationSyncView` entity instance. Pass `nil` for no i
 #### `NotificationSyncView(data map[string]any) TodoistEntity`
 
 Create a new `NotificationSyncView` entity instance. Pass `nil` for no initial data.
-
-#### `PaginatedListAnyProjectSyncView(data map[string]any) TodoistEntity`
-
-Create a new `PaginatedListAnyProjectSyncView` entity instance. Pass `nil` for no initial data.
-
-#### `PaginatedListItemSyncView(data map[string]any) TodoistEntity`
-
-Create a new `PaginatedListItemSyncView` entity instance. Pass `nil` for no initial data.
-
-#### `PaginatedListStr(data map[string]any) TodoistEntity`
-
-Create a new `PaginatedListStr` entity instance. Pass `nil` for no initial data.
 
 #### `PlanDetail(data map[string]any) TodoistEntity`
 
@@ -204,9 +172,9 @@ Create a new `RoleToActionMappingView` entity instance. Pass `nil` for no initia
 
 Create a new `Section` entity instance. Pass `nil` for no initial data.
 
-#### `SectionSyncView(data map[string]any) TodoistEntity`
+#### `SharedLabel(data map[string]any) TodoistEntity`
 
-Create a new `SectionSyncView` entity instance. Pass `nil` for no initial data.
+Create a new `SharedLabel` entity instance. Pass `nil` for no initial data.
 
 #### `StatusOk(data map[string]any) TodoistEntity`
 
@@ -422,125 +390,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## AnyProjectSyncViewEntity
-
-```go
-anyProjectSyncView := client.AnyProjectSyncView(nil)
-fmt.Println(anyProjectSyncView.GetName()) // "any_project_sync_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `child_order` | `any` | No | Updated position of the project in the hierarchy. |
-| `color` | `any` | No | Updated project color. |
-| `description` | `string` | No | Updated project description. |
-| `folder_id` | `string` | No | Folder to move the project into. |
-| `icon` | `any` | No | Updated project icon name. |
-| `is_collapsed` | `bool` | No | Whether the project is collapsed. |
-| `is_favorite` | `bool` | No | Whether the project is marked as a favorite. |
-| `name` | `string` | No | Updated project name. |
-| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `parent_id` | `string` | No | Parent project ID. |
-| `results` | `[]any` | Yes | Objects in the current page of results. |
-| `view_style` | `any` | No | Updated project view style. |
-| `workspace_id` | `string` | No | Workspace ID. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `child_order` | - | - | - |
-| `color` | - | - | - |
-| `description` | - | - | - |
-| `folder_id` | - | - | - |
-| `icon` | - | - | - |
-| `is_collapsed` | - | - | - |
-| `is_favorite` | - | - | - |
-| `name` | - | - | Yes |
-| `next_cursor` | - | - | - |
-| `parent_id` | - | - | - |
-| `results` | - | - | - |
-| `view_style` | - | - | - |
-| `workspace_id` | - | - | - |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.AnyProjectSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
-
-```go
-result, err := client.AnyProjectSyncView(nil).Load(map[string]any{"project_id": "project_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.AnyProjectSyncView(nil).Create(map[string]any{
-    "project_id": "example_project_id",
-    "next_cursor": "example_next_cursor",
-    "results": []any{},
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `AnyProjectSyncViewEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -852,182 +701,6 @@ Return the entity name.
 
 ---
 
-## ByCompletionDateEntity
-
-```go
-byCompletionDate := client.ByCompletionDate(nil)
-fmt.Println(byCompletionDate.GetName()) // "by_completion_date"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float64` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `[]any` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.ByCompletionDate(nil).List(map[string]any{"since": "example", "until": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ByCompletionDateEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ByDueDateEntity
-
-```go
-byDueDate := client.ByDueDate(nil)
-fmt.Println(byDueDate.GetName()) // "by_due_date"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float64` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `[]any` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.ByDueDate(nil).List(map[string]any{"since": "example", "until": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ByDueDateEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## CollaboratorEntity
 
 ```go
@@ -1102,10 +775,61 @@ fmt.Println(comment.GetName()) // "comment"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `any` | Yes | New content for the comment. |
-| `id` | `string` | No |  |
+| `attachment` | `any` | No | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
+| `content` | `string` | No | Comment content. |
+| `file_attachment` | `any` | Yes | File attachment metadata, or `null` when the comment has no attachment. |
+| `id` | `string` | Yes | String ID of the comment. |
+| `is_deleted` | `bool` | Yes | Whether the comment is deleted. |
+| `posted_at` | `any` | Yes | Date and time when the comment was posted, or `null` if unknown. |
+| `posted_uid` | `any` | Yes | String ID of the user who posted the comment. |
+| `project_id` | `string` | No | String ID of the project |
+| `reactions` | `any` | Yes | Reaction emoji mapped to user IDs that reacted. |
+| `task_id` | `string` | No | String ID of the task |
+| `uids_to_notify` | `any` | Yes | String IDs of users notified by the comment. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `attachment` | - | - | - | - | - |
+| `content` | - | - | Yes | Yes | - |
+| `file_attachment` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `posted_at` | - | - | - | - | - |
+| `posted_uid` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `reactions` | - | - | - | - | - |
+| `task_id` | - | - | - | - | - |
+| `uids_to_notify` | - | - | Yes | - | - |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.Comment(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
+
+```go
+result, err := client.Comment(nil).Load(map[string]any{"id": "comment_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
 
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
 
@@ -1113,8 +837,28 @@ Create a new entity with the given data. Returns the created entity; `err` is no
 
 ```go
 result, err := client.Comment(nil).Create(map[string]any{
+    "file_attachment": "example_file_attachment",
     "id": "example_id",
-    "content": "example_content",
+    "is_deleted": true,
+    "posted_at": "example_posted_at",
+    "posted_uid": "example_posted_uid",
+    "reactions": "example_reactions",
+    "uids_to_notify": "example_uids_to_notify",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Comment(nil).Update(map[string]any{
+    "id": "comment_id",
+    // Fields to update
 }, nil)
 if err != nil {
     panic(err)
@@ -1149,6 +893,94 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `CommentEntity` instance with the same client and
+options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## CompletedTaskEntity
+
+```go
+completedTask := client.CompletedTask(nil)
+fmt.Println(completedTask.GetName()) // "completed_task"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
+| `checked` | `bool` | Yes | Whether the task is completed. |
+| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
+| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
+| `content` | `string` | Yes | Task content. |
+| `day_order` | `int` | Yes | Task order for day-based views. |
+| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
+| `description` | `string` | Yes | Task description. |
+| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
+| `duration` | `float64` | Yes | Task duration details, or `null` when the task has no duration. |
+| `id` | `string` | Yes | String ID of the task. |
+| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
+| `labels` | `[]any` | Yes | Names of labels attached to the task. |
+| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
+| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `string` | Yes | String ID of the project that contains the task. |
+| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `string` | Yes | String ID of the user who owns the task. |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.CompletedTask(nil).List(map[string]any{"since": "example", "until": "example"}, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `CompletedTaskEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -1678,197 +1510,6 @@ Return the entity name.
 
 ---
 
-## ItemSyncViewEntity
-
-```go
-itemSyncView := client.ItemSyncView(nil)
-fmt.Println(itemSyncView.GetName()) // "item_sync_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `assignee_id` | `string` | No | ID of the user to assign the task to. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `deadline_date` | `any` | No | Updated deadline date in YYYY-MM-DD format. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `due_date` | `string` | No | Updated due date in RFC 3339 format or similar. |
-| `due_datetime` | `string` | No | Updated due date and time. |
-| `due_lang` | `string` | No | Updated due date language code. |
-| `due_string` | `string` | No | Updated human-readable representation of the due date. |
-| `duration` | `float64` | Yes | Task duration details, or `null` when the task has no duration. |
-| `duration_unit` | `any` | No | Unit of time for duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `[]any` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order` | `any` | No | Position of the task in the project or section |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `added_at` | - | - | - |
-| `added_by_uid` | - | - | - |
-| `assigned_by_uid` | - | - | - |
-| `assignee_id` | - | - | - |
-| `checked` | - | - | - |
-| `child_order` | - | - | Yes |
-| `completed_at` | - | - | - |
-| `completed_by_uid` | - | - | - |
-| `completed_count` | - | - | - |
-| `content` | - | - | Yes |
-| `day_order` | - | - | Yes |
-| `deadline` | - | - | - |
-| `deadline_date` | - | - | - |
-| `description` | - | - | Yes |
-| `due` | - | - | - |
-| `due_date` | - | - | - |
-| `due_datetime` | - | - | - |
-| `due_lang` | - | - | - |
-| `due_string` | - | - | - |
-| `duration` | - | - | Yes |
-| `duration_unit` | - | - | - |
-| `id` | - | - | - |
-| `is_collapsed` | - | - | Yes |
-| `is_deleted` | - | - | - |
-| `labels` | - | - | Yes |
-| `note_count` | - | - | - |
-| `order` | - | - | - |
-| `order_key` | - | - | - |
-| `parent_id` | - | - | Yes |
-| `postponed_count` | - | - | - |
-| `priority` | - | - | Yes |
-| `project_id` | - | - | Yes |
-| `responsible_uid` | - | - | - |
-| `section_id` | - | - | Yes |
-| `updated_at` | - | - | - |
-| `user_id` | - | - | - |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.ItemSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
-
-```go
-result, err := client.ItemSyncView(nil).Load(map[string]any{"task_id": "task_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.ItemSyncView(nil).Create(map[string]any{
-    "task_id": "example_task_id",
-    "added_at": "example_added_at",
-    "added_by_uid": "example_added_by_uid",
-    "assigned_by_uid": "example_assigned_by_uid",
-    "checked": true,
-    "child_order": 1,
-    "completed_at": "example_completed_at",
-    "completed_by_uid": "example_completed_by_uid",
-    "completed_count": 1,
-    "content": "example_content",
-    "day_order": 1,
-    "deadline": "example_deadline",
-    "description": "example_description",
-    "due": "example_due",
-    "duration": 1,
-    "id": "example_id",
-    "is_collapsed": true,
-    "is_deleted": true,
-    "labels": []any{},
-    "note_count": 1,
-    "order_key": "example_order_key",
-    "parent_id": "example_parent_id",
-    "postponed_count": 1,
-    "priority": 1,
-    "project_id": "example_project_id",
-    "responsible_uid": "example_responsible_uid",
-    "section_id": "example_section_id",
-    "updated_at": "example_updated_at",
-    "user_id": "example_user_id",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ItemSyncViewEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## LabelEntity
 
 ```go
@@ -1884,19 +1525,17 @@ fmt.Println(label.GetName()) // "label"
 | `id` | `string` | Yes | String ID of the label. |
 | `is_favorite` | `bool` | Yes | Whether the label is marked as a favorite. |
 | `name` | `string` | Yes | Label name. |
-| `new_name` | `string` | Yes | New shared label name to apply to matching tasks. |
 | `order` | `any` | Yes | Position of the label in the label list, or `null` when no explicit order is set. |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `color` | - | - | Yes | - |
-| `id` | - | - | - | - |
-| `is_favorite` | - | - | Yes | - |
-| `name` | - | - | Yes | - |
-| `new_name` | - | - | - | - |
-| `order` | - | - | Yes | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `color` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_favorite` | - | - | Yes | Yes | - |
+| `name` | - | - | - | Yes | - |
+| `order` | - | - | Yes | Yes | - |
 
 ### Operations
 
@@ -1932,12 +1571,26 @@ Create a new entity with the given data. Returns the created entity; `err` is no
 
 ```go
 result, err := client.Label(nil).Create(map[string]any{
-    "id": 1,
     "color": "example_color",
+    "id": "example_id",
     "is_favorite": true,
     "name": "example_name",
-    "new_name": "example_new_name",
     "order": "example_order",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Label(nil).Update(map[string]any{
+    "id": 1,
+    // Fields to update
 }, nil)
 if err != nil {
     panic(err)
@@ -1972,71 +1625,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `LabelEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## LabelRestViewEntity
-
-```go
-labelRestView := client.LabelRestView(nil)
-fmt.Println(labelRestView.GetName()) // "label_rest_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `color` | `string` | Yes | Label color name. |
-| `id` | `string` | Yes | String ID of the label. |
-| `is_favorite` | `bool` | Yes | Whether the label is marked as a favorite. |
-| `name` | `string` | Yes | Label name. |
-| `order` | `any` | Yes | Position of the label in the label list, or `null` when no explicit order is set. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.LabelRestView(nil).List(map[string]any{"query": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `LabelRestViewEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -2237,128 +1825,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `MigratePersonalTokenEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## NoteSyncViewEntity
-
-```go
-noteSyncView := client.NoteSyncView(nil)
-fmt.Println(noteSyncView.GetName()) // "note_sync_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `attachment` | `any` | No | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
-| `content` | `string` | No | Comment content. |
-| `file_attachment` | `any` | Yes | File attachment metadata, or `null` when the comment has no attachment. |
-| `id` | `string` | Yes | String ID of the comment. |
-| `is_deleted` | `bool` | Yes | Whether the comment is deleted. |
-| `posted_at` | `any` | Yes | Date and time when the comment was posted, or `null` if unknown. |
-| `posted_uid` | `any` | Yes | String ID of the user who posted the comment. |
-| `project_id` | `string` | No | String ID of the project |
-| `reaction` | `string` | Yes | Reaction emoji. |
-| `reactions` | `any` | Yes | Reaction emoji mapped to user IDs that reacted. |
-| `task_id` | `string` | No | String ID of the task |
-| `uids_to_notify` | `any` | Yes | String IDs of users notified by the comment. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `attachment` | - | - | - |
-| `content` | - | - | Yes |
-| `file_attachment` | - | - | - |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `posted_at` | - | - | - |
-| `posted_uid` | - | - | - |
-| `project_id` | - | - | - |
-| `reaction` | - | - | - |
-| `reactions` | - | - | - |
-| `task_id` | - | - | - |
-| `uids_to_notify` | - | - | Yes |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.NoteSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
-
-```go
-result, err := client.NoteSyncView(nil).Load(map[string]any{"comment_id": "comment_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.NoteSyncView(nil).Create(map[string]any{
-    "file_attachment": "example_file_attachment",
-    "id": "example_id",
-    "is_deleted": true,
-    "posted_at": "example_posted_at",
-    "posted_uid": "example_posted_uid",
-    "reaction": "example_reaction",
-    "reactions": "example_reactions",
-    "uids_to_notify": "example_uids_to_notify",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `NoteSyncViewEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -2624,218 +2090,6 @@ Return the entity name.
 
 ---
 
-## PaginatedListAnyProjectSyncViewEntity
-
-```go
-paginatedListAnyProjectSyncView := client.PaginatedListAnyProjectSyncView(nil)
-fmt.Println(paginatedListAnyProjectSyncView.GetName()) // "paginated_list_any_project_sync_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `[]any` | Yes | Objects in the current page of results. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.PaginatedListAnyProjectSyncView(nil).List(map[string]any{"query": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `PaginatedListAnyProjectSyncViewEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## PaginatedListItemSyncViewEntity
-
-```go
-paginatedListItemSyncView := client.PaginatedListItemSyncView(nil)
-fmt.Println(paginatedListItemSyncView.GetName()) // "paginated_list_item_sync_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float64` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `[]any` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.PaginatedListItemSyncView(nil).List(map[string]any{"query": "example"}, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `PaginatedListItemSyncViewEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## PaginatedListStrEntity
-
-```go
-paginatedListStr := client.PaginatedListStr(nil)
-fmt.Println(paginatedListStr.GetName()) // "paginated_list_str"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `[]any` | Yes | Objects in the current page of results. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.PaginatedListStr(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `PaginatedListStrEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## PlanDetailEntity
 
 ```go
@@ -2979,9 +2233,98 @@ fmt.Println(project.GetName()) // "project"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `child_order` | `any` | No | Updated position of the project in the hierarchy. |
+| `color` | `any` | No | Color of the project icon. |
+| `description` | `string` | No | Description of the project. |
+| `folder_id` | `string` | No | Folder to move the project into. |
+| `icon` | `any` | No | Project icon name. |
 | `id` | `string` | No |  |
+| `is_collapsed` | `bool` | No | Whether the project is collapsed. |
+| `is_favorite` | `bool` | No | Whether the project is a favorite for the user. |
+| `name` | `string` | Yes | Name of the project. |
+| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
+| `parent_id` | `string` | No | Parent project ID. |
+| `results` | `[]any` | Yes | Objects in the current page of results. |
+| `view_style` | `any` | No | View style of the project. |
+| `workspace_id` | `string` | No | Workspace ID. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `child_order` | - | - | - | - | - |
+| `color` | - | - | - | - | - |
+| `description` | - | - | - | - | - |
+| `folder_id` | - | - | - | - | - |
+| `icon` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | - | - |
+| `is_favorite` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `next_cursor` | - | - | - | - | - |
+| `parent_id` | - | - | - | - | - |
+| `results` | - | - | - | - | - |
+| `view_style` | - | - | - | - | - |
+| `workspace_id` | - | - | - | - | - |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.Project(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
+
+```go
+result, err := client.Project(nil).Load(map[string]any{"id": "project_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Project(nil).Create(map[string]any{
+    "name": "example_name",
+    "next_cursor": "example_next_cursor",
+    "results": []any{},
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Project(nil).Update(map[string]any{
+    "id": "project_id",
+    // Fields to update
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -3404,22 +2747,22 @@ fmt.Println(section.GetName()) // "section"
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `added_at` | - | - | - | - |
-| `archived_at` | - | - | - | - |
-| `description` | - | - | Yes | - |
-| `id` | - | - | - | - |
-| `is_archived` | - | - | - | - |
-| `is_collapsed` | - | - | Yes | - |
-| `is_deleted` | - | - | - | - |
-| `name` | - | - | Yes | - |
-| `order` | - | - | - | - |
-| `order_key` | - | - | - | - |
-| `project_id` | - | - | - | - |
-| `section_order` | - | - | Yes | - |
-| `updated_at` | - | - | - | - |
-| `user_id` | - | - | - | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `added_at` | - | - | - | - | - |
+| `archived_at` | - | - | - | - | - |
+| `description` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_archived` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | Yes | - |
+| `is_deleted` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `order` | - | - | - | - | - |
+| `order_key` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `section_order` | - | - | - | Yes | - |
+| `updated_at` | - | - | - | - | - |
+| `user_id` | - | - | - | - | - |
 
 ### Operations
 
@@ -3455,10 +2798,10 @@ Create a new entity with the given data. Returns the created entity; `err` is no
 
 ```go
 result, err := client.Section(nil).Create(map[string]any{
-    "id": "example_id",
     "added_at": "example_added_at",
     "archived_at": "example_archived_at",
     "description": "example_description",
+    "id": "example_id",
     "is_archived": true,
     "is_collapsed": true,
     "is_deleted": true,
@@ -3468,6 +2811,21 @@ result, err := client.Section(nil).Create(map[string]any{
     "section_order": 1,
     "updated_at": "example_updated_at",
     "user_id": "example_user_id",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Section(nil).Update(map[string]any{
+    "id": "section_id",
+    // Fields to update
 }, nil)
 if err != nil {
     panic(err)
@@ -3519,30 +2877,21 @@ Return the entity name.
 
 ---
 
-## SectionSyncViewEntity
+## SharedLabelEntity
 
 ```go
-sectionSyncView := client.SectionSyncView(nil)
-fmt.Println(sectionSyncView.GetName()) // "section_sync_view"
+sharedLabel := client.SharedLabel(nil)
+fmt.Println(sharedLabel.GetName()) // "shared_label"
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `added_at` | `string` | Yes | Date and time when the section was created. |
-| `archived_at` | `any` | Yes | Date and time when the section was archived, or `null` if it is active. |
-| `description` | `string` | Yes | Section description, or `null` if it has none. |
-| `id` | `string` | Yes | String ID of the section. |
-| `is_archived` | `bool` | Yes | Whether the section is archived. |
-| `is_collapsed` | `bool` | Yes | Whether the section is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the section is deleted. |
-| `name` | `string` | Yes | Section name. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: sections sort by comparing keys lexicographically within a project. |
-| `project_id` | `string` | Yes | String ID of the project that contains the section. |
-| `section_order` | `int` | Yes | Position of the section in the project. |
-| `updated_at` | `any` | Yes | Date and time when the section was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the section. |
+| `name` | `string` | Yes | Current shared label name to rename. |
+| `new_name` | `string` | Yes | New shared label name to apply to matching tasks. |
+| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
+| `results` | `[]any` | Yes | Objects in the current page of results. |
 
 ### Operations
 
@@ -3551,13 +2900,39 @@ fmt.Println(sectionSyncView.GetName()) // "section_sync_view"
 List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
-results, err := client.SectionSyncView(nil).List(map[string]any{"query": "example"}, nil)
+results, err := client.SharedLabel(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
 for _, item := range results.([]any) {
     fmt.Println(item.(sdk.Entity).Data())
 }
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.SharedLabel(nil).Update(map[string]any{
+    // Fields to update
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
+
+```go
+result, err := client.SharedLabel(nil).Remove(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
 ```
 
 ### Common Methods
@@ -3574,7 +2949,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `SectionSyncViewEntity` instance with the same client and
+Create a new `SharedLabelEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -3737,9 +3112,111 @@ fmt.Println(task.GetName()) // "task"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
+| `assignee_id` | `string` | No | ID of the user to assign the task to. |
+| `checked` | `bool` | Yes | Whether the task is completed. |
+| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
+| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
+| `content` | `string` | Yes | Task content. |
+| `day_order` | `int` | Yes | Task order for day-based views. |
+| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
+| `deadline_date` | `any` | No | Deadline date in YYYY-MM-DD format |
+| `description` | `string` | Yes | Task description. |
+| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
+| `due_date` | `any` | No | Due date in RFC 3339 format or similar. |
+| `due_datetime` | `any` | No | Due date and time. |
+| `due_lang` | `any` | No | Due date language code. |
+| `due_string` | `any` | No | Human-readable representation of the due date. |
+| `duration` | `float64` | Yes | Task duration details, or `null` when the task has no duration. |
+| `duration_unit` | `any` | No | Unit of time for duration. |
+| `id` | `string` | Yes | String ID of the task. |
+| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
+| `labels` | `[]any` | Yes | Names of labels attached to the task. |
+| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
+| `order` | `any` | No | Position of the task in the project or section |
+| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `string` | Yes | String ID of the project that contains the task. |
+| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `string` | Yes | String ID of the user who owns the task. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `added_at` | - | - | - | - | - |
+| `added_by_uid` | - | - | - | - | - |
+| `assigned_by_uid` | - | - | - | - | - |
+| `assignee_id` | - | - | - | - | - |
+| `checked` | - | - | - | - | - |
+| `child_order` | - | - | - | Yes | - |
+| `completed_at` | - | - | - | - | - |
+| `completed_by_uid` | - | - | - | - | - |
+| `completed_count` | - | - | - | - | - |
+| `content` | - | - | - | Yes | - |
+| `day_order` | - | - | - | Yes | - |
+| `deadline` | - | - | - | - | - |
+| `deadline_date` | - | - | - | - | - |
+| `description` | - | - | Yes | Yes | - |
+| `due` | - | - | - | - | - |
+| `due_date` | - | - | - | - | - |
+| `due_datetime` | - | - | - | - | - |
+| `due_lang` | - | - | - | - | - |
+| `due_string` | - | - | - | - | - |
+| `duration` | - | - | Yes | Yes | - |
+| `duration_unit` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | Yes | - |
+| `is_deleted` | - | - | - | - | - |
+| `labels` | - | - | Yes | Yes | - |
+| `note_count` | - | - | - | - | - |
+| `order` | - | - | - | - | - |
+| `order_key` | - | - | - | - | - |
+| `parent_id` | - | - | Yes | - | - |
+| `postponed_count` | - | - | - | - | - |
+| `priority` | - | - | Yes | Yes | - |
+| `project_id` | - | - | Yes | - | - |
+| `responsible_uid` | - | - | - | - | - |
+| `section_id` | - | - | Yes | - | - |
+| `updated_at` | - | - | - | - | - |
+| `user_id` | - | - | - | - | - |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.Task(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
+
+```go
+result, err := client.Task(nil).Load(map[string]any{"id": "task_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
 
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
 
@@ -3747,6 +3224,49 @@ Create a new entity with the given data. Returns the created entity; `err` is no
 
 ```go
 result, err := client.Task(nil).Create(map[string]any{
+    "added_at": "example_added_at",
+    "added_by_uid": "example_added_by_uid",
+    "assigned_by_uid": "example_assigned_by_uid",
+    "checked": true,
+    "child_order": 1,
+    "completed_at": "example_completed_at",
+    "completed_by_uid": "example_completed_by_uid",
+    "completed_count": 1,
+    "content": "example_content",
+    "day_order": 1,
+    "deadline": "example_deadline",
+    "description": "example_description",
+    "due": "example_due",
+    "duration": 1,
+    "id": "example_id",
+    "is_collapsed": true,
+    "is_deleted": true,
+    "labels": []any{},
+    "note_count": 1,
+    "order_key": "example_order_key",
+    "parent_id": "example_parent_id",
+    "postponed_count": 1,
+    "priority": 1,
+    "project_id": "example_project_id",
+    "responsible_uid": "example_responsible_uid",
+    "section_id": "example_section_id",
+    "updated_at": "example_updated_at",
+    "user_id": "example_user_id",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Task(nil).Update(map[string]any{
+    "id": "task_id",
+    // Fields to update
 }, nil)
 if err != nil {
     panic(err)

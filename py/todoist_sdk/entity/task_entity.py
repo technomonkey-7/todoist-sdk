@@ -6,7 +6,10 @@ from todoist_sdk.utility.voxgig_struct import voxgig_struct as vs
 from todoist_sdk.core import helpers
 from todoist_sdk.todoist_types import (
     Task,
+    TaskLoadMatch,
+    TaskListMatch,
     TaskCreateData,
+    TaskUpdateData,
     TaskRemoveMatch,
 )
 
@@ -200,8 +203,55 @@ class TaskEntity:
         return None
 
     
+    def load(self, reqmatch=None, ctrl=None) -> TaskEntity:
+        utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Task().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
+        ctx = utility.make_context({
+            "opname": "load",
+            "ctrl": ctrl,
+            "match": self._match,
+            "data": self._data,
+            "reqmatch": reqmatch,
+        }, self._entctx)
+
+        def post_done():
+            if ctx.result is not None:
+                if ctx.result.resmatch is not None:
+                    self._match = ctx.result.resmatch
+                if ctx.result.resdata is not None:
+                    self._data = helpers.to_map(vs.clone(ctx.result.resdata)) or {}
+
+        return self._run_op(ctx, post_done)
+
+
 
     
+    def list(self, reqmatch=None, ctrl=None) -> list[TaskEntity]:
+        utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Task().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
+        ctx = utility.make_context({
+            "opname": "list",
+            "ctrl": ctrl,
+            "match": self._match,
+            "data": self._data,
+            "reqmatch": reqmatch,
+        }, self._entctx)
+
+        def post_done():
+            if ctx.result is not None:
+                if ctx.result.resmatch is not None:
+                    self._match = ctx.result.resmatch
+
+        return self._run_op(ctx, post_done)
+
+
 
     
     def create(self, reqdata: TaskCreateData, ctrl=None) -> TaskEntity:
@@ -224,6 +274,26 @@ class TaskEntity:
 
 
     
+    def update(self, reqdata: TaskUpdateData, ctrl=None) -> TaskEntity:
+        utility = self._utility
+        ctx = utility.make_context({
+            "opname": "update",
+            "ctrl": ctrl,
+            "match": self._match,
+            "data": self._data,
+            "reqdata": reqdata,
+        }, self._entctx)
+
+        def post_done():
+            if ctx.result is not None:
+                if ctx.result.resmatch is not None:
+                    self._match = ctx.result.resmatch
+                if ctx.result.resdata is not None:
+                    self._data = helpers.to_map(vs.clone(ctx.result.resdata)) or {}
+
+        return self._run_op(ctx, post_done)
+
+
 
     
 

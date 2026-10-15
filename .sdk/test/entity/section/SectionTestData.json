@@ -71,12 +71,12 @@
     }
   },
   "requests": {
-    "POST /api/v1/sections/{section_id}": {
+    "POST /api/v1/sections": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "POST /api/v1/sections": {
+    "GET /api/v1/sections/search": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -92,6 +92,21 @@
       "source": "openapi3"
     },
     "DELETE /api/v1/sections/{section_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/sections/{section_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/sections/{section_id}/archive": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/sections/{section_id}/unarchive": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

@@ -103,7 +103,7 @@
 
 This guide introduces the API, the client libraries, and the companion tools in this repository. Start with the API capabilities, choose a client for your application, and use the linked reference when you need exact request and response details.
 
-The selected API surface contains 51 entities and 108 HTTP routes. There are 3 SDK targets and 2 companion tools.
+The selected API surface contains 43 entities and 108 HTTP routes. There are 3 SDK targets and 2 companion tools.
 
 An entity groups related API operations. An operation can have several routes with different inputs or authentication requirements. The SDK exposes the entity and its operations using the conventions of the selected language.
 
@@ -136,20 +136,6 @@ Key fields to recognise:
 - `extra_data`: This object contains at least the `name` of the project, or the `content` of an item or comment, and optionally the `last_name` if a project was renamed, the `last_content` if an item or note was renamed, the `due_date` and `last_due_date` if an item&#39;s due date changed, the `responsible_uid` and `last_responsible_uid` if an item&#39;s responsible uid changed, the `description` and `last_description` if an item&#39;s description changed, the `priority` and `last_priority` if an item&#39;s priority changed, the `deadline` and `last_deadline` if an item&#39;s deadline changed, the `duration`, `last_duration`, `duration_unit`, and `last_duration_unit` if an item&#39;s duration changed, the `source_project_id` and `destination_project_id` if a task was moved between projects, the `section_id` on completion snapshots and section-move events, the `last_section_id` on section-move events indicating the previous section, and the `client` that caused the logging of the event
 - `extra_data_id`: Internal ID for the extra activity data row.
 - `id`: The internal unique identifier for this activity log entry.
-
-### AnyProjectSyncView
-
-Results: Successful Response.
-
-SDK operations: `create`, `list`, `load`.
-
-Key fields to recognise:
-
-- `child_order`: Position of the project among sibling projects.
-- `color`: Project color name.
-- `description`: Project description.
-- `folder_id`: String ID of the folder that contains the project, or `null`.
-- `icon`: Project icon name, or `null` for the default icon. More icons will be added over time, so clients should fall back to the default icon for names they don&#39;t recognize.
 
 ### Archived
 
@@ -200,34 +186,6 @@ Key fields to recognise:
 - `reason_text`: Free-form feedback from the user about the cancellation.
 - `return_url`: URL the user is redirected to after completing the flow.
 
-### ByCompletionDate
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `added_at`: Date and time when the task was created, or `null` if unknown.
-- `added_by_uid`: String ID of the user who created the task, or `null` if unknown.
-- `assigned_by_uid`: String ID of the user who assigned the task, or `null` if unassigned.
-- `checked`: Whether the task is completed.
-- `child_order`: Position of the task among sibling tasks.
-
-### ByDueDate
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `added_at`: Date and time when the task was created, or `null` if unknown.
-- `added_by_uid`: String ID of the user who created the task, or `null` if unknown.
-- `assigned_by_uid`: String ID of the user who assigned the task, or `null` if unassigned.
-- `checked`: Whether the task is completed.
-- `child_order`: Position of the task among sibling tasks.
-
 ### Collaborator
 
 Results: Successful Response.
@@ -244,12 +202,29 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `create`, `remove`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
+- `attachment`: A [File attachment](#tag/Sync/Comments/File-Attachments) object
 - `content`: Comment content.
+- `file_attachment`: File attachment metadata, or `null` when the comment has no attachment.
 - `id`: String ID of the comment.
+- `is_deleted`: Whether the comment is deleted.
+
+### CompletedTask
+
+Results: Successful Response.
+
+SDK operations: `list`.
+
+Key fields to recognise:
+
+- `added_at`: Date and time when the task was created, or `null` if unknown.
+- `added_by_uid`: String ID of the user who created the task, or `null` if unknown.
+- `assigned_by_uid`: String ID of the user who assigned the task, or `null` if unassigned.
+- `checked`: Whether the task is completed.
+- `child_order`: Position of the task among sibling tasks.
 
 ### CreditState
 
@@ -340,39 +315,11 @@ Key fields to recognise:
 - `invited_emails`: Emails successfully invited to the workspace.
 - `role`: Role assigned to invited users.
 
-### ItemSyncView
-
-Results: Successful Response.
-
-SDK operations: `create`, `list`, `load`.
-
-Key fields to recognise:
-
-- `added_at`: Date and time when the task was created, or `null` if unknown.
-- `added_by_uid`: String ID of the user who created the task, or `null` if unknown.
-- `assigned_by_uid`: String ID of the user who assigned the task, or `null` if unassigned.
-- `assignee_id`: ID of the user to assign the task to.
-- `checked`: Whether the task is completed.
-
 ### Label
 
 Results: Successful Response.
 
-SDK operations: `create`, `list`, `load`, `remove`.
-
-Key fields to recognise:
-
-- `color`: Label color name.
-- `id`: String ID of the label.
-- `is_favorite`: Whether the label is marked as a favorite.
-- `name`: Label name.
-- `new_name`: New shared label name to apply to matching tasks.
-
-### LabelRestView
-
-Results: Successful Response.
-
-SDK operations: `list`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
@@ -416,20 +363,6 @@ Key fields to recognise:
 - `expires_in`: Access token lifetime in seconds.
 - `personal_token`: Token obtained from the email/password authentication.
 
-### NoteSyncView
-
-Results: Successful Response.
-
-SDK operations: `create`, `list`, `load`.
-
-Key fields to recognise:
-
-- `attachment`: A [File attachment](#tag/Sync/Comments/File-Attachments) object
-- `content`: Comment content.
-- `file_attachment`: File attachment metadata, or `null` when the comment has no attachment.
-- `id`: String ID of the comment.
-- `is_deleted`: Whether the comment is deleted.
-
 ### NotificationLocationSyncView
 
 Results: Successful Response.
@@ -457,42 +390,6 @@ Key fields to recognise:
 - `is_deleted`: Whether the reminder is deleted.
 - `is_urgent`: Whether the reminder should be delivered urgently.
 - `item_id`: String ID of the task that owns the reminder.
-
-### PaginatedListAnyProjectSyncView
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `next_cursor`: Cursor for the next page of results, or `null` when there are no more results.
-- `results`: Objects in the current page of results.
-
-### PaginatedListItemSyncView
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `added_at`: Date and time when the task was created, or `null` if unknown.
-- `added_by_uid`: String ID of the user who created the task, or `null` if unknown.
-- `assigned_by_uid`: String ID of the user who assigned the task, or `null` if unassigned.
-- `checked`: Whether the task is completed.
-- `child_order`: Position of the task among sibling tasks.
-
-### PaginatedListStr
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `next_cursor`: Cursor for the next page of results, or `null` when there are no more results.
-- `results`: Objects in the current page of results.
 
 ### PlanDetail
 
@@ -523,7 +420,15 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `remove`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
+
+Key fields to recognise:
+
+- `child_order`: Position of the project among sibling projects.
+- `color`: Project color name.
+- `description`: Project description.
+- `folder_id`: String ID of the folder that contains the project, or `null`.
+- `icon`: Project icon name, or `null` for the default icon. More icons will be added over time, so clients should fall back to the default icon for names they don&#39;t recognize.
 
 ### ProjectImport
 
@@ -580,7 +485,7 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `create`, `list`, `load`, `remove`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
@@ -590,19 +495,18 @@ Key fields to recognise:
 - `id`: String ID of the section.
 - `is_archived`: Whether the section is archived.
 
-### SectionSyncView
+### SharedLabel
 
 Results: Successful Response.
 
-SDK operations: `create`, `list`.
+SDK operations: `list`, `remove`, `update`.
 
 Key fields to recognise:
 
-- `added_at`: Date and time when the section was created.
-- `archived_at`: Date and time when the section was archived, or `null` if it is active.
-- `description`: Section description, or `null` if it has none.
-- `id`: String ID of the section.
-- `is_archived`: Whether the section is archived.
+- `name`: Current shared label name to rename.
+- `new_name`: New shared label name to apply to matching tasks.
+- `next_cursor`: Cursor for the next page of results, or `null` when there are no more results.
+- `results`: Objects in the current page of results.
 
 ### StatusOk
 
@@ -628,7 +532,15 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `create`, `remove`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
+
+Key fields to recognise:
+
+- `added_at`: Date and time when the task was created, or `null` if unknown.
+- `added_by_uid`: String ID of the user who created the task, or `null` if unknown.
+- `assigned_by_uid`: String ID of the user who assigned the task, or `null` if unassigned.
+- `assignee_id`: ID of the user to assign the task to.
+- `checked`: Whether the task is completed.
 
 ### Template
 
@@ -742,25 +654,22 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | --- | --- | --- | --- |
 | Active | `list` | `GET /api/v1/workspaces/{workspace_id}/projects/active` | See reference |
 | Activity | `list` | `GET /api/v1/activities` | See reference |
-| AnyProjectSyncView | `create` | `POST /api/v1/projects/{project_id}` | See reference |
-| AnyProjectSyncView | `create` | `POST /api/v1/projects/{project_id}/archive` | See reference |
-| AnyProjectSyncView | `create` | `POST /api/v1/projects/{project_id}/join` | See reference |
-| AnyProjectSyncView | `create` | `POST /api/v1/projects/{project_id}/unarchive` | See reference |
-| AnyProjectSyncView | `create` | `POST /api/v1/projects` | See reference |
-| AnyProjectSyncView | `list` | `GET /api/v1/projects` | See reference |
-| AnyProjectSyncView | `load` | `GET /api/v1/projects/{project_id}` | See reference |
 | Archived | `list` | `GET /api/v1/workspaces/{workspace_id}/projects/archived` | See reference |
 | Authorization | `create` | `POST /api/v1/revoke` | See reference |
 | Authorization | `remove` | `DELETE /api/v1/access_tokens` | See reference |
 | Backup | `list` | `GET /api/v1/backups` | See reference |
 | Backup | `load` | `GET /api/v1/backups/download` | See reference |
 | BillingPortalUrl | `create` | `POST /api/v1/payments/cancel_plan_with_redirect_to_stripe` | See reference |
-| ByCompletionDate | `list` | `GET /api/v1/tasks/completed/by_completion_date` | See reference |
-| ByDueDate | `list` | `GET /api/v1/tasks/completed/by_due_date` | See reference |
 | Collaborator | `list` | `GET /api/v1/projects/{project_id}/collaborators` | See reference |
-| Comment | `create` | `POST /api/v1/comments/{comment_id}` | See reference |
-| Comment | `create` | `POST /api/v1/comments/{comment_id}/reactions/remove` | See reference |
+| Comment | `create` | `POST /api/v1/comments` | See reference |
+| Comment | `list` | `GET /api/v1/comments` | See reference |
+| Comment | `load` | `GET /api/v1/comments/{comment_id}` | See reference |
 | Comment | `remove` | `DELETE /api/v1/comments/{comment_id}` | See reference |
+| Comment | `update` | `POST /api/v1/comments/{comment_id}` | See reference |
+| Comment | `update` | `POST /api/v1/comments/{comment_id}/reactions` | See reference |
+| Comment | `update` | `POST /api/v1/comments/{comment_id}/reactions/remove` | See reference |
+| CompletedTask | `list` | `GET /api/v1/tasks/completed/by_completion_date` | See reference |
+| CompletedTask | `list` | `GET /api/v1/tasks/completed/by_due_date` | See reference |
 | CreditState | `load` | `GET /api/v1/usage_billing/state` | See reference |
 | Email | `update` | `PUT /api/v1/emails` | See reference |
 | FileUrl | `load` | `GET /api/v1/templates/url` | See reference |
@@ -772,28 +681,15 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | History | `list` | `GET /api/v1/usage_billing/history` | See reference |
 | IdMapping | `list` | `GET /api/v1/id_mappings/{obj_name}/{obj_ids}` | See reference |
 | Invite | `create` | `POST /api/v1/workspaces/{workspace_id}/users/invite` | See reference |
-| ItemSyncView | `create` | `POST /api/v1/tasks/{task_id}` | See reference |
-| ItemSyncView | `create` | `POST /api/v1/tasks/{task_id}/close` | See reference |
-| ItemSyncView | `create` | `POST /api/v1/tasks/{task_id}/move` | See reference |
-| ItemSyncView | `create` | `POST /api/v1/tasks/{task_id}/reopen` | See reference |
-| ItemSyncView | `create` | `POST /api/v1/tasks` | See reference |
-| ItemSyncView | `list` | `GET /api/v1/tasks` | See reference |
-| ItemSyncView | `load` | `GET /api/v1/tasks/{task_id}` | See reference |
-| Label | `create` | `POST /api/v1/labels/{label_id}` | See reference |
 | Label | `create` | `POST /api/v1/labels` | See reference |
-| Label | `create` | `POST /api/v1/labels/shared/remove` | See reference |
-| Label | `create` | `POST /api/v1/labels/shared/rename` | See reference |
+| Label | `list` | `GET /api/v1/labels/search` | See reference |
 | Label | `list` | `GET /api/v1/labels` | See reference |
 | Label | `load` | `GET /api/v1/labels/{label_id}` | See reference |
 | Label | `remove` | `DELETE /api/v1/labels/{label_id}` | See reference |
-| LabelRestView | `list` | `GET /api/v1/labels/search` | See reference |
+| Label | `update` | `POST /api/v1/labels/{label_id}` | See reference |
 | LocationReminder | `remove` | `DELETE /api/v1/location_reminders/{reminder_id}` | See reference |
 | MemberView | `list` | `GET /api/v1/workspaces/users` | See reference |
 | MigratePersonalToken | `create` | `POST /api/v1/access_tokens/migrate_personal_token` | See reference |
-| NoteSyncView | `create` | `POST /api/v1/comments/{comment_id}/reactions` | See reference |
-| NoteSyncView | `create` | `POST /api/v1/comments` | See reference |
-| NoteSyncView | `list` | `GET /api/v1/comments` | See reference |
-| NoteSyncView | `load` | `GET /api/v1/comments/{comment_id}` | See reference |
 | NotificationLocationSyncView | `create` | `POST /api/v1/location_reminders/{reminder_id}` | See reference |
 | NotificationLocationSyncView | `create` | `POST /api/v1/location_reminders` | See reference |
 | NotificationLocationSyncView | `list` | `GET /api/v1/location_reminders` | See reference |
@@ -802,32 +698,48 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | NotificationSyncView | `create` | `POST /api/v1/reminders` | See reference |
 | NotificationSyncView | `list` | `GET /api/v1/reminders` | See reference |
 | NotificationSyncView | `load` | `GET /api/v1/reminders/{reminder_id}` | See reference |
-| PaginatedListAnyProjectSyncView | `list` | `GET /api/v1/projects/search` | See reference |
-| PaginatedListAnyProjectSyncView | `list` | `GET /api/v1/projects/archived` | See reference |
-| PaginatedListItemSyncView | `list` | `GET /api/v1/tasks/filter` | See reference |
-| PaginatedListStr | `list` | `GET /api/v1/labels/shared` | See reference |
 | PlanDetail | `list` | `GET /api/v1/workspaces/plan_details` | See reference |
 | ProductivityStat | `list` | `GET /api/v1/tasks/completed/stats` | See reference |
+| Project | `create` | `POST /api/v1/projects` | See reference |
+| Project | `list` | `GET /api/v1/projects/search` | See reference |
+| Project | `list` | `GET /api/v1/projects` | See reference |
+| Project | `list` | `GET /api/v1/projects/archived` | See reference |
+| Project | `load` | `GET /api/v1/projects/{project_id}` | See reference |
 | Project | `remove` | `DELETE /api/v1/projects/{project_id}` | See reference |
+| Project | `update` | `POST /api/v1/projects/{project_id}` | See reference |
+| Project | `update` | `POST /api/v1/projects/{project_id}/archive` | See reference |
+| Project | `update` | `POST /api/v1/projects/{project_id}/join` | See reference |
+| Project | `update` | `POST /api/v1/projects/{project_id}/unarchive` | See reference |
 | ProjectImport | `create` | `POST /api/v1/templates/import_into_project_from_file` | See reference |
 | ProjectImport | `create` | `POST /api/v1/templates/import_into_project_from_template_id` | See reference |
 | ProjectImportCreateResponseWithObject | `create` | `POST /api/v1/templates/create_project_from_file` | See reference |
 | Reminder | `remove` | `DELETE /api/v1/reminders/{reminder_id}` | See reference |
 | RemoveWorkspaceUser | `remove` | `DELETE /api/v1/workspaces/{workspace_id}/users/{user_id}` | See reference |
 | RoleToActionMappingView | `list` | `GET /api/v1/projects/permissions` | See reference |
-| Section | `create` | `POST /api/v1/sections/{section_id}` | See reference |
 | Section | `create` | `POST /api/v1/sections` | See reference |
+| Section | `list` | `GET /api/v1/sections/search` | See reference |
 | Section | `list` | `GET /api/v1/sections` | See reference |
 | Section | `load` | `GET /api/v1/sections/{section_id}` | See reference |
 | Section | `remove` | `DELETE /api/v1/sections/{section_id}` | See reference |
-| SectionSyncView | `create` | `POST /api/v1/sections/{section_id}/archive` | See reference |
-| SectionSyncView | `create` | `POST /api/v1/sections/{section_id}/unarchive` | See reference |
-| SectionSyncView | `list` | `GET /api/v1/sections/search` | See reference |
+| Section | `update` | `POST /api/v1/sections/{section_id}` | See reference |
+| Section | `update` | `POST /api/v1/sections/{section_id}/archive` | See reference |
+| Section | `update` | `POST /api/v1/sections/{section_id}/unarchive` | See reference |
+| SharedLabel | `list` | `GET /api/v1/labels/shared` | See reference |
+| SharedLabel | `remove` | `POST /api/v1/labels/shared/remove` | See reference |
+| SharedLabel | `update` | `POST /api/v1/labels/shared/rename` | See reference |
 | StatusOk | `remove` | `DELETE /api/v1/emails` | See reference |
 | SubscriptionInfo | `create` | `POST /api/v1/payments/get_subscription_info` | See reference |
 | SubscriptionInfo | `create` | `POST /api/v1/payments/reactivate_plan` | See reference |
+| Task | `create` | `POST /api/v1/tasks` | See reference |
 | Task | `create` | `POST /api/v1/tasks/quick` | See reference |
+| Task | `list` | `GET /api/v1/tasks/filter` | See reference |
+| Task | `list` | `GET /api/v1/tasks` | See reference |
+| Task | `load` | `GET /api/v1/tasks/{task_id}` | See reference |
 | Task | `remove` | `DELETE /api/v1/tasks/{task_id}` | See reference |
+| Task | `update` | `POST /api/v1/tasks/{task_id}` | See reference |
+| Task | `update` | `POST /api/v1/tasks/{task_id}/close` | See reference |
+| Task | `update` | `POST /api/v1/tasks/{task_id}/move` | See reference |
+| Task | `update` | `POST /api/v1/tasks/{task_id}/reopen` | See reference |
 | Template | `load` | `GET /api/v1/templates/file` | See reference |
 | TopUp | `create` | `POST /api/v1/usage_billing/top_up` | See reference |
 | Upload | `create` | `POST /api/v1/uploads` | See reference |
@@ -892,8 +804,8 @@ Use the MCP server to expose supported API operations to an MCP client.
 
 Repository directory: `go-mcp/`. Not published. Build from the go-mcp directory.
 
-- `todoist_list`: List records for an entity. Supported entities: `active`, `activity`, `any_project_sync_view`, `archived`, `backup`, `by_completion_date`, `by_due_date`, `collaborator`, `folder`, `history`, `id_mapping`, `item_sync_view`, `label`, `label_rest_view`, `member_view`, `note_sync_view`, `notification_location_sync_view`, `notification_sync_view`, `paginated_list_any_project_sync_view`, `paginated_list_item_sync_view`, `paginated_list_str`, `plan_detail`, `productivity_stat`, `role_to_action_mapping_view`, `section`, `section_sync_view`, `usage_summary`, `user`, `workspace`, `workspace_invitation_view`.
-- `todoist_load`: Load one record for an entity. Supported entities: `any_project_sync_view`, `backup`, `credit_state`, `file_url`, `folder`, `item_sync_view`, `label`, `note_sync_view`, `notification_location_sync_view`, `notification_sync_view`, `section`, `template`, `workspace`.
+- `todoist_list`: List records for an entity. Supported entities: `active`, `activity`, `archived`, `backup`, `collaborator`, `comment`, `completed_task`, `folder`, `history`, `id_mapping`, `label`, `member_view`, `notification_location_sync_view`, `notification_sync_view`, `plan_detail`, `productivity_stat`, `project`, `role_to_action_mapping_view`, `section`, `shared_label`, `task`, `usage_summary`, `user`, `workspace`, `workspace_invitation_view`.
+- `todoist_load`: Load one record for an entity. Supported entities: `backup`, `comment`, `credit_state`, `file_url`, `folder`, `label`, `notification_location_sync_view`, `notification_sync_view`, `project`, `section`, `task`, `template`, `workspace`.
 
 ## Operational features
 

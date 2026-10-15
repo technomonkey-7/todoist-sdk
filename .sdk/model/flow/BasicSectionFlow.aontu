@@ -30,6 +30,25 @@ main: kit: flow: BasicSectionFlow:
       i: {
         ref: "section_ref01",
         srcdatavar: "section_ref01_data",
+        suffix: "_up0",
+        textfield: "added_at"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-section_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "section_ref01",
+        srcdatavar: "section_ref01_data",
         suffix: "_dt0"
       }
 

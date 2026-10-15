@@ -353,12 +353,6 @@ class TodoistSDK:
         return ActivityEntity(self, data)
 
 
-    def AnyProjectSyncView(self, data=None) -> "AnyProjectSyncViewEntity":
-        """Entity factory: client.AnyProjectSyncView().list() / client.AnyProjectSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.any_project_sync_view_entity import AnyProjectSyncViewEntity
-        return AnyProjectSyncViewEntity(self, data)
-
-
     def Archived(self, data=None) -> "ArchivedEntity":
         """Entity factory: client.Archived().list() / client.Archived().load({"id": ...})."""
         from todoist_sdk.entity.archived_entity import ArchivedEntity
@@ -383,18 +377,6 @@ class TodoistSDK:
         return BillingPortalUrlEntity(self, data)
 
 
-    def ByCompletionDate(self, data=None) -> "ByCompletionDateEntity":
-        """Entity factory: client.ByCompletionDate().list() / client.ByCompletionDate().load({"id": ...})."""
-        from todoist_sdk.entity.by_completion_date_entity import ByCompletionDateEntity
-        return ByCompletionDateEntity(self, data)
-
-
-    def ByDueDate(self, data=None) -> "ByDueDateEntity":
-        """Entity factory: client.ByDueDate().list() / client.ByDueDate().load({"id": ...})."""
-        from todoist_sdk.entity.by_due_date_entity import ByDueDateEntity
-        return ByDueDateEntity(self, data)
-
-
     def Collaborator(self, data=None) -> "CollaboratorEntity":
         """Entity factory: client.Collaborator().list() / client.Collaborator().load({"id": ...})."""
         from todoist_sdk.entity.collaborator_entity import CollaboratorEntity
@@ -405,6 +387,12 @@ class TodoistSDK:
         """Entity factory: client.Comment().list() / client.Comment().load({"id": ...})."""
         from todoist_sdk.entity.comment_entity import CommentEntity
         return CommentEntity(self, data)
+
+
+    def CompletedTask(self, data=None) -> "CompletedTaskEntity":
+        """Entity factory: client.CompletedTask().list() / client.CompletedTask().load({"id": ...})."""
+        from todoist_sdk.entity.completed_task_entity import CompletedTaskEntity
+        return CompletedTaskEntity(self, data)
 
 
     def CreditState(self, data=None) -> "CreditStateEntity":
@@ -449,22 +437,10 @@ class TodoistSDK:
         return InviteEntity(self, data)
 
 
-    def ItemSyncView(self, data=None) -> "ItemSyncViewEntity":
-        """Entity factory: client.ItemSyncView().list() / client.ItemSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.item_sync_view_entity import ItemSyncViewEntity
-        return ItemSyncViewEntity(self, data)
-
-
     def Label(self, data=None) -> "LabelEntity":
         """Entity factory: client.Label().list() / client.Label().load({"id": ...})."""
         from todoist_sdk.entity.label_entity import LabelEntity
         return LabelEntity(self, data)
-
-
-    def LabelRestView(self, data=None) -> "LabelRestViewEntity":
-        """Entity factory: client.LabelRestView().list() / client.LabelRestView().load({"id": ...})."""
-        from todoist_sdk.entity.label_rest_view_entity import LabelRestViewEntity
-        return LabelRestViewEntity(self, data)
 
 
     def LocationReminder(self, data=None) -> "LocationReminderEntity":
@@ -485,12 +461,6 @@ class TodoistSDK:
         return MigratePersonalTokenEntity(self, data)
 
 
-    def NoteSyncView(self, data=None) -> "NoteSyncViewEntity":
-        """Entity factory: client.NoteSyncView().list() / client.NoteSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.note_sync_view_entity import NoteSyncViewEntity
-        return NoteSyncViewEntity(self, data)
-
-
     def NotificationLocationSyncView(self, data=None) -> "NotificationLocationSyncViewEntity":
         """Entity factory: client.NotificationLocationSyncView().list() / client.NotificationLocationSyncView().load({"id": ...})."""
         from todoist_sdk.entity.notification_location_sync_view_entity import NotificationLocationSyncViewEntity
@@ -501,24 +471,6 @@ class TodoistSDK:
         """Entity factory: client.NotificationSyncView().list() / client.NotificationSyncView().load({"id": ...})."""
         from todoist_sdk.entity.notification_sync_view_entity import NotificationSyncViewEntity
         return NotificationSyncViewEntity(self, data)
-
-
-    def PaginatedListAnyProjectSyncView(self, data=None) -> "PaginatedListAnyProjectSyncViewEntity":
-        """Entity factory: client.PaginatedListAnyProjectSyncView().list() / client.PaginatedListAnyProjectSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.paginated_list_any_project_sync_view_entity import PaginatedListAnyProjectSyncViewEntity
-        return PaginatedListAnyProjectSyncViewEntity(self, data)
-
-
-    def PaginatedListItemSyncView(self, data=None) -> "PaginatedListItemSyncViewEntity":
-        """Entity factory: client.PaginatedListItemSyncView().list() / client.PaginatedListItemSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.paginated_list_item_sync_view_entity import PaginatedListItemSyncViewEntity
-        return PaginatedListItemSyncViewEntity(self, data)
-
-
-    def PaginatedListStr(self, data=None) -> "PaginatedListStrEntity":
-        """Entity factory: client.PaginatedListStr().list() / client.PaginatedListStr().load({"id": ...})."""
-        from todoist_sdk.entity.paginated_list_str_entity import PaginatedListStrEntity
-        return PaginatedListStrEntity(self, data)
 
 
     def PlanDetail(self, data=None) -> "PlanDetailEntity":
@@ -575,10 +527,10 @@ class TodoistSDK:
         return SectionEntity(self, data)
 
 
-    def SectionSyncView(self, data=None) -> "SectionSyncViewEntity":
-        """Entity factory: client.SectionSyncView().list() / client.SectionSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.section_sync_view_entity import SectionSyncViewEntity
-        return SectionSyncViewEntity(self, data)
+    def SharedLabel(self, data=None) -> "SharedLabelEntity":
+        """Entity factory: client.SharedLabel().list() / client.SharedLabel().load({"id": ...})."""
+        from todoist_sdk.entity.shared_label_entity import SharedLabelEntity
+        return SharedLabelEntity(self, data)
 
 
     def StatusOk(self, data=None) -> "StatusOkEntity":
@@ -676,15 +628,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from todoist_sdk.entity.active_entity import ActiveEntity
     from todoist_sdk.entity.activity_entity import ActivityEntity
-    from todoist_sdk.entity.any_project_sync_view_entity import AnyProjectSyncViewEntity
     from todoist_sdk.entity.archived_entity import ArchivedEntity
     from todoist_sdk.entity.authorization_entity import AuthorizationEntity
     from todoist_sdk.entity.backup_entity import BackupEntity
     from todoist_sdk.entity.billing_portal_url_entity import BillingPortalUrlEntity
-    from todoist_sdk.entity.by_completion_date_entity import ByCompletionDateEntity
-    from todoist_sdk.entity.by_due_date_entity import ByDueDateEntity
     from todoist_sdk.entity.collaborator_entity import CollaboratorEntity
     from todoist_sdk.entity.comment_entity import CommentEntity
+    from todoist_sdk.entity.completed_task_entity import CompletedTaskEntity
     from todoist_sdk.entity.credit_state_entity import CreditStateEntity
     from todoist_sdk.entity.email_entity import EmailEntity
     from todoist_sdk.entity.file_url_entity import FileUrlEntity
@@ -692,18 +642,12 @@ if TYPE_CHECKING:
     from todoist_sdk.entity.history_entity import HistoryEntity
     from todoist_sdk.entity.id_mapping_entity import IdMappingEntity
     from todoist_sdk.entity.invite_entity import InviteEntity
-    from todoist_sdk.entity.item_sync_view_entity import ItemSyncViewEntity
     from todoist_sdk.entity.label_entity import LabelEntity
-    from todoist_sdk.entity.label_rest_view_entity import LabelRestViewEntity
     from todoist_sdk.entity.location_reminder_entity import LocationReminderEntity
     from todoist_sdk.entity.member_view_entity import MemberViewEntity
     from todoist_sdk.entity.migrate_personal_token_entity import MigratePersonalTokenEntity
-    from todoist_sdk.entity.note_sync_view_entity import NoteSyncViewEntity
     from todoist_sdk.entity.notification_location_sync_view_entity import NotificationLocationSyncViewEntity
     from todoist_sdk.entity.notification_sync_view_entity import NotificationSyncViewEntity
-    from todoist_sdk.entity.paginated_list_any_project_sync_view_entity import PaginatedListAnyProjectSyncViewEntity
-    from todoist_sdk.entity.paginated_list_item_sync_view_entity import PaginatedListItemSyncViewEntity
-    from todoist_sdk.entity.paginated_list_str_entity import PaginatedListStrEntity
     from todoist_sdk.entity.plan_detail_entity import PlanDetailEntity
     from todoist_sdk.entity.productivity_stat_entity import ProductivityStatEntity
     from todoist_sdk.entity.project_entity import ProjectEntity
@@ -713,7 +657,7 @@ if TYPE_CHECKING:
     from todoist_sdk.entity.remove_workspace_user_entity import RemoveWorkspaceUserEntity
     from todoist_sdk.entity.role_to_action_mapping_view_entity import RoleToActionMappingViewEntity
     from todoist_sdk.entity.section_entity import SectionEntity
-    from todoist_sdk.entity.section_sync_view_entity import SectionSyncViewEntity
+    from todoist_sdk.entity.shared_label_entity import SharedLabelEntity
     from todoist_sdk.entity.status_ok_entity import StatusOkEntity
     from todoist_sdk.entity.subscription_info_entity import SubscriptionInfoEntity
     from todoist_sdk.entity.task_entity import TaskEntity

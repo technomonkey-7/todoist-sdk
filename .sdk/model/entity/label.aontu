@@ -13,6 +13,10 @@ main: kit: entity: label: {
           req: false
           type: "`$ANY`"
         }
+        update: {
+          req: false
+          type: "`$ANY`"
+        }
       }
       r: true
       sh: "Label color name."
@@ -33,6 +37,10 @@ main: kit: entity: label: {
           req: false
           type: "`$BOOLEAN`"
         }
+        update: {
+          req: false
+          type: "`$BOOLEAN`"
+        }
       }
       r: true
       sh: "Whether the label is marked as a favorite."
@@ -42,7 +50,7 @@ main: kit: entity: label: {
       h: "Name"
       n: "name"
       op: {
-        create: {
+        update: {
           req: false
           type: "`$STRING`"
         }
@@ -51,18 +59,15 @@ main: kit: entity: label: {
       sh: "Label name."
       t: "`$STRING`"
     }
-    new_name: {
-      h: "New Name"
-      n: "new_name"
-      r: true
-      sh: "New shared label name to apply to matching tasks."
-      t: "`$STRING`"
-    }
     order: {
       h: "Order"
       n: "order"
       op: {
         create: {
+          req: false
+          type: "`$ANY`"
+        }
+        update: {
           req: false
           type: "`$ANY`"
         }
@@ -83,64 +88,6 @@ main: kit: entity: label: {
     create: {
       name: "create"
       points: [
-        {
-          bf: [
-            "color"
-            "is_favorite"
-            "name"
-            "order"
-          ]
-          co: {
-            id: "POST /api/v1/labels/{label_id}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "id"
-                or: "label_id"
-                r: true
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "POST"
-          o: "/api/v1/labels/{label_id}"
-          q: {
-            exist: [
-              "id"
-            ]
-          }
-          r: {
-            param: {
-              label_id: "id"
-            }
-          }
-          rs: {
-            kind: "json"
-            media: "application/json"
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "v1"
-            }
-            {
-              lit: "labels"
-            }
-            {
-              var: "id"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
         {
           bf: [
             "color"
@@ -175,86 +122,74 @@ main: kit: entity: label: {
             res: "`body`"
           }
         }
-        {
-          bf: [
-            "name"
-          ]
-          co: {
-            id: "POST /api/v1/labels/shared/remove"
-            source: "openapi3"
-            version: 2
-          }
-          m: "POST"
-          o: "/api/v1/labels/shared/remove"
-          rs: {
-            kind: "json"
-            media: "application/json"
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "v1"
-            }
-            {
-              lit: "labels"
-            }
-            {
-              lit: "shared"
-            }
-            {
-              lit: "remove"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          bf: [
-            "name"
-            "new_name"
-          ]
-          co: {
-            id: "POST /api/v1/labels/shared/rename"
-            source: "openapi3"
-            version: 2
-          }
-          m: "POST"
-          o: "/api/v1/labels/shared/rename"
-          rs: {
-            kind: "json"
-            media: "application/json"
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "v1"
-            }
-            {
-              lit: "labels"
-            }
-            {
-              lit: "shared"
-            }
-            {
-              lit: "rename"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
       ]
     }
     list: {
       name: "list"
       points: [
+        {
+          co: {
+            id: "GET /api/v1/labels/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/labels/search"
+          q: {
+            "$action": "search"
+            exist: [
+              "query"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "labels"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
         {
           co: {
             id: "GET /api/v1/labels"
@@ -382,6 +317,69 @@ main: kit: entity: label: {
             ]
           }
           m: "DELETE"
+          o: "/api/v1/labels/{label_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              label_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "labels"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "color"
+            "is_favorite"
+            "name"
+            "order"
+          ]
+          co: {
+            id: "POST /api/v1/labels/{label_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "label_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
           o: "/api/v1/labels/{label_id}"
           q: {
             exist: [

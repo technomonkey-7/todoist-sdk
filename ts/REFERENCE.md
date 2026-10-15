@@ -73,18 +73,6 @@ Create a new `Activity` entity instance.
 
 **Returns:** `ActivityEntity` instance.
 
-#### `AnyProjectSyncView(data?: object)`
-
-Create a new `AnyProjectSyncView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `AnyProjectSyncViewEntity` instance.
-
 #### `Archived(data?: object)`
 
 Create a new `Archived` entity instance.
@@ -133,30 +121,6 @@ Create a new `BillingPortalUrl` entity instance.
 
 **Returns:** `BillingPortalUrlEntity` instance.
 
-#### `ByCompletionDate(data?: object)`
-
-Create a new `ByCompletionDate` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ByCompletionDateEntity` instance.
-
-#### `ByDueDate(data?: object)`
-
-Create a new `ByDueDate` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ByDueDateEntity` instance.
-
 #### `Collaborator(data?: object)`
 
 Create a new `Collaborator` entity instance.
@@ -180,6 +144,18 @@ Create a new `Comment` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `CommentEntity` instance.
+
+#### `CompletedTask(data?: object)`
+
+Create a new `CompletedTask` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `CompletedTaskEntity` instance.
 
 #### `CreditState(data?: object)`
 
@@ -265,18 +241,6 @@ Create a new `Invite` entity instance.
 
 **Returns:** `InviteEntity` instance.
 
-#### `ItemSyncView(data?: object)`
-
-Create a new `ItemSyncView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ItemSyncViewEntity` instance.
-
 #### `Label(data?: object)`
 
 Create a new `Label` entity instance.
@@ -288,18 +252,6 @@ Create a new `Label` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `LabelEntity` instance.
-
-#### `LabelRestView(data?: object)`
-
-Create a new `LabelRestView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `LabelRestViewEntity` instance.
 
 #### `LocationReminder(data?: object)`
 
@@ -337,18 +289,6 @@ Create a new `MigratePersonalToken` entity instance.
 
 **Returns:** `MigratePersonalTokenEntity` instance.
 
-#### `NoteSyncView(data?: object)`
-
-Create a new `NoteSyncView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `NoteSyncViewEntity` instance.
-
 #### `NotificationLocationSyncView(data?: object)`
 
 Create a new `NotificationLocationSyncView` entity instance.
@@ -372,42 +312,6 @@ Create a new `NotificationSyncView` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `NotificationSyncViewEntity` instance.
-
-#### `PaginatedListAnyProjectSyncView(data?: object)`
-
-Create a new `PaginatedListAnyProjectSyncView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `PaginatedListAnyProjectSyncViewEntity` instance.
-
-#### `PaginatedListItemSyncView(data?: object)`
-
-Create a new `PaginatedListItemSyncView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `PaginatedListItemSyncViewEntity` instance.
-
-#### `PaginatedListStr(data?: object)`
-
-Create a new `PaginatedListStr` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `PaginatedListStrEntity` instance.
 
 #### `PlanDetail(data?: object)`
 
@@ -517,9 +421,9 @@ Create a new `Section` entity instance.
 
 **Returns:** `SectionEntity` instance.
 
-#### `SectionSyncView(data?: object)`
+#### `SharedLabel(data?: object)`
 
-Create a new `SectionSyncView` entity instance.
+Create a new `SharedLabel` entity instance.
 
 **Parameters:**
 
@@ -527,7 +431,7 @@ Create a new `SectionSyncView` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `SectionSyncViewEntity` instance.
+**Returns:** `SharedLabelEntity` instance.
 
 #### `StatusOk(data?: object)`
 
@@ -847,126 +751,6 @@ Return a copy of the entity options.
 
 ---
 
-## AnyProjectSyncViewEntity
-
-```ts
-const any_project_sync_view = client.AnyProjectSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `child_order` | `any` | No | Updated position of the project in the hierarchy. |
-| `color` | `any` | No | Updated project color. |
-| `description` | `string` | No | Updated project description. |
-| `folder_id` | `string` | No | Folder to move the project into. |
-| `icon` | `any` | No | Updated project icon name. |
-| `is_collapsed` | `boolean` | No | Whether the project is collapsed. |
-| `is_favorite` | `boolean` | No | Whether the project is marked as a favorite. |
-| `name` | `string` | No | Updated project name. |
-| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `parent_id` | `string` | No | Parent project ID. |
-| `results` | `any[]` | Yes | Objects in the current page of results. |
-| `view_style` | `any` | No | Updated project view style. |
-| `workspace_id` | `string` | No | Workspace ID. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `child_order` | - | - | - |
-| `color` | - | - | - |
-| `description` | - | - | - |
-| `folder_id` | - | - | - |
-| `icon` | - | - | - |
-| `is_collapsed` | - | - | - |
-| `is_favorite` | - | - | - |
-| `name` | - | - | Yes |
-| `next_cursor` | - | - | - |
-| `parent_id` | - | - | - |
-| `results` | - | - | - |
-| `view_style` | - | - | - |
-| `workspace_id` | - | - | - |
-
-### Actions
-
-This entity exposes custom API actions in addition to the standard
-operations. Select one with `$action` in the call's argument; the
-remaining keys are sent as that action's payload.
-
-| Action | Route | Call |
-| --- | --- | --- |
-| `join` | `/api/v1/projects/{project_id}/join` | `client.AnyProjectSyncView().create({ $action: 'join', ... })` |
-
-An action returns that action's OWN response, which is not necessarily a
-AnyProjectSyncView record — check the API definition for its shape.
-
-```ts
-const result = await client.AnyProjectSyncView().create({
-  $action: 'join',
-  /* ...the action's own arguments */
-})
-```
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.AnyProjectSyncView().create({
-  project_id: 'example_project_id',
-  next_cursor: 'example_next_cursor',
-  results: [],
-})
-```
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.AnyProjectSyncView().list()
-```
-
-#### `load(match: object, ctrl?: object)`
-
-Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
-
-```ts
-const result = await client.AnyProjectSyncView().load({ project_id: 'project_id' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `AnyProjectSyncViewEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## ArchivedEntity
 
 ```ts
@@ -1233,160 +1017,6 @@ Return a copy of the entity options.
 
 ---
 
-## ByCompletionDateEntity
-
-```ts
-const by_completion_date = client.ByCompletionDate()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `boolean` | Yes | Whether the task is completed. |
-| `child_order` | `number` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `number` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `number` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `number` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `boolean` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `boolean` | Yes | Whether the task is deleted. |
-| `labels` | `any[]` | Yes | Names of labels attached to the task. |
-| `note_count` | `number` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `number` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `number` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.ByCompletionDate().list({ since: "example", until: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ByCompletionDateEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ByDueDateEntity
-
-```ts
-const by_due_date = client.ByDueDate()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `boolean` | Yes | Whether the task is completed. |
-| `child_order` | `number` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `number` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `number` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `number` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `boolean` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `boolean` | Yes | Whether the task is deleted. |
-| `labels` | `any[]` | Yes | Names of labels attached to the task. |
-| `note_count` | `number` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `number` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `number` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.ByDueDate().list({ since: "example", until: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ByDueDateEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## CollaboratorEntity
 
 ```ts
@@ -1449,8 +1079,33 @@ const comment = client.Comment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `any` | Yes | New content for the comment. |
-| `id` | `string` | No |  |
+| `attachment` | `any` | No | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
+| `content` | `string` | No | Comment content. |
+| `file_attachment` | `any` | Yes | File attachment metadata, or `null` when the comment has no attachment. |
+| `id` | `string` | Yes | String ID of the comment. |
+| `is_deleted` | `boolean` | Yes | Whether the comment is deleted. |
+| `posted_at` | `any` | Yes | Date and time when the comment was posted, or `null` if unknown. |
+| `posted_uid` | `any` | Yes | String ID of the user who posted the comment. |
+| `project_id` | `string` | No | String ID of the project |
+| `reactions` | `any` | Yes | Reaction emoji mapped to user IDs that reacted. |
+| `task_id` | `string` | No | String ID of the task |
+| `uids_to_notify` | `any` | Yes | String IDs of users notified by the comment. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `attachment` | - | - | - | - | - |
+| `content` | - | - | Yes | Yes | - |
+| `file_attachment` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `posted_at` | - | - | - | - | - |
+| `posted_uid` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `reactions` | - | - | - | - | - |
+| `task_id` | - | - | - | - | - |
+| `uids_to_notify` | - | - | Yes | - | - |
 
 ### Actions
 
@@ -1460,14 +1115,15 @@ remaining keys are sent as that action's payload.
 
 | Action | Route | Call |
 | --- | --- | --- |
-| `reaction_remove` | `/api/v1/comments/{comment_id}/reactions/remove` | `client.Comment().create({ $action: 'reaction_remove', ... })` |
+| `reaction_add` | `/api/v1/comments/{comment_id}/reactions` | `client.Comment().update({ $action: 'reaction_add', ... })` |
+| `reaction_remove` | `/api/v1/comments/{comment_id}/reactions/remove` | `client.Comment().update({ $action: 'reaction_remove', ... })` |
 
 An action returns that action's OWN response, which is not necessarily a
 Comment record — check the API definition for its shape.
 
 ```ts
-const result = await client.Comment().create({
-  $action: 'reaction_remove',
+const result = await client.Comment().update({
+  $action: 'reaction_add',
   /* ...the action's own arguments */
 })
 ```
@@ -1480,9 +1136,30 @@ Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Comment().create({
+  file_attachment: 'example_file_attachment',
   id: 'example_id',
-  content: 'example_content',
+  is_deleted: true,
+  posted_at: 'example_posted_at',
+  posted_uid: 'example_posted_uid',
+  reactions: 'example_reactions',
+  uids_to_notify: 'example_uids_to_notify',
 })
+```
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.Comment().list()
+```
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
+
+```ts
+const result = await client.Comment().load({ id: 'comment_id' })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -1491,6 +1168,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 
 ```ts
 const result = await client.Comment().remove({ id: 'comment_id' })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Comment().update({
+  id: 'comment_id',
+  // Fields to update
+})
 ```
 
 ### Common Methods
@@ -1508,6 +1196,103 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `CommentEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `TodoistSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## CompletedTaskEntity
+
+```ts
+const completed_task = client.CompletedTask()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
+| `checked` | `boolean` | Yes | Whether the task is completed. |
+| `child_order` | `number` | Yes | Position of the task among sibling tasks. |
+| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `number` | Yes | Number of times the task has been marked as completed. |
+| `content` | `string` | Yes | Task content. |
+| `day_order` | `number` | Yes | Task order for day-based views. |
+| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
+| `description` | `string` | Yes | Task description. |
+| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
+| `duration` | `number` | Yes | Task duration details, or `null` when the task has no duration. |
+| `id` | `string` | Yes | String ID of the task. |
+| `is_collapsed` | `boolean` | Yes | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `boolean` | Yes | Whether the task is deleted. |
+| `labels` | `any[]` | Yes | Names of labels attached to the task. |
+| `note_count` | `number` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
+| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `number` | Yes | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `number` | Yes | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `string` | Yes | String ID of the project that contains the task. |
+| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `string` | Yes | String ID of the user who owns the task. |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `by_due_date` | `/api/v1/tasks/completed/by_due_date` | `client.CompletedTask().list({ $action: 'by_due_date', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+CompletedTask record — check the API definition for its shape.
+
+```ts
+const result = await client.CompletedTask().list({
+  $action: 'by_due_date',
+  /* ...the action's own arguments */
+})
+```
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.CompletedTask().list({ since: "example", until: "example" })
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `CompletedTaskEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -1952,199 +1737,6 @@ Return a copy of the entity options.
 
 ---
 
-## ItemSyncViewEntity
-
-```ts
-const item_sync_view = client.ItemSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `assignee_id` | `string` | No | ID of the user to assign the task to. |
-| `checked` | `boolean` | Yes | Whether the task is completed. |
-| `child_order` | `number` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `number` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `number` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `deadline_date` | `any` | No | Updated deadline date in YYYY-MM-DD format. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `due_date` | `string` | No | Updated due date in RFC 3339 format or similar. |
-| `due_datetime` | `string` | No | Updated due date and time. |
-| `due_lang` | `string` | No | Updated due date language code. |
-| `due_string` | `string` | No | Updated human-readable representation of the due date. |
-| `duration` | `number` | Yes | Task duration details, or `null` when the task has no duration. |
-| `duration_unit` | `any` | No | Unit of time for duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `boolean` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `boolean` | Yes | Whether the task is deleted. |
-| `labels` | `any[]` | Yes | Names of labels attached to the task. |
-| `note_count` | `number` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order` | `any` | No | Position of the task in the project or section |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `number` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `number` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `added_at` | - | - | - |
-| `added_by_uid` | - | - | - |
-| `assigned_by_uid` | - | - | - |
-| `assignee_id` | - | - | - |
-| `checked` | - | - | - |
-| `child_order` | - | - | Yes |
-| `completed_at` | - | - | - |
-| `completed_by_uid` | - | - | - |
-| `completed_count` | - | - | - |
-| `content` | - | - | Yes |
-| `day_order` | - | - | Yes |
-| `deadline` | - | - | - |
-| `deadline_date` | - | - | - |
-| `description` | - | - | Yes |
-| `due` | - | - | - |
-| `due_date` | - | - | - |
-| `due_datetime` | - | - | - |
-| `due_lang` | - | - | - |
-| `due_string` | - | - | - |
-| `duration` | - | - | Yes |
-| `duration_unit` | - | - | - |
-| `id` | - | - | - |
-| `is_collapsed` | - | - | Yes |
-| `is_deleted` | - | - | - |
-| `labels` | - | - | Yes |
-| `note_count` | - | - | - |
-| `order` | - | - | - |
-| `order_key` | - | - | - |
-| `parent_id` | - | - | Yes |
-| `postponed_count` | - | - | - |
-| `priority` | - | - | Yes |
-| `project_id` | - | - | Yes |
-| `responsible_uid` | - | - | - |
-| `section_id` | - | - | Yes |
-| `updated_at` | - | - | - |
-| `user_id` | - | - | - |
-
-### Actions
-
-This entity exposes custom API actions in addition to the standard
-operations. Select one with `$action` in the call's argument; the
-remaining keys are sent as that action's payload.
-
-| Action | Route | Call |
-| --- | --- | --- |
-| `close` | `/api/v1/tasks/{task_id}/close` | `client.ItemSyncView().create({ $action: 'close', ... })` |
-| `reopen` | `/api/v1/tasks/{task_id}/reopen` | `client.ItemSyncView().create({ $action: 'reopen', ... })` |
-
-An action returns that action's OWN response, which is not necessarily a
-ItemSyncView record — check the API definition for its shape.
-
-```ts
-const result = await client.ItemSyncView().create({
-  $action: 'close',
-  /* ...the action's own arguments */
-})
-```
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.ItemSyncView().create({
-  task_id: 'example_task_id',
-  added_at: 'example_added_at',
-  added_by_uid: 'example_added_by_uid',
-  assigned_by_uid: 'example_assigned_by_uid',
-  checked: true,
-  child_order: 1,
-  completed_at: 'example_completed_at',
-  completed_by_uid: 'example_completed_by_uid',
-  completed_count: 1,
-  content: 'example_content',
-  day_order: 1,
-  deadline: 'example_deadline',
-  description: 'example_description',
-  due: 'example_due',
-  duration: 1,
-  id: 'example_id',
-  is_collapsed: true,
-  is_deleted: true,
-  labels: [],
-  note_count: 1,
-  order_key: 'example_order_key',
-  parent_id: 'example_parent_id',
-  postponed_count: 1,
-  priority: 1,
-  project_id: 'example_project_id',
-  responsible_uid: 'example_responsible_uid',
-  section_id: 'example_section_id',
-  updated_at: 'example_updated_at',
-  user_id: 'example_user_id',
-})
-```
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.ItemSyncView().list()
-```
-
-#### `load(match: object, ctrl?: object)`
-
-Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
-
-```ts
-const result = await client.ItemSyncView().load({ task_id: 'task_id' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ItemSyncViewEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## LabelEntity
 
 ```ts
@@ -2159,19 +1751,37 @@ const label = client.Label()
 | `id` | `string` | Yes | String ID of the label. |
 | `is_favorite` | `boolean` | Yes | Whether the label is marked as a favorite. |
 | `name` | `string` | Yes | Label name. |
-| `new_name` | `string` | Yes | New shared label name to apply to matching tasks. |
 | `order` | `any` | Yes | Position of the label in the label list, or `null` when no explicit order is set. |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `color` | - | - | Yes | - |
-| `id` | - | - | - | - |
-| `is_favorite` | - | - | Yes | - |
-| `name` | - | - | Yes | - |
-| `new_name` | - | - | - | - |
-| `order` | - | - | Yes | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `color` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_favorite` | - | - | Yes | Yes | - |
+| `name` | - | - | - | Yes | - |
+| `order` | - | - | Yes | Yes | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/api/v1/labels/search` | `client.Label().list({ $action: 'search', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Label record — check the API definition for its shape.
+
+```ts
+const result = await client.Label().list({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -2181,11 +1791,10 @@ Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Label().create({
-  id: 1,
   color: 'example_color',
+  id: 'example_id',
   is_favorite: true,
   name: 'example_name',
-  new_name: 'example_new_name',
   order: 'example_order',
 })
 ```
@@ -2214,6 +1823,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 const result = await client.Label().remove({ id: 1 })
 ```
 
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Label().update({
+  id: 1,
+  // Fields to update
+})
+```
+
 ### Common Methods
 
 #### `data(data?: object)`
@@ -2229,60 +1849,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `LabelEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## LabelRestViewEntity
-
-```ts
-const label_rest_view = client.LabelRestView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `color` | `string` | Yes | Label color name. |
-| `id` | `string` | Yes | String ID of the label. |
-| `is_favorite` | `boolean` | Yes | Whether the label is marked as a favorite. |
-| `name` | `string` | Yes | Label name. |
-| `order` | `any` | Yes | Position of the label in the label list, or `null` when no explicit order is set. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.LabelRestView().list({ query: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `LabelRestViewEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2454,109 +2020,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `MigratePersonalTokenEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## NoteSyncViewEntity
-
-```ts
-const note_sync_view = client.NoteSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `attachment` | `any` | No | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
-| `content` | `string` | No | Comment content. |
-| `file_attachment` | `any` | Yes | File attachment metadata, or `null` when the comment has no attachment. |
-| `id` | `string` | Yes | String ID of the comment. |
-| `is_deleted` | `boolean` | Yes | Whether the comment is deleted. |
-| `posted_at` | `any` | Yes | Date and time when the comment was posted, or `null` if unknown. |
-| `posted_uid` | `any` | Yes | String ID of the user who posted the comment. |
-| `project_id` | `string` | No | String ID of the project |
-| `reaction` | `string` | Yes | Reaction emoji. |
-| `reactions` | `any` | Yes | Reaction emoji mapped to user IDs that reacted. |
-| `task_id` | `string` | No | String ID of the task |
-| `uids_to_notify` | `any` | Yes | String IDs of users notified by the comment. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `attachment` | - | - | - |
-| `content` | - | - | Yes |
-| `file_attachment` | - | - | - |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `posted_at` | - | - | - |
-| `posted_uid` | - | - | - |
-| `project_id` | - | - | - |
-| `reaction` | - | - | - |
-| `reactions` | - | - | - |
-| `task_id` | - | - | - |
-| `uids_to_notify` | - | - | Yes |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.NoteSyncView().create({
-  file_attachment: 'example_file_attachment',
-  id: 'example_id',
-  is_deleted: true,
-  posted_at: 'example_posted_at',
-  posted_uid: 'example_posted_uid',
-  reaction: 'example_reaction',
-  reactions: 'example_reactions',
-  uids_to_notify: 'example_uids_to_notify',
-})
-```
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.NoteSyncView().list()
-```
-
-#### `load(match: object, ctrl?: object)`
-
-Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
-
-```ts
-const result = await client.NoteSyncView().load({ comment_id: 'comment_id' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `NoteSyncViewEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2780,185 +2243,6 @@ Return a copy of the entity options.
 
 ---
 
-## PaginatedListAnyProjectSyncViewEntity
-
-```ts
-const paginated_list_any_project_sync_view = client.PaginatedListAnyProjectSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `any[]` | Yes | Objects in the current page of results. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.PaginatedListAnyProjectSyncView().list({ query: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `PaginatedListAnyProjectSyncViewEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## PaginatedListItemSyncViewEntity
-
-```ts
-const paginated_list_item_sync_view = client.PaginatedListItemSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `boolean` | Yes | Whether the task is completed. |
-| `child_order` | `number` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `number` | Yes | Number of times the task has been marked as completed. |
-| `content` | `string` | Yes | Task content. |
-| `day_order` | `number` | Yes | Task order for day-based views. |
-| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `string` | Yes | Task description. |
-| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `number` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `string` | Yes | String ID of the task. |
-| `is_collapsed` | `boolean` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `boolean` | Yes | Whether the task is deleted. |
-| `labels` | `any[]` | Yes | Names of labels attached to the task. |
-| `note_count` | `number` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `number` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `number` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `string` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.PaginatedListItemSyncView().list({ query: "example" })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `PaginatedListItemSyncViewEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## PaginatedListStrEntity
-
-```ts
-const paginated_list_str = client.PaginatedListStr()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `any[]` | Yes | Objects in the current page of results. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.PaginatedListStr().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `PaginatedListStrEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## PlanDetailEntity
 
 ```ts
@@ -3079,9 +2363,93 @@ const project = client.Project()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `child_order` | `any` | No | Updated position of the project in the hierarchy. |
+| `color` | `any` | No | Color of the project icon. |
+| `description` | `string` | No | Description of the project. |
+| `folder_id` | `string` | No | Folder to move the project into. |
+| `icon` | `any` | No | Project icon name. |
 | `id` | `string` | No |  |
+| `is_collapsed` | `boolean` | No | Whether the project is collapsed. |
+| `is_favorite` | `boolean` | No | Whether the project is a favorite for the user. |
+| `name` | `string` | Yes | Name of the project. |
+| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
+| `parent_id` | `string` | No | Parent project ID. |
+| `results` | `any[]` | Yes | Objects in the current page of results. |
+| `view_style` | `any` | No | View style of the project. |
+| `workspace_id` | `string` | No | Workspace ID. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `child_order` | - | - | - | - | - |
+| `color` | - | - | - | - | - |
+| `description` | - | - | - | - | - |
+| `folder_id` | - | - | - | - | - |
+| `icon` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | - | - |
+| `is_favorite` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `next_cursor` | - | - | - | - | - |
+| `parent_id` | - | - | - | - | - |
+| `results` | - | - | - | - | - |
+| `view_style` | - | - | - | - | - |
+| `workspace_id` | - | - | - | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `archived` | `/api/v1/projects/archived` | `client.Project().list({ $action: 'archived', ... })` |
+| `search` | `/api/v1/projects/search` | `client.Project().list({ $action: 'search', ... })` |
+| `archive` | `/api/v1/projects/{project_id}/archive` | `client.Project().update({ $action: 'archive', ... })` |
+| `join` | `/api/v1/projects/{project_id}/join` | `client.Project().update({ $action: 'join', ... })` |
+| `unarchive` | `/api/v1/projects/{project_id}/unarchive` | `client.Project().update({ $action: 'unarchive', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Project record — check the API definition for its shape.
+
+```ts
+const result = await client.Project().list({
+  $action: 'archived',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
+
+#### `create(data: object, ctrl?: object)`
+
+Create a new entity with the given data. Resolves to the created entity.
+
+```ts
+const result = await client.Project().create({
+  name: 'example_name',
+  next_cursor: 'example_next_cursor',
+  results: [],
+})
+```
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.Project().list()
+```
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
+
+```ts
+const result = await client.Project().load({ id: 'project_id' })
+```
 
 #### `remove(match: object, ctrl?: object)`
 
@@ -3089,6 +2457,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 
 ```ts
 const result = await client.Project().remove({ id: 'project_id' })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Project().update({
+  id: 'project_id',
+  // Fields to update
+})
 ```
 
 ### Common Methods
@@ -3448,22 +2827,44 @@ const section = client.Section()
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `added_at` | - | - | - | - |
-| `archived_at` | - | - | - | - |
-| `description` | - | - | Yes | - |
-| `id` | - | - | - | - |
-| `is_archived` | - | - | - | - |
-| `is_collapsed` | - | - | Yes | - |
-| `is_deleted` | - | - | - | - |
-| `name` | - | - | Yes | - |
-| `order` | - | - | - | - |
-| `order_key` | - | - | - | - |
-| `project_id` | - | - | - | - |
-| `section_order` | - | - | Yes | - |
-| `updated_at` | - | - | - | - |
-| `user_id` | - | - | - | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `added_at` | - | - | - | - | - |
+| `archived_at` | - | - | - | - | - |
+| `description` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_archived` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | Yes | - |
+| `is_deleted` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `order` | - | - | - | - | - |
+| `order_key` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `section_order` | - | - | - | Yes | - |
+| `updated_at` | - | - | - | - | - |
+| `user_id` | - | - | - | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `search` | `/api/v1/sections/search` | `client.Section().list({ $action: 'search', ... })` |
+| `archive` | `/api/v1/sections/{section_id}/archive` | `client.Section().update({ $action: 'archive', ... })` |
+| `unarchive` | `/api/v1/sections/{section_id}/unarchive` | `client.Section().update({ $action: 'unarchive', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Section record — check the API definition for its shape.
+
+```ts
+const result = await client.Section().list({
+  $action: 'search',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -3473,10 +2874,10 @@ Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Section().create({
-  id: 'example_id',
   added_at: 'example_added_at',
   archived_at: 'example_archived_at',
   description: 'example_description',
+  id: 'example_id',
   is_archived: true,
   is_collapsed: true,
   is_deleted: true,
@@ -3513,6 +2914,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 const result = await client.Section().remove({ id: 'section_id' })
 ```
 
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Section().update({
+  id: 'section_id',
+  // Fields to update
+})
+```
+
 ### Common Methods
 
 #### `data(data?: object)`
@@ -3541,63 +2953,47 @@ Return a copy of the entity options.
 
 ---
 
-## SectionSyncViewEntity
+## SharedLabelEntity
 
 ```ts
-const section_sync_view = client.SectionSyncView()
+const shared_label = client.SharedLabel()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `added_at` | `string` | Yes | Date and time when the section was created. |
-| `archived_at` | `any` | Yes | Date and time when the section was archived, or `null` if it is active. |
-| `description` | `string` | Yes | Section description, or `null` if it has none. |
-| `id` | `string` | Yes | String ID of the section. |
-| `is_archived` | `boolean` | Yes | Whether the section is archived. |
-| `is_collapsed` | `boolean` | Yes | Whether the section is collapsed in the user's view. |
-| `is_deleted` | `boolean` | Yes | Whether the section is deleted. |
-| `name` | `string` | Yes | Section name. |
-| `order_key` | `any` | Yes | Fractional-indexing order key: sections sort by comparing keys lexicographically within a project. |
-| `project_id` | `string` | Yes | String ID of the project that contains the section. |
-| `section_order` | `number` | Yes | Position of the section in the project. |
-| `updated_at` | `any` | Yes | Date and time when the section was last updated, or `null` if unknown. |
-| `user_id` | `string` | Yes | String ID of the user who owns the section. |
-
-### Actions
-
-This entity exposes custom API actions in addition to the standard
-operations. Select one with `$action` in the call's argument; the
-remaining keys are sent as that action's payload.
-
-| Action | Route | Call |
-| --- | --- | --- |
-| `archive` | `/api/v1/sections/{section_id}/archive` | `client.SectionSyncView().create({ $action: 'archive', ... })` |
-| `unarchive` | `/api/v1/sections/{section_id}/unarchive` | `client.SectionSyncView().create({ $action: 'unarchive', ... })` |
-
-An action returns that action's OWN response, which is not necessarily a
-SectionSyncView record — check the API definition for its shape.
-
-```ts
-const result = await client.SectionSyncView().create({
-  $action: 'archive',
-  /* ...the action's own arguments */
-})
-```
+| `name` | `string` | Yes | Current shared label name to rename. |
+| `new_name` | `string` | Yes | New shared label name to apply to matching tasks. |
+| `next_cursor` | `any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
+| `results` | `any[]` | Yes | Objects in the current page of results. |
 
 ### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
 
 #### `list(match: object, ctrl?: object)`
 
 List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
-const results = await client.SectionSyncView().list({ query: "example" })
+const results = await client.SharedLabel().list()
+```
+
+#### `remove(match: object, ctrl?: object)`
+
+Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
+
+```ts
+const result = await client.SharedLabel().remove()
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.SharedLabel().update({
+  // Fields to update
+})
 ```
 
 ### Common Methods
@@ -3614,7 +3010,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `SectionSyncViewEntity` instance with the same client and
+Create a new `SharedLabelEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3754,7 +3150,83 @@ const task = client.Task()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `added_at` | `any` | Yes | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `any` | Yes | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
+| `assignee_id` | `string` | No | ID of the user to assign the task to. |
+| `checked` | `boolean` | Yes | Whether the task is completed. |
+| `child_order` | `number` | Yes | Position of the task among sibling tasks. |
+| `completed_at` | `any` | Yes | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `any` | Yes | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `number` | Yes | Number of times the task has been marked as completed. |
+| `content` | `string` | Yes | Task content. |
+| `day_order` | `number` | Yes | Task order for day-based views. |
+| `deadline` | `any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
+| `deadline_date` | `any` | No | Deadline date in YYYY-MM-DD format |
+| `description` | `string` | Yes | Task description. |
+| `due` | `any` | Yes | Due date details for the task, or `null` when the task has no due date. |
+| `due_date` | `any` | No | Due date in RFC 3339 format or similar. |
+| `due_datetime` | `any` | No | Due date and time. |
+| `due_lang` | `any` | No | Due date language code. |
+| `due_string` | `any` | No | Human-readable representation of the due date. |
+| `duration` | `number` | Yes | Task duration details, or `null` when the task has no duration. |
+| `duration_unit` | `any` | No | Unit of time for duration. |
+| `id` | `string` | Yes | String ID of the task. |
+| `is_collapsed` | `boolean` | Yes | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `boolean` | Yes | Whether the task is deleted. |
+| `labels` | `any[]` | Yes | Names of labels attached to the task. |
+| `note_count` | `number` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
+| `order` | `any` | No | Position of the task in the project or section |
+| `order_key` | `any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `string` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `number` | Yes | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `number` | Yes | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `string` | Yes | String ID of the project that contains the task. |
+| `responsible_uid` | `any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `string` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `string` | Yes | String ID of the user who owns the task. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `added_at` | - | - | - | - | - |
+| `added_by_uid` | - | - | - | - | - |
+| `assigned_by_uid` | - | - | - | - | - |
+| `assignee_id` | - | - | - | - | - |
+| `checked` | - | - | - | - | - |
+| `child_order` | - | - | - | Yes | - |
+| `completed_at` | - | - | - | - | - |
+| `completed_by_uid` | - | - | - | - | - |
+| `completed_count` | - | - | - | - | - |
+| `content` | - | - | - | Yes | - |
+| `day_order` | - | - | - | Yes | - |
+| `deadline` | - | - | - | - | - |
+| `deadline_date` | - | - | - | - | - |
+| `description` | - | - | Yes | Yes | - |
+| `due` | - | - | - | - | - |
+| `due_date` | - | - | - | - | - |
+| `due_datetime` | - | - | - | - | - |
+| `due_lang` | - | - | - | - | - |
+| `due_string` | - | - | - | - | - |
+| `duration` | - | - | Yes | Yes | - |
+| `duration_unit` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | Yes | - |
+| `is_deleted` | - | - | - | - | - |
+| `labels` | - | - | Yes | Yes | - |
+| `note_count` | - | - | - | - | - |
+| `order` | - | - | - | - | - |
+| `order_key` | - | - | - | - | - |
+| `parent_id` | - | - | Yes | - | - |
+| `postponed_count` | - | - | - | - | - |
+| `priority` | - | - | Yes | Yes | - |
+| `project_id` | - | - | Yes | - | - |
+| `responsible_uid` | - | - | - | - | - |
+| `section_id` | - | - | Yes | - | - |
+| `updated_at` | - | - | - | - | - |
+| `user_id` | - | - | - | - | - |
 
 ### Actions
 
@@ -3765,6 +3237,10 @@ remaining keys are sent as that action's payload.
 | Action | Route | Call |
 | --- | --- | --- |
 | `quick` | `/api/v1/tasks/quick` | `client.Task().create({ $action: 'quick', ... })` |
+| `filter` | `/api/v1/tasks/filter` | `client.Task().list({ $action: 'filter', ... })` |
+| `close` | `/api/v1/tasks/{task_id}/close` | `client.Task().update({ $action: 'close', ... })` |
+| `move` | `/api/v1/tasks/{task_id}/move` | `client.Task().update({ $action: 'move', ... })` |
+| `reopen` | `/api/v1/tasks/{task_id}/reopen` | `client.Task().update({ $action: 'reopen', ... })` |
 
 An action returns that action's OWN response, which is not necessarily a
 Task record — check the API definition for its shape.
@@ -3784,7 +3260,51 @@ Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Task().create({
+  added_at: 'example_added_at',
+  added_by_uid: 'example_added_by_uid',
+  assigned_by_uid: 'example_assigned_by_uid',
+  checked: true,
+  child_order: 1,
+  completed_at: 'example_completed_at',
+  completed_by_uid: 'example_completed_by_uid',
+  completed_count: 1,
+  content: 'example_content',
+  day_order: 1,
+  deadline: 'example_deadline',
+  description: 'example_description',
+  due: 'example_due',
+  duration: 1,
+  id: 'example_id',
+  is_collapsed: true,
+  is_deleted: true,
+  labels: [],
+  note_count: 1,
+  order_key: 'example_order_key',
+  parent_id: 'example_parent_id',
+  postponed_count: 1,
+  priority: 1,
+  project_id: 'example_project_id',
+  responsible_uid: 'example_responsible_uid',
+  section_id: 'example_section_id',
+  updated_at: 'example_updated_at',
+  user_id: 'example_user_id',
 })
+```
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.Task().list()
+```
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
+
+```ts
+const result = await client.Task().load({ id: 'task_id' })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -3793,6 +3313,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 
 ```ts
 const result = await client.Task().remove({ id: 'task_id' })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Task().update({
+  id: 'task_id',
+  // Fields to update
+})
 ```
 
 ### Common Methods

@@ -11,11 +11,60 @@ main: kit: flow: BasicCommentFlow:
         ref: "comment_ref01"
       }
 
-      m: {
-        comment_id: "comment01"
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "comment_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "comment_ref01",
+        srcdatavar: "comment_ref01_data",
+        suffix: "_up0",
+        textfield: "content"
       }
 
-      o: "create"
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-comment_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "comment_ref01",
+        srcdatavar: "comment_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "comment01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-comment_ref01"
+          }
+        }
+      ]
     }
 
     {
@@ -29,6 +78,22 @@ main: kit: flow: BasicCommentFlow:
       }
 
       o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "comment_ref01"
+          }
+        }
+      ]
     }
   ],
   "key$": "BasicCommentFlow"

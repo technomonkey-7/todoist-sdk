@@ -70,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "template", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api/v1/templates/file", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "project_id", "or": "project_id", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": true, "k": "query", "n": "use_relative_date", "or": "use_relative_dates", "r": false, "t": "`$BOOLEAN`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/api/v1/templates/file", "q": { "$action": "file", "exist": ["project_id"] }, "r": {}, "rs": { "kind": "raw", "media": "text/plain" }, "s": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "templates" }, { "lit": "file" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "template", "name__orig": "template", "Name": "Template", "name_": "template", "name-": "template", "NAME": "TEMPLATE", "index$": 43 }, { "active": true, "entity": "template", "key$": "BasicTemplateFlow", "kind": "basic", "name": "BasicTemplateFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "template_ref01", "srcdatavar": "template_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-template_ref01" } }], "index$": 0 }] }, 'Template', { "GET /api/v1/templates/file": { "protocol": "http", "parameters": [{ "name": "project_id", "in": "query", "required": true, "schema": { "type": "string", "description": "String ID of the project to export as a template.", "examples": ["6XGgm6PHrGgMpCFX"], "title": "Project Id" }, "index$": 0 }, { "name": "use_relative_dates", "in": "query", "required": false, "schema": { "type": "boolean", "description": "Whether to export due dates as relative dates.", "examples": [true], "default": true, "title": "Use Relative Dates" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "template", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api/v1/templates/file", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "project_id", "or": "project_id", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": true, "k": "query", "n": "use_relative_date", "or": "use_relative_dates", "r": false, "t": "`$BOOLEAN`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/api/v1/templates/file", "q": { "$action": "file", "exist": ["project_id"] }, "r": {}, "rs": { "kind": "raw", "media": "text/plain" }, "s": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "templates" }, { "lit": "file" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "template", "name__orig": "template", "Name": "Template", "name_": "template", "name-": "template", "NAME": "TEMPLATE", "index$": 35 }, { "active": true, "entity": "template", "key$": "BasicTemplateFlow", "kind": "basic", "name": "BasicTemplateFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "template_ref01", "srcdatavar": "template_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-template_ref01" } }], "index$": 0 }] }, 'Template', { "GET /api/v1/templates/file": { "protocol": "http", "parameters": [{ "name": "project_id", "in": "query", "required": true, "schema": { "type": "string", "description": "String ID of the project to export as a template.", "examples": ["6XGgm6PHrGgMpCFX"], "title": "Project Id" }, "index$": 0 }, { "name": "use_relative_dates", "in": "query", "required": false, "schema": { "type": "boolean", "description": "Whether to export due dates as relative dates.", "examples": [true], "default": true, "title": "Use Relative Dates" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -113,6 +113,7 @@ function basicSetup(extra) {
         'TODOIST_TEST_TEMPLATE_ENTID': idmap,
         'TODOIST_TEST_LIVE': 'FALSE',
         'TODOIST_TEST_EXPLAIN': 'FALSE',
+        'TODOIST_APIKEY': '',
     });
     idmap = env['TODOIST_TEST_TEMPLATE_ENTID'];
     const live = 'TRUE' === env.TODOIST_TEST_LIVE;
@@ -127,7 +128,9 @@ function basicSetup(extra) {
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
             (0, utility_1.liveClientOptions)(),
-            {},
+            {
+                apikey: env.TODOIST_APIKEY,
+            },
             // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
             // last entry is undefined, and basicSetup is normally called with no
             // argument at all - so a bare 'extra' silently discarded the apikey

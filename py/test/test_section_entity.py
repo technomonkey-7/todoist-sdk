@@ -129,7 +129,7 @@ class TestSectionEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["create", "list", "load", "remove"]:
+        for _op in ["create", "list", "update", "load", "remove"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "section." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -155,6 +155,20 @@ class TestSectionEntity:
             runner.entity_list_to_data(section_ref01_list_result),
             {"id": section_ref01_data["id"]})
         assert not vs.isempty(found_item)
+
+        # UPDATE
+        section_ref01_data_up0_up = {
+            "id": section_ref01_data["id"],
+        }
+
+        section_ref01_markdef_up0_name = "added_at"
+        section_ref01_markdef_up0_value = "Mark01-section_ref01_" + str(setup["now"])
+        section_ref01_data_up0_up[section_ref01_markdef_up0_name] = section_ref01_markdef_up0_value
+
+        section_ref01_resdata_up0 = helpers.to_map(runner.entity_data(section_ref01_ent.update(section_ref01_data_up0_up, None)))
+        assert section_ref01_resdata_up0 is not None
+        assert section_ref01_resdata_up0["id"] == section_ref01_data_up0_up["id"]
+        assert section_ref01_resdata_up0[section_ref01_markdef_up0_name] == section_ref01_markdef_up0_value
 
         # LOAD
         section_ref01_match_dt0 = {

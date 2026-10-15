@@ -5,4 +5,179 @@
 @"./base-guide.aontu"
 
 
+# Corrections to how apidef reads Doist's definition. The definition itself is
+# unmodified (see .sdk/def/PROVENANCE.md).
+#
+# Two patterns recur. apidef names entities after the response component, so
+# one Todoist resource is spread over FastAPI schema names (ItemSyncView,
+# AnyProjectSyncView, NoteSyncView ...); each resource below is gathered under
+# its own name and the schema-named entity is switched off. And Todoist updates
+# with POST /{collection}/{id}, which apidef reads as a second `create`; those
+# points become `update`, and item verbs become actions on `update`.
 
+
+# Task: CRUD, verbs as actions, the filter query as a list action.
+guide: entity: task: path: {
+  "/api/v1/tasks": {
+    op: create: method: POST
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/tasks/{task_id}": {
+    rename: param: task_id: "id"
+    op: load: method: GET
+    op: update: method: POST
+    op: remove: method: DELETE
+  }
+  "/api/v1/tasks/{task_id}/close": {
+    action: close: {}
+    rename: param: task_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/tasks/{task_id}/reopen": {
+    action: reopen: {}
+    rename: param: task_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/tasks/{task_id}/move": {
+    action: move: {}
+    rename: param: task_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/tasks/filter": {
+    action: filter: {}
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+}
+guide: entity: item_sync_view: active: false
+guide: entity: paginated_list_item_sync_view: active: false
+
+
+# Completed tasks: one entity, by completion date by default, by due date as an action.
+guide: entity: completed_task: path: {
+  "/api/v1/tasks/completed/by_completion_date": {
+    op: list: { method: GET, transform: res: "`body.items`" }
+  }
+  "/api/v1/tasks/completed/by_due_date": {
+    action: by_due_date: {}
+    op: list: { method: GET, transform: res: "`body.items`" }
+  }
+}
+guide: entity: by_completion_date: active: false
+guide: entity: by_due_date: active: false
+
+
+# Project
+guide: entity: project: path: {
+  "/api/v1/projects": {
+    op: create: method: POST
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/projects/{project_id}": {
+    rename: param: project_id: "id"
+    op: load: method: GET
+    op: update: method: POST
+    op: remove: method: DELETE
+  }
+  "/api/v1/projects/{project_id}/archive": {
+    action: archive: {}
+    rename: param: project_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/projects/{project_id}/unarchive": {
+    action: unarchive: {}
+    rename: param: project_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/projects/{project_id}/join": {
+    action: join: {}
+    rename: param: project_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/projects/archived": {
+    action: archived: {}
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/projects/search": {
+    action: search: {}
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+}
+guide: entity: any_project_sync_view: active: false
+guide: entity: paginated_list_any_project_sync_view: active: false
+
+
+# Section
+guide: entity: section: path: {
+  "/api/v1/sections/{section_id}": {
+    op: create: active: false
+    op: update: method: POST
+  }
+  "/api/v1/sections/{section_id}/archive": {
+    action: archive: {}
+    rename: param: section_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/sections/{section_id}/unarchive": {
+    action: unarchive: {}
+    rename: param: section_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/sections/search": {
+    action: search: {}
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+}
+guide: entity: section_sync_view: active: false
+
+
+# Comment
+guide: entity: comment: path: {
+  "/api/v1/comments": {
+    op: create: method: POST
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/comments/{comment_id}": {
+    op: create: active: false
+    op: load: method: GET
+    op: update: method: POST
+  }
+  "/api/v1/comments/{comment_id}/reactions": {
+    action: reaction_add: {}
+    rename: param: comment_id: "id"
+    op: update: method: POST
+  }
+  "/api/v1/comments/{comment_id}/reactions/remove": {
+    op: create: active: false
+    op: update: method: POST
+  }
+}
+guide: entity: note_sync_view: active: false
+
+
+# Label: personal labels; shared labels (names only) are their own entity.
+guide: entity: label: path: {
+  "/api/v1/labels/{label_id}": {
+    op: create: active: false
+    op: update: method: POST
+  }
+  "/api/v1/labels/search": {
+    action: search: {}
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/labels/shared/remove": { active: false }
+  "/api/v1/labels/shared/rename": { active: false }
+}
+guide: entity: label_rest_view: active: false
+
+guide: entity: shared_label: path: {
+  "/api/v1/labels/shared": {
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/labels/shared/rename": {
+    op: update: method: POST
+  }
+  "/api/v1/labels/shared/remove": {
+    op: remove: method: POST
+  }
+}
+guide: entity: paginated_list_str: active: false

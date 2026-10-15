@@ -293,14 +293,76 @@ func (e *CommentEntity) streamSteps(ctx *core.Context) error {
 	return nil
 }
 
-func (e *CommentEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("load", e.name)
+
+func (e *CommentEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":   "load",
+		"ctrl":     ctrl,
+		"match":    e.match,
+		"data":     e.data,
+		"reqmatch": reqmatch,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// CommentLoadMatch and returns an Comment. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *CommentEntity) LoadTyped(reqmatch CommentLoadMatch, ctrl map[string]any) (Comment, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Comment{}, err
+	}
+	return typedFrom[Comment](res), nil
 }
 
 
-func (e *CommentEntity) List(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("list", e.name)
+
+
+func (e *CommentEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":   "list",
+		"ctrl":     ctrl,
+		"match":    e.match,
+		"data":     e.data,
+		"reqmatch": reqmatch,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+		}
+	})
 }
+
+// ListTyped is the statically-typed variant of List: it takes an
+// CommentListMatch and returns []Comment. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *CommentEntity) ListTyped(reqmatch CommentListMatch, ctrl map[string]any) ([]Comment, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Comment](res), nil
+}
+
 
 
 
@@ -339,9 +401,43 @@ func (e *CommentEntity) CreateTyped(reqdata CommentCreateData, ctrl map[string]a
 
 
 
-func (e *CommentEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("update", e.name)
+
+func (e *CommentEntity) Update(reqdata map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":  "update",
+		"ctrl":    ctrl,
+		"match":   e.match,
+		"data":    e.data,
+		"reqdata": reqdata,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
 }
+
+// UpdateTyped is the statically-typed variant of Update: it takes an
+// CommentUpdateData and returns an Comment. It delegates to the untyped
+// Update (identical runtime) and converts at the typed boundary.
+func (e *CommentEntity) UpdateTyped(reqdata CommentUpdateData, ctrl map[string]any) (Comment, error) {
+	res, err := e.Update(asMap(reqdata), ctrl)
+	if err != nil {
+		return Comment{}, err
+	}
+	return typedFrom[Comment](res), nil
+}
+
 
 
 func (e *CommentEntity) Patch(_ map[string]any, _ map[string]any) (any, error) {

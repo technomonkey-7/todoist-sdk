@@ -39,15 +39,13 @@ func MakeConfig() map[string]any {
 			"entity": map[string]any{
 				"active": map[string]any{},
 				"activity": map[string]any{},
-				"any_project_sync_view": map[string]any{},
 				"archived": map[string]any{},
 				"authorization": map[string]any{},
 				"backup": map[string]any{},
 				"billing_portal_url": map[string]any{},
-				"by_completion_date": map[string]any{},
-				"by_due_date": map[string]any{},
 				"collaborator": map[string]any{},
 				"comment": map[string]any{},
+				"completed_task": map[string]any{},
 				"credit_state": map[string]any{},
 				"email": map[string]any{},
 				"file_url": map[string]any{},
@@ -55,18 +53,12 @@ func MakeConfig() map[string]any {
 				"history": map[string]any{},
 				"id_mapping": map[string]any{},
 				"invite": map[string]any{},
-				"item_sync_view": map[string]any{},
 				"label": map[string]any{},
-				"label_rest_view": map[string]any{},
 				"location_reminder": map[string]any{},
 				"member_view": map[string]any{},
 				"migrate_personal_token": map[string]any{},
-				"note_sync_view": map[string]any{},
 				"notification_location_sync_view": map[string]any{},
 				"notification_sync_view": map[string]any{},
-				"paginated_list_any_project_sync_view": map[string]any{},
-				"paginated_list_item_sync_view": map[string]any{},
-				"paginated_list_str": map[string]any{},
 				"plan_detail": map[string]any{},
 				"productivity_stat": map[string]any{},
 				"project": map[string]any{},
@@ -76,7 +68,7 @@ func MakeConfig() map[string]any {
 				"remove_workspace_user": map[string]any{},
 				"role_to_action_mapping_view": map[string]any{},
 				"section": map[string]any{},
-				"section_sync_view": map[string]any{},
+				"shared_label": map[string]any{},
 				"status_ok": map[string]any{},
 				"subscription_info": map[string]any{},
 				"task": map[string]any{},
@@ -551,481 +543,6 @@ func MakeConfig() map[string]any {
 				},
 				"relations": map[string]any{
 					"ancestors": []any{},
-				},
-			},
-			"any_project_sync_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "child_order",
-						"title": "Child Order",
-						"type": "`$ANY`",
-						"short": "Updated position of the project in the hierarchy.",
-					},
-					map[string]any{
-						"name": "color",
-						"title": "Color",
-						"type": "`$ANY`",
-						"short": "Updated project color.",
-					},
-					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-						"short": "Updated project description.",
-					},
-					map[string]any{
-						"name": "folder_id",
-						"title": "Folder Id",
-						"type": "`$STRING`",
-						"short": "Folder to move the project into.",
-					},
-					map[string]any{
-						"name": "icon",
-						"title": "Icon",
-						"type": "`$ANY`",
-						"short": "Updated project icon name.",
-					},
-					map[string]any{
-						"name": "is_collapsed",
-						"title": "Is Collapsed",
-						"type": "`$BOOLEAN`",
-						"short": "Whether the project is collapsed.",
-					},
-					map[string]any{
-						"name": "is_favorite",
-						"title": "Is Favorite",
-						"type": "`$BOOLEAN`",
-						"short": "Whether the project is marked as a favorite.",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"op": map[string]any{
-							"create": map[string]any{
-								"req": true,
-								"type": "`$STRING`",
-							},
-						},
-						"short": "Updated project name.",
-					},
-					map[string]any{
-						"name": "next_cursor",
-						"title": "Next Cursor",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Cursor for the next page of results, or `null` when there are no more results.",
-					},
-					map[string]any{
-						"name": "parent_id",
-						"title": "Parent Id",
-						"type": "`$STRING`",
-						"short": "Parent project ID.",
-					},
-					map[string]any{
-						"name": "results",
-						"title": "Results",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Objects in the current page of results.",
-					},
-					map[string]any{
-						"name": "view_style",
-						"title": "View Style",
-						"type": "`$ANY`",
-						"short": "Updated project view style.",
-					},
-					map[string]any{
-						"name": "workspace_id",
-						"title": "Workspace Id",
-						"type": "`$STRING`",
-						"short": "Workspace ID.",
-					},
-				},
-				"name": "any_project_sync_view",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/projects/{project_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"var": "project_id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"{project_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"project_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/projects/{project_id}/archive",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"var": "project_id",
-									},
-									map[string]any{
-										"lit": "archive",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"{project_id}",
-									"archive",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"project_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/projects/{project_id}/join",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"var": "project_id",
-									},
-									map[string]any{
-										"lit": "join",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"{project_id}",
-									"join",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "join",
-									"exist": []any{
-										"project_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/projects/{project_id}/unarchive",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"var": "project_id",
-									},
-									map[string]any{
-										"lit": "unarchive",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"{project_id}",
-									"unarchive",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"project_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/projects",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/projects",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "folder_id",
-											"orig": "folder_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"load": map[string]any{
-						"input": "data",
-						"name": "load",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/projects/{project_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"var": "project_id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"{project_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"project_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.project",
-						},
-					},
 				},
 			},
 			"archived": map[string]any{
@@ -1590,7 +1107,640 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"by_completion_date": map[string]any{
+			"collaborator": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "email",
+						"title": "Email",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "The user's email address",
+					},
+					map[string]any{
+						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "The user's ID",
+					},
+					map[string]any{
+						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "The user's full name",
+					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
+				"name": "collaborator",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/projects/{project_id}/collaborators",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "project_id",
+									},
+									map[string]any{
+										"lit": "collaborators",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"{project_id}",
+									"collaborators",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "project_id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "public_key",
+											"orig": "public_key",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"project_id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{
+						[]any{
+							"$.main.kit.entity.project",
+						},
+					},
+				},
+			},
+			"comment": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "attachment",
+						"title": "Attachment",
+						"type": "`$ANY`",
+						"short": "A [File attachment](#tag/Sync/Comments/File-Attachments) object",
+					},
+					map[string]any{
+						"name": "content",
+						"title": "Content",
+						"type": "`$STRING`",
+						"op": map[string]any{
+							"create": map[string]any{
+								"req": true,
+								"type": "`$STRING`",
+							},
+							"update": map[string]any{
+								"req": true,
+								"type": "`$ANY`",
+							},
+						},
+						"short": "Comment content.",
+					},
+					map[string]any{
+						"name": "file_attachment",
+						"title": "File Attachment",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "File attachment metadata, or `null` when the comment has no attachment.",
+					},
+					map[string]any{
+						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the comment.",
+					},
+					map[string]any{
+						"name": "is_deleted",
+						"title": "Is Deleted",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"short": "Whether the comment is deleted.",
+					},
+					map[string]any{
+						"name": "posted_at",
+						"title": "Posted At",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Date and time when the comment was posted, or `null` if unknown.",
+						"format": "date-time",
+					},
+					map[string]any{
+						"name": "posted_uid",
+						"title": "Posted Uid",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "String ID of the user who posted the comment.",
+					},
+					map[string]any{
+						"name": "project_id",
+						"title": "Project Id",
+						"type": "`$STRING`",
+						"short": "String ID of the project",
+					},
+					map[string]any{
+						"name": "reactions",
+						"title": "Reactions",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Reaction emoji mapped to user IDs that reacted.",
+					},
+					map[string]any{
+						"name": "task_id",
+						"title": "Task Id",
+						"type": "`$STRING`",
+						"short": "String ID of the task",
+					},
+					map[string]any{
+						"name": "uids_to_notify",
+						"title": "Uids To Notify",
+						"type": "`$ANY`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$ANY`",
+							},
+						},
+						"short": "String IDs of users notified by the comment.",
+					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
+				"name": "comment",
+				"op": map[string]any{
+					"create": map[string]any{
+						"input": "data",
+						"name": "create",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/comments",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "comments",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"comments",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/comments",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "comments",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"comments",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "project_id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "public_key",
+											"orig": "public_key",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "task_id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/comments/{comment_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "comments",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"comments",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"comment_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "comment_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"remove": map[string]any{
+						"input": "data",
+						"name": "remove",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "DELETE",
+								"orig": "/api/v1/comments/{comment_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "comments",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"comments",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"comment_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "comment_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/comments/{comment_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "comments",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"comments",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"comment_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "comment_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/comments/{comment_id}/reactions",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "comments",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "reactions",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"comments",
+									"{id}",
+									"reactions",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"comment_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "comment_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "reaction_add",
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/comments/{comment_id}/reactions/remove",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "comments",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "reactions",
+									},
+									map[string]any{
+										"lit": "remove",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"comments",
+									"{id}",
+									"reactions",
+									"remove",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"comment_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "comment_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "reaction_remove",
+									"exist": []any{
+										"id",
+									},
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"completed_task": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "added_at",
@@ -1796,7 +1946,7 @@ func MakeConfig() map[string]any {
 					"field": "id",
 					"name": "id",
 				},
-				"name": "by_completion_date",
+				"name": "completed_task",
 				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
@@ -1922,225 +2072,6 @@ func MakeConfig() map[string]any {
 									"media": "application/json",
 								},
 							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"by_due_date": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "added_at",
-						"title": "Added At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was created, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "added_by_uid",
-						"title": "Added By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who created the task, or `null` if unknown.",
-					},
-					map[string]any{
-						"name": "assigned_by_uid",
-						"title": "Assigned By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who assigned the task, or `null` if unassigned.",
-					},
-					map[string]any{
-						"name": "checked",
-						"title": "Checked",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is completed.",
-					},
-					map[string]any{
-						"name": "child_order",
-						"title": "Child Order",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Position of the task among sibling tasks.",
-					},
-					map[string]any{
-						"name": "completed_at",
-						"title": "Completed At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was completed, or `null` if active.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "completed_by_uid",
-						"title": "Completed By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who completed the task, or `null` if active.",
-					},
-					map[string]any{
-						"name": "completed_count",
-						"title": "Completed Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Number of times the task has been marked as completed.",
-					},
-					map[string]any{
-						"name": "content",
-						"title": "Content",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Task content.",
-					},
-					map[string]any{
-						"name": "day_order",
-						"title": "Day Order",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Task order for day-based views.",
-					},
-					map[string]any{
-						"name": "deadline",
-						"title": "Deadline",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Deadline details for the task, or `null` when the task has no deadline.",
-					},
-					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Task description.",
-					},
-					map[string]any{
-						"name": "due",
-						"title": "Due",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Due date details for the task, or `null` when the task has no due date.",
-					},
-					map[string]any{
-						"name": "duration",
-						"title": "Duration",
-						"type": "`$NUMBER`",
-						"req": true,
-						"short": "Task duration details, or `null` when the task has no duration.",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the task.",
-					},
-					map[string]any{
-						"name": "is_collapsed",
-						"title": "Is Collapsed",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is collapsed in the user's view.",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is deleted.",
-					},
-					map[string]any{
-						"name": "labels",
-						"title": "Labels",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Names of labels attached to the task.",
-					},
-					map[string]any{
-						"name": "note_count",
-						"title": "Note Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "**Deprecated**: only returns 0 and is marked for removal.",
-					},
-					map[string]any{
-						"name": "order_key",
-						"title": "Order Key",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
-					},
-					map[string]any{
-						"name": "parent_id",
-						"title": "Parent Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the parent task, or `null` if this is a top-level task.",
-					},
-					map[string]any{
-						"name": "postponed_count",
-						"title": "Postponed Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Number of times the task's due date has been rescheduled by the user.",
-					},
-					map[string]any{
-						"name": "priority",
-						"title": "Priority",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Task priority from 1 (normal) to 4 (urgent).",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the project that contains the task.",
-					},
-					map[string]any{
-						"name": "responsible_uid",
-						"title": "Responsible Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user responsible for the task, or `null` if unassigned.",
-					},
-					map[string]any{
-						"name": "section_id",
-						"title": "Section Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
-					},
-					map[string]any{
-						"name": "updated_at",
-						"title": "Updated At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was last updated, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "user_id",
-						"title": "User Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the user who owns the task.",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "by_due_date",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -2245,334 +2176,10 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{
+									"$action": "by_due_date",
 									"exist": []any{
 										"since",
 										"until",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"collaborator": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "email",
-						"title": "Email",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "The user's email address",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "The user's ID",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "The user's full name",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "collaborator",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/projects/{project_id}/collaborators",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"var": "project_id",
-									},
-									map[string]any{
-										"lit": "collaborators",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"{project_id}",
-									"collaborators",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "public_key",
-											"orig": "public_key",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"project_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.project",
-						},
-					},
-				},
-			},
-			"comment": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "content",
-						"title": "Content",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "New content for the comment.",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "comment",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/comments/{comment_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "comments",
-									},
-									map[string]any{
-										"var": "id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"comments",
-									"{id}",
-								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"comment_id": "id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "comment_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/comments/{comment_id}/reactions/remove",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "comments",
-									},
-									map[string]any{
-										"var": "id",
-									},
-									map[string]any{
-										"lit": "reactions",
-									},
-									map[string]any{
-										"lit": "remove",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"comments",
-									"{id}",
-									"reactions",
-									"remove",
-								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"comment_id": "id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "comment_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "reaction_remove",
-									"exist": []any{
-										"id",
-									},
-								},
-							},
-						},
-					},
-					"remove": map[string]any{
-						"input": "data",
-						"name": "remove",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "DELETE",
-								"orig": "/api/v1/comments/{comment_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "comments",
-									},
-									map[string]any{
-										"var": "id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"comments",
-									"{id}",
-								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"comment_id": "id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "comment_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
 									},
 								},
 								"response": map[string]any{
@@ -3590,730 +3197,6 @@ func MakeConfig() map[string]any {
 					},
 				},
 			},
-			"item_sync_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "added_at",
-						"title": "Added At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was created, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "added_by_uid",
-						"title": "Added By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who created the task, or `null` if unknown.",
-					},
-					map[string]any{
-						"name": "assigned_by_uid",
-						"title": "Assigned By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who assigned the task, or `null` if unassigned.",
-					},
-					map[string]any{
-						"name": "assignee_id",
-						"title": "Assignee Id",
-						"type": "`$STRING`",
-						"short": "ID of the user to assign the task to.",
-					},
-					map[string]any{
-						"name": "checked",
-						"title": "Checked",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is completed.",
-					},
-					map[string]any{
-						"name": "child_order",
-						"title": "Child Order",
-						"type": "`$INTEGER`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$INTEGER`",
-							},
-						},
-						"short": "Position of the task among sibling tasks.",
-					},
-					map[string]any{
-						"name": "completed_at",
-						"title": "Completed At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was completed, or `null` if active.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "completed_by_uid",
-						"title": "Completed By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who completed the task, or `null` if active.",
-					},
-					map[string]any{
-						"name": "completed_count",
-						"title": "Completed Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Number of times the task has been marked as completed.",
-					},
-					map[string]any{
-						"name": "content",
-						"title": "Content",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"short": "Task content.",
-					},
-					map[string]any{
-						"name": "day_order",
-						"title": "Day Order",
-						"type": "`$INTEGER`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$INTEGER`",
-							},
-						},
-						"short": "Task order for day-based views.",
-					},
-					map[string]any{
-						"name": "deadline",
-						"title": "Deadline",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Deadline details for the task, or `null` when the task has no deadline.",
-					},
-					map[string]any{
-						"name": "deadline_date",
-						"title": "Deadline Date",
-						"type": "`$ANY`",
-						"short": "Updated deadline date in YYYY-MM-DD format.",
-						"format": "date",
-					},
-					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"short": "Task description.",
-					},
-					map[string]any{
-						"name": "due",
-						"title": "Due",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Due date details for the task, or `null` when the task has no due date.",
-					},
-					map[string]any{
-						"name": "due_date",
-						"title": "Due Date",
-						"type": "`$STRING`",
-						"short": "Updated due date in RFC 3339 format or similar.",
-					},
-					map[string]any{
-						"name": "due_datetime",
-						"title": "Due Datetime",
-						"type": "`$STRING`",
-						"short": "Updated due date and time.",
-					},
-					map[string]any{
-						"name": "due_lang",
-						"title": "Due Lang",
-						"type": "`$STRING`",
-						"short": "Updated due date language code.",
-					},
-					map[string]any{
-						"name": "due_string",
-						"title": "Due String",
-						"type": "`$STRING`",
-						"short": "Updated human-readable representation of the due date.",
-					},
-					map[string]any{
-						"name": "duration",
-						"title": "Duration",
-						"type": "`$NUMBER`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$NUMBER`",
-							},
-						},
-						"short": "Task duration details, or `null` when the task has no duration.",
-					},
-					map[string]any{
-						"name": "duration_unit",
-						"title": "Duration Unit",
-						"type": "`$ANY`",
-						"short": "Unit of time for duration.",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the task.",
-					},
-					map[string]any{
-						"name": "is_collapsed",
-						"title": "Is Collapsed",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$BOOLEAN`",
-							},
-						},
-						"short": "Whether the task is collapsed in the user's view.",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is deleted.",
-					},
-					map[string]any{
-						"name": "labels",
-						"title": "Labels",
-						"type": "`$ARRAY`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "Names of labels attached to the task.",
-					},
-					map[string]any{
-						"name": "note_count",
-						"title": "Note Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "**Deprecated**: only returns 0 and is marked for removal.",
-					},
-					map[string]any{
-						"name": "order",
-						"title": "Order",
-						"type": "`$ANY`",
-						"short": "Position of the task in the project or section",
-					},
-					map[string]any{
-						"name": "order_key",
-						"title": "Order Key",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
-					},
-					map[string]any{
-						"name": "parent_id",
-						"title": "Parent Id",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"short": "String ID of the parent task, or `null` if this is a top-level task.",
-					},
-					map[string]any{
-						"name": "postponed_count",
-						"title": "Postponed Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Number of times the task's due date has been rescheduled by the user.",
-					},
-					map[string]any{
-						"name": "priority",
-						"title": "Priority",
-						"type": "`$INTEGER`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "Task priority from 1 (normal) to 4 (urgent).",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"short": "String ID of the project that contains the task.",
-					},
-					map[string]any{
-						"name": "responsible_uid",
-						"title": "Responsible Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user responsible for the task, or `null` if unassigned.",
-					},
-					map[string]any{
-						"name": "section_id",
-						"title": "Section Id",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
-					},
-					map[string]any{
-						"name": "updated_at",
-						"title": "Updated At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was last updated, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "user_id",
-						"title": "User Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the user who owns the task.",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "item_sync_view",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/tasks/{task_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-									map[string]any{
-										"var": "task_id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-									"{task_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"task_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/tasks/{task_id}/close",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-									map[string]any{
-										"var": "task_id",
-									},
-									map[string]any{
-										"lit": "close",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-									"{task_id}",
-									"close",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "close",
-									"exist": []any{
-										"task_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/tasks/{task_id}/move",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-									map[string]any{
-										"var": "task_id",
-									},
-									map[string]any{
-										"lit": "move",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-									"{task_id}",
-									"move",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"task_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/tasks/{task_id}/reopen",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-									map[string]any{
-										"var": "task_id",
-									},
-									map[string]any{
-										"lit": "reopen",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-									"{task_id}",
-									"reopen",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"$action": "reopen",
-									"exist": []any{
-										"task_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/tasks",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/tasks",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "ids",
-											"orig": "ids",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "label",
-											"orig": "label",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "parent_id",
-											"orig": "parent_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-										map[string]any{
-											"name": "section_id",
-											"orig": "section_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"load": map[string]any{
-						"input": "data",
-						"name": "load",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/tasks/{task_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-									map[string]any{
-										"var": "task_id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-									"{task_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "public_key",
-											"orig": "public_key",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"task_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.task",
-						},
-					},
-				},
-			},
 			"label": map[string]any{
 				"fields": []any{
 					map[string]any{
@@ -4323,6 +3206,9 @@ func MakeConfig() map[string]any {
 						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
+								"type": "`$ANY`",
+							},
+							"update": map[string]any{
 								"type": "`$ANY`",
 							},
 						},
@@ -4344,6 +3230,9 @@ func MakeConfig() map[string]any {
 							"create": map[string]any{
 								"type": "`$BOOLEAN`",
 							},
+							"update": map[string]any{
+								"type": "`$BOOLEAN`",
+							},
 						},
 						"short": "Whether the label is marked as a favorite.",
 					},
@@ -4353,18 +3242,11 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 						"req": true,
 						"op": map[string]any{
-							"create": map[string]any{
+							"update": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
 						"short": "Label name.",
-					},
-					map[string]any{
-						"name": "new_name",
-						"title": "New Name",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "New shared label name to apply to matching tasks.",
 					},
 					map[string]any{
 						"name": "order",
@@ -4373,6 +3255,9 @@ func MakeConfig() map[string]any {
 						"req": true,
 						"op": map[string]any{
 							"create": map[string]any{
+								"type": "`$ANY`",
+							},
+							"update": map[string]any{
 								"type": "`$ANY`",
 							},
 						},
@@ -4389,60 +3274,6 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "create",
 						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/labels/{label_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "labels",
-									},
-									map[string]any{
-										"var": "id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"labels",
-									"{id}",
-								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"label_id": "id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "label_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
@@ -4475,92 +3306,76 @@ func MakeConfig() map[string]any {
 									"media": "application/json",
 								},
 							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/labels/shared/remove",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "labels",
-									},
-									map[string]any{
-										"lit": "shared",
-									},
-									map[string]any{
-										"lit": "remove",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"labels",
-									"shared",
-									"remove",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/labels/shared/rename",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "labels",
-									},
-									map[string]any{
-										"lit": "shared",
-									},
-									map[string]any{
-										"lit": "rename",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"labels",
-									"shared",
-									"rename",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
 						},
 					},
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/labels/search",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "labels",
+									},
+									map[string]any{
+										"lit": "search",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"labels",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "search",
+									"exist": []any{
+										"query",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -4731,63 +3546,14 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"label_rest_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "color",
-						"title": "Color",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Label color name.",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the label.",
-					},
-					map[string]any{
-						"name": "is_favorite",
-						"title": "Is Favorite",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the label is marked as a favorite.",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Label name.",
-					},
-					map[string]any{
-						"name": "order",
-						"title": "Order",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Position of the label in the label list, or `null` when no explicit order is set.",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "label_rest_view",
-				"op": map[string]any{
-					"list": map[string]any{
+					"update": map[string]any{
 						"input": "data",
-						"name": "list",
+						"name": "update",
 						"points": []any{
 							map[string]any{
 								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/labels/search",
+								"method": "POST",
+								"orig": "/api/v1/labels/{label_id}",
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -4799,47 +3565,38 @@ func MakeConfig() map[string]any {
 										"lit": "labels",
 									},
 									map[string]any{
-										"lit": "search",
+										"var": "id",
 									},
 								},
 								"parts": []any{
 									"api",
 									"v1",
 									"labels",
-									"search",
+									"{id}",
 								},
-								"rename": map[string]any{},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"label_id": "id",
+									},
+								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.results`",
+									"res": "`body`",
 								},
 								"args": map[string]any{
-									"query": []any{
+									"params": []any{
 										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
+											"name": "id",
+											"orig": "label_id",
 											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-											"kind": "query",
+											"kind": "param",
 											"reqd": true,
 										},
 									},
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"query",
+										"id",
 									},
 								},
 								"response": map[string]any{
@@ -5168,338 +3925,6 @@ func MakeConfig() map[string]any {
 				},
 				"relations": map[string]any{
 					"ancestors": []any{},
-				},
-			},
-			"note_sync_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "attachment",
-						"title": "Attachment",
-						"type": "`$ANY`",
-						"short": "A [File attachment](#tag/Sync/Comments/File-Attachments) object",
-					},
-					map[string]any{
-						"name": "content",
-						"title": "Content",
-						"type": "`$STRING`",
-						"op": map[string]any{
-							"create": map[string]any{
-								"req": true,
-								"type": "`$STRING`",
-							},
-						},
-						"short": "Comment content.",
-					},
-					map[string]any{
-						"name": "file_attachment",
-						"title": "File Attachment",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "File attachment metadata, or `null` when the comment has no attachment.",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the comment.",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the comment is deleted.",
-					},
-					map[string]any{
-						"name": "posted_at",
-						"title": "Posted At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the comment was posted, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "posted_uid",
-						"title": "Posted Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who posted the comment.",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"short": "String ID of the project",
-					},
-					map[string]any{
-						"name": "reaction",
-						"title": "Reaction",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Reaction emoji.",
-					},
-					map[string]any{
-						"name": "reactions",
-						"title": "Reactions",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Reaction emoji mapped to user IDs that reacted.",
-					},
-					map[string]any{
-						"name": "task_id",
-						"title": "Task Id",
-						"type": "`$STRING`",
-						"short": "String ID of the task",
-					},
-					map[string]any{
-						"name": "uids_to_notify",
-						"title": "Uids To Notify",
-						"type": "`$ANY`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "String IDs of users notified by the comment.",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "note_sync_view",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/comments/{comment_id}/reactions",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "comments",
-									},
-									map[string]any{
-										"var": "comment_id",
-									},
-									map[string]any{
-										"lit": "reactions",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"comments",
-									"{comment_id}",
-									"reactions",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "comment_id",
-											"orig": "comment_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"comment_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/comments",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "comments",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"comments",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/comments",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "comments",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"comments",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-										map[string]any{
-											"name": "public_key",
-											"orig": "public_key",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"load": map[string]any{
-						"input": "data",
-						"name": "load",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/comments/{comment_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "comments",
-									},
-									map[string]any{
-										"var": "comment_id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"comments",
-									"{comment_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "comment_id",
-											"orig": "comment_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"comment_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.comment",
-						},
-					},
 				},
 			},
 			"notification_location_sync_view": map[string]any{
@@ -6146,528 +4571,6 @@ func MakeConfig() map[string]any {
 					},
 				},
 			},
-			"paginated_list_any_project_sync_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "next_cursor",
-						"title": "Next Cursor",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Cursor for the next page of results, or `null` when there are no more results.",
-					},
-					map[string]any{
-						"name": "results",
-						"title": "Results",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Objects in the current page of results.",
-					},
-				},
-				"name": "paginated_list_any_project_sync_view",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/projects/search",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"lit": "search",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"search",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"query",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/projects/archived",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"lit": "archived",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"archived",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"paginated_list_item_sync_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "added_at",
-						"title": "Added At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was created, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "added_by_uid",
-						"title": "Added By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who created the task, or `null` if unknown.",
-					},
-					map[string]any{
-						"name": "assigned_by_uid",
-						"title": "Assigned By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who assigned the task, or `null` if unassigned.",
-					},
-					map[string]any{
-						"name": "checked",
-						"title": "Checked",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is completed.",
-					},
-					map[string]any{
-						"name": "child_order",
-						"title": "Child Order",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Position of the task among sibling tasks.",
-					},
-					map[string]any{
-						"name": "completed_at",
-						"title": "Completed At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was completed, or `null` if active.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "completed_by_uid",
-						"title": "Completed By Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user who completed the task, or `null` if active.",
-					},
-					map[string]any{
-						"name": "completed_count",
-						"title": "Completed Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Number of times the task has been marked as completed.",
-					},
-					map[string]any{
-						"name": "content",
-						"title": "Content",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Task content.",
-					},
-					map[string]any{
-						"name": "day_order",
-						"title": "Day Order",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Task order for day-based views.",
-					},
-					map[string]any{
-						"name": "deadline",
-						"title": "Deadline",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Deadline details for the task, or `null` when the task has no deadline.",
-					},
-					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Task description.",
-					},
-					map[string]any{
-						"name": "due",
-						"title": "Due",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Due date details for the task, or `null` when the task has no due date.",
-					},
-					map[string]any{
-						"name": "duration",
-						"title": "Duration",
-						"type": "`$NUMBER`",
-						"req": true,
-						"short": "Task duration details, or `null` when the task has no duration.",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the task.",
-					},
-					map[string]any{
-						"name": "is_collapsed",
-						"title": "Is Collapsed",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is collapsed in the user's view.",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the task is deleted.",
-					},
-					map[string]any{
-						"name": "labels",
-						"title": "Labels",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Names of labels attached to the task.",
-					},
-					map[string]any{
-						"name": "note_count",
-						"title": "Note Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "**Deprecated**: only returns 0 and is marked for removal.",
-					},
-					map[string]any{
-						"name": "order_key",
-						"title": "Order Key",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
-					},
-					map[string]any{
-						"name": "parent_id",
-						"title": "Parent Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the parent task, or `null` if this is a top-level task.",
-					},
-					map[string]any{
-						"name": "postponed_count",
-						"title": "Postponed Count",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Number of times the task's due date has been rescheduled by the user.",
-					},
-					map[string]any{
-						"name": "priority",
-						"title": "Priority",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Task priority from 1 (normal) to 4 (urgent).",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the project that contains the task.",
-					},
-					map[string]any{
-						"name": "responsible_uid",
-						"title": "Responsible Uid",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "String ID of the user responsible for the task, or `null` if unassigned.",
-					},
-					map[string]any{
-						"name": "section_id",
-						"title": "Section Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
-					},
-					map[string]any{
-						"name": "updated_at",
-						"title": "Updated At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the task was last updated, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "user_id",
-						"title": "User Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the user who owns the task.",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "paginated_list_item_sync_view",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/tasks/filter",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "tasks",
-									},
-									map[string]any{
-										"lit": "filter",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"tasks",
-									"filter",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "lang",
-											"orig": "lang",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"query",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"paginated_list_str": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "next_cursor",
-						"title": "Next Cursor",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Cursor for the next page of results, or `null` when there are no more results.",
-					},
-					map[string]any{
-						"name": "results",
-						"title": "Results",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Objects in the current page of results.",
-					},
-				},
-				"name": "paginated_list_str",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/labels/shared",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "labels",
-									},
-									map[string]any{
-										"lit": "shared",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"labels",
-									"shared",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "omit_personal",
-											"orig": "omit_personal",
-											"type": "`$BOOLEAN`",
-											"kind": "query",
-											"example": false,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
 			"plan_detail": map[string]any{
 				"fields": []any{
 					map[string]any{
@@ -6877,9 +4780,95 @@ func MakeConfig() map[string]any {
 			"project": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "child_order",
+						"title": "Child Order",
+						"type": "`$ANY`",
+						"short": "Updated position of the project in the hierarchy.",
+					},
+					map[string]any{
+						"name": "color",
+						"title": "Color",
+						"type": "`$ANY`",
+						"short": "Color of the project icon.",
+					},
+					map[string]any{
+						"name": "description",
+						"title": "Description",
+						"type": "`$STRING`",
+						"short": "Description of the project.",
+					},
+					map[string]any{
+						"name": "folder_id",
+						"title": "Folder Id",
+						"type": "`$STRING`",
+						"short": "Folder to move the project into.",
+					},
+					map[string]any{
+						"name": "icon",
+						"title": "Icon",
+						"type": "`$ANY`",
+						"short": "Project icon name.",
+					},
+					map[string]any{
 						"name": "id",
 						"title": "Id",
 						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "is_collapsed",
+						"title": "Is Collapsed",
+						"type": "`$BOOLEAN`",
+						"short": "Whether the project is collapsed.",
+					},
+					map[string]any{
+						"name": "is_favorite",
+						"title": "Is Favorite",
+						"type": "`$BOOLEAN`",
+						"short": "Whether the project is a favorite for the user.",
+					},
+					map[string]any{
+						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$STRING`",
+							},
+						},
+						"short": "Name of the project.",
+					},
+					map[string]any{
+						"name": "next_cursor",
+						"title": "Next Cursor",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Cursor for the next page of results, or `null` when there are no more results.",
+					},
+					map[string]any{
+						"name": "parent_id",
+						"title": "Parent Id",
+						"type": "`$STRING`",
+						"short": "Parent project ID.",
+					},
+					map[string]any{
+						"name": "results",
+						"title": "Results",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "Objects in the current page of results.",
+					},
+					map[string]any{
+						"name": "view_style",
+						"title": "View Style",
+						"type": "`$ANY`",
+						"short": "View style of the project.",
+					},
+					map[string]any{
+						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$STRING`",
+						"short": "Workspace ID.",
 					},
 				},
 				"id": map[string]any{
@@ -6888,6 +4877,290 @@ func MakeConfig() map[string]any {
 				},
 				"name": "project",
 				"op": map[string]any{
+					"create": map[string]any{
+						"input": "data",
+						"name": "create",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/projects",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/projects/search",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"lit": "search",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "search",
+									"exist": []any{
+										"query",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/projects",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "folder_id",
+											"orig": "folder_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/projects/archived",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"lit": "archived",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"archived",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "archived",
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/projects/{project_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"project_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
 					"remove": map[string]any{
 						"input": "data",
 						"name": "remove",
@@ -6937,6 +5210,243 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/projects/{project_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"project_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/projects/{project_id}/archive",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "archive",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"{id}",
+									"archive",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"project_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "archive",
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/projects/{project_id}/join",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "join",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"{id}",
+									"join",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"project_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "join",
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/projects/{project_id}/unarchive",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "unarchive",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"{id}",
+									"unarchive",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"project_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "unarchive",
 									"exist": []any{
 										"id",
 									},
@@ -7562,6 +6072,9 @@ func MakeConfig() map[string]any {
 							"create": map[string]any{
 								"type": "`$STRING`",
 							},
+							"update": map[string]any{
+								"type": "`$STRING`",
+							},
 						},
 						"short": "Section description, or `null` if it has none.",
 					},
@@ -7585,7 +6098,7 @@ func MakeConfig() map[string]any {
 						"type": "`$BOOLEAN`",
 						"req": true,
 						"op": map[string]any{
-							"create": map[string]any{
+							"update": map[string]any{
 								"type": "`$BOOLEAN`",
 							},
 						},
@@ -7604,7 +6117,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 						"req": true,
 						"op": map[string]any{
-							"create": map[string]any{
+							"update": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
@@ -7636,7 +6149,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 						"req": true,
 						"op": map[string]any{
-							"create": map[string]any{
+							"update": map[string]any{
 								"type": "`$ANY`",
 							},
 						},
@@ -7668,60 +6181,6 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "create",
 						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/sections/{section_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "sections",
-									},
-									map[string]any{
-										"var": "id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"sections",
-									"{id}",
-								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"section_id": "id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "section_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
@@ -7760,6 +6219,83 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "list",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/sections/search",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "sections",
+									},
+									map[string]any{
+										"lit": "search",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"sections",
+									"search",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "project_id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "search",
+									"exist": []any{
+										"query",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
@@ -7957,118 +6493,64 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"section_sync_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "added_at",
-						"title": "Added At",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Date and time when the section was created.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "archived_at",
-						"title": "Archived At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the section was archived, or `null` if it is active.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Section description, or `null` if it has none.",
-					},
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the section.",
-					},
-					map[string]any{
-						"name": "is_archived",
-						"title": "Is Archived",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the section is archived.",
-					},
-					map[string]any{
-						"name": "is_collapsed",
-						"title": "Is Collapsed",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the section is collapsed in the user's view.",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the section is deleted.",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Section name.",
-					},
-					map[string]any{
-						"name": "order_key",
-						"title": "Order Key",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Fractional-indexing order key: sections sort by comparing keys lexicographically within a project.",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the project that contains the section.",
-					},
-					map[string]any{
-						"name": "section_order",
-						"title": "Section Order",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Position of the section in the project.",
-					},
-					map[string]any{
-						"name": "updated_at",
-						"title": "Updated At",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Date and time when the section was last updated, or `null` if unknown.",
-						"format": "date-time",
-					},
-					map[string]any{
-						"name": "user_id",
-						"title": "User Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the user who owns the section.",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "section_sync_view",
-				"op": map[string]any{
-					"create": map[string]any{
+					"update": map[string]any{
 						"input": "data",
-						"name": "create",
+						"name": "update",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/sections/{section_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "sections",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"sections",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"section_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "section_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
@@ -8189,6 +6671,44 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
+			"shared_label": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Current shared label name to rename.",
+					},
+					map[string]any{
+						"name": "new_name",
+						"title": "New Name",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "New shared label name to apply to matching tasks.",
+					},
+					map[string]any{
+						"name": "next_cursor",
+						"title": "Next Cursor",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Cursor for the next page of results, or `null` when there are no more results.",
+					},
+					map[string]any{
+						"name": "results",
+						"title": "Results",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "Objects in the current page of results.",
+					},
+				},
+				"name": "shared_label",
+				"op": map[string]any{
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
@@ -8196,7 +6716,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
-								"orig": "/api/v1/sections/search",
+								"orig": "/api/v1/labels/shared",
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -8205,17 +6725,17 @@ func MakeConfig() map[string]any {
 										"lit": "v1",
 									},
 									map[string]any{
-										"lit": "sections",
+										"lit": "labels",
 									},
 									map[string]any{
-										"lit": "search",
+										"lit": "shared",
 									},
 								},
 								"parts": []any{
 									"api",
 									"v1",
-									"sections",
-									"search",
+									"labels",
+									"shared",
 								},
 								"rename": map[string]any{},
 								"transform": map[string]any{
@@ -8238,32 +6758,107 @@ func MakeConfig() map[string]any {
 											"example": 50,
 										},
 										map[string]any{
-											"name": "project_id",
-											"orig": "project_id",
-											"type": "`$STRING`",
+											"name": "omit_personal",
+											"orig": "omit_personal",
+											"type": "`$BOOLEAN`",
 											"kind": "query",
-											"field": true,
-										},
-										map[string]any{
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-											"kind": "query",
+											"example": false,
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"query",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"remove": map[string]any{
+						"input": "data",
+						"name": "remove",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/labels/shared/remove",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "labels",
+									},
+									map[string]any{
+										"lit": "shared",
+									},
+									map[string]any{
+										"lit": "remove",
 									},
 								},
+								"parts": []any{
+									"api",
+									"v1",
+									"labels",
+									"shared",
+									"remove",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/labels/shared/rename",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "labels",
+									},
+									map[string]any{
+										"lit": "shared",
+									},
+									map[string]any{
+										"lit": "rename",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"labels",
+									"shared",
+									"rename",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 								"response": map[string]any{
 									"kind": "json",
 									"media": "application/json",
@@ -8513,9 +7108,319 @@ func MakeConfig() map[string]any {
 			"task": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "added_at",
+						"title": "Added At",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Date and time when the task was created, or `null` if unknown.",
+						"format": "date-time",
+					},
+					map[string]any{
+						"name": "added_by_uid",
+						"title": "Added By Uid",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "String ID of the user who created the task, or `null` if unknown.",
+					},
+					map[string]any{
+						"name": "assigned_by_uid",
+						"title": "Assigned By Uid",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "String ID of the user who assigned the task, or `null` if unassigned.",
+					},
+					map[string]any{
+						"name": "assignee_id",
+						"title": "Assignee Id",
+						"type": "`$STRING`",
+						"short": "ID of the user to assign the task to.",
+					},
+					map[string]any{
+						"name": "checked",
+						"title": "Checked",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"short": "Whether the task is completed.",
+					},
+					map[string]any{
+						"name": "child_order",
+						"title": "Child Order",
+						"type": "`$INTEGER`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$INTEGER`",
+							},
+						},
+						"short": "Position of the task among sibling tasks.",
+					},
+					map[string]any{
+						"name": "completed_at",
+						"title": "Completed At",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Date and time when the task was completed, or `null` if active.",
+						"format": "date-time",
+					},
+					map[string]any{
+						"name": "completed_by_uid",
+						"title": "Completed By Uid",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "String ID of the user who completed the task, or `null` if active.",
+					},
+					map[string]any{
+						"name": "completed_count",
+						"title": "Completed Count",
+						"type": "`$INTEGER`",
+						"req": true,
+						"short": "Number of times the task has been marked as completed.",
+					},
+					map[string]any{
+						"name": "content",
+						"title": "Content",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$STRING`",
+							},
+						},
+						"short": "Task content.",
+					},
+					map[string]any{
+						"name": "day_order",
+						"title": "Day Order",
+						"type": "`$INTEGER`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$INTEGER`",
+							},
+						},
+						"short": "Task order for day-based views.",
+					},
+					map[string]any{
+						"name": "deadline",
+						"title": "Deadline",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Deadline details for the task, or `null` when the task has no deadline.",
+					},
+					map[string]any{
+						"name": "deadline_date",
+						"title": "Deadline Date",
+						"type": "`$ANY`",
+						"short": "Deadline date in YYYY-MM-DD format",
+						"format": "date",
+					},
+					map[string]any{
+						"name": "description",
+						"title": "Description",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$STRING`",
+							},
+							"update": map[string]any{
+								"type": "`$STRING`",
+							},
+						},
+						"short": "Task description.",
+					},
+					map[string]any{
+						"name": "due",
+						"title": "Due",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Due date details for the task, or `null` when the task has no due date.",
+					},
+					map[string]any{
+						"name": "due_date",
+						"title": "Due Date",
+						"type": "`$ANY`",
+						"short": "Due date in RFC 3339 format or similar.",
+					},
+					map[string]any{
+						"name": "due_datetime",
+						"title": "Due Datetime",
+						"type": "`$ANY`",
+						"short": "Due date and time.",
+					},
+					map[string]any{
+						"name": "due_lang",
+						"title": "Due Lang",
+						"type": "`$ANY`",
+						"short": "Due date language code.",
+					},
+					map[string]any{
+						"name": "due_string",
+						"title": "Due String",
+						"type": "`$ANY`",
+						"short": "Human-readable representation of the due date.",
+					},
+					map[string]any{
+						"name": "duration",
+						"title": "Duration",
+						"type": "`$NUMBER`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$NUMBER`",
+							},
+							"update": map[string]any{
+								"type": "`$NUMBER`",
+							},
+						},
+						"short": "Task duration details, or `null` when the task has no duration.",
+					},
+					map[string]any{
+						"name": "duration_unit",
+						"title": "Duration Unit",
+						"type": "`$ANY`",
+						"short": "Unit of time for duration.",
+					},
+					map[string]any{
 						"name": "id",
 						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the task.",
+					},
+					map[string]any{
+						"name": "is_collapsed",
+						"title": "Is Collapsed",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$BOOLEAN`",
+							},
+						},
+						"short": "Whether the task is collapsed in the user's view.",
+					},
+					map[string]any{
+						"name": "is_deleted",
+						"title": "Is Deleted",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"short": "Whether the task is deleted.",
+					},
+					map[string]any{
+						"name": "labels",
+						"title": "Labels",
+						"type": "`$ARRAY`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$ANY`",
+							},
+							"update": map[string]any{
+								"type": "`$ARRAY`",
+							},
+						},
+						"short": "Names of labels attached to the task.",
+					},
+					map[string]any{
+						"name": "note_count",
+						"title": "Note Count",
+						"type": "`$INTEGER`",
+						"req": true,
+						"short": "**Deprecated**: only returns 0 and is marked for removal.",
+					},
+					map[string]any{
+						"name": "order",
+						"title": "Order",
+						"type": "`$ANY`",
+						"short": "Position of the task in the project or section",
+					},
+					map[string]any{
+						"name": "order_key",
+						"title": "Order Key",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task.",
+					},
+					map[string]any{
+						"name": "parent_id",
+						"title": "Parent Id",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$STRING`",
+							},
+						},
+						"short": "String ID of the parent task, or `null` if this is a top-level task.",
+					},
+					map[string]any{
+						"name": "postponed_count",
+						"title": "Postponed Count",
+						"type": "`$INTEGER`",
+						"req": true,
+						"short": "Number of times the task's due date has been rescheduled by the user.",
+					},
+					map[string]any{
+						"name": "priority",
+						"title": "Priority",
+						"type": "`$INTEGER`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$ANY`",
+							},
+							"update": map[string]any{
+								"type": "`$INTEGER`",
+							},
+						},
+						"short": "Task priority from 1 (normal) to 4 (urgent).",
+					},
+					map[string]any{
+						"name": "project_id",
+						"title": "Project Id",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$STRING`",
+							},
+						},
+						"short": "String ID of the project that contains the task.",
+					},
+					map[string]any{
+						"name": "responsible_uid",
+						"title": "Responsible Uid",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "String ID of the user responsible for the task, or `null` if unassigned.",
+					},
+					map[string]any{
+						"name": "section_id",
+						"title": "Section Id",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$STRING`",
+							},
+						},
+						"short": "String ID of the section that contains the task, or `null` if the task is not in a section.",
+					},
+					map[string]any{
+						"name": "updated_at",
+						"title": "Updated At",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Date and time when the task was last updated, or `null` if unknown.",
+						"format": "date-time",
+					},
+					map[string]any{
+						"name": "user_id",
+						"title": "User Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the user who owns the task.",
 					},
 				},
 				"id": map[string]any{
@@ -8528,6 +7433,38 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "create",
 						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/tasks",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
@@ -8560,6 +7497,231 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{},
 								"select": map[string]any{
 									"$action": "quick",
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/tasks/filter",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+									map[string]any{
+										"lit": "filter",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+									"filter",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "lang",
+											"orig": "lang",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "filter",
+									"exist": []any{
+										"query",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/tasks",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "ids",
+											"orig": "ids",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "label",
+											"orig": "label",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "parent_id",
+											"orig": "parent_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "project_id",
+											"orig": "project_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "section_id",
+											"orig": "section_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/tasks/{task_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"task_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "public_key",
+											"orig": "public_key",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 								"response": map[string]any{
 									"kind": "json",
@@ -8617,6 +7779,243 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/tasks/{task_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"task_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/tasks/{task_id}/close",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "close",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+									"{id}",
+									"close",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"task_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "close",
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/tasks/{task_id}/move",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "move",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+									"{id}",
+									"move",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"task_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "move",
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/tasks/{task_id}/reopen",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "tasks",
+									},
+									map[string]any{
+										"var": "id",
+									},
+									map[string]any{
+										"lit": "reopen",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"tasks",
+									"{id}",
+									"reopen",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"task_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "reopen",
 									"exist": []any{
 										"id",
 									},

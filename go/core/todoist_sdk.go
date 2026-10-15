@@ -388,14 +388,6 @@ func (sdk *TodoistSDK) Activity(data map[string]any) TodoistEntity {
 }
 
 
-// AnyProjectSyncView returns a AnyProjectSyncView entity bound to this client.
-// Idiomatic usage: client.AnyProjectSyncView(nil).List(nil, nil) or
-// client.AnyProjectSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) AnyProjectSyncView(data map[string]any) TodoistEntity {
-	return NewAnyProjectSyncViewEntityFunc(sdk, data)
-}
-
-
 // Archived returns a Archived entity bound to this client.
 // Idiomatic usage: client.Archived(nil).List(nil, nil) or
 // client.Archived(nil).Load(map[string]any{"id": ...}, nil).
@@ -428,22 +420,6 @@ func (sdk *TodoistSDK) BillingPortalUrl(data map[string]any) TodoistEntity {
 }
 
 
-// ByCompletionDate returns a ByCompletionDate entity bound to this client.
-// Idiomatic usage: client.ByCompletionDate(nil).List(nil, nil) or
-// client.ByCompletionDate(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) ByCompletionDate(data map[string]any) TodoistEntity {
-	return NewByCompletionDateEntityFunc(sdk, data)
-}
-
-
-// ByDueDate returns a ByDueDate entity bound to this client.
-// Idiomatic usage: client.ByDueDate(nil).List(nil, nil) or
-// client.ByDueDate(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) ByDueDate(data map[string]any) TodoistEntity {
-	return NewByDueDateEntityFunc(sdk, data)
-}
-
-
 // Collaborator returns a Collaborator entity bound to this client.
 // Idiomatic usage: client.Collaborator(nil).List(nil, nil) or
 // client.Collaborator(nil).Load(map[string]any{"id": ...}, nil).
@@ -457,6 +433,14 @@ func (sdk *TodoistSDK) Collaborator(data map[string]any) TodoistEntity {
 // client.Comment(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TodoistSDK) Comment(data map[string]any) TodoistEntity {
 	return NewCommentEntityFunc(sdk, data)
+}
+
+
+// CompletedTask returns a CompletedTask entity bound to this client.
+// Idiomatic usage: client.CompletedTask(nil).List(nil, nil) or
+// client.CompletedTask(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TodoistSDK) CompletedTask(data map[string]any) TodoistEntity {
+	return NewCompletedTaskEntityFunc(sdk, data)
 }
 
 
@@ -516,27 +500,11 @@ func (sdk *TodoistSDK) Invite(data map[string]any) TodoistEntity {
 }
 
 
-// ItemSyncView returns a ItemSyncView entity bound to this client.
-// Idiomatic usage: client.ItemSyncView(nil).List(nil, nil) or
-// client.ItemSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) ItemSyncView(data map[string]any) TodoistEntity {
-	return NewItemSyncViewEntityFunc(sdk, data)
-}
-
-
 // Label returns a Label entity bound to this client.
 // Idiomatic usage: client.Label(nil).List(nil, nil) or
 // client.Label(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TodoistSDK) Label(data map[string]any) TodoistEntity {
 	return NewLabelEntityFunc(sdk, data)
-}
-
-
-// LabelRestView returns a LabelRestView entity bound to this client.
-// Idiomatic usage: client.LabelRestView(nil).List(nil, nil) or
-// client.LabelRestView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) LabelRestView(data map[string]any) TodoistEntity {
-	return NewLabelRestViewEntityFunc(sdk, data)
 }
 
 
@@ -564,14 +532,6 @@ func (sdk *TodoistSDK) MigratePersonalToken(data map[string]any) TodoistEntity {
 }
 
 
-// NoteSyncView returns a NoteSyncView entity bound to this client.
-// Idiomatic usage: client.NoteSyncView(nil).List(nil, nil) or
-// client.NoteSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) NoteSyncView(data map[string]any) TodoistEntity {
-	return NewNoteSyncViewEntityFunc(sdk, data)
-}
-
-
 // NotificationLocationSyncView returns a NotificationLocationSyncView entity bound to this client.
 // Idiomatic usage: client.NotificationLocationSyncView(nil).List(nil, nil) or
 // client.NotificationLocationSyncView(nil).Load(map[string]any{"id": ...}, nil).
@@ -585,30 +545,6 @@ func (sdk *TodoistSDK) NotificationLocationSyncView(data map[string]any) Todoist
 // client.NotificationSyncView(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TodoistSDK) NotificationSyncView(data map[string]any) TodoistEntity {
 	return NewNotificationSyncViewEntityFunc(sdk, data)
-}
-
-
-// PaginatedListAnyProjectSyncView returns a PaginatedListAnyProjectSyncView entity bound to this client.
-// Idiomatic usage: client.PaginatedListAnyProjectSyncView(nil).List(nil, nil) or
-// client.PaginatedListAnyProjectSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) PaginatedListAnyProjectSyncView(data map[string]any) TodoistEntity {
-	return NewPaginatedListAnyProjectSyncViewEntityFunc(sdk, data)
-}
-
-
-// PaginatedListItemSyncView returns a PaginatedListItemSyncView entity bound to this client.
-// Idiomatic usage: client.PaginatedListItemSyncView(nil).List(nil, nil) or
-// client.PaginatedListItemSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) PaginatedListItemSyncView(data map[string]any) TodoistEntity {
-	return NewPaginatedListItemSyncViewEntityFunc(sdk, data)
-}
-
-
-// PaginatedListStr returns a PaginatedListStr entity bound to this client.
-// Idiomatic usage: client.PaginatedListStr(nil).List(nil, nil) or
-// client.PaginatedListStr(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) PaginatedListStr(data map[string]any) TodoistEntity {
-	return NewPaginatedListStrEntityFunc(sdk, data)
 }
 
 
@@ -684,11 +620,11 @@ func (sdk *TodoistSDK) Section(data map[string]any) TodoistEntity {
 }
 
 
-// SectionSyncView returns a SectionSyncView entity bound to this client.
-// Idiomatic usage: client.SectionSyncView(nil).List(nil, nil) or
-// client.SectionSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) SectionSyncView(data map[string]any) TodoistEntity {
-	return NewSectionSyncViewEntityFunc(sdk, data)
+// SharedLabel returns a SharedLabel entity bound to this client.
+// Idiomatic usage: client.SharedLabel(nil).List(nil, nil) or
+// client.SharedLabel(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TodoistSDK) SharedLabel(data map[string]any) TodoistEntity {
+	return NewSharedLabelEntityFunc(sdk, data)
 }
 
 

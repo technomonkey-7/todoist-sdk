@@ -1,0 +1,54 @@
+{
+  "existing": {
+    "shared_label": {
+      "SHARED_LABEL00": {
+        "name": "s28",
+        "new_name": "s29",
+        "next_cursor": "s2a",
+        "results": [],
+        "id": "SHARED_LABEL00"
+      },
+      "SHARED_LABEL01": {
+        "name": "s50",
+        "new_name": "s51",
+        "next_cursor": "s52",
+        "results": [],
+        "id": "SHARED_LABEL01"
+      },
+      "SHARED_LABEL02": {
+        "name": "s78",
+        "new_name": "s79",
+        "next_cursor": "s7a",
+        "results": [],
+        "id": "SHARED_LABEL02"
+      }
+    }
+  },
+  "new": {
+    "shared_label": {
+      "shared_label_ref01": {
+        "name": "sa0",
+        "new_name": "sa1",
+        "next_cursor": "sa2",
+        "results": []
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/labels/shared": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/labels/shared/remove": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/labels/shared/rename": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

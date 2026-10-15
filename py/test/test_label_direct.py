@@ -37,7 +37,7 @@ class TestLabelDirect:
         params = {}
 
         result = client.direct({
-            "path": "api/v1/labels",
+            "path": "api/v1/labels/search",
             "method": "GET",
             "params": params,
         })
@@ -65,7 +65,7 @@ class TestLabelDirect:
         query = {}
         if setup["live"]:
             list_result = client.direct({
-                "path": "api/v1/labels",
+                "path": "api/v1/labels/search",
                 "method": "GET",
                 "params": {},
             })

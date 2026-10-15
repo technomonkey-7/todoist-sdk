@@ -2,6 +2,7 @@ package sdktest
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -190,7 +191,7 @@ func TestLabelEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "list", "load", "remove"} {
+		for _, _op := range []string{"create", "list", "update", "load", "remove"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "label." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -234,6 +235,30 @@ func TestLabelEntity(t *testing.T) {
 		foundItem := vs.Select(entityListToData(labelRef01List), map[string]any{"id": labelRef01Data["id"]})
 		if vs.IsEmpty(foundItem) {
 			t.Fatal("expected to find created entity in list")
+		}
+
+		// UPDATE
+		labelRef01DataUp0Up := map[string]any{
+			"id": labelRef01Data["id"],
+		}
+
+		labelRef01MarkdefUp0Name := "color"
+		labelRef01MarkdefUp0Value := fmt.Sprintf("Mark01-label_ref01_%d", setup.now)
+		labelRef01DataUp0Up[labelRef01MarkdefUp0Name] = labelRef01MarkdefUp0Value
+
+		labelRef01ResdataUp0Result, err := labelRef01Ent.Update(labelRef01DataUp0Up, nil)
+		if err != nil {
+			t.Fatalf("update failed: %v", err)
+		}
+		labelRef01ResdataUp0 := core.ToMapAny(entityData(labelRef01ResdataUp0Result))
+		if labelRef01ResdataUp0 == nil {
+			t.Fatal("expected update result to be a map")
+		}
+		if labelRef01ResdataUp0["id"] != labelRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
+		if labelRef01ResdataUp0[labelRef01MarkdefUp0Name] != labelRef01MarkdefUp0Value {
+			t.Fatalf("expected %s to be updated, got %v", labelRef01MarkdefUp0Name, labelRef01ResdataUp0[labelRef01MarkdefUp0Name])
 		}
 
 		// LOAD

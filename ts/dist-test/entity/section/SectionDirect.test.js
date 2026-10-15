@@ -34,7 +34,7 @@ const utility_1 = require("../../utility");
         const query = {};
         if (setup.live) {
             const listResult = await client.direct({
-                path: 'api/v1/sections',
+                path: 'api/v1/sections/search',
                 method: 'GET',
                 params: {},
             });
@@ -93,7 +93,7 @@ const utility_1 = require("../../utility");
         const params = {};
         const query = {};
         const result = await client.direct({
-            path: 'api/v1/sections',
+            path: 'api/v1/sections/search',
             method: 'GET',
             params,
             query,
@@ -129,6 +129,7 @@ function directSetup(mockres) {
     const env = (0, utility_1.envOverride)({
         'TODOIST_TEST_SECTION_ENTID': {},
         'TODOIST_TEST_LIVE': 'FALSE',
+        'TODOIST_APIKEY': '',
     });
     const live = 'TRUE' === env.TODOIST_TEST_LIVE;
     if (live) {
@@ -136,6 +137,7 @@ function directSetup(mockres) {
         // Merged so the generated fields win: sdk-test-control.json's
         // test.client.options adds to the live client, it does not redirect it.
         const client = new __1.TodoistSDK(Object.assign({}, (0, utility_1.liveClientOptions)(), { system: { fetch: transport.fetch },
+            apikey: env.TODOIST_APIKEY,
         }));
         let idmap = env['TODOIST_TEST_SECTION_ENTID'];
         if ('string' === typeof idmap && idmap.startsWith('{')) {

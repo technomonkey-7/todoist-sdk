@@ -29,6 +29,10 @@ main: kit: entity: section: {
           req: false
           type: "`$STRING`"
         }
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
       }
       r: true
       sh: "Section description, or `null` if it has none."
@@ -52,7 +56,7 @@ main: kit: entity: section: {
       h: "Is Collapsed"
       n: "is_collapsed"
       op: {
-        create: {
+        update: {
           req: false
           type: "`$BOOLEAN`"
         }
@@ -72,7 +76,7 @@ main: kit: entity: section: {
       h: "Name"
       n: "name"
       op: {
-        create: {
+        update: {
           req: false
           type: "`$STRING`"
         }
@@ -106,7 +110,7 @@ main: kit: entity: section: {
       h: "Section Order"
       n: "section_order"
       op: {
-        create: {
+        update: {
           req: false
           type: "`$ANY`"
         }
@@ -142,64 +146,6 @@ main: kit: entity: section: {
     create: {
       name: "create"
       points: [
-        {
-          bf: [
-            "description"
-            "is_collapsed"
-            "name"
-            "section_order"
-          ]
-          co: {
-            id: "POST /api/v1/sections/{section_id}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "id"
-                or: "section_id"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-          }
-          m: "POST"
-          o: "/api/v1/sections/{section_id}"
-          q: {
-            exist: [
-              "id"
-            ]
-          }
-          r: {
-            param: {
-              section_id: "id"
-            }
-          }
-          rs: {
-            kind: "json"
-            media: "application/json"
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "v1"
-            }
-            {
-              lit: "sections"
-            }
-            {
-              var: "id"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
         {
           bf: [
             "description"
@@ -239,6 +185,83 @@ main: kit: entity: section: {
     list: {
       name: "list"
       points: [
+        {
+          co: {
+            id: "GET /api/v1/sections/search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "project_id"
+                or: "project_id"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/sections/search"
+          q: {
+            "$action": "search"
+            exist: [
+              "query"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sections"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
         {
           co: {
             id: "GET /api/v1/sections"
@@ -423,6 +446,181 @@ main: kit: entity: section: {
             }
             {
               var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "description"
+            "is_collapsed"
+            "name"
+            "section_order"
+          ]
+          co: {
+            id: "POST /api/v1/sections/{section_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "section_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/sections/{section_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              section_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sections"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/sections/{section_id}/archive"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "section_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/sections/{section_id}/archive"
+          q: {
+            "$action": "archive"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              section_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sections"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "archive"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /api/v1/sections/{section_id}/unarchive"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "section_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/api/v1/sections/{section_id}/unarchive"
+          q: {
+            "$action": "unarchive"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              section_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "sections"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "unarchive"
             }
           ]
           t: {

@@ -2,6 +2,7 @@ package sdktest
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -190,7 +191,7 @@ func TestSectionEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "list", "load", "remove"} {
+		for _, _op := range []string{"create", "list", "update", "load", "remove"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "section." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -234,6 +235,30 @@ func TestSectionEntity(t *testing.T) {
 		foundItem := vs.Select(entityListToData(sectionRef01List), map[string]any{"id": sectionRef01Data["id"]})
 		if vs.IsEmpty(foundItem) {
 			t.Fatal("expected to find created entity in list")
+		}
+
+		// UPDATE
+		sectionRef01DataUp0Up := map[string]any{
+			"id": sectionRef01Data["id"],
+		}
+
+		sectionRef01MarkdefUp0Name := "added_at"
+		sectionRef01MarkdefUp0Value := fmt.Sprintf("Mark01-section_ref01_%d", setup.now)
+		sectionRef01DataUp0Up[sectionRef01MarkdefUp0Name] = sectionRef01MarkdefUp0Value
+
+		sectionRef01ResdataUp0Result, err := sectionRef01Ent.Update(sectionRef01DataUp0Up, nil)
+		if err != nil {
+			t.Fatalf("update failed: %v", err)
+		}
+		sectionRef01ResdataUp0 := core.ToMapAny(entityData(sectionRef01ResdataUp0Result))
+		if sectionRef01ResdataUp0 == nil {
+			t.Fatal("expected update result to be a map")
+		}
+		if sectionRef01ResdataUp0["id"] != sectionRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
+		if sectionRef01ResdataUp0[sectionRef01MarkdefUp0Name] != sectionRef01MarkdefUp0Value {
+			t.Fatalf("expected %s to be updated, got %v", sectionRef01MarkdefUp0Name, sectionRef01ResdataUp0[sectionRef01MarkdefUp0Name])
 		}
 
 		// LOAD

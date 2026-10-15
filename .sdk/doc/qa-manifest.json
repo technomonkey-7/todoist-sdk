@@ -18,6 +18,7 @@
       "Comment content.",
       "Curent ID for the object.",
       "Current karma score",
+      "Current shared label name to rename.",
       "Cursor for the next page of results, or `null` when there are no more results.",
       "Daily completion statistics for the last 7 days, ordered chronologically",
       "Date and time of the backup version",

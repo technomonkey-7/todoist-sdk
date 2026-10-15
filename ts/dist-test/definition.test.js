@@ -228,378 +228,6 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "any_project_sync_view",
-        "accessor": "AnyProjectSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/projects/{project_id}/join",
-        "action": "join",
-        "args": [
-            {
-                "name": "project_id",
-                "wire": "project_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "project": {
-                "id": "x",
-                "can_assign_tasks": true,
-                "can_comment": true,
-                "child_order": 1,
-                "order_key": "x",
-                "is_collapsed": true,
-                "color": "x",
-                "icon": "x",
-                "creator_uid": "x",
-                "created_at": "x",
-                "is_archived": true,
-                "is_deleted": true,
-                "is_favorite": true,
-                "is_frozen": true,
-                "name": "x",
-                "is_shared": true,
-                "updated_at": "x",
-                "view_style": "x",
-                "default_order": 1,
-                "default_order_key": "x",
-                "description": "x",
-                "public_key": "x",
-                "access": {
-                    "visibility": "restricted",
-                    "configuration": {}
-                },
-                "role": "x",
-                "parent_id": "x",
-                "inbox_project": true
-            },
-            "tasks": [
-                {
-                    "user_id": "x",
-                    "id": "x",
-                    "project_id": "x",
-                    "section_id": "x",
-                    "parent_id": "x",
-                    "added_by_uid": "x",
-                    "assigned_by_uid": "x",
-                    "responsible_uid": "x",
-                    "labels": [
-                        "x"
-                    ],
-                    "deadline": {},
-                    "duration": {},
-                    "is_collapsed": true,
-                    "checked": true,
-                    "is_deleted": true,
-                    "added_at": "x",
-                    "completed_at": "x",
-                    "completed_by_uid": "x",
-                    "updated_at": "x",
-                    "due": {},
-                    "priority": 1,
-                    "child_order": 1,
-                    "order_key": "x",
-                    "content": "x",
-                    "description": "x",
-                    "note_count": 1,
-                    "day_order": 1,
-                    "completed_count": 1,
-                    "postponed_count": 1
-                }
-            ],
-            "sections": [
-                {
-                    "id": "x",
-                    "user_id": "x",
-                    "project_id": "x",
-                    "added_at": "2026-01-01T00:00:00Z",
-                    "updated_at": "x",
-                    "archived_at": "x",
-                    "name": "x",
-                    "description": "x",
-                    "section_order": 1,
-                    "order_key": "x",
-                    "is_collapsed": true,
-                    "is_archived": true,
-                    "is_deleted": true
-                }
-            ],
-            "comments": [
-                {
-                    "id": "x",
-                    "posted_uid": "x",
-                    "content": "x",
-                    "file_attachment": {},
-                    "uids_to_notify": [
-                        "x"
-                    ],
-                    "is_deleted": true,
-                    "posted_at": "x",
-                    "reactions": {},
-                    "project_id": "x"
-                }
-            ],
-            "collaborators": [
-                {
-                    "id": "x",
-                    "full_name": "x",
-                    "email": "x",
-                    "timezone": "x",
-                    "image_id": "x",
-                    "status": {
-                        "message": "x",
-                        "emoji": "x",
-                        "active_until": "2026-01-01T00:00:00Z",
-                        "effects": {}
-                    },
-                    "is_deleted": true
-                }
-            ],
-            "collaborator_states": [
-                {}
-            ],
-            "folder": {
-                "workspace_id": "x",
-                "name": "x",
-                "is_deleted": true,
-                "id": "x",
-                "default_order": 1,
-                "default_order_key": "x",
-                "child_order": 1
-            },
-            "subprojects": [
-                {
-                    "id": "x",
-                    "can_assign_tasks": true,
-                    "can_comment": true,
-                    "child_order": 1,
-                    "order_key": "x",
-                    "is_collapsed": true,
-                    "color": "x",
-                    "icon": "x",
-                    "creator_uid": "x",
-                    "created_at": "x",
-                    "is_archived": true,
-                    "is_deleted": true,
-                    "is_favorite": true,
-                    "is_frozen": true,
-                    "name": "x",
-                    "is_shared": true,
-                    "updated_at": "x",
-                    "view_style": "x",
-                    "default_order": 1,
-                    "default_order_key": "x",
-                    "description": "x",
-                    "public_key": "x",
-                    "access": {
-                        "visibility": "restricted"
-                    },
-                    "role": "x",
-                    "parent_id": "x",
-                    "inbox_project": true
-                }
-            ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "any_project_sync_view",
-        "accessor": "AnyProjectSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/projects",
-        "args": [],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "can_assign_tasks": true,
-            "can_comment": true,
-            "child_order": 1,
-            "order_key": "x",
-            "is_collapsed": true,
-            "color": "x",
-            "icon": "x",
-            "creator_uid": "x",
-            "created_at": "x",
-            "is_archived": true,
-            "is_deleted": true,
-            "is_favorite": true,
-            "is_frozen": true,
-            "name": "x",
-            "is_shared": true,
-            "updated_at": "x",
-            "view_style": "x",
-            "default_order": 1,
-            "default_order_key": "x",
-            "description": "x",
-            "public_key": "x",
-            "access": {
-                "visibility": "restricted",
-                "configuration": {}
-            },
-            "role": "x",
-            "parent_id": "x",
-            "inbox_project": true
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "any_project_sync_view",
-        "accessor": "AnyProjectSyncView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/projects",
-        "args": [],
-        "select": {
-            "cursor": "v1",
-            "folder_id": "v1",
-            "limit": 50,
-            "workspace_id": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "folder_id",
-            "workspace_id",
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "folder_id",
-                "wire": "folder_id"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "workspace_id",
-                "wire": "workspace_id"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "id": "x",
-                    "can_assign_tasks": true,
-                    "can_comment": true,
-                    "child_order": 1,
-                    "order_key": "x",
-                    "is_collapsed": true,
-                    "color": "x",
-                    "icon": "x",
-                    "creator_uid": "x",
-                    "created_at": "x",
-                    "is_archived": true,
-                    "is_deleted": true,
-                    "is_favorite": true,
-                    "is_frozen": true,
-                    "name": "x",
-                    "is_shared": true,
-                    "updated_at": "x",
-                    "view_style": "x",
-                    "default_order": 1,
-                    "default_order_key": "x",
-                    "description": "x",
-                    "public_key": "x",
-                    "access": {
-                        "visibility": "restricted"
-                    },
-                    "role": "x",
-                    "parent_id": "x",
-                    "inbox_project": true
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "any_project_sync_view",
-        "accessor": "AnyProjectSyncView",
-        "op": "load",
-        "method": "GET",
-        "path": "/api/v1/projects/{project_id}",
-        "args": [
-            {
-                "name": "project_id",
-                "wire": "project_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "can_assign_tasks": true,
-            "can_comment": true,
-            "child_order": 1,
-            "order_key": "x",
-            "is_collapsed": true,
-            "color": "x",
-            "icon": "x",
-            "creator_uid": "x",
-            "created_at": "x",
-            "is_archived": true,
-            "is_deleted": true,
-            "is_favorite": true,
-            "is_frozen": true,
-            "name": "x",
-            "is_shared": true,
-            "updated_at": "x",
-            "view_style": "x",
-            "default_order": 1,
-            "default_order_key": "x",
-            "description": "x",
-            "public_key": "x",
-            "access": {
-                "visibility": "restricted",
-                "configuration": {}
-            },
-            "role": "x",
-            "parent_id": "x",
-            "inbox_project": true
-        },
-        "idField": "id"
-    },
-    {
         "entity": "archived",
         "accessor": "Archived",
         "op": "list",
@@ -819,8 +447,326 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "by_completion_date",
-        "accessor": "ByCompletionDate",
+        "entity": "collaborator",
+        "accessor": "Collaborator",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/projects/{project_id}/collaborators",
+        "args": [
+            {
+                "name": "project_id",
+                "wire": "project_id",
+                "value": "p1"
+            }
+        ],
+        "select": {
+            "cursor": "v1",
+            "limit": 50,
+            "public_key": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "cursor",
+            "limit",
+            "public_key"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "public_key",
+                "wire": "public_key"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "id": "x",
+                    "name": "x",
+                    "email": "x"
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "comment",
+        "accessor": "Comment",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/comments",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "posted_uid": "x",
+            "content": "x",
+            "file_attachment": {},
+            "uids_to_notify": [
+                "x"
+            ],
+            "is_deleted": true,
+            "posted_at": "x",
+            "reactions": {}
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "comment",
+        "accessor": "Comment",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/comments",
+        "args": [],
+        "select": {
+            "cursor": "v1",
+            "limit": 50,
+            "project_id": "v1",
+            "public_key": "v1",
+            "task_id": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "project_id",
+            "task_id",
+            "cursor",
+            "limit",
+            "public_key"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "project_id",
+                "wire": "project_id"
+            },
+            {
+                "name": "public_key",
+                "wire": "public_key"
+            },
+            {
+                "name": "task_id",
+                "wire": "task_id"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "id": "x",
+                    "posted_uid": "x",
+                    "content": "x",
+                    "file_attachment": {},
+                    "uids_to_notify": [
+                        "x"
+                    ],
+                    "is_deleted": true,
+                    "posted_at": "x",
+                    "reactions": {}
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "comment",
+        "accessor": "Comment",
+        "op": "load",
+        "method": "GET",
+        "path": "/api/v1/comments/{comment_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "comment_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "posted_uid": "x",
+            "content": "x",
+            "file_attachment": {},
+            "uids_to_notify": [
+                "x"
+            ],
+            "is_deleted": true,
+            "posted_at": "x",
+            "reactions": {}
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "comment",
+        "accessor": "Comment",
+        "op": "remove",
+        "method": "DELETE",
+        "path": "/api/v1/comments/{comment_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "comment_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "comment",
+        "accessor": "Comment",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/comments/{comment_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "comment_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "posted_uid": "x",
+            "content": "x",
+            "file_attachment": {},
+            "uids_to_notify": [
+                "x"
+            ],
+            "is_deleted": true,
+            "posted_at": "x",
+            "reactions": {}
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "comment",
+        "accessor": "Comment",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/comments/{comment_id}/reactions",
+        "action": "reaction_add",
+        "args": [
+            {
+                "name": "id",
+                "wire": "comment_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "posted_uid": "x",
+            "content": "x",
+            "file_attachment": {},
+            "uids_to_notify": [
+                "x"
+            ],
+            "is_deleted": true,
+            "posted_at": "x",
+            "reactions": {}
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "comment",
+        "accessor": "Comment",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/comments/{comment_id}/reactions/remove",
+        "action": "reaction_remove",
+        "args": [
+            {
+                "name": "id",
+                "wire": "comment_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 204,
+        "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "completed_task",
+        "accessor": "CompletedTask",
         "op": "list",
         "method": "GET",
         "path": "/api/v1/tasks/completed/by_completion_date",
@@ -944,11 +890,12 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "by_due_date",
-        "accessor": "ByDueDate",
+        "entity": "completed_task",
+        "accessor": "CompletedTask",
         "op": "list",
         "method": "GET",
         "path": "/api/v1/tasks/completed/by_due_date",
+        "action": "by_due_date",
         "args": [],
         "select": {
             "since": "v1",
@@ -1060,149 +1007,6 @@ const PLAN = [
             ],
             "next_cursor": "x"
         },
-        "idField": "id"
-    },
-    {
-        "entity": "collaborator",
-        "accessor": "Collaborator",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/projects/{project_id}/collaborators",
-        "args": [
-            {
-                "name": "project_id",
-                "wire": "project_id",
-                "value": "p1"
-            }
-        ],
-        "select": {
-            "cursor": "v1",
-            "limit": 50,
-            "public_key": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "cursor",
-            "limit",
-            "public_key"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "public_key",
-                "wire": "public_key"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "id": "x",
-                    "name": "x",
-                    "email": "x"
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "comment",
-        "accessor": "Comment",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/comments/{comment_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "comment_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "posted_uid": "x",
-            "content": "x",
-            "file_attachment": {},
-            "uids_to_notify": [
-                "x"
-            ],
-            "is_deleted": true,
-            "posted_at": "x",
-            "reactions": {}
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "comment",
-        "accessor": "Comment",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/comments/{comment_id}/reactions/remove",
-        "action": "reaction_remove",
-        "args": [
-            {
-                "name": "id",
-                "wire": "comment_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 204,
-        "sample": null,
-        "idField": "id"
-    },
-    {
-        "entity": "comment",
-        "accessor": "Comment",
-        "op": "remove",
-        "method": "DELETE",
-        "path": "/api/v1/comments/{comment_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "comment_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": null,
         "idField": "id"
     },
     {
@@ -1614,290 +1418,12 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "item_sync_view",
-        "accessor": "ItemSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/tasks/{task_id}/close",
-        "action": "close",
-        "args": [
-            {
-                "name": "task_id",
-                "wire": "task_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": null,
-        "idField": "id"
-    },
-    {
-        "entity": "item_sync_view",
-        "accessor": "ItemSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/tasks/{task_id}/reopen",
-        "action": "reopen",
-        "args": [
-            {
-                "name": "task_id",
-                "wire": "task_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": null,
-        "idField": "id"
-    },
-    {
-        "entity": "item_sync_view",
-        "accessor": "ItemSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/tasks",
-        "args": [],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "user_id": "x",
-            "id": "x",
-            "project_id": "x",
-            "section_id": "x",
-            "parent_id": "x",
-            "added_by_uid": "x",
-            "assigned_by_uid": "x",
-            "responsible_uid": "x",
-            "labels": [
-                "x"
-            ],
-            "deadline": {},
-            "duration": {},
-            "is_collapsed": true,
-            "checked": true,
-            "is_deleted": true,
-            "added_at": "x",
-            "completed_at": "x",
-            "completed_by_uid": "x",
-            "updated_at": "x",
-            "due": {},
-            "priority": 1,
-            "child_order": 1,
-            "order_key": "x",
-            "content": "x",
-            "description": "x",
-            "note_count": 1,
-            "day_order": 1,
-            "completed_count": 1,
-            "postponed_count": 1
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "item_sync_view",
-        "accessor": "ItemSyncView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/tasks",
-        "args": [],
-        "select": {
-            "cursor": "v1",
-            "ids": "v1",
-            "label": "v1",
-            "limit": 50,
-            "parent_id": "v1",
-            "project_id": "v1",
-            "section_id": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "project_id",
-            "section_id",
-            "parent_id",
-            "label",
-            "ids",
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "ids",
-                "wire": "ids"
-            },
-            {
-                "name": "label",
-                "wire": "label"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "parent_id",
-                "wire": "parent_id"
-            },
-            {
-                "name": "project_id",
-                "wire": "project_id"
-            },
-            {
-                "name": "section_id",
-                "wire": "section_id"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "user_id": "x",
-                    "id": "x",
-                    "project_id": "x",
-                    "section_id": "x",
-                    "parent_id": "x",
-                    "added_by_uid": "x",
-                    "assigned_by_uid": "x",
-                    "responsible_uid": "x",
-                    "labels": [
-                        "x"
-                    ],
-                    "deadline": {},
-                    "duration": {},
-                    "is_collapsed": true,
-                    "checked": true,
-                    "is_deleted": true,
-                    "added_at": "x",
-                    "completed_at": "x",
-                    "completed_by_uid": "x",
-                    "updated_at": "x",
-                    "due": {},
-                    "priority": 1,
-                    "child_order": 1,
-                    "order_key": "x",
-                    "content": "x",
-                    "description": "x",
-                    "note_count": 1,
-                    "day_order": 1,
-                    "completed_count": 1,
-                    "postponed_count": 1
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "item_sync_view",
-        "accessor": "ItemSyncView",
-        "op": "load",
-        "method": "GET",
-        "path": "/api/v1/tasks/{task_id}",
-        "args": [
-            {
-                "name": "task_id",
-                "wire": "task_id",
-                "value": "p1"
-            }
-        ],
-        "select": {
-            "public_key": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "public_key"
-        ],
-        "queryArgs": [
-            {
-                "name": "public_key",
-                "wire": "public_key"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "user_id": "x",
-            "id": "x",
-            "project_id": "x",
-            "section_id": "x",
-            "parent_id": "x",
-            "added_by_uid": "x",
-            "assigned_by_uid": "x",
-            "responsible_uid": "x",
-            "labels": [
-                "x"
-            ],
-            "deadline": {},
-            "duration": {},
-            "is_collapsed": true,
-            "checked": true,
-            "is_deleted": true,
-            "added_at": "x",
-            "completed_at": "x",
-            "completed_by_uid": "x",
-            "updated_at": "x",
-            "due": {},
-            "priority": 1,
-            "child_order": 1,
-            "order_key": "x",
-            "content": "x",
-            "description": "x",
-            "note_count": 1,
-            "day_order": 1,
-            "completed_count": 1,
-            "postponed_count": 1
-        },
-        "idField": "id"
-    },
-    {
         "entity": "label",
         "accessor": "Label",
         "op": "create",
         "method": "POST",
-        "path": "/api/v1/labels/{label_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "label_id",
-                "value": "p1"
-            }
-        ],
+        "path": "/api/v1/labels",
+        "args": [],
         "select": {},
         "headers": [],
         "cookies": [],
@@ -1914,6 +1440,59 @@ const PLAN = [
             "color": "x",
             "order": 1,
             "is_favorite": true
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "label",
+        "accessor": "Label",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/labels/search",
+        "action": "search",
+        "args": [],
+        "select": {
+            "query": "v1",
+            "cursor": "v1",
+            "limit": 50
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "query",
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "query",
+                "wire": "query"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "id": "x",
+                    "name": "x",
+                    "color": "x",
+                    "order": 1,
+                    "is_favorite": true
+                }
+            ],
+            "next_cursor": "x"
         },
         "idField": "id"
     },
@@ -2022,54 +1601,34 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "label_rest_view",
-        "accessor": "LabelRestView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/labels/search",
-        "args": [],
-        "select": {
-            "query": "v1",
-            "cursor": "v1",
-            "limit": 50
-        },
+        "entity": "label",
+        "accessor": "Label",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/labels/{label_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "label_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
         "headers": [],
         "cookies": [],
         "responseMedia": [
             "application/json"
         ],
-        "query": [
-            "query",
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "query",
-                "wire": "query"
-            }
-        ],
+        "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
-            "results": [
-                {
-                    "id": "x",
-                    "name": "x",
-                    "color": "x",
-                    "order": 1,
-                    "is_favorite": true
-                }
-            ],
-            "next_cursor": "x"
+            "id": "x",
+            "name": "x",
+            "color": "x",
+            "order": 1,
+            "is_favorite": true
         },
         "idField": "id"
     },
@@ -2182,180 +1741,6 @@ const PLAN = [
             "access_token": "x",
             "token_type": "x",
             "expires_in": 1
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "note_sync_view",
-        "accessor": "NoteSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/comments/{comment_id}/reactions",
-        "args": [
-            {
-                "name": "comment_id",
-                "wire": "comment_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "posted_uid": "x",
-            "content": "x",
-            "file_attachment": {},
-            "uids_to_notify": [
-                "x"
-            ],
-            "is_deleted": true,
-            "posted_at": "x",
-            "reactions": {}
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "note_sync_view",
-        "accessor": "NoteSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/comments",
-        "args": [],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "posted_uid": "x",
-            "content": "x",
-            "file_attachment": {},
-            "uids_to_notify": [
-                "x"
-            ],
-            "is_deleted": true,
-            "posted_at": "x",
-            "reactions": {}
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "note_sync_view",
-        "accessor": "NoteSyncView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/comments",
-        "args": [],
-        "select": {
-            "cursor": "v1",
-            "limit": 50,
-            "project_id": "v1",
-            "public_key": "v1",
-            "task_id": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "project_id",
-            "task_id",
-            "cursor",
-            "limit",
-            "public_key"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "project_id",
-                "wire": "project_id"
-            },
-            {
-                "name": "public_key",
-                "wire": "public_key"
-            },
-            {
-                "name": "task_id",
-                "wire": "task_id"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "id": "x",
-                    "posted_uid": "x",
-                    "content": "x",
-                    "file_attachment": {},
-                    "uids_to_notify": [
-                        "x"
-                    ],
-                    "is_deleted": true,
-                    "posted_at": "x",
-                    "reactions": {}
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "note_sync_view",
-        "accessor": "NoteSyncView",
-        "op": "load",
-        "method": "GET",
-        "path": "/api/v1/comments/{comment_id}",
-        "args": [
-            {
-                "name": "comment_id",
-                "wire": "comment_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "posted_uid": "x",
-            "content": "x",
-            "file_attachment": {},
-            "uids_to_notify": [
-                "x"
-            ],
-            "is_deleted": true,
-            "posted_at": "x",
-            "reactions": {}
         },
         "idField": "id"
     },
@@ -2680,279 +2065,6 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "paginated_list_any_project_sync_view",
-        "accessor": "PaginatedListAnyProjectSyncView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/projects/search",
-        "args": [],
-        "select": {
-            "query": "v1",
-            "cursor": "v1",
-            "limit": 50
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "query",
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "query",
-                "wire": "query"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "id": "x",
-                    "can_assign_tasks": true,
-                    "can_comment": true,
-                    "child_order": 1,
-                    "order_key": "x",
-                    "is_collapsed": true,
-                    "color": "x",
-                    "icon": "x",
-                    "creator_uid": "x",
-                    "created_at": "x",
-                    "is_archived": true,
-                    "is_deleted": true,
-                    "is_favorite": true,
-                    "is_frozen": true,
-                    "name": "x",
-                    "is_shared": true,
-                    "updated_at": "x",
-                    "view_style": "x",
-                    "default_order": 1,
-                    "default_order_key": "x",
-                    "description": "x",
-                    "public_key": "x",
-                    "access": {
-                        "visibility": "restricted"
-                    },
-                    "role": "x",
-                    "parent_id": "x",
-                    "inbox_project": true
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "paginated_list_any_project_sync_view",
-        "accessor": "PaginatedListAnyProjectSyncView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/projects/archived",
-        "args": [],
-        "select": {
-            "cursor": "v1",
-            "limit": 50
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "id": "x",
-                    "can_assign_tasks": true,
-                    "can_comment": true,
-                    "child_order": 1,
-                    "order_key": "x",
-                    "is_collapsed": true,
-                    "color": "x",
-                    "icon": "x",
-                    "creator_uid": "x",
-                    "created_at": "x",
-                    "is_archived": true,
-                    "is_deleted": true,
-                    "is_favorite": true,
-                    "is_frozen": true,
-                    "name": "x",
-                    "is_shared": true,
-                    "updated_at": "x",
-                    "view_style": "x",
-                    "default_order": 1,
-                    "default_order_key": "x",
-                    "description": "x",
-                    "public_key": "x",
-                    "access": {
-                        "visibility": "restricted"
-                    },
-                    "role": "x",
-                    "parent_id": "x",
-                    "inbox_project": true
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "paginated_list_item_sync_view",
-        "accessor": "PaginatedListItemSyncView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/tasks/filter",
-        "args": [],
-        "select": {
-            "query": "v1",
-            "cursor": "v1",
-            "lang": "v1",
-            "limit": 50
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "query",
-            "lang",
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "lang",
-                "wire": "lang"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "query",
-                "wire": "query"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "user_id": "x",
-                    "id": "x",
-                    "project_id": "x",
-                    "section_id": "x",
-                    "parent_id": "x",
-                    "added_by_uid": "x",
-                    "assigned_by_uid": "x",
-                    "responsible_uid": "x",
-                    "labels": [
-                        "x"
-                    ],
-                    "deadline": {},
-                    "duration": {},
-                    "is_collapsed": true,
-                    "checked": true,
-                    "is_deleted": true,
-                    "added_at": "x",
-                    "completed_at": "x",
-                    "completed_by_uid": "x",
-                    "updated_at": "x",
-                    "due": {},
-                    "priority": 1,
-                    "child_order": 1,
-                    "order_key": "x",
-                    "content": "x",
-                    "description": "x",
-                    "note_count": 1,
-                    "day_order": 1,
-                    "completed_count": 1,
-                    "postponed_count": 1
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "paginated_list_str",
-        "accessor": "PaginatedListStr",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/labels/shared",
-        "args": [],
-        "select": {
-            "cursor": "v1",
-            "limit": 50,
-            "omit_personal": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "omit_personal",
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "omit_personal",
-                "wire": "omit_personal"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                "x"
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
         "entity": "plan_detail",
         "accessor": "PlanDetail",
         "op": "list",
@@ -3129,6 +2241,339 @@ const PLAN = [
     {
         "entity": "project",
         "accessor": "Project",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/projects",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "can_assign_tasks": true,
+            "can_comment": true,
+            "child_order": 1,
+            "order_key": "x",
+            "is_collapsed": true,
+            "color": "x",
+            "icon": "x",
+            "creator_uid": "x",
+            "created_at": "x",
+            "is_archived": true,
+            "is_deleted": true,
+            "is_favorite": true,
+            "is_frozen": true,
+            "name": "x",
+            "is_shared": true,
+            "updated_at": "x",
+            "view_style": "x",
+            "default_order": 1,
+            "default_order_key": "x",
+            "description": "x",
+            "public_key": "x",
+            "access": {
+                "visibility": "restricted",
+                "configuration": {}
+            },
+            "role": "x",
+            "parent_id": "x",
+            "inbox_project": true
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/projects/search",
+        "action": "search",
+        "args": [],
+        "select": {
+            "query": "v1",
+            "cursor": "v1",
+            "limit": 50
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "query",
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "query",
+                "wire": "query"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "id": "x",
+                    "can_assign_tasks": true,
+                    "can_comment": true,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "color": "x",
+                    "icon": "x",
+                    "creator_uid": "x",
+                    "created_at": "x",
+                    "is_archived": true,
+                    "is_deleted": true,
+                    "is_favorite": true,
+                    "is_frozen": true,
+                    "name": "x",
+                    "is_shared": true,
+                    "updated_at": "x",
+                    "view_style": "x",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "description": "x",
+                    "public_key": "x",
+                    "access": {
+                        "visibility": "restricted"
+                    },
+                    "role": "x",
+                    "parent_id": "x",
+                    "inbox_project": true
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/projects",
+        "args": [],
+        "select": {
+            "cursor": "v1",
+            "folder_id": "v1",
+            "limit": 50,
+            "workspace_id": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "folder_id",
+            "workspace_id",
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "folder_id",
+                "wire": "folder_id"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "workspace_id",
+                "wire": "workspace_id"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "id": "x",
+                    "can_assign_tasks": true,
+                    "can_comment": true,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "color": "x",
+                    "icon": "x",
+                    "creator_uid": "x",
+                    "created_at": "x",
+                    "is_archived": true,
+                    "is_deleted": true,
+                    "is_favorite": true,
+                    "is_frozen": true,
+                    "name": "x",
+                    "is_shared": true,
+                    "updated_at": "x",
+                    "view_style": "x",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "description": "x",
+                    "public_key": "x",
+                    "access": {
+                        "visibility": "restricted"
+                    },
+                    "role": "x",
+                    "parent_id": "x",
+                    "inbox_project": true
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/projects/archived",
+        "action": "archived",
+        "args": [],
+        "select": {
+            "cursor": "v1",
+            "limit": 50
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "id": "x",
+                    "can_assign_tasks": true,
+                    "can_comment": true,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "color": "x",
+                    "icon": "x",
+                    "creator_uid": "x",
+                    "created_at": "x",
+                    "is_archived": true,
+                    "is_deleted": true,
+                    "is_favorite": true,
+                    "is_frozen": true,
+                    "name": "x",
+                    "is_shared": true,
+                    "updated_at": "x",
+                    "view_style": "x",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "description": "x",
+                    "public_key": "x",
+                    "access": {
+                        "visibility": "restricted"
+                    },
+                    "role": "x",
+                    "parent_id": "x",
+                    "inbox_project": true
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "load",
+        "method": "GET",
+        "path": "/api/v1/projects/{project_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "project_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "can_assign_tasks": true,
+            "can_comment": true,
+            "child_order": 1,
+            "order_key": "x",
+            "is_collapsed": true,
+            "color": "x",
+            "icon": "x",
+            "creator_uid": "x",
+            "created_at": "x",
+            "is_archived": true,
+            "is_deleted": true,
+            "is_favorite": true,
+            "is_frozen": true,
+            "name": "x",
+            "is_shared": true,
+            "updated_at": "x",
+            "view_style": "x",
+            "default_order": 1,
+            "default_order_key": "x",
+            "description": "x",
+            "public_key": "x",
+            "access": {
+                "visibility": "restricted",
+                "configuration": {}
+            },
+            "role": "x",
+            "parent_id": "x",
+            "inbox_project": true
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
         "op": "remove",
         "method": "DELETE",
         "path": "/api/v1/projects/{project_id}",
@@ -3150,6 +2595,361 @@ const PLAN = [
         "auth": null,
         "status": 200,
         "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/projects/{project_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "project_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "can_assign_tasks": true,
+            "can_comment": true,
+            "child_order": 1,
+            "order_key": "x",
+            "is_collapsed": true,
+            "color": "x",
+            "icon": "x",
+            "creator_uid": "x",
+            "created_at": "x",
+            "is_archived": true,
+            "is_deleted": true,
+            "is_favorite": true,
+            "is_frozen": true,
+            "name": "x",
+            "is_shared": true,
+            "updated_at": "x",
+            "view_style": "x",
+            "default_order": 1,
+            "default_order_key": "x",
+            "description": "x",
+            "public_key": "x",
+            "access": {
+                "visibility": "restricted",
+                "configuration": {}
+            },
+            "role": "x",
+            "parent_id": "x",
+            "inbox_project": true
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/projects/{project_id}/archive",
+        "action": "archive",
+        "args": [
+            {
+                "name": "id",
+                "wire": "project_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "can_assign_tasks": true,
+            "can_comment": true,
+            "child_order": 1,
+            "order_key": "x",
+            "is_collapsed": true,
+            "color": "x",
+            "icon": "x",
+            "creator_uid": "x",
+            "created_at": "x",
+            "is_archived": true,
+            "is_deleted": true,
+            "is_favorite": true,
+            "is_frozen": true,
+            "name": "x",
+            "is_shared": true,
+            "updated_at": "x",
+            "view_style": "x",
+            "default_order": 1,
+            "default_order_key": "x",
+            "description": "x",
+            "public_key": "x",
+            "access": {
+                "visibility": "restricted",
+                "configuration": {}
+            },
+            "role": "x",
+            "parent_id": "x",
+            "inbox_project": true
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/projects/{project_id}/join",
+        "action": "join",
+        "args": [
+            {
+                "name": "id",
+                "wire": "project_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "project": {
+                "id": "x",
+                "can_assign_tasks": true,
+                "can_comment": true,
+                "child_order": 1,
+                "order_key": "x",
+                "is_collapsed": true,
+                "color": "x",
+                "icon": "x",
+                "creator_uid": "x",
+                "created_at": "x",
+                "is_archived": true,
+                "is_deleted": true,
+                "is_favorite": true,
+                "is_frozen": true,
+                "name": "x",
+                "is_shared": true,
+                "updated_at": "x",
+                "view_style": "x",
+                "default_order": 1,
+                "default_order_key": "x",
+                "description": "x",
+                "public_key": "x",
+                "access": {
+                    "visibility": "restricted",
+                    "configuration": {}
+                },
+                "role": "x",
+                "parent_id": "x",
+                "inbox_project": true
+            },
+            "tasks": [
+                {
+                    "user_id": "x",
+                    "id": "x",
+                    "project_id": "x",
+                    "section_id": "x",
+                    "parent_id": "x",
+                    "added_by_uid": "x",
+                    "assigned_by_uid": "x",
+                    "responsible_uid": "x",
+                    "labels": [
+                        "x"
+                    ],
+                    "deadline": {},
+                    "duration": {},
+                    "is_collapsed": true,
+                    "checked": true,
+                    "is_deleted": true,
+                    "added_at": "x",
+                    "completed_at": "x",
+                    "completed_by_uid": "x",
+                    "updated_at": "x",
+                    "due": {},
+                    "priority": 1,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "content": "x",
+                    "description": "x",
+                    "note_count": 1,
+                    "day_order": 1,
+                    "completed_count": 1,
+                    "postponed_count": 1
+                }
+            ],
+            "sections": [
+                {
+                    "id": "x",
+                    "user_id": "x",
+                    "project_id": "x",
+                    "added_at": "2026-01-01T00:00:00Z",
+                    "updated_at": "x",
+                    "archived_at": "x",
+                    "name": "x",
+                    "description": "x",
+                    "section_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "is_archived": true,
+                    "is_deleted": true
+                }
+            ],
+            "comments": [
+                {
+                    "id": "x",
+                    "posted_uid": "x",
+                    "content": "x",
+                    "file_attachment": {},
+                    "uids_to_notify": [
+                        "x"
+                    ],
+                    "is_deleted": true,
+                    "posted_at": "x",
+                    "reactions": {},
+                    "project_id": "x"
+                }
+            ],
+            "collaborators": [
+                {
+                    "id": "x",
+                    "full_name": "x",
+                    "email": "x",
+                    "timezone": "x",
+                    "image_id": "x",
+                    "status": {
+                        "message": "x",
+                        "emoji": "x",
+                        "active_until": "2026-01-01T00:00:00Z",
+                        "effects": {}
+                    },
+                    "is_deleted": true
+                }
+            ],
+            "collaborator_states": [
+                {}
+            ],
+            "folder": {
+                "workspace_id": "x",
+                "name": "x",
+                "is_deleted": true,
+                "id": "x",
+                "default_order": 1,
+                "default_order_key": "x",
+                "child_order": 1
+            },
+            "subprojects": [
+                {
+                    "id": "x",
+                    "can_assign_tasks": true,
+                    "can_comment": true,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "color": "x",
+                    "icon": "x",
+                    "creator_uid": "x",
+                    "created_at": "x",
+                    "is_archived": true,
+                    "is_deleted": true,
+                    "is_favorite": true,
+                    "is_frozen": true,
+                    "name": "x",
+                    "is_shared": true,
+                    "updated_at": "x",
+                    "view_style": "x",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "description": "x",
+                    "public_key": "x",
+                    "access": {
+                        "visibility": "restricted"
+                    },
+                    "role": "x",
+                    "parent_id": "x",
+                    "inbox_project": true
+                }
+            ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project",
+        "accessor": "Project",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/projects/{project_id}/unarchive",
+        "action": "unarchive",
+        "args": [
+            {
+                "name": "id",
+                "wire": "project_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "can_assign_tasks": true,
+            "can_comment": true,
+            "child_order": 1,
+            "order_key": "x",
+            "is_collapsed": true,
+            "color": "x",
+            "icon": "x",
+            "creator_uid": "x",
+            "created_at": "x",
+            "is_archived": true,
+            "is_deleted": true,
+            "is_favorite": true,
+            "is_frozen": true,
+            "name": "x",
+            "is_shared": true,
+            "updated_at": "x",
+            "view_style": "x",
+            "default_order": 1,
+            "default_order_key": "x",
+            "description": "x",
+            "public_key": "x",
+            "access": {
+                "visibility": "restricted",
+                "configuration": {}
+            },
+            "role": "x",
+            "parent_id": "x",
+            "inbox_project": true
+        },
         "idField": "id"
     },
     {
@@ -3423,14 +3223,8 @@ const PLAN = [
         "accessor": "Section",
         "op": "create",
         "method": "POST",
-        "path": "/api/v1/sections/{section_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "section_id",
-                "value": "p1"
-            }
-        ],
+        "path": "/api/v1/sections",
+        "args": [],
         "select": {},
         "headers": [],
         "cookies": [],
@@ -3461,34 +3255,73 @@ const PLAN = [
     {
         "entity": "section",
         "accessor": "Section",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/sections",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/sections/search",
+        "action": "search",
         "args": [],
-        "select": {},
+        "select": {
+            "query": "v1",
+            "cursor": "v1",
+            "limit": 50,
+            "project_id": "v1",
+            "workspace_id": "v1"
+        },
         "headers": [],
         "cookies": [],
         "responseMedia": [
             "application/json"
         ],
-        "query": [],
-        "queryArgs": [],
+        "query": [
+            "query",
+            "project_id",
+            "workspace_id",
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "project_id",
+                "wire": "project_id"
+            },
+            {
+                "name": "query",
+                "wire": "query"
+            },
+            {
+                "name": "workspace_id",
+                "wire": "workspace_id"
+            }
+        ],
         "auth": null,
         "status": 200,
         "sample": {
-            "id": "x",
-            "user_id": "x",
-            "project_id": "x",
-            "added_at": "2026-01-01T00:00:00Z",
-            "updated_at": "x",
-            "archived_at": "x",
-            "name": "x",
-            "description": "x",
-            "section_order": 1,
-            "order_key": "x",
-            "is_collapsed": true,
-            "is_archived": true,
-            "is_deleted": true
+            "results": [
+                {
+                    "id": "x",
+                    "user_id": "x",
+                    "project_id": "x",
+                    "added_at": "2026-01-01T00:00:00Z",
+                    "updated_at": "x",
+                    "archived_at": "x",
+                    "name": "x",
+                    "description": "x",
+                    "section_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "is_archived": true,
+                    "is_deleted": true
+                }
+            ],
+            "next_cursor": "x"
         },
         "idField": "id"
     },
@@ -3640,9 +3473,49 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "section_sync_view",
-        "accessor": "SectionSyncView",
-        "op": "create",
+        "entity": "section",
+        "accessor": "Section",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/sections/{section_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "section_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "user_id": "x",
+            "project_id": "x",
+            "added_at": "2026-01-01T00:00:00Z",
+            "updated_at": "x",
+            "archived_at": "x",
+            "name": "x",
+            "description": "x",
+            "section_order": 1,
+            "order_key": "x",
+            "is_collapsed": true,
+            "is_archived": true,
+            "is_deleted": true
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "section",
+        "accessor": "Section",
+        "op": "update",
         "method": "POST",
         "path": "/api/v1/sections/{section_id}/archive",
         "action": "archive",
@@ -3681,9 +3554,9 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "section_sync_view",
-        "accessor": "SectionSyncView",
-        "op": "create",
+        "entity": "section",
+        "accessor": "Section",
+        "op": "update",
         "method": "POST",
         "path": "/api/v1/sections/{section_id}/unarchive",
         "action": "unarchive",
@@ -3722,18 +3595,16 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "section_sync_view",
-        "accessor": "SectionSyncView",
+        "entity": "shared_label",
+        "accessor": "SharedLabel",
         "op": "list",
         "method": "GET",
-        "path": "/api/v1/sections/search",
+        "path": "/api/v1/labels/shared",
         "args": [],
         "select": {
-            "query": "v1",
             "cursor": "v1",
             "limit": 50,
-            "project_id": "v1",
-            "workspace_id": "v1"
+            "omit_personal": "v1"
         },
         "headers": [],
         "cookies": [],
@@ -3741,9 +3612,7 @@ const PLAN = [
             "application/json"
         ],
         "query": [
-            "query",
-            "project_id",
-            "workspace_id",
+            "omit_personal",
             "cursor",
             "limit"
         ],
@@ -3757,40 +3626,58 @@ const PLAN = [
                 "wire": "limit"
             },
             {
-                "name": "project_id",
-                "wire": "project_id"
-            },
-            {
-                "name": "query",
-                "wire": "query"
-            },
-            {
-                "name": "workspace_id",
-                "wire": "workspace_id"
+                "name": "omit_personal",
+                "wire": "omit_personal"
             }
         ],
         "auth": null,
         "status": 200,
         "sample": {
             "results": [
-                {
-                    "id": "x",
-                    "user_id": "x",
-                    "project_id": "x",
-                    "added_at": "2026-01-01T00:00:00Z",
-                    "updated_at": "x",
-                    "archived_at": "x",
-                    "name": "x",
-                    "description": "x",
-                    "section_order": 1,
-                    "order_key": "x",
-                    "is_collapsed": true,
-                    "is_archived": true,
-                    "is_deleted": true
-                }
+                "x"
             ],
             "next_cursor": "x"
         },
+        "idField": "id"
+    },
+    {
+        "entity": "shared_label",
+        "accessor": "SharedLabel",
+        "op": "remove",
+        "method": "POST",
+        "path": "/api/v1/labels/shared/remove",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "shared_label",
+        "accessor": "SharedLabel",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/labels/shared/rename",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": null,
         "idField": "id"
     },
     {
@@ -3835,6 +3722,57 @@ const PLAN = [
         "accessor": "Task",
         "op": "create",
         "method": "POST",
+        "path": "/api/v1/tasks",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "user_id": "x",
+            "id": "x",
+            "project_id": "x",
+            "section_id": "x",
+            "parent_id": "x",
+            "added_by_uid": "x",
+            "assigned_by_uid": "x",
+            "responsible_uid": "x",
+            "labels": [
+                "x"
+            ],
+            "deadline": {},
+            "duration": {},
+            "is_collapsed": true,
+            "checked": true,
+            "is_deleted": true,
+            "added_at": "x",
+            "completed_at": "x",
+            "completed_by_uid": "x",
+            "updated_at": "x",
+            "due": {},
+            "priority": 1,
+            "child_order": 1,
+            "order_key": "x",
+            "content": "x",
+            "description": "x",
+            "note_count": 1,
+            "day_order": 1,
+            "completed_count": 1,
+            "postponed_count": 1
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
+        "op": "create",
+        "method": "POST",
         "path": "/api/v1/tasks/quick",
         "action": "quick",
         "args": [],
@@ -3854,9 +3792,429 @@ const PLAN = [
     {
         "entity": "task",
         "accessor": "Task",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/tasks/filter",
+        "action": "filter",
+        "args": [],
+        "select": {
+            "query": "v1",
+            "cursor": "v1",
+            "lang": "v1",
+            "limit": 50
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "query",
+            "lang",
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "lang",
+                "wire": "lang"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "query",
+                "wire": "query"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "user_id": "x",
+                    "id": "x",
+                    "project_id": "x",
+                    "section_id": "x",
+                    "parent_id": "x",
+                    "added_by_uid": "x",
+                    "assigned_by_uid": "x",
+                    "responsible_uid": "x",
+                    "labels": [
+                        "x"
+                    ],
+                    "deadline": {},
+                    "duration": {},
+                    "is_collapsed": true,
+                    "checked": true,
+                    "is_deleted": true,
+                    "added_at": "x",
+                    "completed_at": "x",
+                    "completed_by_uid": "x",
+                    "updated_at": "x",
+                    "due": {},
+                    "priority": 1,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "content": "x",
+                    "description": "x",
+                    "note_count": 1,
+                    "day_order": 1,
+                    "completed_count": 1,
+                    "postponed_count": 1
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/tasks",
+        "args": [],
+        "select": {
+            "cursor": "v1",
+            "ids": "v1",
+            "label": "v1",
+            "limit": 50,
+            "parent_id": "v1",
+            "project_id": "v1",
+            "section_id": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "project_id",
+            "section_id",
+            "parent_id",
+            "label",
+            "ids",
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "ids",
+                "wire": "ids"
+            },
+            {
+                "name": "label",
+                "wire": "label"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "parent_id",
+                "wire": "parent_id"
+            },
+            {
+                "name": "project_id",
+                "wire": "project_id"
+            },
+            {
+                "name": "section_id",
+                "wire": "section_id"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "user_id": "x",
+                    "id": "x",
+                    "project_id": "x",
+                    "section_id": "x",
+                    "parent_id": "x",
+                    "added_by_uid": "x",
+                    "assigned_by_uid": "x",
+                    "responsible_uid": "x",
+                    "labels": [
+                        "x"
+                    ],
+                    "deadline": {},
+                    "duration": {},
+                    "is_collapsed": true,
+                    "checked": true,
+                    "is_deleted": true,
+                    "added_at": "x",
+                    "completed_at": "x",
+                    "completed_by_uid": "x",
+                    "updated_at": "x",
+                    "due": {},
+                    "priority": 1,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "content": "x",
+                    "description": "x",
+                    "note_count": 1,
+                    "day_order": 1,
+                    "completed_count": 1,
+                    "postponed_count": 1
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
+        "op": "load",
+        "method": "GET",
+        "path": "/api/v1/tasks/{task_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "task_id",
+                "value": "p1"
+            }
+        ],
+        "select": {
+            "public_key": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "public_key"
+        ],
+        "queryArgs": [
+            {
+                "name": "public_key",
+                "wire": "public_key"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "user_id": "x",
+            "id": "x",
+            "project_id": "x",
+            "section_id": "x",
+            "parent_id": "x",
+            "added_by_uid": "x",
+            "assigned_by_uid": "x",
+            "responsible_uid": "x",
+            "labels": [
+                "x"
+            ],
+            "deadline": {},
+            "duration": {},
+            "is_collapsed": true,
+            "checked": true,
+            "is_deleted": true,
+            "added_at": "x",
+            "completed_at": "x",
+            "completed_by_uid": "x",
+            "updated_at": "x",
+            "due": {},
+            "priority": 1,
+            "child_order": 1,
+            "order_key": "x",
+            "content": "x",
+            "description": "x",
+            "note_count": 1,
+            "day_order": 1,
+            "completed_count": 1,
+            "postponed_count": 1
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
         "op": "remove",
         "method": "DELETE",
         "path": "/api/v1/tasks/{task_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "task_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/tasks/{task_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "task_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "user_id": "x",
+            "id": "x",
+            "project_id": "x",
+            "section_id": "x",
+            "parent_id": "x",
+            "added_by_uid": "x",
+            "assigned_by_uid": "x",
+            "responsible_uid": "x",
+            "labels": [
+                "x"
+            ],
+            "deadline": {},
+            "duration": {},
+            "is_collapsed": true,
+            "checked": true,
+            "is_deleted": true,
+            "added_at": "x",
+            "completed_at": "x",
+            "completed_by_uid": "x",
+            "updated_at": "x",
+            "due": {},
+            "priority": 1,
+            "child_order": 1,
+            "order_key": "x",
+            "content": "x",
+            "description": "x",
+            "note_count": 1,
+            "day_order": 1,
+            "completed_count": 1,
+            "postponed_count": 1
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/tasks/{task_id}/close",
+        "action": "close",
+        "args": [
+            {
+                "name": "id",
+                "wire": "task_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/tasks/{task_id}/move",
+        "action": "move",
+        "args": [
+            {
+                "name": "id",
+                "wire": "task_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "user_id": "x",
+            "id": "x",
+            "project_id": "x",
+            "section_id": "x",
+            "parent_id": "x",
+            "added_by_uid": "x",
+            "assigned_by_uid": "x",
+            "responsible_uid": "x",
+            "labels": [
+                "x"
+            ],
+            "deadline": {},
+            "duration": {},
+            "is_collapsed": true,
+            "checked": true,
+            "is_deleted": true,
+            "added_at": "x",
+            "completed_at": "x",
+            "completed_by_uid": "x",
+            "updated_at": "x",
+            "due": {},
+            "priority": 1,
+            "child_order": 1,
+            "order_key": "x",
+            "content": "x",
+            "description": "x",
+            "note_count": 1,
+            "day_order": 1,
+            "completed_count": 1,
+            "postponed_count": 1
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "task",
+        "accessor": "Task",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/tasks/{task_id}/reopen",
+        "action": "reopen",
         "args": [
             {
                 "name": "id",

@@ -2,23 +2,121 @@
   "existing": {
     "project": {
       "PROJECT00": {
-        "id": "PROJECT00"
+        "child_order": "s8c",
+        "color": "s8d",
+        "description": "s8e",
+        "folder_id": "FOLDER01",
+        "icon": "s90",
+        "id": "PROJECT00",
+        "is_collapsed": true,
+        "is_favorite": false,
+        "name": "s94",
+        "next_cursor": "s95",
+        "parent_id": "PARENT01",
+        "results": [],
+        "view_style": "s98",
+        "workspace_id": "WORKSPACE01"
       },
       "PROJECT01": {
-        "id": "PROJECT01"
+        "child_order": "s118",
+        "color": "s119",
+        "description": "s11a",
+        "folder_id": "FOLDER01",
+        "icon": "s11c",
+        "id": "PROJECT01",
+        "is_collapsed": true,
+        "is_favorite": false,
+        "name": "s120",
+        "next_cursor": "s121",
+        "parent_id": "PARENT01",
+        "results": [],
+        "view_style": "s124",
+        "workspace_id": "WORKSPACE01"
       },
       "PROJECT02": {
-        "id": "PROJECT02"
+        "child_order": "s1a4",
+        "color": "s1a5",
+        "description": "s1a6",
+        "folder_id": "FOLDER01",
+        "icon": "s1a8",
+        "id": "PROJECT02",
+        "is_collapsed": true,
+        "is_favorite": false,
+        "name": "s1ac",
+        "next_cursor": "s1ad",
+        "parent_id": "PARENT01",
+        "results": [],
+        "view_style": "s1b0",
+        "workspace_id": "WORKSPACE01"
       }
     }
   },
   "new": {
     "project": {
-      "project_ref01": {}
+      "project_ref01": {
+        "child_order": "s230",
+        "color": "s231",
+        "description": "s232",
+        "folder_id": "FOLDER01",
+        "icon": "s234",
+        "is_collapsed": true,
+        "is_favorite": false,
+        "name": "s238",
+        "next_cursor": "s239",
+        "parent_id": "PARENT01",
+        "results": [],
+        "view_style": "s23c",
+        "workspace_id": "WORKSPACE01"
+      }
     }
   },
   "requests": {
+    "POST /api/v1/projects": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/projects/search": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/projects": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/projects/archived": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/projects/{project_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "DELETE /api/v1/projects/{project_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/projects/{project_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/projects/{project_id}/archive": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/projects/{project_id}/join": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/projects/{project_id}/unarchive": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

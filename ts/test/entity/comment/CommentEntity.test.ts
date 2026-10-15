@@ -41,13 +41,59 @@ describe('CommentEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('comment hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of TodoistSDK.test(offline).Comment().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of TodoistSDK.test(offline).Comment()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = TodoistSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Comment().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of TodoistSDK.test().Comment().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new TodoistSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Comment().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Comment().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
   test('validate', async (t) => {
     if (null == (config as any).feature?.validate) {
       t.skip('feature not present in this SDK: validate')
       return
     }
     const client = TodoistSDK.test(undefined, { feature: { validate: { active: true } } })
-    await assert.rejects(client.Comment().create({"id":1,"content":"x"} as any),
+    await assert.rejects(client.Comment().list({"limit":"x"} as any),
       (err: any) => 'validate_failed' === err.code)
   })
 
@@ -56,14 +102,14 @@ describe('CommentEntity', async () => {
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.TODOIST_TEST_LIVE
-    for (const op of ['remove']) {
+    for (const op of ['create', 'list', 'update', 'load', 'remove']) {
       if (!live && maybeSkipControl(t, 'entityOp', 'comment.' + op, live)) return
     }
 
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"content":{"a":true,"h":"Content","n":"content","r":true,"sh":"New content for the comment.","t":"`$ANY`","key$":"content","index$":0},"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":1}},"id":{"field":"id","name":"id"},"name":"comment","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["content"],"co":{"id":"POST /api/v1/comments/{comment_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"POST","o":"/api/v1/comments/{comment_id}","q":{"exist":["id"]},"r":{"param":{"comment_id":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"bf":["reaction"],"co":{"id":"POST /api/v1/comments/{comment_id}/reactions/remove","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"POST","o":"/api/v1/comments/{comment_id}/reactions/remove","q":{"$action":"reaction_remove","exist":["id"]},"r":{"param":{"comment_id":"id"}},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"},{"lit":"reactions"},{"lit":"remove"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"create"},"remove":{"input":"data","name":"remove","points":[{"a":true,"co":{"id":"DELETE /api/v1/comments/{comment_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"DELETE","o":"/api/v1/comments/{comment_id}","q":{"exist":["id"]},"r":{"param":{"comment_id":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"remove"}},"relations":{"ancestors":[]},"key$":"comment","name__orig":"comment","Name":"Comment","name_":"comment","name-":"comment","NAME":"COMMENT","index$":10}, {"active":true,"entity":"comment","key$":"BasicCommentFlow","kind":"basic","name":"BasicCommentFlow","param":{},"step":[{"a":false,"d":{},"i":{"ref":"comment_ref01"},"m":{"comment_id":"comment01"},"o":"create","s":[],"v":[],"unreachable":true},{"a":true,"d":{},"i":{"ref":"comment_ref01","suffix":"_rm0"},"m":{"id":"comment01"},"o":"remove","s":[],"v":[],"index$":0}]}, 'Comment', {"POST /api/v1/comments/{comment_id}":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"properties":{"content":{"anyOf":[{"type":"string","maxLength":15000,"minLength":1},{"type":"null"}],"title":"Content","description":"New content for the comment. If null or an empty string, no update is performed.","examples":["Need two bottles of milk"],"key$":"content"}},"type":"object","required":["content"],"title":"Body","x-ref":"#/components/schemas/Body_61d93e0e","index$":1}}}},"parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"type":"string","description":"String ID of the comment","examples":["6XGgmFQrx44wfGHr"],"title":"Comment Id"},"index$":0}]},"POST /api/v1/comments/{comment_id}/reactions/remove":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"properties":{"reaction":{"type":"string","minLength":1,"title":"Reaction","description":"Reaction emoji.","examples":["👍"]}},"type":"object","required":["reaction"],"title":"Body","x-ref":"#/components/schemas/Body_3b3999fa"}}}},"parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"type":"string","description":"String ID of the comment","examples":["6XGgmFQrx44wfGHr"],"title":"Comment Id"},"index$":0}]},"DELETE /api/v1/comments/{comment_id}":{"protocol":"http","parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"type":"string","description":"String ID of the comment","examples":["6XGgmFQrx44wfGHr"],"title":"Comment Id"},"index$":0}]}}, { strict: LIVE_STRICT, t })
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"attachment":{"a":true,"h":"Attachment","n":"attachment","r":false,"sh":"A [File attachment](#tag/Sync/Comments/File-Attachments) object","t":"`$ANY`","key$":"attachment","index$":0},"content":{"a":true,"h":"Content","n":"content","op":{"create":{"req":true,"type":"`$STRING`"},"update":{"req":true,"type":"`$ANY`"}},"r":false,"sh":"Comment content.","t":"`$STRING`","key$":"content","index$":1},"file_attachment":{"a":true,"h":"File Attachment","n":"file_attachment","r":true,"sh":"File attachment metadata, or `null` when the comment has no attachment.","t":"`$ANY`","union":{"branches":4,"count":1,"depth":3},"key$":"file_attachment","index$":2},"id":{"a":true,"h":"Id","n":"id","r":true,"sh":"String ID of the comment.","t":"`$STRING`","key$":"id","index$":3},"is_deleted":{"a":true,"h":"Is Deleted","n":"is_deleted","r":true,"sh":"Whether the comment is deleted.","t":"`$BOOLEAN`","key$":"is_deleted","index$":4},"posted_at":{"a":true,"fo":"date-time","h":"Posted At","n":"posted_at","r":true,"sh":"Date and time when the comment was posted, or `null` if unknown.","t":"`$ANY`","key$":"posted_at","index$":5},"posted_uid":{"a":true,"h":"Posted Uid","n":"posted_uid","r":true,"sh":"String ID of the user who posted the comment.","t":"`$ANY`","key$":"posted_uid","index$":6},"project_id":{"a":true,"h":"Project Id","n":"project_id","r":false,"sh":"String ID of the project","t":"`$STRING`","key$":"project_id","index$":7},"reactions":{"a":true,"h":"Reactions","n":"reactions","r":true,"sh":"Reaction emoji mapped to user IDs that reacted.","t":"`$ANY`","key$":"reactions","index$":8},"task_id":{"a":true,"h":"Task Id","n":"task_id","r":false,"sh":"String ID of the task","t":"`$STRING`","key$":"task_id","index$":9},"uids_to_notify":{"a":true,"h":"Uids To Notify","n":"uids_to_notify","op":{"create":{"req":false,"type":"`$ANY`"}},"r":true,"sh":"String IDs of users notified by the comment.","t":"`$ANY`","key$":"uids_to_notify","index$":10}},"id":{"field":"id","name":"id"},"name":"comment","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["attachment","content","project_id","task_id","uids_to_notify"],"co":{"id":"POST /api/v1/comments","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/api/v1/comments","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"},"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/v1/comments","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"cursor","or":"cursor","r":false,"t":"`$ANY`","index$":0},{"a":true,"ex":50,"k":"query","n":"limit","or":"limit","r":false,"t":"`$INTEGER`","index$":1},{"a":true,"k":"query","n":"project_id","or":"project_id","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"public_key","or":"public_key","r":false,"t":"`$ANY`","index$":3},{"a":true,"k":"query","n":"task_id","or":"task_id","r":false,"t":"`$STRING`","index$":4}]},"k":"http","m":"GET","o":"/api/v1/comments","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"}],"t":{"req":"`reqdata`","res":"`body.results`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/v1/comments/{comment_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/api/v1/comments/{comment_id}","q":{"exist":["id"]},"r":{"param":{"comment_id":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"},"remove":{"input":"data","name":"remove","points":[{"a":true,"co":{"id":"DELETE /api/v1/comments/{comment_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"DELETE","o":"/api/v1/comments/{comment_id}","q":{"exist":["id"]},"r":{"param":{"comment_id":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"remove"},"update":{"input":"data","name":"update","points":[{"a":true,"bf":["content"],"co":{"id":"POST /api/v1/comments/{comment_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"POST","o":"/api/v1/comments/{comment_id}","q":{"exist":["id"]},"r":{"param":{"comment_id":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"bf":["reaction"],"co":{"id":"POST /api/v1/comments/{comment_id}/reactions","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"POST","o":"/api/v1/comments/{comment_id}/reactions","q":{"$action":"reaction_add","exist":["id"]},"r":{"param":{"comment_id":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"},{"lit":"reactions"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1},{"a":true,"bf":["reaction"],"co":{"id":"POST /api/v1/comments/{comment_id}/reactions/remove","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"comment_id","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"POST","o":"/api/v1/comments/{comment_id}/reactions/remove","q":{"$action":"reaction_remove","exist":["id"]},"r":{"param":{"comment_id":"id"}},"s":[{"lit":"api"},{"lit":"v1"},{"lit":"comments"},{"var":"id"},{"lit":"reactions"},{"lit":"remove"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":2}],"key$":"update"}},"relations":{"ancestors":[]},"key$":"comment","name__orig":"comment","Name":"Comment","name_":"comment","name-":"comment","NAME":"COMMENT","index$":7}, {"active":true,"entity":"comment","key$":"BasicCommentFlow","kind":"basic","name":"BasicCommentFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"comment_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0},{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"comment_ref01"}}],"index$":1},{"a":true,"d":{},"i":{"ref":"comment_ref01","srcdatavar":"comment_ref01_data","suffix":"_up0","textfield":"content"},"m":{},"o":"update","s":[{"apply":"TextFieldMark","def":{"mark":"Mark01-comment_ref01"}}],"v":[],"index$":2},{"a":true,"d":{},"i":{"ref":"comment_ref01","srcdatavar":"comment_ref01_data","suffix":"_dt0"},"m":{"id":"comment01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-comment_ref01"}}],"index$":3},{"a":true,"d":{},"i":{"ref":"comment_ref01","suffix":"_rm0"},"m":{"id":"comment01"},"o":"remove","s":[],"v":[],"index$":4},{"a":true,"d":{},"i":{"suffix":"_rt0"},"m":{},"o":"list","s":[],"v":[{"apply":"ItemNotExists","def":{"ref":"comment_ref01"}}],"index$":5}]}, 'Comment', {"POST /api/v1/comments":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"properties":{"content":{"type":"string","maxLength":15000,"minLength":1,"title":"Content","description":"Content of the comment","examples":["Need one bottle of milk"],"key$":"content"},"project_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Project Id","description":"String ID of the project","examples":["6XGgm6PHrGgMpCFX"],"key$":"project_id"},"task_id":{"anyOf":[{"type":"string"},{"type":"null"}],"title":"Task Id","description":"String ID of the task","examples":["6XGgmFVcrG5RRjVr"],"key$":"task_id"},"attachment":{"anyOf":[{"additionalProperties":true,"type":"object"},{"type":"null"}],"title":"Attachment","description":"A [File attachment](#tag/Sync/Comments/File-Attachments) object","examples":[{"file_name":"File.pdf","file_type":"application/pdf","file_url":"https://s3.amazonaws.com/domorebetter/Todoist+Setup+Guide.pdf","resource_type":"file"}],"key$":"attachment"},"uids_to_notify":{"anyOf":[{"items":{"type":"integer"},"type":"array"},{"type":"null"}],"title":"Uids To Notify","description":"Optional list of user IDs to notify about this comment.","examples":[[12345678,23456789]],"key$":"uids_to_notify"}},"type":"object","required":["content"],"title":"Body","x-ref":"#/components/schemas/Body_28d2b1b0","index$":1}}}},"parameters":[]},"GET /api/v1/comments":{"protocol":"http","parameters":[{"name":"project_id","in":"query","required":false,"schema":{"anyOf":[{"type":"string"},{"type":"null"}],"description":"String ID of the project","examples":["6XGgm6PHrGgMpCFX"],"title":"Project Id"},"index$":0},{"name":"task_id","in":"query","required":false,"schema":{"anyOf":[{"type":"string"},{"type":"null"}],"description":"String ID of the task","examples":["6XGgmFVcrG5RRjVr"],"title":"Task Id"},"index$":1},{"name":"cursor","in":"query","required":false,"schema":{"anyOf":[{"type":"string","minLength":1,"pattern":"^[0-9a-zA-Z_-]+\\.[0-9a-zA-Z_-]+$","description":"An opaque string used as the cursor for pagination. Must be used with the same parameters from the previous request","examples":["14540000435w8hj8pXXwPQJJch.X9DBH8ya2Xenok55"]},{"type":"null"}],"title":"Cursor"},"index$":2},{"name":"limit","in":"query","required":false,"schema":{"type":"integer","maximum":200,"exclusiveMinimum":0,"description":"The number of objects to return in a page","examples":[50],"default":50,"title":"Limit"},"index$":3},{"name":"public_key","in":"query","required":false,"schema":{"anyOf":[{"type":"string","description":"Public project access key.","examples":["550e8400-e29b-41d4-a716-446655440000"]},{"type":"null"}],"title":"Public Key"},"index$":4}]},"GET /api/v1/comments/{comment_id}":{"protocol":"http","parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"anyOf":[{"type":"string"},{"type":"null"}],"description":"String ID of the comment","examples":["6XGgmFVcrG5RRjVr"],"title":"Comment Id"},"index$":0}]},"DELETE /api/v1/comments/{comment_id}":{"protocol":"http","parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"type":"string","description":"String ID of the comment","examples":["6XGgmFQrx44wfGHr"],"title":"Comment Id"},"index$":0}]},"POST /api/v1/comments/{comment_id}":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"properties":{"content":{"anyOf":[{"type":"string","maxLength":15000,"minLength":1},{"type":"null"}],"title":"Content","description":"New content for the comment. If null or an empty string, no update is performed.","examples":["Need two bottles of milk"],"key$":"content"}},"type":"object","required":["content"],"title":"Body","x-ref":"#/components/schemas/Body_61d93e0e","index$":1}}}},"parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"type":"string","description":"String ID of the comment","examples":["6XGgmFQrx44wfGHr"],"title":"Comment Id"},"index$":0}]},"POST /api/v1/comments/{comment_id}/reactions":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"properties":{"reaction":{"type":"string","maxLength":64,"minLength":1,"title":"Reaction","description":"Reaction emoji.","examples":["👍"]}},"type":"object","required":["reaction"],"title":"Body","x-ref":"#/components/schemas/Body_579e1668"}}}},"parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"type":"string","description":"String ID of the comment","examples":["6XGgmFQrx44wfGHr"],"title":"Comment Id"},"index$":0}]},"POST /api/v1/comments/{comment_id}/reactions/remove":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"properties":{"reaction":{"type":"string","minLength":1,"title":"Reaction","description":"Reaction emoji.","examples":["👍"]}},"type":"object","required":["reaction"],"title":"Body","x-ref":"#/components/schemas/Body_3b3999fa"}}}},"parameters":[{"name":"comment_id","in":"path","required":true,"schema":{"type":"string","description":"String ID of the comment","examples":["6XGgmFQrx44wfGHr"],"title":"Comment Id"},"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -71,7 +117,55 @@ describe('CommentEntity', async () => {
     const isempty = struct.isempty
     const select = struct.select
 
-    let comment_ref01_data = Object.values(setup.data.existing.comment)[0] as any
+
+    // CREATE
+    const comment_ref01_ent = client.Comment()
+    let comment_ref01_data = setup.data.new.comment['comment_ref01']
+
+    comment_ref01_data = (await comment_ref01_ent.create(comment_ref01_data)).data()
+    assert(null != comment_ref01_data.id)
+
+
+    // LIST
+    const comment_ref01_match: any = {}
+
+    const comment_ref01_list = (await comment_ref01_ent.list(comment_ref01_match)).map((e: any) => e.data())
+
+    assert(!isempty(select(comment_ref01_list, { id: comment_ref01_data.id })))
+
+
+    // UPDATE
+    const comment_ref01_data_up0: any = {}
+    comment_ref01_data_up0.id = comment_ref01_data.id
+
+    const comment_ref01_markdef_up0 = { name: 'content', value: 'Mark01-comment_ref01_' + setup.now }
+    ;(comment_ref01_data_up0 as any)[comment_ref01_markdef_up0.name] = comment_ref01_markdef_up0.value
+
+    const comment_ref01_resdata_up0 = (await comment_ref01_ent.update(comment_ref01_data_up0)).data()
+    assert(comment_ref01_resdata_up0.id === comment_ref01_data_up0.id)
+
+    assert((comment_ref01_resdata_up0 as any)[comment_ref01_markdef_up0.name] === comment_ref01_markdef_up0.value)
+
+
+    // LOAD
+    const comment_ref01_match_dt0: any = {}
+    comment_ref01_match_dt0.id = comment_ref01_data.id
+    const comment_ref01_data_dt0 = (await comment_ref01_ent.load(comment_ref01_match_dt0)).data()
+    assert(comment_ref01_data_dt0.id === comment_ref01_data.id)
+
+
+    // REMOVE
+    const comment_ref01_match_rm0: any = { id: comment_ref01_data.id }
+    await comment_ref01_ent.remove(comment_ref01_match_rm0)
+  
+
+    // LIST
+    const comment_ref01_match_rt0: any = {}
+
+    const comment_ref01_list_rt0 = (await comment_ref01_ent.list(comment_ref01_match_rt0)).map((e: any) => e.data())
+
+    assert(isempty(select(comment_ref01_list_rt0, { id: comment_ref01_data.id })))
+
 
   })
 })

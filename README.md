@@ -36,7 +36,7 @@ Create a personal API token in Todoist under Settings, Integrations, Developer. 
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **51 semantic entities** that you
+This SDK exposes the API as **43 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`, `create`, `update`, `remove`):
@@ -62,29 +62,29 @@ network, and no credentials:
 // Shape: { entity: { <entity-name>: { <id>: <record> } } }
 const client = TodoistSDK.test({
   entity: {
-    credit_state: {
+    activity: {
       test01: { id: 'test01' },
     },
   },
 })
-const creditstate = await client.CreditState().load()
-// creditstate is the CreditState entity; .data() reads its mock record
-console.log(creditstate.data())
+const activitys = await client.Activity().list()
+// activitys is an array of Activity entities, one per mock record
+console.log(activitys.map((activity) => activity.data()))
 ```
 
 ### Python
 
 ```python
 client = TodoistSDK.test()
-creditstate = client.CreditState().load()
-print(creditstate.data_get())
+activitys = client.Activity().list()
+print([item.data_get() for item in activitys])
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.CreditState(nil).Load(
+result, err := client.Activity(nil).List(
     nil, nil,
 )
 ```
@@ -116,11 +116,11 @@ for (const active of actives) {
   console.log(active.data())
 }
 
-// Load a specific anyprojectsyncview (returns the entity, an AnyProjectSyncViewEntity)
-const anyprojectsyncview = await client.AnyProjectSyncView().load({
-  project_id: 'example_project_id',
+// Load a specific notificationlocationsyncview (returns the entity, a NotificationLocationSyncViewEntity)
+const notificationlocationsyncview = await client.NotificationLocationSyncView().load({
+  reminder_id: 'example_reminder_id',
 })
-console.log(anyprojectsyncview.data())
+console.log(notificationlocationsyncview.data())
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -157,21 +157,19 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 51 entities:
+The API exposes 43 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
 | **Active** | The Active entity (list). | `/api/v1/workspaces/{workspace_id}/projects/active` |
 | **Activity** | The Activity entity (list). | `/api/v1/activities` |
-| **AnyProjectSyncView** | The AnyProjectSyncView entity (create, list, load). | `/api/v1/projects` |
 | **Archived** | The Archived entity (list). | `/api/v1/workspaces/{workspace_id}/projects/archived` |
 | **Authorization** | The Authorization entity (create, remove). | `/api/v1/revoke` |
 | **Backup** | The Backup entity (list, load). | `/api/v1/backups` |
 | **BillingPortalUrl** | The BillingPortalUrl entity (create). | `/api/v1/payments/cancel_plan_with_redirect_to_stripe` |
-| **ByCompletionDate** | The ByCompletionDate entity (list). | `/api/v1/tasks/completed/by_completion_date` |
-| **ByDueDate** | The ByDueDate entity (list). | `/api/v1/tasks/completed/by_due_date` |
 | **Collaborator** | The Collaborator entity (list). | `/api/v1/projects/{project_id}/collaborators` |
-| **Comment** | The Comment entity (create, remove). | `/api/v1/comments/{comment_id}` |
+| **Comment** | The Comment entity (create, list, load, remove, update). | `/api/v1/comments` |
+| **CompletedTask** | The CompletedTask entity (list). | `/api/v1/tasks/completed/by_completion_date` |
 | **CreditState** | The CreditState entity (load). | `/api/v1/usage_billing/state` |
 | **Email** | The Email entity (update). | `/api/v1/emails` |
 | **FileUrl** | The FileUrl entity (load). | `/api/v1/templates/url` |
@@ -179,31 +177,25 @@ The API exposes 51 entities:
 | **History** | The History entity (list). | `/api/v1/usage_billing/history` |
 | **IdMapping** | The IdMapping entity (list). | `/api/v1/id_mappings/{obj_name}/{obj_ids}` |
 | **Invite** | The Invite entity (create). | `/api/v1/workspaces/{workspace_id}/users/invite` |
-| **ItemSyncView** | The ItemSyncView entity (create, list, load). | `/api/v1/tasks` |
-| **Label** | The Label entity (create, list, load, remove). | `/api/v1/labels` |
-| **LabelRestView** | The LabelRestView entity (list). | `/api/v1/labels/search` |
+| **Label** | The Label entity (create, list, load, remove, update). | `/api/v1/labels` |
 | **LocationReminder** | The LocationReminder entity (remove). | `/api/v1/location_reminders/{reminder_id}` |
 | **MemberView** | The MemberView entity (list). | `/api/v1/workspaces/users` |
 | **MigratePersonalToken** | The MigratePersonalToken entity (create). | `/api/v1/access_tokens/migrate_personal_token` |
-| **NoteSyncView** | The NoteSyncView entity (create, list, load). | `/api/v1/comments` |
 | **NotificationLocationSyncView** | The NotificationLocationSyncView entity (create, list, load). | `/api/v1/location_reminders` |
 | **NotificationSyncView** | The NotificationSyncView entity (create, list, load). | `/api/v1/reminders` |
-| **PaginatedListAnyProjectSyncView** | The PaginatedListAnyProjectSyncView entity (list). | `/api/v1/projects/search` |
-| **PaginatedListItemSyncView** | The PaginatedListItemSyncView entity (list). | `/api/v1/tasks/filter` |
-| **PaginatedListStr** | The PaginatedListStr entity (list). | `/api/v1/labels/shared` |
 | **PlanDetail** | The PlanDetail entity (list). | `/api/v1/workspaces/plan_details` |
 | **ProductivityStat** | The ProductivityStat entity (list). | `/api/v1/tasks/completed/stats` |
-| **Project** | The Project entity (remove). | `/api/v1/projects/{project_id}` |
+| **Project** | The Project entity (create, list, load, remove, update). | `/api/v1/projects` |
 | **ProjectImport** | The ProjectImport entity (create). | `/api/v1/templates/import_into_project_from_file` |
 | **ProjectImportCreateResponseWithObject** | The ProjectImportCreateResponseWithObject entity (create). | `/api/v1/templates/create_project_from_file` |
 | **Reminder** | The Reminder entity (remove). | `/api/v1/reminders/{reminder_id}` |
 | **RemoveWorkspaceUser** | The RemoveWorkspaceUser entity (remove). | `/api/v1/workspaces/{workspace_id}/users/{user_id}` |
 | **RoleToActionMappingView** | The RoleToActionMappingView entity (list). | `/api/v1/projects/permissions` |
-| **Section** | The Section entity (create, list, load, remove). | `/api/v1/sections` |
-| **SectionSyncView** | The SectionSyncView entity (create, list). | `/api/v1/sections/search` |
+| **Section** | The Section entity (create, list, load, remove, update). | `/api/v1/sections` |
+| **SharedLabel** | The SharedLabel entity (list, remove, update). | `/api/v1/labels/shared` |
 | **StatusOk** | The StatusOk entity (remove). | `/api/v1/emails` |
 | **SubscriptionInfo** | The SubscriptionInfo entity (create). | `/api/v1/payments/get_subscription_info` |
-| **Task** | The Task entity (create, remove). | `/api/v1/tasks/quick` |
+| **Task** | The Task entity (create, list, load, remove, update). | `/api/v1/tasks` |
 | **Template** | The Template entity (load). | `/api/v1/templates/file` |
 | **TopUp** | The TopUp entity (create). | `/api/v1/usage_billing/top_up` |
 | **Upload** | The Upload entity (create, remove). | `/api/v1/uploads` |
@@ -252,14 +244,14 @@ for _, active := range actives.([]any) {
     fmt.Println(active.(sdk.Entity).Data())
 }
 
-// Load a specific anyprojectsyncview (returns the entity; err is non-nil on failure)
-anyProjectSyncView, err := client.AnyProjectSyncView(nil).Load(
-    map[string]any{"project_id": "example_project_id"}, nil,
+// Load a specific notificationlocationsyncview (returns the entity; err is non-nil on failure)
+notificationLocationSyncView, err := client.NotificationLocationSyncView(nil).Load(
+    map[string]any{"reminder_id": "example_reminder_id"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(anyProjectSyncView.(sdk.Entity).Data())
+fmt.Println(notificationLocationSyncView.(sdk.Entity).Data())
 ```
 
 ## Direct and prepare

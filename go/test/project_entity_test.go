@@ -2,6 +2,7 @@ package sdktest
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -22,12 +23,149 @@ import (
 const projectEntityLiveStrict = true
 
 
+type projectFailHook struct {
+	sdk.BaseFeature
+	unexpected int
+}
+
+func (f *projectFailHook) PreSpec(ctx *sdk.Context) {
+	panic("project hook failed")
+}
+
+func (f *projectFailHook) PreUnexpected(ctx *sdk.Context) {
+	f.unexpected++
+}
+
 func TestProjectEntity(t *testing.T) {
 	t.Run("instance", func(t *testing.T) {
 		testsdk := sdk.TestSDK(nil, nil)
 		ent := testsdk.Project(nil)
 		if ent == nil {
 			t.Fatal("expected non-nil ProjectEntity")
+		}
+	})
+
+	// Feature #4: the entity Stream(action, ...) method runs the op pipeline and
+	// returns a channel over result items. With the streaming feature active it
+	// yields the feature's incremental output; otherwise it falls back to the
+	// materialised list so Stream always yields.
+	t.Run("stream", func(t *testing.T) {
+		seed := map[string]any{
+			"entity": map[string]any{
+				"project": map[string]any{
+					"s1": map[string]any{"id": "s1"},
+					"s2": map[string]any{"id": "s2"},
+					"s3": map[string]any{"id": "s3"},
+				},
+			},
+		}
+
+		// Fallback: streaming inactive -> yields the materialised list items.
+		base := sdk.TestSDK(seed, nil)
+		var seen []any
+		for si := range base.Project(nil).Stream("list", nil, nil) {
+			if si.Err != nil {
+				t.Fatalf("stream failed: %v", si.Err)
+			}
+			seen = append(seen, si.Item)
+		}
+		if len(seen) != 3 {
+			t.Fatalf("expected 3 streamed items, got %d", len(seen))
+		}
+
+		// Inbound: streaming active -> yields each item from the feature iterator.
+		hasStreaming := false
+		if fm, ok := core.SharedConfig()["feature"].(map[string]any); ok {
+			_, hasStreaming = fm["streaming"]
+		}
+		if hasStreaming {
+			streamSdk := sdk.TestSDK(seed, map[string]any{
+				"feature": map[string]any{"streaming": map[string]any{"active": true}},
+			})
+			var got []any
+			for si := range streamSdk.Project(nil).Stream("list", nil, nil) {
+				if si.Err != nil {
+					t.Fatalf("stream failed: %v", si.Err)
+				}
+				if sub, ok := si.Item.([]any); ok {
+					got = append(got, sub...)
+				} else {
+					got = append(got, si.Item)
+				}
+			}
+			if len(got) != 3 {
+				t.Fatalf("expected 3 items via streaming feature, got %d", len(got))
+			}
+		}
+	})
+
+	t.Run("stream-error", func(t *testing.T) {
+		offline := map[string]any{"net": map[string]any{"offline": true}}
+		var streamerr error
+		for si := range sdk.TestSDK(offline, nil).Project(nil).Stream("list", nil, nil) {
+			if si.Err != nil {
+				streamerr = si.Err
+			}
+		}
+		if nil == streamerr || !strings.Contains(streamerr.Error(), "offline") {
+			t.Fatalf("expected the transport failure as a stream value, got %v", streamerr)
+		}
+
+		quiet := map[string]any{"ctrl": map[string]any{"throw": false}}
+		for si := range sdk.TestSDK(offline, nil).Project(nil).Stream("list", nil, quiet) {
+			if si.Err != nil {
+				t.Fatalf("throw false: expected no error value, got %v", si.Err)
+			}
+		}
+
+		if fhHasFeature("rbac") {
+			denied := sdk.TestSDK(nil, map[string]any{
+				"feature": map[string]any{"rbac": map[string]any{"active": true, "deny": true}},
+			})
+			var denyerr error
+			for si := range denied.Project(nil).Stream("list", nil, nil) {
+				if si.Err != nil {
+					denyerr = si.Err
+				}
+			}
+			if sdkerr, ok := denyerr.(*core.TodoistError); !ok || "rbac_denied" != sdkerr.Code {
+				t.Fatalf("expected the rbac denial as a stream value, got %v", denyerr)
+			}
+		}
+	})
+
+	t.Run("stream-ctrl", func(t *testing.T) {
+		explain := map[string]any{}
+		ctrl := map[string]any{"explain": explain}
+		for range sdk.TestSDK(nil, nil).Project(nil).Stream("list", nil, map[string]any{"ctrl": ctrl}) {
+		}
+		if _, has := ctrl["stream"]; has || 1 != len(ctrl) {
+			t.Fatalf("the stream changed the caller's ctrl")
+		}
+		if 0 == len(explain) {
+			t.Fatalf("the caller's explain record was not filled")
+		}
+	})
+
+	t.Run("unexpected", func(t *testing.T) {
+		hook := &projectFailHook{
+			BaseFeature: sdk.BaseFeature{Version: "0.0.1", Name: "failhook", Active: true}}
+		client := sdk.TestSDK(nil, map[string]any{"extend": []any{hook}})
+
+		_, err := client.Project(nil).List(nil, nil)
+		if nil == err || !strings.Contains(err.Error(), "hook failed") {
+			t.Fatalf("expected the hook's failure, got %v", err)
+		}
+		if 0 == hook.unexpected {
+			t.Fatalf("PreUnexpected did not fire")
+		}
+
+		fired := hook.unexpected
+		if _, err := client.Project(nil).List(nil, map[string]any{"throw": false}); nil != err {
+			t.Fatalf("throw false: expected no error, got %v", err)
+		}
+		if fired == hook.unexpected {
+			t.Fatalf("throw false: PreUnexpected did not fire")
 		}
 	})
 
@@ -38,7 +176,7 @@ func TestProjectEntity(t *testing.T) {
 		client := sdk.TestSDK(nil, map[string]any{
 			"feature": map[string]any{"validate": map[string]any{"active": true}},
 		})
-		_, err := client.Project(nil).Remove(map[string]any{"id": 1}, nil)
+		_, err := client.Project(nil).List(map[string]any{"folder_id": 1}, nil)
 		if sdkerr, ok := err.(*core.TodoistError); !ok || "validate_failed" != sdkerr.Code {
 			t.Fatalf("expected validate_failed, got %v", err)
 		}
@@ -53,7 +191,7 @@ func TestProjectEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{} {
+		for _, _op := range []string{"create", "list", "update", "load", "remove"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "project." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -62,15 +200,108 @@ func TestProjectEntity(t *testing.T) {
 				return
 			}
 		}
-		// Bootstrap entity data from existing test data (no create step in flow).
-		projectRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.project")))
-		var projectRef01Data map[string]any
-		if len(projectRef01DataRaw) > 0 {
-			projectRef01Data = core.ToMapAny(projectRef01DataRaw[0][1])
+		client := setup.client
+		_ = client
+
+		// CREATE
+		projectRef01Ent := client.Project(nil)
+		projectRef01Data := core.ToMapAny(vs.GetProp(
+			vs.GetPath(setup.data, []any{"new", "project"}), "project_ref01"))
+
+		projectRef01DataResult, err := projectRef01Ent.Create(projectRef01Data, nil)
+		if err != nil {
+			t.Fatalf("create failed: %v", err)
 		}
-		// Discard guards against Go's unused-var check when the flow's steps
-		// happen not to consume the bootstrap data (e.g. list-only flows).
-		_ = projectRef01Data
+		projectRef01Data = core.ToMapAny(entityData(projectRef01DataResult))
+		if projectRef01Data == nil {
+			t.Fatal("expected create result to be a map")
+		}
+		if projectRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
+
+		// LIST
+		projectRef01Match := map[string]any{}
+
+		projectRef01ListResult, err := projectRef01Ent.List(projectRef01Match, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		projectRef01List, projectRef01ListOk := projectRef01ListResult.([]any)
+		if !projectRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", projectRef01ListResult)
+		}
+
+		foundItem := vs.Select(entityListToData(projectRef01List), map[string]any{"id": projectRef01Data["id"]})
+		if vs.IsEmpty(foundItem) {
+			t.Fatal("expected to find created entity in list")
+		}
+
+		// UPDATE
+		projectRef01DataUp0Up := map[string]any{
+			"id": projectRef01Data["id"],
+		}
+
+		projectRef01MarkdefUp0Name := "description"
+		projectRef01MarkdefUp0Value := fmt.Sprintf("Mark01-project_ref01_%d", setup.now)
+		projectRef01DataUp0Up[projectRef01MarkdefUp0Name] = projectRef01MarkdefUp0Value
+
+		projectRef01ResdataUp0Result, err := projectRef01Ent.Update(projectRef01DataUp0Up, nil)
+		if err != nil {
+			t.Fatalf("update failed: %v", err)
+		}
+		projectRef01ResdataUp0 := core.ToMapAny(entityData(projectRef01ResdataUp0Result))
+		if projectRef01ResdataUp0 == nil {
+			t.Fatal("expected update result to be a map")
+		}
+		if projectRef01ResdataUp0["id"] != projectRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
+		if projectRef01ResdataUp0[projectRef01MarkdefUp0Name] != projectRef01MarkdefUp0Value {
+			t.Fatalf("expected %s to be updated, got %v", projectRef01MarkdefUp0Name, projectRef01ResdataUp0[projectRef01MarkdefUp0Name])
+		}
+
+		// LOAD
+		projectRef01MatchDt0 := map[string]any{
+			"id": projectRef01Data["id"],
+		}
+		projectRef01DataDt0Loaded, err := projectRef01Ent.Load(projectRef01MatchDt0, nil)
+		if err != nil {
+			t.Fatalf("load failed: %v", err)
+		}
+		projectRef01DataDt0LoadResult := core.ToMapAny(entityData(projectRef01DataDt0Loaded))
+		if projectRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if projectRef01DataDt0LoadResult["id"] != projectRef01Data["id"] {
+			t.Fatal("expected load result id to match")
+		}
+
+		// REMOVE
+		projectRef01MatchRm0 := map[string]any{
+			"id": projectRef01Data["id"],
+		}
+		_, err = projectRef01Ent.Remove(projectRef01MatchRm0, nil)
+		if err != nil {
+			t.Fatalf("remove failed: %v", err)
+		}
+
+		// LIST
+		projectRef01MatchRt0 := map[string]any{}
+
+		projectRef01ListRt0Result, err := projectRef01Ent.List(projectRef01MatchRt0, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		projectRef01ListRt0, projectRef01ListRt0Ok := projectRef01ListRt0Result.([]any)
+		if !projectRef01ListRt0Ok {
+			t.Fatalf("expected list result to be an array, got %T", projectRef01ListRt0Result)
+		}
+
+		notFoundItem := vs.Select(entityListToData(projectRef01ListRt0), map[string]any{"id": projectRef01Data["id"]})
+		if !vs.IsEmpty(notFoundItem) {
+			t.Fatal("expected removed entity to not be in list")
+		}
 
 	})
 }

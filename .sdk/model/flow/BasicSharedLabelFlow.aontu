@@ -1,0 +1,41 @@
+# BasicSharedLabelFlow
+
+main: kit: flow: BasicSharedLabelFlow:
+{
+  entity: "shared_label",
+  kind: "basic",
+  name: "BasicSharedLabelFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "shared_label_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "shared_label_ref01",
+        srcdatavar: "shared_label_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-shared_label_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSharedLabelFlow"
+}

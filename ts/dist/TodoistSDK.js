@@ -4,15 +4,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.TodoistSDK = exports.TodoistEntityBase = exports.BaseFeature = exports.config = exports.stdutil = void 0;
 const ActiveEntity_1 = require("./entity/ActiveEntity");
 const ActivityEntity_1 = require("./entity/ActivityEntity");
-const AnyProjectSyncViewEntity_1 = require("./entity/AnyProjectSyncViewEntity");
 const ArchivedEntity_1 = require("./entity/ArchivedEntity");
 const AuthorizationEntity_1 = require("./entity/AuthorizationEntity");
 const BackupEntity_1 = require("./entity/BackupEntity");
 const BillingPortalUrlEntity_1 = require("./entity/BillingPortalUrlEntity");
-const ByCompletionDateEntity_1 = require("./entity/ByCompletionDateEntity");
-const ByDueDateEntity_1 = require("./entity/ByDueDateEntity");
 const CollaboratorEntity_1 = require("./entity/CollaboratorEntity");
 const CommentEntity_1 = require("./entity/CommentEntity");
+const CompletedTaskEntity_1 = require("./entity/CompletedTaskEntity");
 const CreditStateEntity_1 = require("./entity/CreditStateEntity");
 const EmailEntity_1 = require("./entity/EmailEntity");
 const FileUrlEntity_1 = require("./entity/FileUrlEntity");
@@ -20,18 +18,12 @@ const FolderEntity_1 = require("./entity/FolderEntity");
 const HistoryEntity_1 = require("./entity/HistoryEntity");
 const IdMappingEntity_1 = require("./entity/IdMappingEntity");
 const InviteEntity_1 = require("./entity/InviteEntity");
-const ItemSyncViewEntity_1 = require("./entity/ItemSyncViewEntity");
 const LabelEntity_1 = require("./entity/LabelEntity");
-const LabelRestViewEntity_1 = require("./entity/LabelRestViewEntity");
 const LocationReminderEntity_1 = require("./entity/LocationReminderEntity");
 const MemberViewEntity_1 = require("./entity/MemberViewEntity");
 const MigratePersonalTokenEntity_1 = require("./entity/MigratePersonalTokenEntity");
-const NoteSyncViewEntity_1 = require("./entity/NoteSyncViewEntity");
 const NotificationLocationSyncViewEntity_1 = require("./entity/NotificationLocationSyncViewEntity");
 const NotificationSyncViewEntity_1 = require("./entity/NotificationSyncViewEntity");
-const PaginatedListAnyProjectSyncViewEntity_1 = require("./entity/PaginatedListAnyProjectSyncViewEntity");
-const PaginatedListItemSyncViewEntity_1 = require("./entity/PaginatedListItemSyncViewEntity");
-const PaginatedListStrEntity_1 = require("./entity/PaginatedListStrEntity");
 const PlanDetailEntity_1 = require("./entity/PlanDetailEntity");
 const ProductivityStatEntity_1 = require("./entity/ProductivityStatEntity");
 const ProjectEntity_1 = require("./entity/ProjectEntity");
@@ -41,7 +33,7 @@ const ReminderEntity_1 = require("./entity/ReminderEntity");
 const RemoveWorkspaceUserEntity_1 = require("./entity/RemoveWorkspaceUserEntity");
 const RoleToActionMappingViewEntity_1 = require("./entity/RoleToActionMappingViewEntity");
 const SectionEntity_1 = require("./entity/SectionEntity");
-const SectionSyncViewEntity_1 = require("./entity/SectionSyncViewEntity");
+const SharedLabelEntity_1 = require("./entity/SharedLabelEntity");
 const StatusOkEntity_1 = require("./entity/StatusOkEntity");
 const SubscriptionInfoEntity_1 = require("./entity/SubscriptionInfoEntity");
 const TaskEntity_1 = require("./entity/TaskEntity");
@@ -302,13 +294,6 @@ class TodoistSDK {
         const self = this;
         return new ActivityEntity_1.ActivityEntity(self, entopts);
     }
-    // Entity access: `client.AnyProjectSyncView().list()` / `client.AnyProjectSyncView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    AnyProjectSyncView(entopts) {
-        const self = this;
-        return new AnyProjectSyncViewEntity_1.AnyProjectSyncViewEntity(self, entopts);
-    }
     // Entity access: `client.Archived().list()` / `client.Archived().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -337,20 +322,6 @@ class TodoistSDK {
         const self = this;
         return new BillingPortalUrlEntity_1.BillingPortalUrlEntity(self, entopts);
     }
-    // Entity access: `client.ByCompletionDate().list()` / `client.ByCompletionDate().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    ByCompletionDate(entopts) {
-        const self = this;
-        return new ByCompletionDateEntity_1.ByCompletionDateEntity(self, entopts);
-    }
-    // Entity access: `client.ByDueDate().list()` / `client.ByDueDate().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    ByDueDate(entopts) {
-        const self = this;
-        return new ByDueDateEntity_1.ByDueDateEntity(self, entopts);
-    }
     // Entity access: `client.Collaborator().list()` / `client.Collaborator().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -364,6 +335,13 @@ class TodoistSDK {
     Comment(entopts) {
         const self = this;
         return new CommentEntity_1.CommentEntity(self, entopts);
+    }
+    // Entity access: `client.CompletedTask().list()` / `client.CompletedTask().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    CompletedTask(entopts) {
+        const self = this;
+        return new CompletedTaskEntity_1.CompletedTaskEntity(self, entopts);
     }
     // Entity access: `client.CreditState().list()` / `client.CreditState().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -414,26 +392,12 @@ class TodoistSDK {
         const self = this;
         return new InviteEntity_1.InviteEntity(self, entopts);
     }
-    // Entity access: `client.ItemSyncView().list()` / `client.ItemSyncView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    ItemSyncView(entopts) {
-        const self = this;
-        return new ItemSyncViewEntity_1.ItemSyncViewEntity(self, entopts);
-    }
     // Entity access: `client.Label().list()` / `client.Label().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
     Label(entopts) {
         const self = this;
         return new LabelEntity_1.LabelEntity(self, entopts);
-    }
-    // Entity access: `client.LabelRestView().list()` / `client.LabelRestView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    LabelRestView(entopts) {
-        const self = this;
-        return new LabelRestViewEntity_1.LabelRestViewEntity(self, entopts);
     }
     // Entity access: `client.LocationReminder().list()` / `client.LocationReminder().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -456,13 +420,6 @@ class TodoistSDK {
         const self = this;
         return new MigratePersonalTokenEntity_1.MigratePersonalTokenEntity(self, entopts);
     }
-    // Entity access: `client.NoteSyncView().list()` / `client.NoteSyncView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    NoteSyncView(entopts) {
-        const self = this;
-        return new NoteSyncViewEntity_1.NoteSyncViewEntity(self, entopts);
-    }
     // Entity access: `client.NotificationLocationSyncView().list()` / `client.NotificationLocationSyncView().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -476,27 +433,6 @@ class TodoistSDK {
     NotificationSyncView(entopts) {
         const self = this;
         return new NotificationSyncViewEntity_1.NotificationSyncViewEntity(self, entopts);
-    }
-    // Entity access: `client.PaginatedListAnyProjectSyncView().list()` / `client.PaginatedListAnyProjectSyncView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    PaginatedListAnyProjectSyncView(entopts) {
-        const self = this;
-        return new PaginatedListAnyProjectSyncViewEntity_1.PaginatedListAnyProjectSyncViewEntity(self, entopts);
-    }
-    // Entity access: `client.PaginatedListItemSyncView().list()` / `client.PaginatedListItemSyncView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    PaginatedListItemSyncView(entopts) {
-        const self = this;
-        return new PaginatedListItemSyncViewEntity_1.PaginatedListItemSyncViewEntity(self, entopts);
-    }
-    // Entity access: `client.PaginatedListStr().list()` / `client.PaginatedListStr().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    PaginatedListStr(entopts) {
-        const self = this;
-        return new PaginatedListStrEntity_1.PaginatedListStrEntity(self, entopts);
     }
     // Entity access: `client.PlanDetail().list()` / `client.PlanDetail().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -561,12 +497,12 @@ class TodoistSDK {
         const self = this;
         return new SectionEntity_1.SectionEntity(self, entopts);
     }
-    // Entity access: `client.SectionSyncView().list()` / `client.SectionSyncView().load({ id })`.
+    // Entity access: `client.SharedLabel().list()` / `client.SharedLabel().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    SectionSyncView(entopts) {
+    SharedLabel(entopts) {
         const self = this;
-        return new SectionSyncViewEntity_1.SectionSyncViewEntity(self, entopts);
+        return new SharedLabelEntity_1.SharedLabelEntity(self, entopts);
     }
     // Entity access: `client.StatusOk().list()` / `client.StatusOk().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity

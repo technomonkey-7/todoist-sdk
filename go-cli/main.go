@@ -20,7 +20,7 @@ import (
 const prompt = "todoist"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "active activity any_project_sync_view archived authorization backup billing_portal_url by_completion_date by_due_date collaborator comment credit_state email file_url folder history id_mapping invite item_sync_view label label_rest_view location_reminder member_view migrate_personal_token note_sync_view notification_location_sync_view notification_sync_view paginated_list_any_project_sync_view paginated_list_item_sync_view paginated_list_str plan_detail productivity_stat project project_import project_import_create_response_with_object reminder remove_workspace_user role_to_action_mapping_view section section_sync_view status_ok subscription_info task template top_up upload usage_summary user workspace workspace_invitation_view workspace_user_view"
+const entitiesHelp = "active activity archived authorization backup billing_portal_url collaborator comment completed_task credit_state email file_url folder history id_mapping invite label location_reminder member_view migrate_personal_token notification_location_sync_view notification_sync_view plan_detail productivity_stat project project_import project_import_create_response_with_object reminder remove_workspace_user role_to_action_mapping_view section shared_label status_ok subscription_info task template top_up upload usage_summary user workspace workspace_invitation_view workspace_user_view"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

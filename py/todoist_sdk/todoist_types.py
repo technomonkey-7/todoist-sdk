@@ -89,56 +89,6 @@ class ActivityListMatch(TypedDict, total=False):
     workspace_id: str
 
 
-class AnyProjectSyncViewRequired(TypedDict):
-    next_cursor: Any
-    results: list
-
-
-class AnyProjectSyncView(AnyProjectSyncViewRequired, total=False):
-    child_order: Any
-    color: Any
-    description: str
-    folder_id: str
-    icon: Any
-    is_collapsed: bool
-    is_favorite: bool
-    name: str
-    parent_id: str
-    view_style: Any
-    workspace_id: str
-
-
-class AnyProjectSyncViewLoadMatch(TypedDict):
-    project_id: str
-
-
-class AnyProjectSyncViewListMatch(TypedDict, total=False):
-    cursor: Any
-    folder_id: str
-    limit: int
-    workspace_id: str
-
-
-class AnyProjectSyncViewCreateDataRequired(TypedDict):
-    project_id: str
-    next_cursor: Any
-    results: list
-
-
-class AnyProjectSyncViewCreateData(AnyProjectSyncViewCreateDataRequired, total=False):
-    child_order: Any
-    color: Any
-    description: str
-    folder_id: str
-    icon: Any
-    is_collapsed: bool
-    is_favorite: bool
-    name: str
-    parent_id: str
-    view_style: Any
-    workspace_id: str
-
-
 class ArchivedRequired(TypedDict):
     access: Any
     initiated_by_uid: int
@@ -232,101 +182,6 @@ class BillingPortalUrlCreateData(BillingPortalUrlCreateDataRequired, total=False
     return_url: str
 
 
-class ByCompletionDate(TypedDict):
-    added_at: Any
-    added_by_uid: Any
-    assigned_by_uid: Any
-    checked: bool
-    child_order: int
-    completed_at: Any
-    completed_by_uid: Any
-    completed_count: int
-    content: str
-    day_order: int
-    deadline: Any
-    description: str
-    due: Any
-    duration: float
-    id: str
-    is_collapsed: bool
-    is_deleted: bool
-    labels: list
-    note_count: int
-    order_key: Any
-    parent_id: str
-    postponed_count: int
-    priority: int
-    project_id: str
-    responsible_uid: Any
-    section_id: str
-    updated_at: Any
-    user_id: str
-
-
-class ByCompletionDateListMatchRequired(TypedDict):
-    since: str
-    until: str
-
-
-class ByCompletionDateListMatch(ByCompletionDateListMatchRequired, total=False):
-    cursor: Any
-    filter_lang: Any
-    filter_query: Any
-    limit: int
-    parent_id: str
-    project_id: str
-    public_key: Any
-    section_id: str
-    workspace_id: str
-
-
-class ByDueDate(TypedDict):
-    added_at: Any
-    added_by_uid: Any
-    assigned_by_uid: Any
-    checked: bool
-    child_order: int
-    completed_at: Any
-    completed_by_uid: Any
-    completed_count: int
-    content: str
-    day_order: int
-    deadline: Any
-    description: str
-    due: Any
-    duration: float
-    id: str
-    is_collapsed: bool
-    is_deleted: bool
-    labels: list
-    note_count: int
-    order_key: Any
-    parent_id: str
-    postponed_count: int
-    priority: int
-    project_id: str
-    responsible_uid: Any
-    section_id: str
-    updated_at: Any
-    user_id: str
-
-
-class ByDueDateListMatchRequired(TypedDict):
-    since: str
-    until: str
-
-
-class ByDueDateListMatch(ByDueDateListMatchRequired, total=False):
-    cursor: Any
-    filter_lang: Any
-    filter_query: Any
-    limit: int
-    parent_id: str
-    project_id: str
-    section_id: str
-    workspace_id: str
-
-
 class Collaborator(TypedDict):
     email: str
     id: str
@@ -344,20 +199,118 @@ class CollaboratorListMatch(CollaboratorListMatchRequired, total=False):
 
 
 class CommentRequired(TypedDict):
-    content: Any
+    file_attachment: Any
+    id: str
+    is_deleted: bool
+    posted_at: Any
+    posted_uid: Any
+    reactions: Any
+    uids_to_notify: Any
 
 
 class Comment(CommentRequired, total=False):
+    attachment: Any
+    content: str
+    project_id: str
+    task_id: str
+
+
+class CommentLoadMatch(TypedDict):
     id: str
 
 
-class CommentCreateData(TypedDict):
+class CommentListMatch(TypedDict, total=False):
+    cursor: Any
+    limit: int
+    project_id: str
+    public_key: Any
+    task_id: str
+
+
+class CommentCreateDataRequired(TypedDict):
+    file_attachment: Any
     id: str
-    content: Any
+    is_deleted: bool
+    posted_at: Any
+    posted_uid: Any
+    reactions: Any
+    uids_to_notify: Any
+
+
+class CommentCreateData(CommentCreateDataRequired, total=False):
+    attachment: Any
+    content: str
+    project_id: str
+    task_id: str
+
+
+class CommentUpdateDataRequired(TypedDict):
+    id: str
+
+
+class CommentUpdateData(CommentUpdateDataRequired, total=False):
+    attachment: Any
+    content: str
+    file_attachment: Any
+    is_deleted: bool
+    posted_at: Any
+    posted_uid: Any
+    project_id: str
+    reactions: Any
+    task_id: str
+    uids_to_notify: Any
 
 
 class CommentRemoveMatch(TypedDict):
     id: str
+
+
+class CompletedTask(TypedDict):
+    added_at: Any
+    added_by_uid: Any
+    assigned_by_uid: Any
+    checked: bool
+    child_order: int
+    completed_at: Any
+    completed_by_uid: Any
+    completed_count: int
+    content: str
+    day_order: int
+    deadline: Any
+    description: str
+    due: Any
+    duration: float
+    id: str
+    is_collapsed: bool
+    is_deleted: bool
+    labels: list
+    note_count: int
+    order_key: Any
+    parent_id: str
+    postponed_count: int
+    priority: int
+    project_id: str
+    responsible_uid: Any
+    section_id: str
+    updated_at: Any
+    user_id: str
+
+
+class CompletedTaskListMatchRequired(TypedDict):
+    since: str
+    until: str
+
+
+class CompletedTaskListMatch(CompletedTaskListMatchRequired, total=False):
+    cursor: Any
+    filter_lang: Any
+    filter_query: Any
+    limit: int
+    parent_id: str
+    project_id: str
+    public_key: Any
+    section_id: str
+    workspace_id: str
 
 
 class CreditState(TypedDict):
@@ -494,115 +447,11 @@ class InviteCreateData(InviteCreateDataRequired, total=False):
     role: Any
 
 
-class ItemSyncViewRequired(TypedDict):
-    added_at: Any
-    added_by_uid: Any
-    assigned_by_uid: Any
-    checked: bool
-    child_order: int
-    completed_at: Any
-    completed_by_uid: Any
-    completed_count: int
-    content: str
-    day_order: int
-    deadline: Any
-    description: str
-    due: Any
-    duration: float
-    id: str
-    is_collapsed: bool
-    is_deleted: bool
-    labels: list
-    note_count: int
-    order_key: Any
-    parent_id: str
-    postponed_count: int
-    priority: int
-    project_id: str
-    responsible_uid: Any
-    section_id: str
-    updated_at: Any
-    user_id: str
-
-
-class ItemSyncView(ItemSyncViewRequired, total=False):
-    assignee_id: str
-    deadline_date: Any
-    due_date: str
-    due_datetime: str
-    due_lang: str
-    due_string: str
-    duration_unit: Any
-    order: Any
-
-
-class ItemSyncViewLoadMatchRequired(TypedDict):
-    task_id: str
-
-
-class ItemSyncViewLoadMatch(ItemSyncViewLoadMatchRequired, total=False):
-    public_key: Any
-
-
-class ItemSyncViewListMatch(TypedDict, total=False):
-    cursor: Any
-    ids: Any
-    label: str
-    limit: int
-    parent_id: str
-    project_id: str
-    section_id: str
-
-
-class ItemSyncViewCreateDataRequired(TypedDict):
-    task_id: str
-    added_at: Any
-    added_by_uid: Any
-    assigned_by_uid: Any
-    checked: bool
-    child_order: int
-    completed_at: Any
-    completed_by_uid: Any
-    completed_count: int
-    content: str
-    day_order: int
-    deadline: Any
-    description: str
-    due: Any
-    duration: float
-    id: str
-    is_collapsed: bool
-    is_deleted: bool
-    labels: list
-    note_count: int
-    order_key: Any
-    parent_id: str
-    postponed_count: int
-    priority: int
-    project_id: str
-    responsible_uid: Any
-    section_id: str
-    updated_at: Any
-    user_id: str
-
-
-class ItemSyncViewCreateData(ItemSyncViewCreateDataRequired, total=False):
-    assignee_id: str
-    deadline_date: Any
-    due_date: str
-    due_datetime: str
-    due_lang: str
-    due_string: str
-    duration_unit: Any
-    order: Any
-
-
 class Label(TypedDict):
     color: str
     id: str
     is_favorite: bool
     name: str
-    new_name: str
     order: Any
 
 
@@ -616,19 +465,6 @@ class LabelListMatch(TypedDict, total=False):
 
 
 class LabelCreateData(TypedDict):
-    id: int
-    color: str
-    is_favorite: bool
-    name: str
-    new_name: str
-    order: Any
-
-
-class LabelRemoveMatch(TypedDict):
-    id: int
-
-
-class LabelRestView(TypedDict):
     color: str
     id: str
     is_favorite: bool
@@ -636,13 +472,19 @@ class LabelRestView(TypedDict):
     order: Any
 
 
-class LabelRestViewListMatchRequired(TypedDict):
-    query: str
+class LabelUpdateDataRequired(TypedDict):
+    id: int
 
 
-class LabelRestViewListMatch(LabelRestViewListMatchRequired, total=False):
-    cursor: Any
-    limit: int
+class LabelUpdateData(LabelUpdateDataRequired, total=False):
+    color: str
+    is_favorite: bool
+    name: str
+    order: Any
+
+
+class LabelRemoveMatch(TypedDict):
+    id: int
 
 
 class LocationReminder(TypedDict, total=False):
@@ -692,54 +534,6 @@ class MigratePersonalTokenCreateData(TypedDict):
     personal_token: str
     scope: str
     token_type: str
-
-
-class NoteSyncViewRequired(TypedDict):
-    file_attachment: Any
-    id: str
-    is_deleted: bool
-    posted_at: Any
-    posted_uid: Any
-    reaction: str
-    reactions: Any
-    uids_to_notify: Any
-
-
-class NoteSyncView(NoteSyncViewRequired, total=False):
-    attachment: Any
-    content: str
-    project_id: str
-    task_id: str
-
-
-class NoteSyncViewLoadMatch(TypedDict):
-    comment_id: str
-
-
-class NoteSyncViewListMatch(TypedDict, total=False):
-    cursor: Any
-    limit: int
-    project_id: str
-    public_key: Any
-    task_id: str
-
-
-class NoteSyncViewCreateDataRequired(TypedDict):
-    file_attachment: Any
-    id: str
-    is_deleted: bool
-    posted_at: Any
-    posted_uid: Any
-    reaction: str
-    reactions: Any
-    uids_to_notify: Any
-
-
-class NoteSyncViewCreateData(NoteSyncViewCreateDataRequired, total=False):
-    attachment: Any
-    content: str
-    project_id: str
-    task_id: str
 
 
 class NotificationLocationSyncViewRequired(TypedDict):
@@ -834,72 +628,6 @@ class NotificationSyncViewCreateData(NotificationSyncViewCreateDataRequired, tot
     service: str
 
 
-class PaginatedListAnyProjectSyncView(TypedDict):
-    next_cursor: Any
-    results: list
-
-
-class PaginatedListAnyProjectSyncViewListMatchRequired(TypedDict):
-    query: str
-
-
-class PaginatedListAnyProjectSyncViewListMatch(PaginatedListAnyProjectSyncViewListMatchRequired, total=False):
-    cursor: Any
-    limit: int
-
-
-class PaginatedListItemSyncView(TypedDict):
-    added_at: Any
-    added_by_uid: Any
-    assigned_by_uid: Any
-    checked: bool
-    child_order: int
-    completed_at: Any
-    completed_by_uid: Any
-    completed_count: int
-    content: str
-    day_order: int
-    deadline: Any
-    description: str
-    due: Any
-    duration: float
-    id: str
-    is_collapsed: bool
-    is_deleted: bool
-    labels: list
-    note_count: int
-    order_key: Any
-    parent_id: str
-    postponed_count: int
-    priority: int
-    project_id: str
-    responsible_uid: Any
-    section_id: str
-    updated_at: Any
-    user_id: str
-
-
-class PaginatedListItemSyncViewListMatchRequired(TypedDict):
-    query: str
-
-
-class PaginatedListItemSyncViewListMatch(PaginatedListItemSyncViewListMatchRequired, total=False):
-    cursor: Any
-    lang: Any
-    limit: int
-
-
-class PaginatedListStr(TypedDict):
-    next_cursor: Any
-    results: list
-
-
-class PaginatedListStrListMatch(TypedDict, total=False):
-    cursor: Any
-    limit: int
-    omit_personal: bool
-
-
 class PlanDetail(TypedDict):
     billing_cycle: str
     prices: list
@@ -935,8 +663,75 @@ class ProductivityStatListMatch(TypedDict, total=False):
     week_items: list
 
 
-class Project(TypedDict, total=False):
+class ProjectRequired(TypedDict):
+    name: str
+    next_cursor: Any
+    results: list
+
+
+class Project(ProjectRequired, total=False):
+    child_order: Any
+    color: Any
+    description: str
+    folder_id: str
+    icon: Any
     id: str
+    is_collapsed: bool
+    is_favorite: bool
+    parent_id: str
+    view_style: Any
+    workspace_id: str
+
+
+class ProjectLoadMatch(TypedDict):
+    id: str
+
+
+class ProjectListMatch(TypedDict, total=False):
+    cursor: Any
+    folder_id: str
+    limit: int
+    workspace_id: str
+
+
+class ProjectCreateDataRequired(TypedDict):
+    name: str
+    next_cursor: Any
+    results: list
+
+
+class ProjectCreateData(ProjectCreateDataRequired, total=False):
+    child_order: Any
+    color: Any
+    description: str
+    folder_id: str
+    icon: Any
+    id: str
+    is_collapsed: bool
+    is_favorite: bool
+    parent_id: str
+    view_style: Any
+    workspace_id: str
+
+
+class ProjectUpdateDataRequired(TypedDict):
+    id: str
+
+
+class ProjectUpdateData(ProjectUpdateDataRequired, total=False):
+    child_order: Any
+    color: Any
+    description: str
+    folder_id: str
+    icon: Any
+    is_collapsed: bool
+    is_favorite: bool
+    name: str
+    next_cursor: Any
+    parent_id: str
+    results: list
+    view_style: Any
+    workspace_id: str
 
 
 class ProjectRemoveMatch(TypedDict):
@@ -1073,10 +868,10 @@ class SectionListMatch(TypedDict, total=False):
 
 
 class SectionCreateDataRequired(TypedDict):
-    id: str
     added_at: str
     archived_at: Any
     description: str
+    id: str
     is_archived: bool
     is_collapsed: bool
     is_deleted: bool
@@ -1092,51 +887,55 @@ class SectionCreateData(SectionCreateDataRequired, total=False):
     order: Any
 
 
+class SectionUpdateDataRequired(TypedDict):
+    id: str
+
+
+class SectionUpdateData(SectionUpdateDataRequired, total=False):
+    added_at: str
+    archived_at: Any
+    description: str
+    is_archived: bool
+    is_collapsed: bool
+    is_deleted: bool
+    name: str
+    order: Any
+    order_key: Any
+    project_id: str
+    section_order: int
+    updated_at: Any
+    user_id: str
+
+
 class SectionRemoveMatch(TypedDict):
     id: str
 
 
-class SectionSyncView(TypedDict):
-    added_at: str
-    archived_at: Any
-    description: str
-    id: str
-    is_archived: bool
-    is_collapsed: bool
-    is_deleted: bool
+class SharedLabel(TypedDict):
     name: str
-    order_key: Any
-    project_id: str
-    section_order: int
-    updated_at: Any
-    user_id: str
+    new_name: str
+    next_cursor: Any
+    results: list
 
 
-class SectionSyncViewListMatchRequired(TypedDict):
-    query: str
-
-
-class SectionSyncViewListMatch(SectionSyncViewListMatchRequired, total=False):
+class SharedLabelListMatch(TypedDict, total=False):
     cursor: Any
     limit: int
-    project_id: str
-    workspace_id: str
+    omit_personal: bool
 
 
-class SectionSyncViewCreateData(TypedDict):
-    id: str
-    added_at: str
-    archived_at: Any
-    description: str
-    is_archived: bool
-    is_collapsed: bool
-    is_deleted: bool
+class SharedLabelUpdateData(TypedDict, total=False):
     name: str
-    order_key: Any
-    project_id: str
-    section_order: int
-    updated_at: Any
-    user_id: str
+    new_name: str
+    next_cursor: Any
+    results: list
+
+
+class SharedLabelRemoveMatch(TypedDict, total=False):
+    name: str
+    new_name: str
+    next_cursor: Any
+    results: list
 
 
 class StatusOk(TypedDict):
@@ -1176,12 +975,148 @@ class SubscriptionInfoCreateData(TypedDict):
     status: str
 
 
-class Task(TypedDict, total=False):
+class TaskRequired(TypedDict):
+    added_at: Any
+    added_by_uid: Any
+    assigned_by_uid: Any
+    checked: bool
+    child_order: int
+    completed_at: Any
+    completed_by_uid: Any
+    completed_count: int
+    content: str
+    day_order: int
+    deadline: Any
+    description: str
+    due: Any
+    duration: float
+    id: str
+    is_collapsed: bool
+    is_deleted: bool
+    labels: list
+    note_count: int
+    order_key: Any
+    parent_id: str
+    postponed_count: int
+    priority: int
+    project_id: str
+    responsible_uid: Any
+    section_id: str
+    updated_at: Any
+    user_id: str
+
+
+class Task(TaskRequired, total=False):
+    assignee_id: str
+    deadline_date: Any
+    due_date: Any
+    due_datetime: Any
+    due_lang: Any
+    due_string: Any
+    duration_unit: Any
+    order: Any
+
+
+class TaskLoadMatchRequired(TypedDict):
     id: str
 
 
-class TaskCreateData(TypedDict, total=False):
+class TaskLoadMatch(TaskLoadMatchRequired, total=False):
+    public_key: Any
+
+
+class TaskListMatch(TypedDict, total=False):
+    cursor: Any
+    ids: Any
+    label: str
+    limit: int
+    parent_id: str
+    project_id: str
+    section_id: str
+
+
+class TaskCreateDataRequired(TypedDict):
+    added_at: Any
+    added_by_uid: Any
+    assigned_by_uid: Any
+    checked: bool
+    child_order: int
+    completed_at: Any
+    completed_by_uid: Any
+    completed_count: int
+    content: str
+    day_order: int
+    deadline: Any
+    description: str
+    due: Any
+    duration: float
     id: str
+    is_collapsed: bool
+    is_deleted: bool
+    labels: list
+    note_count: int
+    order_key: Any
+    parent_id: str
+    postponed_count: int
+    priority: int
+    project_id: str
+    responsible_uid: Any
+    section_id: str
+    updated_at: Any
+    user_id: str
+
+
+class TaskCreateData(TaskCreateDataRequired, total=False):
+    assignee_id: str
+    deadline_date: Any
+    due_date: Any
+    due_datetime: Any
+    due_lang: Any
+    due_string: Any
+    duration_unit: Any
+    order: Any
+
+
+class TaskUpdateDataRequired(TypedDict):
+    id: str
+
+
+class TaskUpdateData(TaskUpdateDataRequired, total=False):
+    added_at: Any
+    added_by_uid: Any
+    assigned_by_uid: Any
+    assignee_id: str
+    checked: bool
+    child_order: int
+    completed_at: Any
+    completed_by_uid: Any
+    completed_count: int
+    content: str
+    day_order: int
+    deadline: Any
+    deadline_date: Any
+    description: str
+    due: Any
+    due_date: Any
+    due_datetime: Any
+    due_lang: Any
+    due_string: Any
+    duration: float
+    duration_unit: Any
+    is_collapsed: bool
+    is_deleted: bool
+    labels: list
+    note_count: int
+    order: Any
+    order_key: Any
+    parent_id: str
+    postponed_count: int
+    priority: int
+    project_id: str
+    responsible_uid: Any
+    section_id: str
+    updated_at: Any
+    user_id: str
 
 
 class TaskRemoveMatch(TypedDict):

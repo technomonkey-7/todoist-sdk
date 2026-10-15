@@ -58,48 +58,6 @@ export interface ActivityListMatch {
     parent_project_id?: string;
     workspace_id?: string;
 }
-export interface AnyProjectSyncView {
-    child_order?: any;
-    color?: any;
-    description?: string;
-    folder_id?: string;
-    icon?: any;
-    is_collapsed?: boolean;
-    is_favorite?: boolean;
-    name?: string;
-    next_cursor: any;
-    parent_id?: string;
-    results: any[];
-    view_style?: any;
-    workspace_id?: string;
-}
-export interface AnyProjectSyncViewLoadMatch {
-    project_id: string;
-}
-export interface AnyProjectSyncViewListMatch {
-    cursor?: any;
-    folder_id?: string;
-    limit?: number;
-    workspace_id?: string;
-}
-export interface AnyProjectSyncViewCreateData {
-    project_id: string;
-    child_order?: any;
-    color?: any;
-    description?: string;
-    folder_id?: string;
-    icon?: any;
-    is_collapsed?: boolean;
-    is_favorite?: boolean;
-    name?: string;
-    next_cursor: any;
-    parent_id?: string;
-    results: any[];
-    view_style?: any;
-    workspace_id?: string;
-    $action?: string;
-    [action: string]: any;
-}
 export interface Archived {
     access: any;
     archived_date?: any;
@@ -167,91 +125,6 @@ export interface BillingPortalUrlCreateData {
     reason_text?: string;
     return_url?: string;
 }
-export interface ByCompletionDate {
-    added_at: any;
-    added_by_uid: any;
-    assigned_by_uid: any;
-    checked: boolean;
-    child_order: number;
-    completed_at: any;
-    completed_by_uid: any;
-    completed_count: number;
-    content: string;
-    day_order: number;
-    deadline: any;
-    description: string;
-    due: any;
-    duration: number;
-    id: string;
-    is_collapsed: boolean;
-    is_deleted: boolean;
-    labels: any[];
-    note_count: number;
-    order_key: any;
-    parent_id: string;
-    postponed_count: number;
-    priority: number;
-    project_id: string;
-    responsible_uid: any;
-    section_id: string;
-    updated_at: any;
-    user_id: string;
-}
-export interface ByCompletionDateListMatch {
-    cursor?: any;
-    filter_lang?: any;
-    filter_query?: any;
-    limit?: number;
-    parent_id?: string;
-    project_id?: string;
-    public_key?: any;
-    section_id?: string;
-    since: string;
-    until: string;
-    workspace_id?: string;
-}
-export interface ByDueDate {
-    added_at: any;
-    added_by_uid: any;
-    assigned_by_uid: any;
-    checked: boolean;
-    child_order: number;
-    completed_at: any;
-    completed_by_uid: any;
-    completed_count: number;
-    content: string;
-    day_order: number;
-    deadline: any;
-    description: string;
-    due: any;
-    duration: number;
-    id: string;
-    is_collapsed: boolean;
-    is_deleted: boolean;
-    labels: any[];
-    note_count: number;
-    order_key: any;
-    parent_id: string;
-    postponed_count: number;
-    priority: number;
-    project_id: string;
-    responsible_uid: any;
-    section_id: string;
-    updated_at: any;
-    user_id: string;
-}
-export interface ByDueDateListMatch {
-    cursor?: any;
-    filter_lang?: any;
-    filter_query?: any;
-    limit?: number;
-    parent_id?: string;
-    project_id?: string;
-    section_id?: string;
-    since: string;
-    until: string;
-    workspace_id?: string;
-}
 export interface Collaborator {
     email: string;
     id: string;
@@ -264,17 +137,103 @@ export interface CollaboratorListMatch {
     public_key?: any;
 }
 export interface Comment {
-    content: any;
-    id?: string;
+    attachment?: any;
+    content?: string;
+    file_attachment: any;
+    id: string;
+    is_deleted: boolean;
+    posted_at: any;
+    posted_uid: any;
+    project_id?: string;
+    reactions: any;
+    task_id?: string;
+    uids_to_notify: any;
+}
+export interface CommentLoadMatch {
+    id: string;
+}
+export interface CommentListMatch {
+    cursor?: any;
+    limit?: number;
+    project_id?: string;
+    public_key?: any;
+    task_id?: string;
 }
 export interface CommentCreateData {
+    attachment?: any;
+    content?: string;
+    file_attachment: any;
     id: string;
-    content: any;
+    is_deleted: boolean;
+    posted_at: any;
+    posted_uid: any;
+    project_id?: string;
+    reactions: any;
+    task_id?: string;
+    uids_to_notify: any;
+}
+export interface CommentUpdateData {
+    id: string;
+    attachment?: any;
+    content?: string;
+    file_attachment?: any;
+    is_deleted?: boolean;
+    posted_at?: any;
+    posted_uid?: any;
+    project_id?: string;
+    reactions?: any;
+    task_id?: string;
+    uids_to_notify?: any;
     $action?: string;
     [action: string]: any;
 }
 export interface CommentRemoveMatch {
     id: string;
+}
+export interface CompletedTask {
+    added_at: any;
+    added_by_uid: any;
+    assigned_by_uid: any;
+    checked: boolean;
+    child_order: number;
+    completed_at: any;
+    completed_by_uid: any;
+    completed_count: number;
+    content: string;
+    day_order: number;
+    deadline: any;
+    description: string;
+    due: any;
+    duration: number;
+    id: string;
+    is_collapsed: boolean;
+    is_deleted: boolean;
+    labels: any[];
+    note_count: number;
+    order_key: any;
+    parent_id: string;
+    postponed_count: number;
+    priority: number;
+    project_id: string;
+    responsible_uid: any;
+    section_id: string;
+    updated_at: any;
+    user_id: string;
+}
+export interface CompletedTaskListMatch {
+    cursor?: any;
+    filter_lang?: any;
+    filter_query?: any;
+    limit?: number;
+    parent_id?: string;
+    project_id?: string;
+    public_key?: any;
+    section_id?: string;
+    since: string;
+    until: string;
+    workspace_id?: string;
+    $action?: string;
+    [action: string]: any;
 }
 export interface CreditState {
     available_amount: number;
@@ -378,104 +337,11 @@ export interface InviteCreateData {
     invited_emails: any[];
     role?: any;
 }
-export interface ItemSyncView {
-    added_at: any;
-    added_by_uid: any;
-    assigned_by_uid: any;
-    assignee_id?: string;
-    checked: boolean;
-    child_order: number;
-    completed_at: any;
-    completed_by_uid: any;
-    completed_count: number;
-    content: string;
-    day_order: number;
-    deadline: any;
-    deadline_date?: any;
-    description: string;
-    due: any;
-    due_date?: string;
-    due_datetime?: string;
-    due_lang?: string;
-    due_string?: string;
-    duration: number;
-    duration_unit?: any;
-    id: string;
-    is_collapsed: boolean;
-    is_deleted: boolean;
-    labels: any[];
-    note_count: number;
-    order?: any;
-    order_key: any;
-    parent_id: string;
-    postponed_count: number;
-    priority: number;
-    project_id: string;
-    responsible_uid: any;
-    section_id: string;
-    updated_at: any;
-    user_id: string;
-}
-export interface ItemSyncViewLoadMatch {
-    task_id: string;
-    public_key?: any;
-}
-export interface ItemSyncViewListMatch {
-    cursor?: any;
-    ids?: any;
-    label?: string;
-    limit?: number;
-    parent_id?: string;
-    project_id?: string;
-    section_id?: string;
-}
-export interface ItemSyncViewCreateData {
-    task_id: string;
-    added_at: any;
-    added_by_uid: any;
-    assigned_by_uid: any;
-    assignee_id?: string;
-    checked: boolean;
-    child_order: number;
-    completed_at: any;
-    completed_by_uid: any;
-    completed_count: number;
-    content: string;
-    day_order: number;
-    deadline: any;
-    deadline_date?: any;
-    description: string;
-    due: any;
-    due_date?: string;
-    due_datetime?: string;
-    due_lang?: string;
-    due_string?: string;
-    duration: number;
-    duration_unit?: any;
-    id: string;
-    is_collapsed: boolean;
-    is_deleted: boolean;
-    labels: any[];
-    note_count: number;
-    order?: any;
-    order_key: any;
-    parent_id: string;
-    postponed_count: number;
-    priority: number;
-    project_id: string;
-    responsible_uid: any;
-    section_id: string;
-    updated_at: any;
-    user_id: string;
-    $action?: string;
-    [action: string]: any;
-}
 export interface Label {
     color: string;
     id: string;
     is_favorite: boolean;
     name: string;
-    new_name: string;
     order: any;
 }
 export interface LabelLoadMatch {
@@ -484,29 +350,25 @@ export interface LabelLoadMatch {
 export interface LabelListMatch {
     cursor?: any;
     limit?: number;
+    $action?: string;
+    [action: string]: any;
 }
 export interface LabelCreateData {
-    id: number;
-    color: string;
-    is_favorite: boolean;
-    name: string;
-    new_name: string;
-    order: any;
-}
-export interface LabelRemoveMatch {
-    id: number;
-}
-export interface LabelRestView {
     color: string;
     id: string;
     is_favorite: boolean;
     name: string;
     order: any;
 }
-export interface LabelRestViewListMatch {
-    cursor?: any;
-    limit?: number;
-    query: string;
+export interface LabelUpdateData {
+    id: number;
+    color?: string;
+    is_favorite?: boolean;
+    name?: string;
+    order?: any;
+}
+export interface LabelRemoveMatch {
+    id: number;
 }
 export interface LocationReminder {
     id?: string;
@@ -547,44 +409,6 @@ export interface MigratePersonalTokenCreateData {
     personal_token: string;
     scope: string;
     token_type: string;
-}
-export interface NoteSyncView {
-    attachment?: any;
-    content?: string;
-    file_attachment: any;
-    id: string;
-    is_deleted: boolean;
-    posted_at: any;
-    posted_uid: any;
-    project_id?: string;
-    reaction: string;
-    reactions: any;
-    task_id?: string;
-    uids_to_notify: any;
-}
-export interface NoteSyncViewLoadMatch {
-    comment_id: string;
-}
-export interface NoteSyncViewListMatch {
-    cursor?: any;
-    limit?: number;
-    project_id?: string;
-    public_key?: any;
-    task_id?: string;
-}
-export interface NoteSyncViewCreateData {
-    attachment?: any;
-    content?: string;
-    file_attachment: any;
-    id: string;
-    is_deleted: boolean;
-    posted_at: any;
-    posted_uid: any;
-    project_id?: string;
-    reaction: string;
-    reactions: any;
-    task_id?: string;
-    uids_to_notify: any;
 }
 export interface NotificationLocationSyncView {
     id: string;
@@ -658,60 +482,6 @@ export interface NotificationSyncViewCreateData {
     task_id: string;
     type: string;
 }
-export interface PaginatedListAnyProjectSyncView {
-    next_cursor: any;
-    results: any[];
-}
-export interface PaginatedListAnyProjectSyncViewListMatch {
-    cursor?: any;
-    limit?: number;
-    query: string;
-}
-export interface PaginatedListItemSyncView {
-    added_at: any;
-    added_by_uid: any;
-    assigned_by_uid: any;
-    checked: boolean;
-    child_order: number;
-    completed_at: any;
-    completed_by_uid: any;
-    completed_count: number;
-    content: string;
-    day_order: number;
-    deadline: any;
-    description: string;
-    due: any;
-    duration: number;
-    id: string;
-    is_collapsed: boolean;
-    is_deleted: boolean;
-    labels: any[];
-    note_count: number;
-    order_key: any;
-    parent_id: string;
-    postponed_count: number;
-    priority: number;
-    project_id: string;
-    responsible_uid: any;
-    section_id: string;
-    updated_at: any;
-    user_id: string;
-}
-export interface PaginatedListItemSyncViewListMatch {
-    cursor?: any;
-    lang?: any;
-    limit?: number;
-    query: string;
-}
-export interface PaginatedListStr {
-    next_cursor: any;
-    results: any[];
-}
-export interface PaginatedListStrListMatch {
-    cursor?: any;
-    limit?: number;
-    omit_personal?: boolean;
-}
 export interface PlanDetail {
     billing_cycle: string;
     prices: any[];
@@ -744,7 +514,65 @@ export interface ProductivityStatListMatch {
     week_items?: any[];
 }
 export interface Project {
+    child_order?: any;
+    color?: any;
+    description?: string;
+    folder_id?: string;
+    icon?: any;
     id?: string;
+    is_collapsed?: boolean;
+    is_favorite?: boolean;
+    name: string;
+    next_cursor: any;
+    parent_id?: string;
+    results: any[];
+    view_style?: any;
+    workspace_id?: string;
+}
+export interface ProjectLoadMatch {
+    id: string;
+}
+export interface ProjectListMatch {
+    cursor?: any;
+    folder_id?: string;
+    limit?: number;
+    workspace_id?: string;
+    $action?: string;
+    [action: string]: any;
+}
+export interface ProjectCreateData {
+    child_order?: any;
+    color?: any;
+    description?: string;
+    folder_id?: string;
+    icon?: any;
+    id?: string;
+    is_collapsed?: boolean;
+    is_favorite?: boolean;
+    name: string;
+    next_cursor: any;
+    parent_id?: string;
+    results: any[];
+    view_style?: any;
+    workspace_id?: string;
+}
+export interface ProjectUpdateData {
+    id: string;
+    child_order?: any;
+    color?: any;
+    description?: string;
+    folder_id?: string;
+    icon?: any;
+    is_collapsed?: boolean;
+    is_favorite?: boolean;
+    name?: string;
+    next_cursor?: any;
+    parent_id?: string;
+    results?: any[];
+    view_style?: any;
+    workspace_id?: string;
+    $action?: string;
+    [action: string]: any;
 }
 export interface ProjectRemoveMatch {
     id: string;
@@ -852,12 +680,14 @@ export interface SectionListMatch {
     project_id?: string;
     public_key?: any;
     workspace_id?: string;
+    $action?: string;
+    [action: string]: any;
 }
 export interface SectionCreateData {
-    id: string;
     added_at: string;
     archived_at: any;
     description: string;
+    id: string;
     is_archived: boolean;
     is_collapsed: boolean;
     is_deleted: boolean;
@@ -869,47 +699,49 @@ export interface SectionCreateData {
     updated_at: any;
     user_id: string;
 }
+export interface SectionUpdateData {
+    id: string;
+    added_at?: string;
+    archived_at?: any;
+    description?: string;
+    is_archived?: boolean;
+    is_collapsed?: boolean;
+    is_deleted?: boolean;
+    name?: string;
+    order?: any;
+    order_key?: any;
+    project_id?: string;
+    section_order?: number;
+    updated_at?: any;
+    user_id?: string;
+    $action?: string;
+    [action: string]: any;
+}
 export interface SectionRemoveMatch {
     id: string;
 }
-export interface SectionSyncView {
-    added_at: string;
-    archived_at: any;
-    description: string;
-    id: string;
-    is_archived: boolean;
-    is_collapsed: boolean;
-    is_deleted: boolean;
+export interface SharedLabel {
     name: string;
-    order_key: any;
-    project_id: string;
-    section_order: number;
-    updated_at: any;
-    user_id: string;
+    new_name: string;
+    next_cursor: any;
+    results: any[];
 }
-export interface SectionSyncViewListMatch {
+export interface SharedLabelListMatch {
     cursor?: any;
     limit?: number;
-    project_id?: string;
-    query: string;
-    workspace_id?: string;
+    omit_personal?: boolean;
 }
-export interface SectionSyncViewCreateData {
-    id: string;
-    added_at: string;
-    archived_at: any;
-    description: string;
-    is_archived: boolean;
-    is_collapsed: boolean;
-    is_deleted: boolean;
-    name: string;
-    order_key: any;
-    project_id: string;
-    section_order: number;
-    updated_at: any;
-    user_id: string;
-    $action?: string;
-    [action: string]: any;
+export interface SharedLabelUpdateData {
+    name?: string;
+    new_name?: string;
+    next_cursor?: any;
+    results?: any[];
+}
+export interface SharedLabelRemoveMatch {
+    name?: string;
+    new_name?: string;
+    next_cursor?: any;
+    results?: any[];
 }
 export interface StatusOk {
 }
@@ -944,10 +776,135 @@ export interface SubscriptionInfoCreateData {
     status: string;
 }
 export interface Task {
-    id?: string;
+    added_at: any;
+    added_by_uid: any;
+    assigned_by_uid: any;
+    assignee_id?: string;
+    checked: boolean;
+    child_order: number;
+    completed_at: any;
+    completed_by_uid: any;
+    completed_count: number;
+    content: string;
+    day_order: number;
+    deadline: any;
+    deadline_date?: any;
+    description: string;
+    due: any;
+    due_date?: any;
+    due_datetime?: any;
+    due_lang?: any;
+    due_string?: any;
+    duration: number;
+    duration_unit?: any;
+    id: string;
+    is_collapsed: boolean;
+    is_deleted: boolean;
+    labels: any[];
+    note_count: number;
+    order?: any;
+    order_key: any;
+    parent_id: string;
+    postponed_count: number;
+    priority: number;
+    project_id: string;
+    responsible_uid: any;
+    section_id: string;
+    updated_at: any;
+    user_id: string;
+}
+export interface TaskLoadMatch {
+    id: string;
+    public_key?: any;
+}
+export interface TaskListMatch {
+    cursor?: any;
+    ids?: any;
+    label?: string;
+    limit?: number;
+    parent_id?: string;
+    project_id?: string;
+    section_id?: string;
+    $action?: string;
+    [action: string]: any;
 }
 export interface TaskCreateData {
-    id?: string;
+    added_at: any;
+    added_by_uid: any;
+    assigned_by_uid: any;
+    assignee_id?: string;
+    checked: boolean;
+    child_order: number;
+    completed_at: any;
+    completed_by_uid: any;
+    completed_count: number;
+    content: string;
+    day_order: number;
+    deadline: any;
+    deadline_date?: any;
+    description: string;
+    due: any;
+    due_date?: any;
+    due_datetime?: any;
+    due_lang?: any;
+    due_string?: any;
+    duration: number;
+    duration_unit?: any;
+    id: string;
+    is_collapsed: boolean;
+    is_deleted: boolean;
+    labels: any[];
+    note_count: number;
+    order?: any;
+    order_key: any;
+    parent_id: string;
+    postponed_count: number;
+    priority: number;
+    project_id: string;
+    responsible_uid: any;
+    section_id: string;
+    updated_at: any;
+    user_id: string;
+    $action?: string;
+    [action: string]: any;
+}
+export interface TaskUpdateData {
+    id: string;
+    added_at?: any;
+    added_by_uid?: any;
+    assigned_by_uid?: any;
+    assignee_id?: string;
+    checked?: boolean;
+    child_order?: number;
+    completed_at?: any;
+    completed_by_uid?: any;
+    completed_count?: number;
+    content?: string;
+    day_order?: number;
+    deadline?: any;
+    deadline_date?: any;
+    description?: string;
+    due?: any;
+    due_date?: any;
+    due_datetime?: any;
+    due_lang?: any;
+    due_string?: any;
+    duration?: number;
+    duration_unit?: any;
+    is_collapsed?: boolean;
+    is_deleted?: boolean;
+    labels?: any[];
+    note_count?: number;
+    order?: any;
+    order_key?: any;
+    parent_id?: string;
+    postponed_count?: number;
+    priority?: number;
+    project_id?: string;
+    responsible_uid?: any;
+    section_id?: string;
+    updated_at?: any;
+    user_id?: string;
     $action?: string;
     [action: string]: any;
 }

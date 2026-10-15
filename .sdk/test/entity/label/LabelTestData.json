@@ -2,59 +2,45 @@
   "existing": {
     "label": {
       "LABEL00": {
-        "color": "s3c",
+        "color": "s32",
         "id": "LABEL00",
         "is_favorite": true,
-        "name": "s3f",
-        "new_name": "s40",
-        "order": "s41"
+        "name": "s35",
+        "order": "s36"
       },
       "LABEL01": {
-        "color": "s78",
+        "color": "s64",
         "id": "LABEL01",
         "is_favorite": true,
-        "name": "s7b",
-        "new_name": "s7c",
-        "order": "s7d"
+        "name": "s67",
+        "order": "s68"
       },
       "LABEL02": {
-        "color": "sb4",
+        "color": "s96",
         "id": "LABEL02",
         "is_favorite": true,
-        "name": "sb7",
-        "new_name": "sb8",
-        "order": "sb9"
+        "name": "s99",
+        "order": "s9a"
       }
     }
   },
   "new": {
     "label": {
       "label_ref01": {
-        "color": "sf0",
+        "color": "sc8",
         "is_favorite": true,
-        "name": "sf3",
-        "new_name": "sf4",
-        "order": "sf5"
+        "name": "scb",
+        "order": "scc"
       }
     }
   },
   "requests": {
-    "POST /api/v1/labels/{label_id}": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
     "POST /api/v1/labels": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "POST /api/v1/labels/shared/remove": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "POST /api/v1/labels/shared/rename": {
+    "GET /api/v1/labels/search": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
@@ -70,6 +56,11 @@
       "source": "openapi3"
     },
     "DELETE /api/v1/labels/{label_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/labels/{label_id}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

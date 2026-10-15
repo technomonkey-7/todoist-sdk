@@ -1,0 +1,22 @@
+# BasicCompletedTaskFlow
+
+main: kit: flow: BasicCompletedTaskFlow:
+{
+  entity: "completed_task",
+  kind: "basic",
+  name: "BasicCompletedTaskFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "completed_task_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompletedTaskFlow"
+}

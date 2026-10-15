@@ -39,9 +39,6 @@ func init() {
 	core.NewActivityEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewActivityEntity(client, entopts)
 	}
-	core.NewAnyProjectSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewAnyProjectSyncViewEntity(client, entopts)
-	}
 	core.NewArchivedEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewArchivedEntity(client, entopts)
 	}
@@ -54,17 +51,14 @@ func init() {
 	core.NewBillingPortalUrlEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewBillingPortalUrlEntity(client, entopts)
 	}
-	core.NewByCompletionDateEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewByCompletionDateEntity(client, entopts)
-	}
-	core.NewByDueDateEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewByDueDateEntity(client, entopts)
-	}
 	core.NewCollaboratorEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewCollaboratorEntity(client, entopts)
 	}
 	core.NewCommentEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewCommentEntity(client, entopts)
+	}
+	core.NewCompletedTaskEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
+		return entity.NewCompletedTaskEntity(client, entopts)
 	}
 	core.NewCreditStateEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewCreditStateEntity(client, entopts)
@@ -87,14 +81,8 @@ func init() {
 	core.NewInviteEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewInviteEntity(client, entopts)
 	}
-	core.NewItemSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewItemSyncViewEntity(client, entopts)
-	}
 	core.NewLabelEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewLabelEntity(client, entopts)
-	}
-	core.NewLabelRestViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewLabelRestViewEntity(client, entopts)
 	}
 	core.NewLocationReminderEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewLocationReminderEntity(client, entopts)
@@ -105,23 +93,11 @@ func init() {
 	core.NewMigratePersonalTokenEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewMigratePersonalTokenEntity(client, entopts)
 	}
-	core.NewNoteSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewNoteSyncViewEntity(client, entopts)
-	}
 	core.NewNotificationLocationSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewNotificationLocationSyncViewEntity(client, entopts)
 	}
 	core.NewNotificationSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewNotificationSyncViewEntity(client, entopts)
-	}
-	core.NewPaginatedListAnyProjectSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewPaginatedListAnyProjectSyncViewEntity(client, entopts)
-	}
-	core.NewPaginatedListItemSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewPaginatedListItemSyncViewEntity(client, entopts)
-	}
-	core.NewPaginatedListStrEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewPaginatedListStrEntity(client, entopts)
 	}
 	core.NewPlanDetailEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewPlanDetailEntity(client, entopts)
@@ -150,8 +126,8 @@ func init() {
 	core.NewSectionEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewSectionEntity(client, entopts)
 	}
-	core.NewSectionSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewSectionSyncViewEntity(client, entopts)
+	core.NewSharedLabelEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
+		return entity.NewSharedLabelEntity(client, entopts)
 	}
 	core.NewStatusOkEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewStatusOkEntity(client, entopts)

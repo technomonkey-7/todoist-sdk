@@ -37,7 +37,7 @@ class TestSectionDirect:
         params = {}
 
         result = client.direct({
-            "path": "api/v1/sections",
+            "path": "api/v1/sections/search",
             "method": "GET",
             "params": params,
         })
@@ -65,7 +65,7 @@ class TestSectionDirect:
         query = {}
         if setup["live"]:
             list_result = client.direct({
-                "path": "api/v1/sections",
+                "path": "api/v1/sections/search",
                 "method": "GET",
                 "params": {},
             })

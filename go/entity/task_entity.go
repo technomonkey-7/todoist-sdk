@@ -293,14 +293,76 @@ func (e *TaskEntity) streamSteps(ctx *core.Context) error {
 	return nil
 }
 
-func (e *TaskEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("load", e.name)
+
+func (e *TaskEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":   "load",
+		"ctrl":     ctrl,
+		"match":    e.match,
+		"data":     e.data,
+		"reqmatch": reqmatch,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// TaskLoadMatch and returns an Task. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *TaskEntity) LoadTyped(reqmatch TaskLoadMatch, ctrl map[string]any) (Task, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Task{}, err
+	}
+	return typedFrom[Task](res), nil
 }
 
 
-func (e *TaskEntity) List(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("list", e.name)
+
+
+func (e *TaskEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":   "list",
+		"ctrl":     ctrl,
+		"match":    e.match,
+		"data":     e.data,
+		"reqmatch": reqmatch,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+		}
+	})
 }
+
+// ListTyped is the statically-typed variant of List: it takes an
+// TaskListMatch and returns []Task. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *TaskEntity) ListTyped(reqmatch TaskListMatch, ctrl map[string]any) ([]Task, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Task](res), nil
+}
+
 
 
 
@@ -339,9 +401,43 @@ func (e *TaskEntity) CreateTyped(reqdata TaskCreateData, ctrl map[string]any) (T
 
 
 
-func (e *TaskEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("update", e.name)
+
+func (e *TaskEntity) Update(reqdata map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":  "update",
+		"ctrl":    ctrl,
+		"match":   e.match,
+		"data":    e.data,
+		"reqdata": reqdata,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
 }
+
+// UpdateTyped is the statically-typed variant of Update: it takes an
+// TaskUpdateData and returns an Task. It delegates to the untyped
+// Update (identical runtime) and converts at the typed boundary.
+func (e *TaskEntity) UpdateTyped(reqdata TaskUpdateData, ctrl map[string]any) (Task, error) {
+	res, err := e.Update(asMap(reqdata), ctrl)
+	if err != nil {
+		return Task{}, err
+	}
+	return typedFrom[Task](res), nil
+}
+
 
 
 func (e *TaskEntity) Patch(_ map[string]any, _ map[string]any) (any, error) {

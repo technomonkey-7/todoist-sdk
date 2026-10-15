@@ -101,7 +101,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "project_collaborator_actions": { "a": true, "h": "Project Collaborator Actions", "n": "project_collaborator_actions", "r": true, "sh": "Project collaborator roles and their allowed actions.", "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 3 }, "key$": "project_collaborator_actions", "index$": 0 }, "workspace_collaborator_actions": { "a": true, "h": "Workspace Collaborator Actions", "n": "workspace_collaborator_actions", "r": true, "sh": "Workspace collaborator roles and their allowed actions.", "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 3 }, "key$": "workspace_collaborator_actions", "index$": 1 } }, "name": "role_to_action_mapping_view", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/v1/projects/permissions", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/api/v1/projects/permissions", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "projects" }, { "lit": "permissions" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "role_to_action_mapping_view", "name__orig": "role_to_action_mapping_view", "Name": "RoleToActionMappingView", "name_": "role_to_action_mapping_view", "name-": "role-to-action-mapping-view", "NAME": "ROLE_TO_ACTION_MAPPING_VIEW", "index$": 37 }, { "active": true, "entity": "role_to_action_mapping_view", "key$": "BasicRoleToActionMappingViewFlow", "kind": "basic", "name": "BasicRoleToActionMappingViewFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "role_to_action_mapping_view_ref01" } }], "index$": 0 }] }, 'RoleToActionMappingView', { "GET /api/v1/projects/permissions": { "protocol": "http", "parameters": [] } }, { strict: LIVE_STRICT, t });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "project_collaborator_actions": { "a": true, "h": "Project Collaborator Actions", "n": "project_collaborator_actions", "r": true, "sh": "Project collaborator roles and their allowed actions.", "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 3 }, "key$": "project_collaborator_actions", "index$": 0 }, "workspace_collaborator_actions": { "a": true, "h": "Workspace Collaborator Actions", "n": "workspace_collaborator_actions", "r": true, "sh": "Workspace collaborator roles and their allowed actions.", "t": "`$ARRAY`", "union": { "branches": 2, "count": 1, "depth": 3 }, "key$": "workspace_collaborator_actions", "index$": 1 } }, "name": "role_to_action_mapping_view", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/v1/projects/permissions", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/api/v1/projects/permissions", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "v1" }, { "lit": "projects" }, { "lit": "permissions" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "role_to_action_mapping_view", "name__orig": "role_to_action_mapping_view", "Name": "RoleToActionMappingView", "name_": "role_to_action_mapping_view", "name-": "role-to-action-mapping-view", "NAME": "ROLE_TO_ACTION_MAPPING_VIEW", "index$": 29 }, { "active": true, "entity": "role_to_action_mapping_view", "key$": "BasicRoleToActionMappingViewFlow", "kind": "basic", "name": "BasicRoleToActionMappingViewFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "role_to_action_mapping_view_ref01" } }], "index$": 0 }] }, 'RoleToActionMappingView', { "GET /api/v1/projects/permissions": { "protocol": "http", "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -143,6 +143,7 @@ function basicSetup(extra) {
         'TODOIST_TEST_ROLE_TO_ACTION_MAPPING_VIEW_ENTID': idmap,
         'TODOIST_TEST_LIVE': 'FALSE',
         'TODOIST_TEST_EXPLAIN': 'FALSE',
+        'TODOIST_APIKEY': '',
     });
     idmap = env['TODOIST_TEST_ROLE_TO_ACTION_MAPPING_VIEW_ENTID'];
     const live = 'TRUE' === env.TODOIST_TEST_LIVE;
@@ -157,7 +158,9 @@ function basicSetup(extra) {
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
             (0, utility_1.liveClientOptions)(),
-            {},
+            {
+                apikey: env.TODOIST_APIKEY,
+            },
             // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
             // last entry is undefined, and basicSetup is normally called with no
             // argument at all - so a bare 'extra' silently discarded the apikey

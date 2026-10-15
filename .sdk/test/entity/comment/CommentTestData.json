@@ -2,38 +2,94 @@
   "existing": {
     "comment": {
       "COMMENT00": {
-        "content": "s14",
-        "id": "COMMENT00"
+        "attachment": "s6e",
+        "content": "s6f",
+        "file_attachment": "s70",
+        "id": "COMMENT00",
+        "is_deleted": true,
+        "posted_at": "s73",
+        "posted_uid": "s74",
+        "project_id": "PROJECT01",
+        "reactions": "s76",
+        "task_id": "TASK01",
+        "uids_to_notify": "s78"
       },
       "COMMENT01": {
-        "content": "s28",
-        "id": "COMMENT01"
+        "attachment": "sdc",
+        "content": "sdd",
+        "file_attachment": "sde",
+        "id": "COMMENT01",
+        "is_deleted": true,
+        "posted_at": "se1",
+        "posted_uid": "se2",
+        "project_id": "PROJECT01",
+        "reactions": "se4",
+        "task_id": "TASK01",
+        "uids_to_notify": "se6"
       },
       "COMMENT02": {
-        "content": "s3c",
-        "id": "COMMENT02"
+        "attachment": "s14a",
+        "content": "s14b",
+        "file_attachment": "s14c",
+        "id": "COMMENT02",
+        "is_deleted": true,
+        "posted_at": "s14f",
+        "posted_uid": "s150",
+        "project_id": "PROJECT01",
+        "reactions": "s152",
+        "task_id": "TASK01",
+        "uids_to_notify": "s154"
       }
     }
   },
   "new": {
     "comment": {
       "comment_ref01": {
-        "content": "s50"
+        "attachment": "s1b8",
+        "content": "s1b9",
+        "file_attachment": "s1ba",
+        "is_deleted": true,
+        "posted_at": "s1bd",
+        "posted_uid": "s1be",
+        "project_id": "PROJECT01",
+        "reactions": "s1c0",
+        "task_id": "TASK01",
+        "uids_to_notify": "s1c2"
       }
     }
   },
   "requests": {
-    "POST /api/v1/comments/{comment_id}": {
+    "POST /api/v1/comments": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "POST /api/v1/comments/{comment_id}/reactions/remove": {
+    "GET /api/v1/comments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/comments/{comment_id}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
     "DELETE /api/v1/comments/{comment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/comments/{comment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/comments/{comment_id}/reactions": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/comments/{comment_id}/reactions/remove": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

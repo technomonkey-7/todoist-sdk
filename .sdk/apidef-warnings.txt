@@ -1,46 +1,5 @@
 {
   point: "warning"
-  note: "Points POST /api/v1/projects/{project_id}, POST /api/v1/projects/{project_id}/archive and POST /api/v1/projects/{project_id}/unarchive on entity=any_project_sync_view op=create have the same selector (exist: project_id), so only POST /api/v1/projects/{project_id} is ever chosen. An action or another entity in guide.aontu tells them apart."
-  entity: "any_project_sync_view"
-  op: "create"
-  points: [
-    "POST /api/v1/projects/{project_id}"
-    "POST /api/v1/projects/{project_id}/archive"
-    "POST /api/v1/projects/{project_id}/unarchive"
-  ]
-
-}
-
-
-{
-  point: "warning"
-  note: "Points POST /api/v1/tasks/{task_id} and POST /api/v1/tasks/{task_id}/move on entity=item_sync_view op=create have the same selector (exist: task_id), so only POST /api/v1/tasks/{task_id} is ever chosen. An action or another entity in guide.aontu tells them apart."
-  entity: "item_sync_view"
-  op: "create"
-  points: [
-    "POST /api/v1/tasks/{task_id}"
-    "POST /api/v1/tasks/{task_id}/move"
-  ]
-
-}
-
-
-{
-  point: "warning"
-  note: "Points POST /api/v1/labels, POST /api/v1/labels/shared/remove and POST /api/v1/labels/shared/rename on entity=label op=create have the same selector (exist: none), so only POST /api/v1/labels is ever chosen. An action or another entity in guide.aontu tells them apart."
-  entity: "label"
-  op: "create"
-  points: [
-    "POST /api/v1/labels"
-    "POST /api/v1/labels/shared/remove"
-    "POST /api/v1/labels/shared/rename"
-  ]
-
-}
-
-
-{
-  point: "warning"
   note: "Points POST /api/v1/templates/import_into_project_from_file and POST /api/v1/templates/import_into_project_from_template_id on entity=project_import op=create have the same selector (exist: none), so only POST /api/v1/templates/import_into_project_from_file is ever chosen. An action or another entity in guide.aontu tells them apart."
   entity: "project_import"
   op: "create"

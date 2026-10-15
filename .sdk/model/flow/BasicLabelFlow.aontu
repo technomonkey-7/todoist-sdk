@@ -30,6 +30,25 @@ main: kit: flow: BasicLabelFlow:
       i: {
         ref: "label_ref01",
         srcdatavar: "label_ref01_data",
+        suffix: "_up0",
+        textfield: "color"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-label_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "label_ref01",
+        srcdatavar: "label_ref01_data",
         suffix: "_dt0"
       }
 

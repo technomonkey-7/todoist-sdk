@@ -49,7 +49,7 @@ describe('SectionDirect', async () => {
     const query: any = {}
     if (setup.live) {
       const listResult: any = await client.direct({
-        path: 'api/v1/sections',
+        path: 'api/v1/sections/search',
         method: 'GET',
         params: {
 
@@ -110,7 +110,7 @@ describe('SectionDirect', async () => {
     const query: any = {}
 
     const result: any = await client.direct({
-      path: 'api/v1/sections',
+      path: 'api/v1/sections/search',
       method: 'GET',
       params,
       query,

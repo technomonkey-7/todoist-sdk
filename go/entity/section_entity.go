@@ -401,9 +401,43 @@ func (e *SectionEntity) CreateTyped(reqdata SectionCreateData, ctrl map[string]a
 
 
 
-func (e *SectionEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("update", e.name)
+
+func (e *SectionEntity) Update(reqdata map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":  "update",
+		"ctrl":    ctrl,
+		"match":   e.match,
+		"data":    e.data,
+		"reqdata": reqdata,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
 }
+
+// UpdateTyped is the statically-typed variant of Update: it takes an
+// SectionUpdateData and returns an Section. It delegates to the untyped
+// Update (identical runtime) and converts at the typed boundary.
+func (e *SectionEntity) UpdateTyped(reqdata SectionUpdateData, ctrl map[string]any) (Section, error) {
+	res, err := e.Update(asMap(reqdata), ctrl)
+	if err != nil {
+		return Section{}, err
+	}
+	return typedFrom[Section](res), nil
+}
+
 
 
 func (e *SectionEntity) Patch(_ map[string]any, _ map[string]any) (any, error) {

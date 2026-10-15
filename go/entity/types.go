@@ -49,41 +49,6 @@ type ActivityListMatch struct {
 	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
-// AnyProjectSyncView is the typed data model for the any_project_sync_view entity.
-type AnyProjectSyncView struct {
-}
-
-// AnyProjectSyncViewLoadMatch is the typed request payload for AnyProjectSyncView.LoadTyped.
-type AnyProjectSyncViewLoadMatch struct {
-	ProjectId string `json:"project_id"`
-}
-
-// AnyProjectSyncViewListMatch is the typed request payload for AnyProjectSyncView.ListTyped.
-type AnyProjectSyncViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	FolderId *string `json:"folder_id,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
-}
-
-// AnyProjectSyncViewCreateData is the typed request payload for AnyProjectSyncView.CreateTyped.
-type AnyProjectSyncViewCreateData struct {
-	ProjectId string `json:"project_id"`
-	ChildOrder *any `json:"child_order,omitempty"`
-	Color *any `json:"color,omitempty"`
-	Description *string `json:"description,omitempty"`
-	FolderId *string `json:"folder_id,omitempty"`
-	Icon *any `json:"icon,omitempty"`
-	IsCollapsed *bool `json:"is_collapsed,omitempty"`
-	IsFavorite *bool `json:"is_favorite,omitempty"`
-	Name *string `json:"name,omitempty"`
-	NextCursor any `json:"next_cursor"`
-	ParentId *string `json:"parent_id,omitempty"`
-	Results []any `json:"results"`
-	ViewStyle *any `json:"view_style,omitempty"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
-}
-
 // Archived is the typed data model for the archived entity.
 type Archived struct {
 }
@@ -139,43 +104,6 @@ type BillingPortalUrlCreateData struct {
 	ReturnUrl *string `json:"return_url,omitempty"`
 }
 
-// ByCompletionDate is the typed data model for the by_completion_date entity.
-type ByCompletionDate struct {
-}
-
-// ByCompletionDateListMatch is the typed request payload for ByCompletionDate.ListTyped.
-type ByCompletionDateListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	FilterLang *any `json:"filter_lang,omitempty"`
-	FilterQuery *any `json:"filter_query,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	PublicKey *any `json:"public_key,omitempty"`
-	SectionId *string `json:"section_id,omitempty"`
-	Since string `json:"since"`
-	Until string `json:"until"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
-}
-
-// ByDueDate is the typed data model for the by_due_date entity.
-type ByDueDate struct {
-}
-
-// ByDueDateListMatch is the typed request payload for ByDueDate.ListTyped.
-type ByDueDateListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	FilterLang *any `json:"filter_lang,omitempty"`
-	FilterQuery *any `json:"filter_query,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	SectionId *string `json:"section_id,omitempty"`
-	Since string `json:"since"`
-	Until string `json:"until"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
-}
-
 // Collaborator is the typed data model for the collaborator entity.
 type Collaborator struct {
 }
@@ -192,15 +120,72 @@ type CollaboratorListMatch struct {
 type Comment struct {
 }
 
+// CommentLoadMatch is the typed request payload for Comment.LoadTyped.
+type CommentLoadMatch struct {
+	Id string `json:"id"`
+}
+
+// CommentListMatch is the typed request payload for Comment.ListTyped.
+type CommentListMatch struct {
+	Cursor *any `json:"cursor,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
+	PublicKey *any `json:"public_key,omitempty"`
+	TaskId *string `json:"task_id,omitempty"`
+}
+
 // CommentCreateData is the typed request payload for Comment.CreateTyped.
 type CommentCreateData struct {
+	Attachment *any `json:"attachment,omitempty"`
+	Content *string `json:"content,omitempty"`
+	FileAttachment any `json:"file_attachment"`
 	Id string `json:"id"`
-	Content any `json:"content"`
+	IsDeleted bool `json:"is_deleted"`
+	PostedAt any `json:"posted_at"`
+	PostedUid any `json:"posted_uid"`
+	ProjectId *string `json:"project_id,omitempty"`
+	Reactions any `json:"reactions"`
+	TaskId *string `json:"task_id,omitempty"`
+	UidsToNotify any `json:"uids_to_notify"`
+}
+
+// CommentUpdateData is the typed request payload for Comment.UpdateTyped.
+type CommentUpdateData struct {
+	Id string `json:"id"`
+	Attachment *any `json:"attachment,omitempty"`
+	Content *string `json:"content,omitempty"`
+	FileAttachment *any `json:"file_attachment,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
+	PostedAt *any `json:"posted_at,omitempty"`
+	PostedUid *any `json:"posted_uid,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
+	Reactions *any `json:"reactions,omitempty"`
+	TaskId *string `json:"task_id,omitempty"`
+	UidsToNotify *any `json:"uids_to_notify,omitempty"`
 }
 
 // CommentRemoveMatch is the typed request payload for Comment.RemoveTyped.
 type CommentRemoveMatch struct {
 	Id string `json:"id"`
+}
+
+// CompletedTask is the typed data model for the completed_task entity.
+type CompletedTask struct {
+}
+
+// CompletedTaskListMatch is the typed request payload for CompletedTask.ListTyped.
+type CompletedTaskListMatch struct {
+	Cursor *any `json:"cursor,omitempty"`
+	FilterLang *any `json:"filter_lang,omitempty"`
+	FilterQuery *any `json:"filter_query,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	ParentId *string `json:"parent_id,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
+	PublicKey *any `json:"public_key,omitempty"`
+	SectionId *string `json:"section_id,omitempty"`
+	Since string `json:"since"`
+	Until string `json:"until"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // CreditState is the typed data model for the credit_state entity.
@@ -300,68 +285,6 @@ type InviteCreateData struct {
 	Role *any `json:"role,omitempty"`
 }
 
-// ItemSyncView is the typed data model for the item_sync_view entity.
-type ItemSyncView struct {
-}
-
-// ItemSyncViewLoadMatch is the typed request payload for ItemSyncView.LoadTyped.
-type ItemSyncViewLoadMatch struct {
-	TaskId string `json:"task_id"`
-	PublicKey *any `json:"public_key,omitempty"`
-}
-
-// ItemSyncViewListMatch is the typed request payload for ItemSyncView.ListTyped.
-type ItemSyncViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Ids *any `json:"ids,omitempty"`
-	Label *string `json:"label,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	SectionId *string `json:"section_id,omitempty"`
-}
-
-// ItemSyncViewCreateData is the typed request payload for ItemSyncView.CreateTyped.
-type ItemSyncViewCreateData struct {
-	TaskId string `json:"task_id"`
-	AddedAt any `json:"added_at"`
-	AddedByUid any `json:"added_by_uid"`
-	AssignedByUid any `json:"assigned_by_uid"`
-	AssigneeId *string `json:"assignee_id,omitempty"`
-	Checked bool `json:"checked"`
-	ChildOrder int `json:"child_order"`
-	CompletedAt any `json:"completed_at"`
-	CompletedByUid any `json:"completed_by_uid"`
-	CompletedCount int `json:"completed_count"`
-	Content string `json:"content"`
-	DayOrder int `json:"day_order"`
-	Deadline any `json:"deadline"`
-	DeadlineDate *any `json:"deadline_date,omitempty"`
-	Description string `json:"description"`
-	Due any `json:"due"`
-	DueDate *string `json:"due_date,omitempty"`
-	DueDatetime *string `json:"due_datetime,omitempty"`
-	DueLang *string `json:"due_lang,omitempty"`
-	DueString *string `json:"due_string,omitempty"`
-	Duration float64 `json:"duration"`
-	DurationUnit *any `json:"duration_unit,omitempty"`
-	Id string `json:"id"`
-	IsCollapsed bool `json:"is_collapsed"`
-	IsDeleted bool `json:"is_deleted"`
-	Labels []any `json:"labels"`
-	NoteCount int `json:"note_count"`
-	Order *any `json:"order,omitempty"`
-	OrderKey any `json:"order_key"`
-	ParentId string `json:"parent_id"`
-	PostponedCount int `json:"postponed_count"`
-	Priority int `json:"priority"`
-	ProjectId string `json:"project_id"`
-	ResponsibleUid any `json:"responsible_uid"`
-	SectionId string `json:"section_id"`
-	UpdatedAt any `json:"updated_at"`
-	UserId string `json:"user_id"`
-}
-
 // Label is the typed data model for the label entity.
 type Label struct {
 }
@@ -379,28 +302,25 @@ type LabelListMatch struct {
 
 // LabelCreateData is the typed request payload for Label.CreateTyped.
 type LabelCreateData struct {
-	Id int `json:"id"`
 	Color string `json:"color"`
+	Id string `json:"id"`
 	IsFavorite bool `json:"is_favorite"`
 	Name string `json:"name"`
-	NewName string `json:"new_name"`
 	Order any `json:"order"`
+}
+
+// LabelUpdateData is the typed request payload for Label.UpdateTyped.
+type LabelUpdateData struct {
+	Id int `json:"id"`
+	Color *string `json:"color,omitempty"`
+	IsFavorite *bool `json:"is_favorite,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Order *any `json:"order,omitempty"`
 }
 
 // LabelRemoveMatch is the typed request payload for Label.RemoveTyped.
 type LabelRemoveMatch struct {
 	Id int `json:"id"`
-}
-
-// LabelRestView is the typed data model for the label_rest_view entity.
-type LabelRestView struct {
-}
-
-// LabelRestViewListMatch is the typed request payload for LabelRestView.ListTyped.
-type LabelRestViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	Query string `json:"query"`
 }
 
 // LocationReminder is the typed data model for the location_reminder entity.
@@ -437,40 +357,6 @@ type MigratePersonalTokenCreateData struct {
 	PersonalToken string `json:"personal_token"`
 	Scope string `json:"scope"`
 	TokenType string `json:"token_type"`
-}
-
-// NoteSyncView is the typed data model for the note_sync_view entity.
-type NoteSyncView struct {
-}
-
-// NoteSyncViewLoadMatch is the typed request payload for NoteSyncView.LoadTyped.
-type NoteSyncViewLoadMatch struct {
-	CommentId string `json:"comment_id"`
-}
-
-// NoteSyncViewListMatch is the typed request payload for NoteSyncView.ListTyped.
-type NoteSyncViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	PublicKey *any `json:"public_key,omitempty"`
-	TaskId *string `json:"task_id,omitempty"`
-}
-
-// NoteSyncViewCreateData is the typed request payload for NoteSyncView.CreateTyped.
-type NoteSyncViewCreateData struct {
-	Attachment *any `json:"attachment,omitempty"`
-	Content *string `json:"content,omitempty"`
-	FileAttachment any `json:"file_attachment"`
-	Id string `json:"id"`
-	IsDeleted bool `json:"is_deleted"`
-	PostedAt any `json:"posted_at"`
-	PostedUid any `json:"posted_uid"`
-	ProjectId *string `json:"project_id,omitempty"`
-	Reaction string `json:"reaction"`
-	Reactions any `json:"reactions"`
-	TaskId *string `json:"task_id,omitempty"`
-	UidsToNotify any `json:"uids_to_notify"`
 }
 
 // NotificationLocationSyncView is the typed data model for the notification_location_sync_view entity.
@@ -538,40 +424,6 @@ type NotificationSyncViewCreateData struct {
 	Type string `json:"type"`
 }
 
-// PaginatedListAnyProjectSyncView is the typed data model for the paginated_list_any_project_sync_view entity.
-type PaginatedListAnyProjectSyncView struct {
-}
-
-// PaginatedListAnyProjectSyncViewListMatch is the typed request payload for PaginatedListAnyProjectSyncView.ListTyped.
-type PaginatedListAnyProjectSyncViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	Query string `json:"query"`
-}
-
-// PaginatedListItemSyncView is the typed data model for the paginated_list_item_sync_view entity.
-type PaginatedListItemSyncView struct {
-}
-
-// PaginatedListItemSyncViewListMatch is the typed request payload for PaginatedListItemSyncView.ListTyped.
-type PaginatedListItemSyncViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Lang *any `json:"lang,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	Query string `json:"query"`
-}
-
-// PaginatedListStr is the typed data model for the paginated_list_str entity.
-type PaginatedListStr struct {
-}
-
-// PaginatedListStrListMatch is the typed request payload for PaginatedListStr.ListTyped.
-type PaginatedListStrListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	OmitPersonal *bool `json:"omit_personal,omitempty"`
-}
-
 // PlanDetail is the typed data model for the plan_detail entity.
 type PlanDetail struct {
 }
@@ -601,6 +453,55 @@ type ProductivityStatListMatch struct {
 
 // Project is the typed data model for the project entity.
 type Project struct {
+}
+
+// ProjectLoadMatch is the typed request payload for Project.LoadTyped.
+type ProjectLoadMatch struct {
+	Id string `json:"id"`
+}
+
+// ProjectListMatch is the typed request payload for Project.ListTyped.
+type ProjectListMatch struct {
+	Cursor *any `json:"cursor,omitempty"`
+	FolderId *string `json:"folder_id,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
+}
+
+// ProjectCreateData is the typed request payload for Project.CreateTyped.
+type ProjectCreateData struct {
+	ChildOrder *any `json:"child_order,omitempty"`
+	Color *any `json:"color,omitempty"`
+	Description *string `json:"description,omitempty"`
+	FolderId *string `json:"folder_id,omitempty"`
+	Icon *any `json:"icon,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IsCollapsed *bool `json:"is_collapsed,omitempty"`
+	IsFavorite *bool `json:"is_favorite,omitempty"`
+	Name string `json:"name"`
+	NextCursor any `json:"next_cursor"`
+	ParentId *string `json:"parent_id,omitempty"`
+	Results []any `json:"results"`
+	ViewStyle *any `json:"view_style,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
+}
+
+// ProjectUpdateData is the typed request payload for Project.UpdateTyped.
+type ProjectUpdateData struct {
+	Id string `json:"id"`
+	ChildOrder *any `json:"child_order,omitempty"`
+	Color *any `json:"color,omitempty"`
+	Description *string `json:"description,omitempty"`
+	FolderId *string `json:"folder_id,omitempty"`
+	Icon *any `json:"icon,omitempty"`
+	IsCollapsed *bool `json:"is_collapsed,omitempty"`
+	IsFavorite *bool `json:"is_favorite,omitempty"`
+	Name *string `json:"name,omitempty"`
+	NextCursor *any `json:"next_cursor,omitempty"`
+	ParentId *string `json:"parent_id,omitempty"`
+	Results *[]any `json:"results,omitempty"`
+	ViewStyle *any `json:"view_style,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // ProjectRemoveMatch is the typed request payload for Project.RemoveTyped.
@@ -698,10 +599,10 @@ type SectionListMatch struct {
 
 // SectionCreateData is the typed request payload for Section.CreateTyped.
 type SectionCreateData struct {
-	Id string `json:"id"`
 	AddedAt string `json:"added_at"`
 	ArchivedAt any `json:"archived_at"`
 	Description string `json:"description"`
+	Id string `json:"id"`
 	IsArchived bool `json:"is_archived"`
 	IsCollapsed bool `json:"is_collapsed"`
 	IsDeleted bool `json:"is_deleted"`
@@ -714,39 +615,54 @@ type SectionCreateData struct {
 	UserId string `json:"user_id"`
 }
 
+// SectionUpdateData is the typed request payload for Section.UpdateTyped.
+type SectionUpdateData struct {
+	Id string `json:"id"`
+	AddedAt *string `json:"added_at,omitempty"`
+	ArchivedAt *any `json:"archived_at,omitempty"`
+	Description *string `json:"description,omitempty"`
+	IsArchived *bool `json:"is_archived,omitempty"`
+	IsCollapsed *bool `json:"is_collapsed,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Order *any `json:"order,omitempty"`
+	OrderKey *any `json:"order_key,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
+	SectionOrder *int `json:"section_order,omitempty"`
+	UpdatedAt *any `json:"updated_at,omitempty"`
+	UserId *string `json:"user_id,omitempty"`
+}
+
 // SectionRemoveMatch is the typed request payload for Section.RemoveTyped.
 type SectionRemoveMatch struct {
 	Id string `json:"id"`
 }
 
-// SectionSyncView is the typed data model for the section_sync_view entity.
-type SectionSyncView struct {
+// SharedLabel is the typed data model for the shared_label entity.
+type SharedLabel struct {
 }
 
-// SectionSyncViewListMatch is the typed request payload for SectionSyncView.ListTyped.
-type SectionSyncViewListMatch struct {
+// SharedLabelListMatch is the typed request payload for SharedLabel.ListTyped.
+type SharedLabelListMatch struct {
 	Cursor *any `json:"cursor,omitempty"`
 	Limit *int `json:"limit,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
-	Query string `json:"query"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
+	OmitPersonal *bool `json:"omit_personal,omitempty"`
 }
 
-// SectionSyncViewCreateData is the typed request payload for SectionSyncView.CreateTyped.
-type SectionSyncViewCreateData struct {
-	Id string `json:"id"`
-	AddedAt string `json:"added_at"`
-	ArchivedAt any `json:"archived_at"`
-	Description string `json:"description"`
-	IsArchived bool `json:"is_archived"`
-	IsCollapsed bool `json:"is_collapsed"`
-	IsDeleted bool `json:"is_deleted"`
-	Name string `json:"name"`
-	OrderKey any `json:"order_key"`
-	ProjectId string `json:"project_id"`
-	SectionOrder int `json:"section_order"`
-	UpdatedAt any `json:"updated_at"`
-	UserId string `json:"user_id"`
+// SharedLabelUpdateData is the typed request payload for SharedLabel.UpdateTyped.
+type SharedLabelUpdateData struct {
+	Name *string `json:"name,omitempty"`
+	NewName *string `json:"new_name,omitempty"`
+	NextCursor *any `json:"next_cursor,omitempty"`
+	Results *[]any `json:"results,omitempty"`
+}
+
+// SharedLabelRemoveMatch is the typed request payload for SharedLabel.RemoveTyped.
+type SharedLabelRemoveMatch struct {
+	Name *string `json:"name,omitempty"`
+	NewName *string `json:"new_name,omitempty"`
+	NextCursor *any `json:"next_cursor,omitempty"`
+	Results *[]any `json:"results,omitempty"`
 }
 
 // StatusOk is the typed data model for the status_ok entity.
@@ -782,9 +698,101 @@ type SubscriptionInfoCreateData struct {
 type Task struct {
 }
 
+// TaskLoadMatch is the typed request payload for Task.LoadTyped.
+type TaskLoadMatch struct {
+	Id string `json:"id"`
+	PublicKey *any `json:"public_key,omitempty"`
+}
+
+// TaskListMatch is the typed request payload for Task.ListTyped.
+type TaskListMatch struct {
+	Cursor *any `json:"cursor,omitempty"`
+	Ids *any `json:"ids,omitempty"`
+	Label *string `json:"label,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	ParentId *string `json:"parent_id,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
+	SectionId *string `json:"section_id,omitempty"`
+}
+
 // TaskCreateData is the typed request payload for Task.CreateTyped.
 type TaskCreateData struct {
-	Id *string `json:"id,omitempty"`
+	AddedAt any `json:"added_at"`
+	AddedByUid any `json:"added_by_uid"`
+	AssignedByUid any `json:"assigned_by_uid"`
+	AssigneeId *string `json:"assignee_id,omitempty"`
+	Checked bool `json:"checked"`
+	ChildOrder int `json:"child_order"`
+	CompletedAt any `json:"completed_at"`
+	CompletedByUid any `json:"completed_by_uid"`
+	CompletedCount int `json:"completed_count"`
+	Content string `json:"content"`
+	DayOrder int `json:"day_order"`
+	Deadline any `json:"deadline"`
+	DeadlineDate *any `json:"deadline_date,omitempty"`
+	Description string `json:"description"`
+	Due any `json:"due"`
+	DueDate *any `json:"due_date,omitempty"`
+	DueDatetime *any `json:"due_datetime,omitempty"`
+	DueLang *any `json:"due_lang,omitempty"`
+	DueString *any `json:"due_string,omitempty"`
+	Duration float64 `json:"duration"`
+	DurationUnit *any `json:"duration_unit,omitempty"`
+	Id string `json:"id"`
+	IsCollapsed bool `json:"is_collapsed"`
+	IsDeleted bool `json:"is_deleted"`
+	Labels []any `json:"labels"`
+	NoteCount int `json:"note_count"`
+	Order *any `json:"order,omitempty"`
+	OrderKey any `json:"order_key"`
+	ParentId string `json:"parent_id"`
+	PostponedCount int `json:"postponed_count"`
+	Priority int `json:"priority"`
+	ProjectId string `json:"project_id"`
+	ResponsibleUid any `json:"responsible_uid"`
+	SectionId string `json:"section_id"`
+	UpdatedAt any `json:"updated_at"`
+	UserId string `json:"user_id"`
+}
+
+// TaskUpdateData is the typed request payload for Task.UpdateTyped.
+type TaskUpdateData struct {
+	Id string `json:"id"`
+	AddedAt *any `json:"added_at,omitempty"`
+	AddedByUid *any `json:"added_by_uid,omitempty"`
+	AssignedByUid *any `json:"assigned_by_uid,omitempty"`
+	AssigneeId *string `json:"assignee_id,omitempty"`
+	Checked *bool `json:"checked,omitempty"`
+	ChildOrder *int `json:"child_order,omitempty"`
+	CompletedAt *any `json:"completed_at,omitempty"`
+	CompletedByUid *any `json:"completed_by_uid,omitempty"`
+	CompletedCount *int `json:"completed_count,omitempty"`
+	Content *string `json:"content,omitempty"`
+	DayOrder *int `json:"day_order,omitempty"`
+	Deadline *any `json:"deadline,omitempty"`
+	DeadlineDate *any `json:"deadline_date,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Due *any `json:"due,omitempty"`
+	DueDate *any `json:"due_date,omitempty"`
+	DueDatetime *any `json:"due_datetime,omitempty"`
+	DueLang *any `json:"due_lang,omitempty"`
+	DueString *any `json:"due_string,omitempty"`
+	Duration *float64 `json:"duration,omitempty"`
+	DurationUnit *any `json:"duration_unit,omitempty"`
+	IsCollapsed *bool `json:"is_collapsed,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
+	Labels *[]any `json:"labels,omitempty"`
+	NoteCount *int `json:"note_count,omitempty"`
+	Order *any `json:"order,omitempty"`
+	OrderKey *any `json:"order_key,omitempty"`
+	ParentId *string `json:"parent_id,omitempty"`
+	PostponedCount *int `json:"postponed_count,omitempty"`
+	Priority *int `json:"priority,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
+	ResponsibleUid *any `json:"responsible_uid,omitempty"`
+	SectionId *string `json:"section_id,omitempty"`
+	UpdatedAt *any `json:"updated_at,omitempty"`
+	UserId *string `json:"user_id,omitempty"`
 }
 
 // TaskRemoveMatch is the typed request payload for Task.RemoveTyped.

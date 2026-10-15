@@ -81,8 +81,6 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.Active(nil), nil
 	case "activity":
 		return client.Activity(nil), nil
-	case "any_project_sync_view":
-		return client.AnyProjectSyncView(nil), nil
 	case "archived":
 		return client.Archived(nil), nil
 	case "authorization":
@@ -91,14 +89,12 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.Backup(nil), nil
 	case "billing_portal_url":
 		return client.BillingPortalUrl(nil), nil
-	case "by_completion_date":
-		return client.ByCompletionDate(nil), nil
-	case "by_due_date":
-		return client.ByDueDate(nil), nil
 	case "collaborator":
 		return client.Collaborator(nil), nil
 	case "comment":
 		return client.Comment(nil), nil
+	case "completed_task":
+		return client.CompletedTask(nil), nil
 	case "credit_state":
 		return client.CreditState(nil), nil
 	case "email":
@@ -113,30 +109,18 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.IdMapping(nil), nil
 	case "invite":
 		return client.Invite(nil), nil
-	case "item_sync_view":
-		return client.ItemSyncView(nil), nil
 	case "label":
 		return client.Label(nil), nil
-	case "label_rest_view":
-		return client.LabelRestView(nil), nil
 	case "location_reminder":
 		return client.LocationReminder(nil), nil
 	case "member_view":
 		return client.MemberView(nil), nil
 	case "migrate_personal_token":
 		return client.MigratePersonalToken(nil), nil
-	case "note_sync_view":
-		return client.NoteSyncView(nil), nil
 	case "notification_location_sync_view":
 		return client.NotificationLocationSyncView(nil), nil
 	case "notification_sync_view":
 		return client.NotificationSyncView(nil), nil
-	case "paginated_list_any_project_sync_view":
-		return client.PaginatedListAnyProjectSyncView(nil), nil
-	case "paginated_list_item_sync_view":
-		return client.PaginatedListItemSyncView(nil), nil
-	case "paginated_list_str":
-		return client.PaginatedListStr(nil), nil
 	case "plan_detail":
 		return client.PlanDetail(nil), nil
 	case "productivity_stat":
@@ -155,8 +139,8 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.RoleToActionMappingView(nil), nil
 	case "section":
 		return client.Section(nil), nil
-	case "section_sync_view":
-		return client.SectionSyncView(nil), nil
+	case "shared_label":
+		return client.SharedLabel(nil), nil
 	case "status_ok":
 		return client.StatusOk(nil), nil
 	case "subscription_info":

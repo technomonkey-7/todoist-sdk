@@ -15,6 +15,59 @@ main: kit: flow: BasicTaskFlow:
     }
 
     {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "task_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "task_ref01",
+        srcdatavar: "task_ref01_data",
+        suffix: "_up0",
+        textfield: "assignee_id"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-task_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "task_ref01",
+        srcdatavar: "task_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "task01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-task_ref01"
+          }
+        }
+      ]
+    }
+
+    {
       i: {
         ref: "task_ref01",
         suffix: "_rm0"
@@ -25,6 +78,22 @@ main: kit: flow: BasicTaskFlow:
       }
 
       o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "task_ref01"
+          }
+        }
+      ]
     }
   ],
   "key$": "BasicTaskFlow"

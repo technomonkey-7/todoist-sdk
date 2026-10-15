@@ -50,10 +50,6 @@ Create a new `ActiveEntity` instance. Pass `None` for no initial data.
 
 Create a new `ActivityEntity` instance. Pass `None` for no initial data.
 
-#### `AnyProjectSyncView(data=None)`
-
-Create a new `AnyProjectSyncViewEntity` instance. Pass `None` for no initial data.
-
 #### `Archived(data=None)`
 
 Create a new `ArchivedEntity` instance. Pass `None` for no initial data.
@@ -70,14 +66,6 @@ Create a new `BackupEntity` instance. Pass `None` for no initial data.
 
 Create a new `BillingPortalUrlEntity` instance. Pass `None` for no initial data.
 
-#### `ByCompletionDate(data=None)`
-
-Create a new `ByCompletionDateEntity` instance. Pass `None` for no initial data.
-
-#### `ByDueDate(data=None)`
-
-Create a new `ByDueDateEntity` instance. Pass `None` for no initial data.
-
 #### `Collaborator(data=None)`
 
 Create a new `CollaboratorEntity` instance. Pass `None` for no initial data.
@@ -85,6 +73,10 @@ Create a new `CollaboratorEntity` instance. Pass `None` for no initial data.
 #### `Comment(data=None)`
 
 Create a new `CommentEntity` instance. Pass `None` for no initial data.
+
+#### `CompletedTask(data=None)`
+
+Create a new `CompletedTaskEntity` instance. Pass `None` for no initial data.
 
 #### `CreditState(data=None)`
 
@@ -114,17 +106,9 @@ Create a new `IdMappingEntity` instance. Pass `None` for no initial data.
 
 Create a new `InviteEntity` instance. Pass `None` for no initial data.
 
-#### `ItemSyncView(data=None)`
-
-Create a new `ItemSyncViewEntity` instance. Pass `None` for no initial data.
-
 #### `Label(data=None)`
 
 Create a new `LabelEntity` instance. Pass `None` for no initial data.
-
-#### `LabelRestView(data=None)`
-
-Create a new `LabelRestViewEntity` instance. Pass `None` for no initial data.
 
 #### `LocationReminder(data=None)`
 
@@ -138,10 +122,6 @@ Create a new `MemberViewEntity` instance. Pass `None` for no initial data.
 
 Create a new `MigratePersonalTokenEntity` instance. Pass `None` for no initial data.
 
-#### `NoteSyncView(data=None)`
-
-Create a new `NoteSyncViewEntity` instance. Pass `None` for no initial data.
-
 #### `NotificationLocationSyncView(data=None)`
 
 Create a new `NotificationLocationSyncViewEntity` instance. Pass `None` for no initial data.
@@ -149,18 +129,6 @@ Create a new `NotificationLocationSyncViewEntity` instance. Pass `None` for no i
 #### `NotificationSyncView(data=None)`
 
 Create a new `NotificationSyncViewEntity` instance. Pass `None` for no initial data.
-
-#### `PaginatedListAnyProjectSyncView(data=None)`
-
-Create a new `PaginatedListAnyProjectSyncViewEntity` instance. Pass `None` for no initial data.
-
-#### `PaginatedListItemSyncView(data=None)`
-
-Create a new `PaginatedListItemSyncViewEntity` instance. Pass `None` for no initial data.
-
-#### `PaginatedListStr(data=None)`
-
-Create a new `PaginatedListStrEntity` instance. Pass `None` for no initial data.
 
 #### `PlanDetail(data=None)`
 
@@ -198,9 +166,9 @@ Create a new `RoleToActionMappingViewEntity` instance. Pass `None` for no initia
 
 Create a new `SectionEntity` instance. Pass `None` for no initial data.
 
-#### `SectionSyncView(data=None)`
+#### `SharedLabel(data=None)`
 
-Create a new `SectionSyncViewEntity` instance. Pass `None` for no initial data.
+Create a new `SharedLabelEntity` instance. Pass `None` for no initial data.
 
 #### `StatusOk(data=None)`
 
@@ -405,109 +373,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ActivityEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## AnyProjectSyncViewEntity
-
-```python
-any_project_sync_view = client.AnyProjectSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `child_order` | `Any` | No | Updated position of the project in the hierarchy. |
-| `color` | `Any` | No | Updated project color. |
-| `description` | `str` | No | Updated project description. |
-| `folder_id` | `str` | No | Folder to move the project into. |
-| `icon` | `Any` | No | Updated project icon name. |
-| `is_collapsed` | `bool` | No | Whether the project is collapsed. |
-| `is_favorite` | `bool` | No | Whether the project is marked as a favorite. |
-| `name` | `str` | No | Updated project name. |
-| `next_cursor` | `Any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `parent_id` | `str` | No | Parent project ID. |
-| `results` | `list` | Yes | Objects in the current page of results. |
-| `view_style` | `Any` | No | Updated project view style. |
-| `workspace_id` | `str` | No | Workspace ID. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `child_order` | - | - | - |
-| `color` | - | - | - |
-| `description` | - | - | - |
-| `folder_id` | - | - | - |
-| `icon` | - | - | - |
-| `is_collapsed` | - | - | - |
-| `is_favorite` | - | - | - |
-| `name` | - | - | Yes |
-| `next_cursor` | - | - | - |
-| `parent_id` | - | - | - |
-| `results` | - | - | - |
-| `view_style` | - | - | - |
-| `workspace_id` | - | - | - |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> AnyProjectSyncViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.AnyProjectSyncView().create({
-    "project_id": "example_project_id",  # str
-    "next_cursor": "example_next_cursor",  # Any
-    "results": [],  # list
-})
-```
-
-#### `list(reqmatch=None, ctrl=None) -> list[AnyProjectSyncViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.AnyProjectSyncView().list()
-for any_project_sync_view in results:
-    print(any_project_sync_view.data_get())
-```
-
-#### `load(reqmatch, ctrl=None) -> AnyProjectSyncViewEntity`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
-
-```python
-result = client.AnyProjectSyncView().load({"project_id": "project_id"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `AnyProjectSyncViewEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -770,166 +635,6 @@ Return the entity name.
 
 ---
 
-## ByCompletionDateEntity
-
-```python
-by_completion_date = client.ByCompletionDate()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `Any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `Any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `Any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `Any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `Any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `str` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `Any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `str` | Yes | Task description. |
-| `due` | `Any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `str` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `list` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `Any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `str` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `str` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `Any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `str` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `Any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `str` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[ByCompletionDateEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.ByCompletionDate().list({"since": "example", "until": "example"})
-for by_completion_date in results:
-    print(by_completion_date.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ByCompletionDateEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ByDueDateEntity
-
-```python
-by_due_date = client.ByDueDate()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `Any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `Any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `Any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `Any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `Any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `str` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `Any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `str` | Yes | Task description. |
-| `due` | `Any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `str` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `list` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `Any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `str` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `str` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `Any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `str` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `Any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `str` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[ByDueDateEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.ByDueDate().list({"since": "example", "until": "example"})
-for by_due_date in results:
-    print(by_due_date.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ByDueDateEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## CollaboratorEntity
 
 ```python
@@ -995,8 +700,33 @@ comment = client.Comment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `Any` | Yes | New content for the comment. |
-| `id` | `str` | No |  |
+| `attachment` | `Any` | No | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
+| `content` | `str` | No | Comment content. |
+| `file_attachment` | `Any` | Yes | File attachment metadata, or `null` when the comment has no attachment. |
+| `id` | `str` | Yes | String ID of the comment. |
+| `is_deleted` | `bool` | Yes | Whether the comment is deleted. |
+| `posted_at` | `Any` | Yes | Date and time when the comment was posted, or `null` if unknown. |
+| `posted_uid` | `Any` | Yes | String ID of the user who posted the comment. |
+| `project_id` | `str` | No | String ID of the project |
+| `reactions` | `Any` | Yes | Reaction emoji mapped to user IDs that reacted. |
+| `task_id` | `str` | No | String ID of the task |
+| `uids_to_notify` | `Any` | Yes | String IDs of users notified by the comment. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `attachment` | - | - | - | - | - |
+| `content` | - | - | Yes | Yes | - |
+| `file_attachment` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `posted_at` | - | - | - | - | - |
+| `posted_uid` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `reactions` | - | - | - | - | - |
+| `task_id` | - | - | - | - | - |
+| `uids_to_notify` | - | - | Yes | - | - |
 
 ### Operations
 
@@ -1006,9 +736,32 @@ Create a new entity with the given data. Returns the created entity and raises o
 
 ```python
 result = client.Comment().create({
+    "file_attachment": "example_file_attachment",  # Any
     "id": "example_id",  # str
-    "content": "example_content",  # Any
+    "is_deleted": True,  # bool
+    "posted_at": "example_posted_at",  # Any
+    "posted_uid": "example_posted_uid",  # Any
+    "reactions": "example_reactions",  # Any
+    "uids_to_notify": "example_uids_to_notify",  # Any
 })
+```
+
+#### `list(reqmatch=None, ctrl=None) -> list[CommentEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.Comment().list()
+for comment in results:
+    print(comment.data_get())
+```
+
+#### `load(reqmatch, ctrl=None) -> CommentEntity`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
+
+```python
+result = client.Comment().load({"id": "comment_id"})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> CommentEntity`
@@ -1017,6 +770,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 
 ```python
 result = client.Comment().remove({"id": "comment_id"})
+```
+
+#### `update(reqdata, ctrl=None) -> CommentEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Comment().update({
+    "id": "comment_id",
+    # Fields to update
+})
 ```
 
 ### Common Methods
@@ -1040,6 +804,86 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `CommentEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## CompletedTaskEntity
+
+```python
+completed_task = client.CompletedTask()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `added_at` | `Any` | Yes | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `Any` | Yes | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `Any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
+| `checked` | `bool` | Yes | Whether the task is completed. |
+| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
+| `completed_at` | `Any` | Yes | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `Any` | Yes | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
+| `content` | `str` | Yes | Task content. |
+| `day_order` | `int` | Yes | Task order for day-based views. |
+| `deadline` | `Any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
+| `description` | `str` | Yes | Task description. |
+| `due` | `Any` | Yes | Due date details for the task, or `null` when the task has no due date. |
+| `duration` | `float` | Yes | Task duration details, or `null` when the task has no duration. |
+| `id` | `str` | Yes | String ID of the task. |
+| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
+| `labels` | `list` | Yes | Names of labels attached to the task. |
+| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
+| `order_key` | `Any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `str` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `str` | Yes | String ID of the project that contains the task. |
+| `responsible_uid` | `Any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `str` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `Any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `str` | Yes | String ID of the user who owns the task. |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list[CompletedTaskEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.CompletedTask().list({"since": "example", "until": "example"})
+for completed_task in results:
+    print(completed_task.data_get())
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `CompletedTaskEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -1492,181 +1336,6 @@ Return the entity name.
 
 ---
 
-## ItemSyncViewEntity
-
-```python
-item_sync_view = client.ItemSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `Any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `Any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `Any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `assignee_id` | `str` | No | ID of the user to assign the task to. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `Any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `Any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `str` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `Any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `deadline_date` | `Any` | No | Updated deadline date in YYYY-MM-DD format. |
-| `description` | `str` | Yes | Task description. |
-| `due` | `Any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `due_date` | `str` | No | Updated due date in RFC 3339 format or similar. |
-| `due_datetime` | `str` | No | Updated due date and time. |
-| `due_lang` | `str` | No | Updated due date language code. |
-| `due_string` | `str` | No | Updated human-readable representation of the due date. |
-| `duration` | `float` | Yes | Task duration details, or `null` when the task has no duration. |
-| `duration_unit` | `Any` | No | Unit of time for duration. |
-| `id` | `str` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `list` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order` | `Any` | No | Position of the task in the project or section |
-| `order_key` | `Any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `str` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `str` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `Any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `str` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `Any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `str` | Yes | String ID of the user who owns the task. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `added_at` | - | - | - |
-| `added_by_uid` | - | - | - |
-| `assigned_by_uid` | - | - | - |
-| `assignee_id` | - | - | - |
-| `checked` | - | - | - |
-| `child_order` | - | - | Yes |
-| `completed_at` | - | - | - |
-| `completed_by_uid` | - | - | - |
-| `completed_count` | - | - | - |
-| `content` | - | - | Yes |
-| `day_order` | - | - | Yes |
-| `deadline` | - | - | - |
-| `deadline_date` | - | - | - |
-| `description` | - | - | Yes |
-| `due` | - | - | - |
-| `due_date` | - | - | - |
-| `due_datetime` | - | - | - |
-| `due_lang` | - | - | - |
-| `due_string` | - | - | - |
-| `duration` | - | - | Yes |
-| `duration_unit` | - | - | - |
-| `id` | - | - | - |
-| `is_collapsed` | - | - | Yes |
-| `is_deleted` | - | - | - |
-| `labels` | - | - | Yes |
-| `note_count` | - | - | - |
-| `order` | - | - | - |
-| `order_key` | - | - | - |
-| `parent_id` | - | - | Yes |
-| `postponed_count` | - | - | - |
-| `priority` | - | - | Yes |
-| `project_id` | - | - | Yes |
-| `responsible_uid` | - | - | - |
-| `section_id` | - | - | Yes |
-| `updated_at` | - | - | - |
-| `user_id` | - | - | - |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> ItemSyncViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.ItemSyncView().create({
-    "task_id": "example_task_id",  # str
-    "added_at": "example_added_at",  # Any
-    "added_by_uid": "example_added_by_uid",  # Any
-    "assigned_by_uid": "example_assigned_by_uid",  # Any
-    "checked": True,  # bool
-    "child_order": 1,  # int
-    "completed_at": "example_completed_at",  # Any
-    "completed_by_uid": "example_completed_by_uid",  # Any
-    "completed_count": 1,  # int
-    "content": "example_content",  # str
-    "day_order": 1,  # int
-    "deadline": "example_deadline",  # Any
-    "description": "example_description",  # str
-    "due": "example_due",  # Any
-    "duration": 1,  # float
-    "id": "example_id",  # str
-    "is_collapsed": True,  # bool
-    "is_deleted": True,  # bool
-    "labels": [],  # list
-    "note_count": 1,  # int
-    "order_key": "example_order_key",  # Any
-    "parent_id": "example_parent_id",  # str
-    "postponed_count": 1,  # int
-    "priority": 1,  # int
-    "project_id": "example_project_id",  # str
-    "responsible_uid": "example_responsible_uid",  # Any
-    "section_id": "example_section_id",  # str
-    "updated_at": "example_updated_at",  # Any
-    "user_id": "example_user_id",  # str
-})
-```
-
-#### `list(reqmatch=None, ctrl=None) -> list[ItemSyncViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.ItemSyncView().list()
-for item_sync_view in results:
-    print(item_sync_view.data_get())
-```
-
-#### `load(reqmatch, ctrl=None) -> ItemSyncViewEntity`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
-
-```python
-result = client.ItemSyncView().load({"task_id": "task_id"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ItemSyncViewEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## LabelEntity
 
 ```python
@@ -1681,19 +1350,17 @@ label = client.Label()
 | `id` | `str` | Yes | String ID of the label. |
 | `is_favorite` | `bool` | Yes | Whether the label is marked as a favorite. |
 | `name` | `str` | Yes | Label name. |
-| `new_name` | `str` | Yes | New shared label name to apply to matching tasks. |
 | `order` | `Any` | Yes | Position of the label in the label list, or `null` when no explicit order is set. |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `color` | - | - | Yes | - |
-| `id` | - | - | - | - |
-| `is_favorite` | - | - | Yes | - |
-| `name` | - | - | Yes | - |
-| `new_name` | - | - | - | - |
-| `order` | - | - | Yes | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `color` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_favorite` | - | - | Yes | Yes | - |
+| `name` | - | - | - | Yes | - |
+| `order` | - | - | Yes | Yes | - |
 
 ### Operations
 
@@ -1703,11 +1370,10 @@ Create a new entity with the given data. Returns the created entity and raises o
 
 ```python
 result = client.Label().create({
-    "id": 1,  # int
     "color": "example_color",  # str
+    "id": "example_id",  # str
     "is_favorite": True,  # bool
     "name": "example_name",  # str
-    "new_name": "example_new_name",  # str
     "order": "example_order",  # Any
 })
 ```
@@ -1738,6 +1404,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 result = client.Label().remove({"id": 1})
 ```
 
+#### `update(reqdata, ctrl=None) -> LabelEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Label().update({
+    "id": 1,
+    # Fields to update
+})
+```
+
 ### Common Methods
 
 #### `data_get() -> dict`
@@ -1759,63 +1436,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `LabelEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## LabelRestViewEntity
-
-```python
-label_rest_view = client.LabelRestView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `color` | `str` | Yes | Label color name. |
-| `id` | `str` | Yes | String ID of the label. |
-| `is_favorite` | `bool` | Yes | Whether the label is marked as a favorite. |
-| `name` | `str` | Yes | Label name. |
-| `order` | `Any` | Yes | Position of the label in the label list, or `null` when no explicit order is set. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[LabelRestViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.LabelRestView().list({"query": "example"})
-for label_rest_view in results:
-    print(label_rest_view.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `LabelRestViewEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -1992,112 +1612,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `MigratePersonalTokenEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## NoteSyncViewEntity
-
-```python
-note_sync_view = client.NoteSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `attachment` | `Any` | No | A [File attachment](#tag/Sync/Comments/File-Attachments) object |
-| `content` | `str` | No | Comment content. |
-| `file_attachment` | `Any` | Yes | File attachment metadata, or `null` when the comment has no attachment. |
-| `id` | `str` | Yes | String ID of the comment. |
-| `is_deleted` | `bool` | Yes | Whether the comment is deleted. |
-| `posted_at` | `Any` | Yes | Date and time when the comment was posted, or `null` if unknown. |
-| `posted_uid` | `Any` | Yes | String ID of the user who posted the comment. |
-| `project_id` | `str` | No | String ID of the project |
-| `reaction` | `str` | Yes | Reaction emoji. |
-| `reactions` | `Any` | Yes | Reaction emoji mapped to user IDs that reacted. |
-| `task_id` | `str` | No | String ID of the task |
-| `uids_to_notify` | `Any` | Yes | String IDs of users notified by the comment. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `attachment` | - | - | - |
-| `content` | - | - | Yes |
-| `file_attachment` | - | - | - |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `posted_at` | - | - | - |
-| `posted_uid` | - | - | - |
-| `project_id` | - | - | - |
-| `reaction` | - | - | - |
-| `reactions` | - | - | - |
-| `task_id` | - | - | - |
-| `uids_to_notify` | - | - | Yes |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> NoteSyncViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.NoteSyncView().create({
-    "file_attachment": "example_file_attachment",  # Any
-    "id": "example_id",  # str
-    "is_deleted": True,  # bool
-    "posted_at": "example_posted_at",  # Any
-    "posted_uid": "example_posted_uid",  # Any
-    "reaction": "example_reaction",  # str
-    "reactions": "example_reactions",  # Any
-    "uids_to_notify": "example_uids_to_notify",  # Any
-})
-```
-
-#### `list(reqmatch=None, ctrl=None) -> list[NoteSyncViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.NoteSyncView().list()
-for note_sync_view in results:
-    print(note_sync_view.data_get())
-```
-
-#### `load(reqmatch, ctrl=None) -> NoteSyncViewEntity`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
-
-```python
-result = client.NoteSyncView().load({"comment_id": "comment_id"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `NoteSyncViewEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2322,194 +1836,6 @@ Return the entity name.
 
 ---
 
-## PaginatedListAnyProjectSyncViewEntity
-
-```python
-paginated_list_any_project_sync_view = client.PaginatedListAnyProjectSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `next_cursor` | `Any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `list` | Yes | Objects in the current page of results. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[PaginatedListAnyProjectSyncViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.PaginatedListAnyProjectSyncView().list({"query": "example"})
-for paginated_list_any_project_sync_view in results:
-    print(paginated_list_any_project_sync_view.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `PaginatedListAnyProjectSyncViewEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## PaginatedListItemSyncViewEntity
-
-```python
-paginated_list_item_sync_view = client.PaginatedListItemSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `added_at` | `Any` | Yes | Date and time when the task was created, or `null` if unknown. |
-| `added_by_uid` | `Any` | Yes | String ID of the user who created the task, or `null` if unknown. |
-| `assigned_by_uid` | `Any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
-| `checked` | `bool` | Yes | Whether the task is completed. |
-| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
-| `completed_at` | `Any` | Yes | Date and time when the task was completed, or `null` if active. |
-| `completed_by_uid` | `Any` | Yes | String ID of the user who completed the task, or `null` if active. |
-| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
-| `content` | `str` | Yes | Task content. |
-| `day_order` | `int` | Yes | Task order for day-based views. |
-| `deadline` | `Any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
-| `description` | `str` | Yes | Task description. |
-| `due` | `Any` | Yes | Due date details for the task, or `null` when the task has no due date. |
-| `duration` | `float` | Yes | Task duration details, or `null` when the task has no duration. |
-| `id` | `str` | Yes | String ID of the task. |
-| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
-| `labels` | `list` | Yes | Names of labels attached to the task. |
-| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
-| `order_key` | `Any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
-| `parent_id` | `str` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
-| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
-| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
-| `project_id` | `str` | Yes | String ID of the project that contains the task. |
-| `responsible_uid` | `Any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
-| `section_id` | `str` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
-| `updated_at` | `Any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
-| `user_id` | `str` | Yes | String ID of the user who owns the task. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[PaginatedListItemSyncViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.PaginatedListItemSyncView().list({"query": "example"})
-for paginated_list_item_sync_view in results:
-    print(paginated_list_item_sync_view.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `PaginatedListItemSyncViewEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## PaginatedListStrEntity
-
-```python
-paginated_list_str = client.PaginatedListStr()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `next_cursor` | `Any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
-| `results` | `list` | Yes | Objects in the current page of results. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[PaginatedListStrEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.PaginatedListStr().list()
-for paginated_list_str in results:
-    print(paginated_list_str.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `PaginatedListStrEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## PlanDetailEntity
 
 ```python
@@ -2636,9 +1962,71 @@ project = client.Project()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
+| `child_order` | `Any` | No | Updated position of the project in the hierarchy. |
+| `color` | `Any` | No | Color of the project icon. |
+| `description` | `str` | No | Description of the project. |
+| `folder_id` | `str` | No | Folder to move the project into. |
+| `icon` | `Any` | No | Project icon name. |
 | `id` | `str` | No |  |
+| `is_collapsed` | `bool` | No | Whether the project is collapsed. |
+| `is_favorite` | `bool` | No | Whether the project is a favorite for the user. |
+| `name` | `str` | Yes | Name of the project. |
+| `next_cursor` | `Any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
+| `parent_id` | `str` | No | Parent project ID. |
+| `results` | `list` | Yes | Objects in the current page of results. |
+| `view_style` | `Any` | No | View style of the project. |
+| `workspace_id` | `str` | No | Workspace ID. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `child_order` | - | - | - | - | - |
+| `color` | - | - | - | - | - |
+| `description` | - | - | - | - | - |
+| `folder_id` | - | - | - | - | - |
+| `icon` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | - | - |
+| `is_favorite` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `next_cursor` | - | - | - | - | - |
+| `parent_id` | - | - | - | - | - |
+| `results` | - | - | - | - | - |
+| `view_style` | - | - | - | - | - |
+| `workspace_id` | - | - | - | - | - |
 
 ### Operations
+
+#### `create(reqdata, ctrl=None) -> ProjectEntity`
+
+Create a new entity with the given data. Returns the created entity and raises on error.
+
+```python
+result = client.Project().create({
+    "name": "example_name",  # str
+    "next_cursor": "example_next_cursor",  # Any
+    "results": [],  # list
+})
+```
+
+#### `list(reqmatch=None, ctrl=None) -> list[ProjectEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.Project().list()
+for project in results:
+    print(project.data_get())
+```
+
+#### `load(reqmatch, ctrl=None) -> ProjectEntity`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
+
+```python
+result = client.Project().load({"id": "project_id"})
+```
 
 #### `remove(reqmatch, ctrl=None) -> ProjectEntity`
 
@@ -2646,6 +2034,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 
 ```python
 result = client.Project().remove({"id": "project_id"})
+```
+
+#### `update(reqdata, ctrl=None) -> ProjectEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Project().update({
+    "id": "project_id",
+    # Fields to update
+})
 ```
 
 ### Common Methods
@@ -3013,22 +2412,22 @@ section = client.Section()
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `added_at` | - | - | - | - |
-| `archived_at` | - | - | - | - |
-| `description` | - | - | Yes | - |
-| `id` | - | - | - | - |
-| `is_archived` | - | - | - | - |
-| `is_collapsed` | - | - | Yes | - |
-| `is_deleted` | - | - | - | - |
-| `name` | - | - | Yes | - |
-| `order` | - | - | - | - |
-| `order_key` | - | - | - | - |
-| `project_id` | - | - | - | - |
-| `section_order` | - | - | Yes | - |
-| `updated_at` | - | - | - | - |
-| `user_id` | - | - | - | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `added_at` | - | - | - | - | - |
+| `archived_at` | - | - | - | - | - |
+| `description` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_archived` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | Yes | - |
+| `is_deleted` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `order` | - | - | - | - | - |
+| `order_key` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `section_order` | - | - | - | Yes | - |
+| `updated_at` | - | - | - | - | - |
+| `user_id` | - | - | - | - | - |
 
 ### Operations
 
@@ -3038,10 +2437,10 @@ Create a new entity with the given data. Returns the created entity and raises o
 
 ```python
 result = client.Section().create({
-    "id": "example_id",  # str
     "added_at": "example_added_at",  # str
     "archived_at": "example_archived_at",  # Any
     "description": "example_description",  # str
+    "id": "example_id",  # str
     "is_archived": True,  # bool
     "is_collapsed": True,  # bool
     "is_deleted": True,  # bool
@@ -3080,6 +2479,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 result = client.Section().remove({"id": "section_id"})
 ```
 
+#### `update(reqdata, ctrl=None) -> SectionEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Section().update({
+    "id": "section_id",
+    # Fields to update
+})
+```
+
 ### Common Methods
 
 #### `data_get() -> dict`
@@ -3109,44 +2519,49 @@ Return the entity name.
 
 ---
 
-## SectionSyncViewEntity
+## SharedLabelEntity
 
 ```python
-section_sync_view = client.SectionSyncView()
+shared_label = client.SharedLabel()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `added_at` | `str` | Yes | Date and time when the section was created. |
-| `archived_at` | `Any` | Yes | Date and time when the section was archived, or `null` if it is active. |
-| `description` | `str` | Yes | Section description, or `null` if it has none. |
-| `id` | `str` | Yes | String ID of the section. |
-| `is_archived` | `bool` | Yes | Whether the section is archived. |
-| `is_collapsed` | `bool` | Yes | Whether the section is collapsed in the user's view. |
-| `is_deleted` | `bool` | Yes | Whether the section is deleted. |
-| `name` | `str` | Yes | Section name. |
-| `order_key` | `Any` | Yes | Fractional-indexing order key: sections sort by comparing keys lexicographically within a project. |
-| `project_id` | `str` | Yes | String ID of the project that contains the section. |
-| `section_order` | `int` | Yes | Position of the section in the project. |
-| `updated_at` | `Any` | Yes | Date and time when the section was last updated, or `null` if unknown. |
-| `user_id` | `str` | Yes | String ID of the user who owns the section. |
+| `name` | `str` | Yes | Current shared label name to rename. |
+| `new_name` | `str` | Yes | New shared label name to apply to matching tasks. |
+| `next_cursor` | `Any` | Yes | Cursor for the next page of results, or `null` when there are no more results. |
+| `results` | `list` | Yes | Objects in the current page of results. |
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> SectionSyncViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-#### `list(reqmatch=None, ctrl=None) -> list[SectionSyncViewEntity]`
+#### `list(reqmatch=None, ctrl=None) -> list[SharedLabelEntity]`
 
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
-results = client.SectionSyncView().list({"query": "example"})
-for section_sync_view in results:
-    print(section_sync_view.data_get())
+results = client.SharedLabel().list()
+for shared_label in results:
+    print(shared_label.data_get())
+```
+
+#### `remove(reqmatch, ctrl=None) -> SharedLabelEntity`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
+
+```python
+result = client.SharedLabel().remove()
+```
+
+#### `update(reqdata, ctrl=None) -> SharedLabelEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.SharedLabel().update({
+    # Fields to update
+})
 ```
 
 ### Common Methods
@@ -3169,7 +2584,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `SectionSyncViewEntity` instance with the same options.
+Create a new `SharedLabelEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -3306,7 +2721,83 @@ task = client.Task()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
+| `added_at` | `Any` | Yes | Date and time when the task was created, or `null` if unknown. |
+| `added_by_uid` | `Any` | Yes | String ID of the user who created the task, or `null` if unknown. |
+| `assigned_by_uid` | `Any` | Yes | String ID of the user who assigned the task, or `null` if unassigned. |
+| `assignee_id` | `str` | No | ID of the user to assign the task to. |
+| `checked` | `bool` | Yes | Whether the task is completed. |
+| `child_order` | `int` | Yes | Position of the task among sibling tasks. |
+| `completed_at` | `Any` | Yes | Date and time when the task was completed, or `null` if active. |
+| `completed_by_uid` | `Any` | Yes | String ID of the user who completed the task, or `null` if active. |
+| `completed_count` | `int` | Yes | Number of times the task has been marked as completed. |
+| `content` | `str` | Yes | Task content. |
+| `day_order` | `int` | Yes | Task order for day-based views. |
+| `deadline` | `Any` | Yes | Deadline details for the task, or `null` when the task has no deadline. |
+| `deadline_date` | `Any` | No | Deadline date in YYYY-MM-DD format |
+| `description` | `str` | Yes | Task description. |
+| `due` | `Any` | Yes | Due date details for the task, or `null` when the task has no due date. |
+| `due_date` | `Any` | No | Due date in RFC 3339 format or similar. |
+| `due_datetime` | `Any` | No | Due date and time. |
+| `due_lang` | `Any` | No | Due date language code. |
+| `due_string` | `Any` | No | Human-readable representation of the due date. |
+| `duration` | `float` | Yes | Task duration details, or `null` when the task has no duration. |
+| `duration_unit` | `Any` | No | Unit of time for duration. |
+| `id` | `str` | Yes | String ID of the task. |
+| `is_collapsed` | `bool` | Yes | Whether the task is collapsed in the user's view. |
+| `is_deleted` | `bool` | Yes | Whether the task is deleted. |
+| `labels` | `list` | Yes | Names of labels attached to the task. |
+| `note_count` | `int` | Yes | **Deprecated**: only returns 0 and is marked for removal. |
+| `order` | `Any` | No | Position of the task in the project or section |
+| `order_key` | `Any` | Yes | Fractional-indexing order key: tasks sort by comparing keys lexicographically among siblings sharing the same project, section and parent task. |
+| `parent_id` | `str` | Yes | String ID of the parent task, or `null` if this is a top-level task. |
+| `postponed_count` | `int` | Yes | Number of times the task's due date has been rescheduled by the user. |
+| `priority` | `int` | Yes | Task priority from 1 (normal) to 4 (urgent). |
+| `project_id` | `str` | Yes | String ID of the project that contains the task. |
+| `responsible_uid` | `Any` | Yes | String ID of the user responsible for the task, or `null` if unassigned. |
+| `section_id` | `str` | Yes | String ID of the section that contains the task, or `null` if the task is not in a section. |
+| `updated_at` | `Any` | Yes | Date and time when the task was last updated, or `null` if unknown. |
+| `user_id` | `str` | Yes | String ID of the user who owns the task. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `added_at` | - | - | - | - | - |
+| `added_by_uid` | - | - | - | - | - |
+| `assigned_by_uid` | - | - | - | - | - |
+| `assignee_id` | - | - | - | - | - |
+| `checked` | - | - | - | - | - |
+| `child_order` | - | - | - | Yes | - |
+| `completed_at` | - | - | - | - | - |
+| `completed_by_uid` | - | - | - | - | - |
+| `completed_count` | - | - | - | - | - |
+| `content` | - | - | - | Yes | - |
+| `day_order` | - | - | - | Yes | - |
+| `deadline` | - | - | - | - | - |
+| `deadline_date` | - | - | - | - | - |
+| `description` | - | - | Yes | Yes | - |
+| `due` | - | - | - | - | - |
+| `due_date` | - | - | - | - | - |
+| `due_datetime` | - | - | - | - | - |
+| `due_lang` | - | - | - | - | - |
+| `due_string` | - | - | - | - | - |
+| `duration` | - | - | Yes | Yes | - |
+| `duration_unit` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_collapsed` | - | - | - | Yes | - |
+| `is_deleted` | - | - | - | - | - |
+| `labels` | - | - | Yes | Yes | - |
+| `note_count` | - | - | - | - | - |
+| `order` | - | - | - | - | - |
+| `order_key` | - | - | - | - | - |
+| `parent_id` | - | - | Yes | - | - |
+| `postponed_count` | - | - | - | - | - |
+| `priority` | - | - | Yes | Yes | - |
+| `project_id` | - | - | Yes | - | - |
+| `responsible_uid` | - | - | - | - | - |
+| `section_id` | - | - | Yes | - | - |
+| `updated_at` | - | - | - | - | - |
+| `user_id` | - | - | - | - | - |
 
 ### Operations
 
@@ -3316,7 +2807,53 @@ Create a new entity with the given data. Returns the created entity and raises o
 
 ```python
 result = client.Task().create({
+    "added_at": "example_added_at",  # Any
+    "added_by_uid": "example_added_by_uid",  # Any
+    "assigned_by_uid": "example_assigned_by_uid",  # Any
+    "checked": True,  # bool
+    "child_order": 1,  # int
+    "completed_at": "example_completed_at",  # Any
+    "completed_by_uid": "example_completed_by_uid",  # Any
+    "completed_count": 1,  # int
+    "content": "example_content",  # str
+    "day_order": 1,  # int
+    "deadline": "example_deadline",  # Any
+    "description": "example_description",  # str
+    "due": "example_due",  # Any
+    "duration": 1,  # float
+    "id": "example_id",  # str
+    "is_collapsed": True,  # bool
+    "is_deleted": True,  # bool
+    "labels": [],  # list
+    "note_count": 1,  # int
+    "order_key": "example_order_key",  # Any
+    "parent_id": "example_parent_id",  # str
+    "postponed_count": 1,  # int
+    "priority": 1,  # int
+    "project_id": "example_project_id",  # str
+    "responsible_uid": "example_responsible_uid",  # Any
+    "section_id": "example_section_id",  # str
+    "updated_at": "example_updated_at",  # Any
+    "user_id": "example_user_id",  # str
 })
+```
+
+#### `list(reqmatch=None, ctrl=None) -> list[TaskEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.Task().list()
+for task in results:
+    print(task.data_get())
+```
+
+#### `load(reqmatch, ctrl=None) -> TaskEntity`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
+
+```python
+result = client.Task().load({"id": "task_id"})
 ```
 
 #### `remove(reqmatch, ctrl=None) -> TaskEntity`
@@ -3325,6 +2862,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 
 ```python
 result = client.Task().remove({"id": "task_id"})
+```
+
+#### `update(reqdata, ctrl=None) -> TaskEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Task().update({
+    "id": "task_id",
+    # Fields to update
+})
 ```
 
 ### Common Methods
