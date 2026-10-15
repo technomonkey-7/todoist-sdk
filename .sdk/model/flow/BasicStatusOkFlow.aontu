@@ -1,9 +1,0 @@
-# BasicStatusOkFlow
-
-main: kit: flow: BasicStatusOkFlow:
-{
-  entity: "status_ok",
-  kind: "basic",
-  name: "BasicStatusOkFlow",
-  "key$": "BasicStatusOkFlow"
-}
