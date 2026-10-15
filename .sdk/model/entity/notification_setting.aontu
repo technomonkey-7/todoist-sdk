@@ -1,0 +1,75 @@
+# Entity: notification_setting
+
+main: kit: entity: notification_setting: {
+
+  alias: field: {}
+
+  fields: {
+    dont_notify: {
+      h: "Dont Notify"
+      n: "dont_notify"
+      r: false
+      sh: "Whether notifications should be disabled for the selected type and channel."
+      t: "`$ANY`"
+    }
+    notification_type: {
+      h: "Notification Type"
+      n: "notification_type"
+      r: true
+      sh: "Notification type to update."
+      t: "`$STRING`"
+    }
+    service: {
+      h: "Service"
+      n: "service"
+      r: true
+      sh: "Notification channel to update."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "notification_setting"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "dont_notify"
+            "notification_type"
+            "service"
+          ]
+          co: {
+            id: "PUT /api/v1/notification_setting"
+            source: "openapi3"
+            version: 2
+          }
+          m: "PUT"
+          o: "/api/v1/notification_setting"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "notification_setting"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -372,35 +372,11 @@ func (sdk *TodoistSDK) Graphql(
 }
 
 
-// Active returns a Active entity bound to this client.
-// Idiomatic usage: client.Active(nil).List(nil, nil) or
-// client.Active(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) Active(data map[string]any) TodoistEntity {
-	return NewActiveEntityFunc(sdk, data)
-}
-
-
 // Activity returns a Activity entity bound to this client.
 // Idiomatic usage: client.Activity(nil).List(nil, nil) or
 // client.Activity(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TodoistSDK) Activity(data map[string]any) TodoistEntity {
 	return NewActivityEntityFunc(sdk, data)
-}
-
-
-// Archived returns a Archived entity bound to this client.
-// Idiomatic usage: client.Archived(nil).List(nil, nil) or
-// client.Archived(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) Archived(data map[string]any) TodoistEntity {
-	return NewArchivedEntityFunc(sdk, data)
-}
-
-
-// Authorization returns a Authorization entity bound to this client.
-// Idiomatic usage: client.Authorization(nil).List(nil, nil) or
-// client.Authorization(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) Authorization(data map[string]any) TodoistEntity {
-	return NewAuthorizationEntityFunc(sdk, data)
 }
 
 
@@ -492,14 +468,6 @@ func (sdk *TodoistSDK) IdMapping(data map[string]any) TodoistEntity {
 }
 
 
-// Invite returns a Invite entity bound to this client.
-// Idiomatic usage: client.Invite(nil).List(nil, nil) or
-// client.Invite(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) Invite(data map[string]any) TodoistEntity {
-	return NewInviteEntityFunc(sdk, data)
-}
-
-
 // Label returns a Label entity bound to this client.
 // Idiomatic usage: client.Label(nil).List(nil, nil) or
 // client.Label(nil).Load(map[string]any{"id": ...}, nil).
@@ -516,35 +484,11 @@ func (sdk *TodoistSDK) LocationReminder(data map[string]any) TodoistEntity {
 }
 
 
-// MemberView returns a MemberView entity bound to this client.
-// Idiomatic usage: client.MemberView(nil).List(nil, nil) or
-// client.MemberView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) MemberView(data map[string]any) TodoistEntity {
-	return NewMemberViewEntityFunc(sdk, data)
-}
-
-
-// MigratePersonalToken returns a MigratePersonalToken entity bound to this client.
-// Idiomatic usage: client.MigratePersonalToken(nil).List(nil, nil) or
-// client.MigratePersonalToken(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) MigratePersonalToken(data map[string]any) TodoistEntity {
-	return NewMigratePersonalTokenEntityFunc(sdk, data)
-}
-
-
-// NotificationLocationSyncView returns a NotificationLocationSyncView entity bound to this client.
-// Idiomatic usage: client.NotificationLocationSyncView(nil).List(nil, nil) or
-// client.NotificationLocationSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) NotificationLocationSyncView(data map[string]any) TodoistEntity {
-	return NewNotificationLocationSyncViewEntityFunc(sdk, data)
-}
-
-
-// NotificationSyncView returns a NotificationSyncView entity bound to this client.
-// Idiomatic usage: client.NotificationSyncView(nil).List(nil, nil) or
-// client.NotificationSyncView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) NotificationSyncView(data map[string]any) TodoistEntity {
-	return NewNotificationSyncViewEntityFunc(sdk, data)
+// NotificationSetting returns a NotificationSetting entity bound to this client.
+// Idiomatic usage: client.NotificationSetting(nil).List(nil, nil) or
+// client.NotificationSetting(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TodoistSDK) NotificationSetting(data map[string]any) TodoistEntity {
+	return NewNotificationSettingEntityFunc(sdk, data)
 }
 
 
@@ -580,11 +524,11 @@ func (sdk *TodoistSDK) ProjectImport(data map[string]any) TodoistEntity {
 }
 
 
-// ProjectImportCreateResponseWithObject returns a ProjectImportCreateResponseWithObject entity bound to this client.
-// Idiomatic usage: client.ProjectImportCreateResponseWithObject(nil).List(nil, nil) or
-// client.ProjectImportCreateResponseWithObject(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) ProjectImportCreateResponseWithObject(data map[string]any) TodoistEntity {
-	return NewProjectImportCreateResponseWithObjectEntityFunc(sdk, data)
+// ProjectPermission returns a ProjectPermission entity bound to this client.
+// Idiomatic usage: client.ProjectPermission(nil).List(nil, nil) or
+// client.ProjectPermission(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TodoistSDK) ProjectPermission(data map[string]any) TodoistEntity {
+	return NewProjectPermissionEntityFunc(sdk, data)
 }
 
 
@@ -593,22 +537,6 @@ func (sdk *TodoistSDK) ProjectImportCreateResponseWithObject(data map[string]any
 // client.Reminder(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TodoistSDK) Reminder(data map[string]any) TodoistEntity {
 	return NewReminderEntityFunc(sdk, data)
-}
-
-
-// RemoveWorkspaceUser returns a RemoveWorkspaceUser entity bound to this client.
-// Idiomatic usage: client.RemoveWorkspaceUser(nil).List(nil, nil) or
-// client.RemoveWorkspaceUser(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) RemoveWorkspaceUser(data map[string]any) TodoistEntity {
-	return NewRemoveWorkspaceUserEntityFunc(sdk, data)
-}
-
-
-// RoleToActionMappingView returns a RoleToActionMappingView entity bound to this client.
-// Idiomatic usage: client.RoleToActionMappingView(nil).List(nil, nil) or
-// client.RoleToActionMappingView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) RoleToActionMappingView(data map[string]any) TodoistEntity {
-	return NewRoleToActionMappingViewEntityFunc(sdk, data)
 }
 
 
@@ -625,14 +553,6 @@ func (sdk *TodoistSDK) Section(data map[string]any) TodoistEntity {
 // client.SharedLabel(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TodoistSDK) SharedLabel(data map[string]any) TodoistEntity {
 	return NewSharedLabelEntityFunc(sdk, data)
-}
-
-
-// StatusOk returns a StatusOk entity bound to this client.
-// Idiomatic usage: client.StatusOk(nil).List(nil, nil) or
-// client.StatusOk(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) StatusOk(data map[string]any) TodoistEntity {
-	return NewStatusOkEntityFunc(sdk, data)
 }
 
 
@@ -700,19 +620,27 @@ func (sdk *TodoistSDK) Workspace(data map[string]any) TodoistEntity {
 }
 
 
-// WorkspaceInvitationView returns a WorkspaceInvitationView entity bound to this client.
-// Idiomatic usage: client.WorkspaceInvitationView(nil).List(nil, nil) or
-// client.WorkspaceInvitationView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) WorkspaceInvitationView(data map[string]any) TodoistEntity {
-	return NewWorkspaceInvitationViewEntityFunc(sdk, data)
+// WorkspaceInvitation returns a WorkspaceInvitation entity bound to this client.
+// Idiomatic usage: client.WorkspaceInvitation(nil).List(nil, nil) or
+// client.WorkspaceInvitation(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TodoistSDK) WorkspaceInvitation(data map[string]any) TodoistEntity {
+	return NewWorkspaceInvitationEntityFunc(sdk, data)
 }
 
 
-// WorkspaceUserView returns a WorkspaceUserView entity bound to this client.
-// Idiomatic usage: client.WorkspaceUserView(nil).List(nil, nil) or
-// client.WorkspaceUserView(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *TodoistSDK) WorkspaceUserView(data map[string]any) TodoistEntity {
-	return NewWorkspaceUserViewEntityFunc(sdk, data)
+// WorkspaceProject returns a WorkspaceProject entity bound to this client.
+// Idiomatic usage: client.WorkspaceProject(nil).List(nil, nil) or
+// client.WorkspaceProject(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TodoistSDK) WorkspaceProject(data map[string]any) TodoistEntity {
+	return NewWorkspaceProjectEntityFunc(sdk, data)
+}
+
+
+// WorkspaceUser returns a WorkspaceUser entity bound to this client.
+// Idiomatic usage: client.WorkspaceUser(nil).List(nil, nil) or
+// client.WorkspaceUser(nil).Load(map[string]any{"id": ...}, nil).
+func (sdk *TodoistSDK) WorkspaceUser(data map[string]any) TodoistEntity {
+	return NewWorkspaceUserEntityFunc(sdk, data)
 }
 
 

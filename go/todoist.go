@@ -33,17 +33,8 @@ func init() {
 	core.NewTestFeatureFunc = func() core.Feature {
 		return feature.NewTestFeature()
 	}
-	core.NewActiveEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewActiveEntity(client, entopts)
-	}
 	core.NewActivityEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewActivityEntity(client, entopts)
-	}
-	core.NewArchivedEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewArchivedEntity(client, entopts)
-	}
-	core.NewAuthorizationEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewAuthorizationEntity(client, entopts)
 	}
 	core.NewBackupEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewBackupEntity(client, entopts)
@@ -78,26 +69,14 @@ func init() {
 	core.NewIdMappingEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewIdMappingEntity(client, entopts)
 	}
-	core.NewInviteEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewInviteEntity(client, entopts)
-	}
 	core.NewLabelEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewLabelEntity(client, entopts)
 	}
 	core.NewLocationReminderEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewLocationReminderEntity(client, entopts)
 	}
-	core.NewMemberViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewMemberViewEntity(client, entopts)
-	}
-	core.NewMigratePersonalTokenEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewMigratePersonalTokenEntity(client, entopts)
-	}
-	core.NewNotificationLocationSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewNotificationLocationSyncViewEntity(client, entopts)
-	}
-	core.NewNotificationSyncViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewNotificationSyncViewEntity(client, entopts)
+	core.NewNotificationSettingEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
+		return entity.NewNotificationSettingEntity(client, entopts)
 	}
 	core.NewPlanDetailEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewPlanDetailEntity(client, entopts)
@@ -111,26 +90,17 @@ func init() {
 	core.NewProjectImportEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewProjectImportEntity(client, entopts)
 	}
-	core.NewProjectImportCreateResponseWithObjectEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewProjectImportCreateResponseWithObjectEntity(client, entopts)
+	core.NewProjectPermissionEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
+		return entity.NewProjectPermissionEntity(client, entopts)
 	}
 	core.NewReminderEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewReminderEntity(client, entopts)
-	}
-	core.NewRemoveWorkspaceUserEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewRemoveWorkspaceUserEntity(client, entopts)
-	}
-	core.NewRoleToActionMappingViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewRoleToActionMappingViewEntity(client, entopts)
 	}
 	core.NewSectionEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewSectionEntity(client, entopts)
 	}
 	core.NewSharedLabelEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewSharedLabelEntity(client, entopts)
-	}
-	core.NewStatusOkEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewStatusOkEntity(client, entopts)
 	}
 	core.NewSubscriptionInfoEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewSubscriptionInfoEntity(client, entopts)
@@ -156,11 +126,14 @@ func init() {
 	core.NewWorkspaceEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewWorkspaceEntity(client, entopts)
 	}
-	core.NewWorkspaceInvitationViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewWorkspaceInvitationViewEntity(client, entopts)
+	core.NewWorkspaceInvitationEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
+		return entity.NewWorkspaceInvitationEntity(client, entopts)
 	}
-	core.NewWorkspaceUserViewEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
-		return entity.NewWorkspaceUserViewEntity(client, entopts)
+	core.NewWorkspaceProjectEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
+		return entity.NewWorkspaceProjectEntity(client, entopts)
+	}
+	core.NewWorkspaceUserEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
+		return entity.NewWorkspaceUserEntity(client, entopts)
 	}
 }
 

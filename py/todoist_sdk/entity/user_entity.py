@@ -6,8 +6,7 @@ from todoist_sdk.utility.voxgig_struct import voxgig_struct as vs
 from todoist_sdk.core import helpers
 from todoist_sdk.todoist_types import (
     User,
-    UserListMatch,
-    UserUpdateData,
+    UserLoadMatch,
 )
 
 
@@ -200,42 +199,19 @@ class UserEntity:
         return None
 
     
-
-    
-    def list(self, reqmatch=None, ctrl=None) -> list[UserEntity]:
+    def load(self, reqmatch=None, ctrl=None) -> UserEntity:
         utility = self._utility
-        # reqmatch is optional: an omitted match lists all records. Treat None
-        # as an empty match so client.User().list() works with no args.
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.User().load()
+        # works with no args.
         if reqmatch is None:
             reqmatch = {}
         ctx = utility.make_context({
-            "opname": "list",
+            "opname": "load",
             "ctrl": ctrl,
             "match": self._match,
             "data": self._data,
             "reqmatch": reqmatch,
-        }, self._entctx)
-
-        def post_done():
-            if ctx.result is not None:
-                if ctx.result.resmatch is not None:
-                    self._match = ctx.result.resmatch
-
-        return self._run_op(ctx, post_done)
-
-
-
-    
-
-    
-    def update(self, reqdata: UserUpdateData, ctrl=None) -> UserEntity:
-        utility = self._utility
-        ctx = utility.make_context({
-            "opname": "update",
-            "ctrl": ctrl,
-            "match": self._match,
-            "data": self._data,
-            "reqdata": reqdata,
         }, self._entctx)
 
         def post_done():
@@ -248,6 +224,12 @@ class UserEntity:
         return self._run_op(ctx, post_done)
 
 
+
+    
+
+    
+
+    
 
     
 

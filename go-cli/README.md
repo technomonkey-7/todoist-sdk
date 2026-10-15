@@ -19,15 +19,15 @@ make build
 export TODOIST_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
-./todoist-cli list active
 ./todoist-cli list activity
+./todoist-cli list backup
 
 # 5. Override the API base URL for a single call
-TODOIST_BASE=https://api.example.com ./todoist-cli list active
+TODOIST_BASE=https://api.example.com ./todoist-cli list activity
 
 # 6. No arguments -> interactive REPL
 ./todoist-cli
-todoist> list active
+todoist> list activity
 todoist> /quit
 ```
 
@@ -53,7 +53,7 @@ todoist> /quit
    arguments to open the REPL):
 
    ```sh
-   ./dist/*/todoist-cli list active
+   ./dist/*/todoist-cli list activity
    ```
 
 4. **Go interactive.** Run the binary with no arguments to open the REPL, then
@@ -66,7 +66,7 @@ That is the whole loop: *build → set key → evaluate boru expressions*.
 ### List the records of an entity
 
 ```sh
-./todoist-cli list active
+./todoist-cli list activity
 ```
 
 `list <entity>` returns the first page of records. `<entity>` is a bareword —
@@ -79,7 +79,7 @@ Configuration is read from the environment — nothing is written to disk:
 ```sh
 export TODOIST_APIKEY=sk_live_xxx            # API key
 export TODOIST_BASE=https://api.example.com  # optional: override the API base URL
-./todoist-cli list active
+./todoist-cli list activity
 ```
 
 Both are injectable by a secrets vault, so the key never has to be typed inline.
@@ -91,7 +91,7 @@ evaluated as its own boru expression:
 
 ```text
 $ ./todoist-cli
-todoist> list active
+todoist> list activity
 todoist> /help
 todoist> /quit
 ```
@@ -106,7 +106,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 43 entities.
+below — this SDK exposes 34 entities.
 
 ## Reference
 
@@ -120,7 +120,7 @@ The CLI registers these boru words, each bound to the SDK:
 | `load`   | `load <entity>` · `load <query> <entity>`     | A single record                |
 | `update` | `update <query> <entity>`                     | Update a record, return it     |
 
-- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `active`).
+- `<entity>` is a bareword, auto-quoted as an boru atom (e.g. `activity`).
 - `<query>` is either a **Map** (`{id:1}`) or a **Scalar** (`1`, treated as
   `{id:1}`). A scalar is always wrapped as `{id:<value>}`.
 
@@ -161,9 +161,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 43 entities this SDK exposes (any is valid as `<entity>`):
+The 34 entities this SDK exposes (any is valid as `<entity>`):
 
-active activity archived authorization backup billing_portal_url collaborator comment completed_task credit_state email file_url folder history id_mapping invite label location_reminder member_view migrate_personal_token notification_location_sync_view notification_sync_view plan_detail productivity_stat project project_import project_import_create_response_with_object reminder remove_workspace_user role_to_action_mapping_view section shared_label status_ok subscription_info task template top_up upload usage_summary user workspace workspace_invitation_view workspace_user_view
+activity backup billing_portal_url collaborator comment completed_task credit_state email file_url folder history id_mapping label location_reminder notification_setting plan_detail productivity_stat project project_import project_permission reminder section shared_label subscription_info task template top_up upload usage_summary user workspace workspace_invitation workspace_project workspace_user
 
 ## Explanation
 

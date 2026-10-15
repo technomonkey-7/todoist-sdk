@@ -2,6 +2,7 @@ package sdktest
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -190,7 +191,7 @@ func TestWorkspaceEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "list", "load", "remove"} {
+		for _, _op := range []string{"create", "list", "update", "load", "remove"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "workspace." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -234,6 +235,30 @@ func TestWorkspaceEntity(t *testing.T) {
 		foundItem := vs.Select(entityListToData(workspaceRef01List), map[string]any{"id": workspaceRef01Data["id"]})
 		if vs.IsEmpty(foundItem) {
 			t.Fatal("expected to find created entity in list")
+		}
+
+		// UPDATE
+		workspaceRef01DataUp0Up := map[string]any{
+			"id": workspaceRef01Data["id"],
+		}
+
+		workspaceRef01MarkdefUp0Name := "description"
+		workspaceRef01MarkdefUp0Value := fmt.Sprintf("Mark01-workspace_ref01_%d", setup.now)
+		workspaceRef01DataUp0Up[workspaceRef01MarkdefUp0Name] = workspaceRef01MarkdefUp0Value
+
+		workspaceRef01ResdataUp0Result, err := workspaceRef01Ent.Update(workspaceRef01DataUp0Up, nil)
+		if err != nil {
+			t.Fatalf("update failed: %v", err)
+		}
+		workspaceRef01ResdataUp0 := core.ToMapAny(entityData(workspaceRef01ResdataUp0Result))
+		if workspaceRef01ResdataUp0 == nil {
+			t.Fatal("expected update result to be a map")
+		}
+		if workspaceRef01ResdataUp0["id"] != workspaceRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
+		if workspaceRef01ResdataUp0[workspaceRef01MarkdefUp0Name] != workspaceRef01MarkdefUp0Value {
+			t.Fatalf("expected %s to be updated, got %v", workspaceRef01MarkdefUp0Name, workspaceRef01ResdataUp0[workspaceRef01MarkdefUp0Name])
 		}
 
 		// LOAD

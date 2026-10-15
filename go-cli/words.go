@@ -77,14 +77,8 @@ func runOp(client *sdk.TodoistSDK, op string, query *eng.Value, entityAtom eng.V
 // emits one `case "<name>":` per entity defined in the SDK model.
 func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 	switch strings.ToLower(name) {
-	case "active":
-		return client.Active(nil), nil
 	case "activity":
 		return client.Activity(nil), nil
-	case "archived":
-		return client.Archived(nil), nil
-	case "authorization":
-		return client.Authorization(nil), nil
 	case "backup":
 		return client.Backup(nil), nil
 	case "billing_portal_url":
@@ -107,20 +101,12 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.History(nil), nil
 	case "id_mapping":
 		return client.IdMapping(nil), nil
-	case "invite":
-		return client.Invite(nil), nil
 	case "label":
 		return client.Label(nil), nil
 	case "location_reminder":
 		return client.LocationReminder(nil), nil
-	case "member_view":
-		return client.MemberView(nil), nil
-	case "migrate_personal_token":
-		return client.MigratePersonalToken(nil), nil
-	case "notification_location_sync_view":
-		return client.NotificationLocationSyncView(nil), nil
-	case "notification_sync_view":
-		return client.NotificationSyncView(nil), nil
+	case "notification_setting":
+		return client.NotificationSetting(nil), nil
 	case "plan_detail":
 		return client.PlanDetail(nil), nil
 	case "productivity_stat":
@@ -129,20 +115,14 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.Project(nil), nil
 	case "project_import":
 		return client.ProjectImport(nil), nil
-	case "project_import_create_response_with_object":
-		return client.ProjectImportCreateResponseWithObject(nil), nil
+	case "project_permission":
+		return client.ProjectPermission(nil), nil
 	case "reminder":
 		return client.Reminder(nil), nil
-	case "remove_workspace_user":
-		return client.RemoveWorkspaceUser(nil), nil
-	case "role_to_action_mapping_view":
-		return client.RoleToActionMappingView(nil), nil
 	case "section":
 		return client.Section(nil), nil
 	case "shared_label":
 		return client.SharedLabel(nil), nil
-	case "status_ok":
-		return client.StatusOk(nil), nil
 	case "subscription_info":
 		return client.SubscriptionInfo(nil), nil
 	case "task":
@@ -159,10 +139,12 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.User(nil), nil
 	case "workspace":
 		return client.Workspace(nil), nil
-	case "workspace_invitation_view":
-		return client.WorkspaceInvitationView(nil), nil
-	case "workspace_user_view":
-		return client.WorkspaceUserView(nil), nil
+	case "workspace_invitation":
+		return client.WorkspaceInvitation(nil), nil
+	case "workspace_project":
+		return client.WorkspaceProject(nil), nil
+	case "workspace_user":
+		return client.WorkspaceUser(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

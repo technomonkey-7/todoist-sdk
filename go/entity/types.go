@@ -12,17 +12,6 @@ import (
 	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
-// Active is the typed data model for the active entity.
-type Active struct {
-}
-
-// ActiveListMatch is the typed request payload for Active.ListTyped.
-type ActiveListMatch struct {
-	WorkspaceId int `json:"workspace_id"`
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-}
-
 // Activity is the typed data model for the activity entity.
 type Activity struct {
 }
@@ -47,34 +36,6 @@ type ActivityListMatch struct {
 	ParentItemId *string `json:"parent_item_id,omitempty"`
 	ParentProjectId *string `json:"parent_project_id,omitempty"`
 	WorkspaceId *string `json:"workspace_id,omitempty"`
-}
-
-// Archived is the typed data model for the archived entity.
-type Archived struct {
-}
-
-// ArchivedListMatch is the typed request payload for Archived.ListTyped.
-type ArchivedListMatch struct {
-	WorkspaceId int `json:"workspace_id"`
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-}
-
-// Authorization is the typed data model for the authorization entity.
-type Authorization struct {
-}
-
-// AuthorizationCreateData is the typed request payload for Authorization.CreateTyped.
-type AuthorizationCreateData struct {
-	Token string `json:"token"`
-	TokenTypeHint *any `json:"token_type_hint,omitempty"`
-}
-
-// AuthorizationRemoveMatch is the typed request payload for Authorization.RemoveTyped.
-type AuthorizationRemoveMatch struct {
-	AccessToken string `json:"access_token"`
-	ClientId string `json:"client_id"`
-	ClientSecret string `json:"client_secret"`
 }
 
 // Backup is the typed data model for the backup entity.
@@ -208,6 +169,12 @@ type EmailUpdateData struct {
 	ObjType *string `json:"obj_type,omitempty"`
 }
 
+// EmailRemoveMatch is the typed request payload for Email.RemoveTyped.
+type EmailRemoveMatch struct {
+	ObjId string `json:"obj_id"`
+	ObjType string `json:"obj_type"`
+}
+
 // FileUrl is the typed data model for the file_url entity.
 type FileUrl struct {
 }
@@ -236,13 +203,24 @@ type FolderListMatch struct {
 
 // FolderCreateData is the typed request payload for Folder.CreateTyped.
 type FolderCreateData struct {
-	Id int `json:"id"`
 	ChildOrder int `json:"child_order"`
 	DefaultOrder int `json:"default_order"`
 	DefaultOrderKey any `json:"default_order_key"`
+	Id string `json:"id"`
 	IsDeleted bool `json:"is_deleted"`
 	Name string `json:"name"`
 	WorkspaceId string `json:"workspace_id"`
+}
+
+// FolderUpdateData is the typed request payload for Folder.UpdateTyped.
+type FolderUpdateData struct {
+	Id int `json:"id"`
+	ChildOrder *int `json:"child_order,omitempty"`
+	DefaultOrder *int `json:"default_order,omitempty"`
+	DefaultOrderKey *any `json:"default_order_key,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
+	Name *string `json:"name,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
 // FolderRemoveMatch is the typed request payload for Folder.RemoveTyped.
@@ -270,19 +248,6 @@ type IdMapping struct {
 type IdMappingListMatch struct {
 	ObjId string `json:"obj_id"`
 	ObjName string `json:"obj_name"`
-}
-
-// Invite is the typed data model for the invite entity.
-type Invite struct {
-}
-
-// InviteCreateData is the typed request payload for Invite.CreateTyped.
-type InviteCreateData struct {
-	WorkspaceId int `json:"workspace_id"`
-	App *string `json:"app,omitempty"`
-	EmailList *any `json:"email_list,omitempty"`
-	InvitedEmails []any `json:"invited_emails"`
-	Role *any `json:"role,omitempty"`
 }
 
 // Label is the typed data model for the label entity.
@@ -327,57 +292,20 @@ type LabelRemoveMatch struct {
 type LocationReminder struct {
 }
 
-// LocationReminderRemoveMatch is the typed request payload for LocationReminder.RemoveTyped.
-type LocationReminderRemoveMatch struct {
+// LocationReminderLoadMatch is the typed request payload for LocationReminder.LoadTyped.
+type LocationReminderLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// MemberView is the typed data model for the member_view entity.
-type MemberView struct {
-}
-
-// MemberViewListMatch is the typed request payload for MemberView.ListTyped.
-type MemberViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	Sort *string `json:"sort,omitempty"`
-	WorkspaceId *string `json:"workspace_id,omitempty"`
-}
-
-// MigratePersonalToken is the typed data model for the migrate_personal_token entity.
-type MigratePersonalToken struct {
-}
-
-// MigratePersonalTokenCreateData is the typed request payload for MigratePersonalToken.CreateTyped.
-type MigratePersonalTokenCreateData struct {
-	AccessToken any `json:"access_token"`
-	ClientId string `json:"client_id"`
-	ClientSecret string `json:"client_secret"`
-	ExpiresIn int `json:"expires_in"`
-	PersonalToken string `json:"personal_token"`
-	Scope string `json:"scope"`
-	TokenType string `json:"token_type"`
-}
-
-// NotificationLocationSyncView is the typed data model for the notification_location_sync_view entity.
-type NotificationLocationSyncView struct {
-}
-
-// NotificationLocationSyncViewLoadMatch is the typed request payload for NotificationLocationSyncView.LoadTyped.
-type NotificationLocationSyncViewLoadMatch struct {
-	ReminderId string `json:"reminder_id"`
-}
-
-// NotificationLocationSyncViewListMatch is the typed request payload for NotificationLocationSyncView.ListTyped.
-type NotificationLocationSyncViewListMatch struct {
+// LocationReminderListMatch is the typed request payload for LocationReminder.ListTyped.
+type LocationReminderListMatch struct {
 	Cursor *any `json:"cursor,omitempty"`
 	Limit *int `json:"limit,omitempty"`
 	TaskId *string `json:"task_id,omitempty"`
 }
 
-// NotificationLocationSyncViewCreateData is the typed request payload for NotificationLocationSyncView.CreateTyped.
-type NotificationLocationSyncViewCreateData struct {
-	ReminderId string `json:"reminder_id"`
+// LocationReminderCreateData is the typed request payload for LocationReminder.CreateTyped.
+type LocationReminderCreateData struct {
 	Id string `json:"id"`
 	IsDeleted bool `json:"is_deleted"`
 	ItemId string `json:"item_id"`
@@ -392,36 +320,36 @@ type NotificationLocationSyncViewCreateData struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// NotificationSyncView is the typed data model for the notification_sync_view entity.
-type NotificationSyncView struct {
-}
-
-// NotificationSyncViewLoadMatch is the typed request payload for NotificationSyncView.LoadTyped.
-type NotificationSyncViewLoadMatch struct {
-	ReminderId string `json:"reminder_id"`
-}
-
-// NotificationSyncViewListMatch is the typed request payload for NotificationSyncView.ListTyped.
-type NotificationSyncViewListMatch struct {
-	Cursor *any `json:"cursor,omitempty"`
-	Limit *int `json:"limit,omitempty"`
-	TaskId *string `json:"task_id,omitempty"`
-}
-
-// NotificationSyncViewCreateData is the typed request payload for NotificationSyncView.CreateTyped.
-type NotificationSyncViewCreateData struct {
-	ReminderId string `json:"reminder_id"`
-	Due any `json:"due"`
+// LocationReminderUpdateData is the typed request payload for LocationReminder.UpdateTyped.
+type LocationReminderUpdateData struct {
 	Id string `json:"id"`
-	IsDeleted bool `json:"is_deleted"`
-	IsUrgent bool `json:"is_urgent"`
-	ItemId string `json:"item_id"`
-	MinuteOffset any `json:"minute_offset"`
-	NotifyUid string `json:"notify_uid"`
-	ReminderType *string `json:"reminder_type,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
+	ItemId *string `json:"item_id,omitempty"`
+	LocLat *string `json:"loc_lat,omitempty"`
+	LocLong *string `json:"loc_long,omitempty"`
+	LocTrigger *string `json:"loc_trigger,omitempty"`
+	Name *string `json:"name,omitempty"`
+	NotifyUid *string `json:"notify_uid,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
+	Radius *int `json:"radius,omitempty"`
+	TaskId *string `json:"task_id,omitempty"`
+	Type *string `json:"type,omitempty"`
+}
+
+// LocationReminderRemoveMatch is the typed request payload for LocationReminder.RemoveTyped.
+type LocationReminderRemoveMatch struct {
+	Id string `json:"id"`
+}
+
+// NotificationSetting is the typed data model for the notification_setting entity.
+type NotificationSetting struct {
+}
+
+// NotificationSettingUpdateData is the typed request payload for NotificationSetting.UpdateTyped.
+type NotificationSettingUpdateData struct {
+	DontNotify *any `json:"dont_notify,omitempty"`
+	NotificationType *string `json:"notification_type,omitempty"`
 	Service *string `json:"service,omitempty"`
-	TaskId string `json:"task_id"`
-	Type string `json:"type"`
 }
 
 // PlanDetail is the typed data model for the plan_detail entity.
@@ -515,67 +443,67 @@ type ProjectImport struct {
 
 // ProjectImportCreateData is the typed request payload for ProjectImport.CreateTyped.
 type ProjectImportCreateData struct {
-	Comments []any `json:"comments"`
-	DiscardedFields []any `json:"discarded_fields"`
-	Locale *string `json:"locale,omitempty"`
-	ProjectId string `json:"project_id"`
-	ProjectNotes []any `json:"project_notes"`
-	ProjectViewOptionsDefaults []any `json:"project_view_options_defaults"`
-	Projects []any `json:"projects"`
-	Reminders []any `json:"reminders"`
-	Sections []any `json:"sections"`
-	Status string `json:"status"`
-	Tasks []any `json:"tasks"`
-	TemplateId string `json:"template_id"`
-	TemplateType string `json:"template_type"`
 }
 
-// ProjectImportCreateResponseWithObject is the typed data model for the project_import_create_response_with_object entity.
-type ProjectImportCreateResponseWithObject struct {
+// ProjectPermission is the typed data model for the project_permission entity.
+type ProjectPermission struct {
 }
 
-// ProjectImportCreateResponseWithObjectCreateData is the typed request payload for ProjectImportCreateResponseWithObject.CreateTyped.
-type ProjectImportCreateResponseWithObjectCreateData struct {
-	Comments []any `json:"comments"`
-	DiscardedFields []any `json:"discarded_fields"`
-	ProjectId string `json:"project_id"`
-	ProjectNotes []any `json:"project_notes"`
-	ProjectViewOptionsDefaults []any `json:"project_view_options_defaults"`
-	Projects []any `json:"projects"`
-	Reminders []any `json:"reminders"`
-	Sections []any `json:"sections"`
-	Status string `json:"status"`
-	Tasks []any `json:"tasks"`
-	TemplateType string `json:"template_type"`
+// ProjectPermissionListMatch is the typed request payload for ProjectPermission.ListTyped.
+type ProjectPermissionListMatch struct {
+	ProjectCollaboratorActions *[]any `json:"project_collaborator_actions,omitempty"`
+	WorkspaceCollaboratorActions *[]any `json:"workspace_collaborator_actions,omitempty"`
 }
 
 // Reminder is the typed data model for the reminder entity.
 type Reminder struct {
 }
 
-// ReminderRemoveMatch is the typed request payload for Reminder.RemoveTyped.
-type ReminderRemoveMatch struct {
+// ReminderLoadMatch is the typed request payload for Reminder.LoadTyped.
+type ReminderLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// RemoveWorkspaceUser is the typed data model for the remove_workspace_user entity.
-type RemoveWorkspaceUser struct {
+// ReminderListMatch is the typed request payload for Reminder.ListTyped.
+type ReminderListMatch struct {
+	Cursor *any `json:"cursor,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	TaskId *string `json:"task_id,omitempty"`
 }
 
-// RemoveWorkspaceUserRemoveMatch is the typed request payload for RemoveWorkspaceUser.RemoveTyped.
-type RemoveWorkspaceUserRemoveMatch struct {
-	Id int `json:"id"`
-	WorkspaceId int `json:"workspace_id"`
+// ReminderCreateData is the typed request payload for Reminder.CreateTyped.
+type ReminderCreateData struct {
+	Due any `json:"due"`
+	Id string `json:"id"`
+	IsDeleted bool `json:"is_deleted"`
+	IsUrgent bool `json:"is_urgent"`
+	ItemId string `json:"item_id"`
+	MinuteOffset any `json:"minute_offset"`
+	NotifyUid string `json:"notify_uid"`
+	ReminderType *string `json:"reminder_type,omitempty"`
+	Service *string `json:"service,omitempty"`
+	TaskId string `json:"task_id"`
+	Type string `json:"type"`
 }
 
-// RoleToActionMappingView is the typed data model for the role_to_action_mapping_view entity.
-type RoleToActionMappingView struct {
+// ReminderUpdateData is the typed request payload for Reminder.UpdateTyped.
+type ReminderUpdateData struct {
+	Id string `json:"id"`
+	Due *any `json:"due,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
+	IsUrgent *bool `json:"is_urgent,omitempty"`
+	ItemId *string `json:"item_id,omitempty"`
+	MinuteOffset *any `json:"minute_offset,omitempty"`
+	NotifyUid *string `json:"notify_uid,omitempty"`
+	ReminderType *string `json:"reminder_type,omitempty"`
+	Service *string `json:"service,omitempty"`
+	TaskId *string `json:"task_id,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
-// RoleToActionMappingViewListMatch is the typed request payload for RoleToActionMappingView.ListTyped.
-type RoleToActionMappingViewListMatch struct {
-	ProjectCollaboratorActions *[]any `json:"project_collaborator_actions,omitempty"`
-	WorkspaceCollaboratorActions *[]any `json:"workspace_collaborator_actions,omitempty"`
+// ReminderRemoveMatch is the typed request payload for Reminder.RemoveTyped.
+type ReminderRemoveMatch struct {
+	Id string `json:"id"`
 }
 
 // Section is the typed data model for the section entity.
@@ -663,16 +591,6 @@ type SharedLabelRemoveMatch struct {
 	NewName *string `json:"new_name,omitempty"`
 	NextCursor *any `json:"next_cursor,omitempty"`
 	Results *[]any `json:"results,omitempty"`
-}
-
-// StatusOk is the typed data model for the status_ok entity.
-type StatusOk struct {
-}
-
-// StatusOkRemoveMatch is the typed request payload for StatusOk.RemoveTyped.
-type StatusOkRemoveMatch struct {
-	ObjId string `json:"obj_id"`
-	ObjType string `json:"obj_type"`
 }
 
 // SubscriptionInfo is the typed data model for the subscription_info entity.
@@ -862,8 +780,8 @@ type UsageSummaryListMatch struct {
 type User struct {
 }
 
-// UserListMatch is the typed request payload for User.ListTyped.
-type UserListMatch struct {
+// UserLoadMatch is the typed request payload for User.LoadTyped.
+type UserLoadMatch struct {
 	ActivatedUser *bool `json:"activated_user,omitempty"`
 	AutoReminder *int `json:"auto_reminder,omitempty"`
 	AvatarBig *any `json:"avatar_big,omitempty"`
@@ -877,7 +795,6 @@ type UserListMatch struct {
 	DateFormat *int `json:"date_format,omitempty"`
 	DaysOff *[]any `json:"days_off,omitempty"`
 	DeletedAt *any `json:"deleted_at,omitempty"`
-	DontNotify *any `json:"dont_notify,omitempty"`
 	Email *string `json:"email,omitempty"`
 	FeatureIdentifier *string `json:"feature_identifier,omitempty"`
 	Features *map[string]any `json:"features,omitempty"`
@@ -887,7 +804,7 @@ type UserListMatch struct {
 	HasMagicNumber *bool `json:"has_magic_number,omitempty"`
 	HasPassword *bool `json:"has_password,omitempty"`
 	HasStartedATrial *bool `json:"has_started_a_trial,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	ImageId *string `json:"image_id,omitempty"`
 	InboxProjectId *string `json:"inbox_project_id,omitempty"`
 	IsCelebrationsEnabled *bool `json:"is_celebrations_enabled,omitempty"`
@@ -901,7 +818,6 @@ type UserListMatch struct {
 	Lang *string `json:"lang,omitempty"`
 	MfaEnabled *bool `json:"mfa_enabled,omitempty"`
 	NextWeek *int `json:"next_week,omitempty"`
-	NotificationType *string `json:"notification_type,omitempty"`
 	OnboardedDatedTasksCreated *any `json:"onboarded_dated_tasks_created,omitempty"`
 	OnboardedDesktopAccessed *any `json:"onboarded_desktop_accessed,omitempty"`
 	OnboardedMobileAccessed *any `json:"onboarded_mobile_accessed,omitempty"`
@@ -916,79 +832,6 @@ type UserListMatch struct {
 	OnboardingUseCases *any `json:"onboarding_use_cases,omitempty"`
 	PremiumStatus *any `json:"premium_status,omitempty"`
 	PremiumUntil *any `json:"premium_until,omitempty"`
-	Service *string `json:"service,omitempty"`
-	ShareLimit *int `json:"share_limit,omitempty"`
-	SortOrder *int `json:"sort_order,omitempty"`
-	StartDay *int `json:"start_day,omitempty"`
-	StartPage *string `json:"start_page,omitempty"`
-	Status *any `json:"status,omitempty"`
-	ThemeAppearance *string `json:"theme_appearance,omitempty"`
-	ThemeId *string `json:"theme_id,omitempty"`
-	TimeFormat *any `json:"time_format,omitempty"`
-	Token *string `json:"token,omitempty"`
-	TzInfo *map[string]any `json:"tz_info,omitempty"`
-	UrgentReminderDevice *any `json:"urgent_reminder_device,omitempty"`
-	VerificationStatus *string `json:"verification_status,omitempty"`
-	WebsocketUrl *string `json:"websocket_url,omitempty"`
-	WeekendStartDay *int `json:"weekend_start_day,omitempty"`
-	WeeklyGoal *int `json:"weekly_goal,omitempty"`
-}
-
-// UserUpdateData is the typed request payload for User.UpdateTyped.
-type UserUpdateData struct {
-	ActivatedUser *bool `json:"activated_user,omitempty"`
-	AutoReminder *int `json:"auto_reminder,omitempty"`
-	AvatarBig *any `json:"avatar_big,omitempty"`
-	AvatarMedium *any `json:"avatar_medium,omitempty"`
-	AvatarS640 *any `json:"avatar_s640,omitempty"`
-	AvatarSmall *any `json:"avatar_small,omitempty"`
-	BusinessAccountId *string `json:"business_account_id,omitempty"`
-	CompletedCount *int `json:"completed_count,omitempty"`
-	CompletedToday *int `json:"completed_today,omitempty"`
-	DailyGoal *int `json:"daily_goal,omitempty"`
-	DateFormat *int `json:"date_format,omitempty"`
-	DaysOff *[]any `json:"days_off,omitempty"`
-	DeletedAt *any `json:"deleted_at,omitempty"`
-	DontNotify *any `json:"dont_notify,omitempty"`
-	Email *string `json:"email,omitempty"`
-	FeatureIdentifier *string `json:"feature_identifier,omitempty"`
-	Features *map[string]any `json:"features,omitempty"`
-	FreeTrialExpires *any `json:"free_trial_expires,omitempty"`
-	FullName *string `json:"full_name,omitempty"`
-	GettingStartedGuideProjects *any `json:"getting_started_guide_projects,omitempty"`
-	HasMagicNumber *bool `json:"has_magic_number,omitempty"`
-	HasPassword *bool `json:"has_password,omitempty"`
-	HasStartedATrial *bool `json:"has_started_a_trial,omitempty"`
-	Id *string `json:"id,omitempty"`
-	ImageId *string `json:"image_id,omitempty"`
-	InboxProjectId *string `json:"inbox_project_id,omitempty"`
-	IsCelebrationsEnabled *bool `json:"is_celebrations_enabled,omitempty"`
-	IsDeleted *bool `json:"is_deleted,omitempty"`
-	IsOnboarded *bool `json:"is_onboarded,omitempty"`
-	IsPremium *bool `json:"is_premium,omitempty"`
-	JoinableWorkspace *any `json:"joinable_workspace,omitempty"`
-	JoinedAt *any `json:"joined_at,omitempty"`
-	Karma *float64 `json:"karma,omitempty"`
-	KarmaTrend *any `json:"karma_trend,omitempty"`
-	Lang *string `json:"lang,omitempty"`
-	MfaEnabled *bool `json:"mfa_enabled,omitempty"`
-	NextWeek *int `json:"next_week,omitempty"`
-	NotificationType *string `json:"notification_type,omitempty"`
-	OnboardedDatedTasksCreated *any `json:"onboarded_dated_tasks_created,omitempty"`
-	OnboardedDesktopAccessed *any `json:"onboarded_desktop_accessed,omitempty"`
-	OnboardedMobileAccessed *any `json:"onboarded_mobile_accessed,omitempty"`
-	OnboardedTasksCompleted *any `json:"onboarded_tasks_completed,omitempty"`
-	OnboardingCompleted *bool `json:"onboarding_completed,omitempty"`
-	OnboardingInitiated *bool `json:"onboarding_initiated,omitempty"`
-	OnboardingLevel *any `json:"onboarding_level,omitempty"`
-	OnboardingPersona *any `json:"onboarding_persona,omitempty"`
-	OnboardingRole *any `json:"onboarding_role,omitempty"`
-	OnboardingStarted *bool `json:"onboarding_started,omitempty"`
-	OnboardingTeamMode *any `json:"onboarding_team_mode,omitempty"`
-	OnboardingUseCases *any `json:"onboarding_use_cases,omitempty"`
-	PremiumStatus *any `json:"premium_status,omitempty"`
-	PremiumUntil *any `json:"premium_until,omitempty"`
-	Service *string `json:"service,omitempty"`
 	ShareLimit *int `json:"share_limit,omitempty"`
 	SortOrder *int `json:"sort_order,omitempty"`
 	StartDay *int `json:"start_day,omitempty"`
@@ -1018,7 +861,7 @@ type WorkspaceLoadMatch struct {
 // WorkspaceListMatch is the typed request payload for Workspace.ListTyped.
 type WorkspaceListMatch struct {
 	Description *string `json:"description,omitempty"`
-	DomainDiscovery *any `json:"domain_discovery,omitempty"`
+	DomainDiscovery *bool `json:"domain_discovery,omitempty"`
 	DomainName *any `json:"domain_name,omitempty"`
 	Id *string `json:"id,omitempty"`
 	InviteCode *any `json:"invite_code,omitempty"`
@@ -1028,14 +871,30 @@ type WorkspaceListMatch struct {
 	IsTrialPending *bool `json:"is_trial_pending,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Properties *any `json:"properties,omitempty"`
-	RestrictEmailDomains *any `json:"restrict_email_domains,omitempty"`
+	RestrictEmailDomains *bool `json:"restrict_email_domains,omitempty"`
 }
 
 // WorkspaceCreateData is the typed request payload for Workspace.CreateTyped.
 type WorkspaceCreateData struct {
+	Description *string `json:"description,omitempty"`
+	DomainDiscovery *bool `json:"domain_discovery,omitempty"`
+	DomainName *any `json:"domain_name,omitempty"`
+	Id *string `json:"id,omitempty"`
+	InviteCode *any `json:"invite_code,omitempty"`
+	IsCollapsed *bool `json:"is_collapsed,omitempty"`
+	IsGuestAllowed *bool `json:"is_guest_allowed,omitempty"`
+	IsLinkSharingEnabled *bool `json:"is_link_sharing_enabled,omitempty"`
+	IsTrialPending *bool `json:"is_trial_pending,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Properties *any `json:"properties,omitempty"`
+	RestrictEmailDomains *bool `json:"restrict_email_domains,omitempty"`
+}
+
+// WorkspaceUpdateData is the typed request payload for Workspace.UpdateTyped.
+type WorkspaceUpdateData struct {
 	Id int `json:"id"`
 	Description *string `json:"description,omitempty"`
-	DomainDiscovery *any `json:"domain_discovery,omitempty"`
+	DomainDiscovery *bool `json:"domain_discovery,omitempty"`
 	DomainName *any `json:"domain_name,omitempty"`
 	InviteCode *any `json:"invite_code,omitempty"`
 	IsCollapsed *bool `json:"is_collapsed,omitempty"`
@@ -1044,7 +903,7 @@ type WorkspaceCreateData struct {
 	IsTrialPending *bool `json:"is_trial_pending,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Properties *any `json:"properties,omitempty"`
-	RestrictEmailDomains *any `json:"restrict_email_domains,omitempty"`
+	RestrictEmailDomains *bool `json:"restrict_email_domains,omitempty"`
 }
 
 // WorkspaceRemoveMatch is the typed request payload for Workspace.RemoveTyped.
@@ -1052,27 +911,17 @@ type WorkspaceRemoveMatch struct {
 	Id int `json:"id"`
 }
 
-// WorkspaceInvitationView is the typed data model for the workspace_invitation_view entity.
-type WorkspaceInvitationView struct {
+// WorkspaceInvitation is the typed data model for the workspace_invitation entity.
+type WorkspaceInvitation struct {
 }
 
-// WorkspaceInvitationViewListMatch is the typed request payload for WorkspaceInvitationView.ListTyped.
-type WorkspaceInvitationViewListMatch struct {
+// WorkspaceInvitationListMatch is the typed request payload for WorkspaceInvitation.ListTyped.
+type WorkspaceInvitationListMatch struct {
 	WorkspaceId int `json:"workspace_id"`
 }
 
-// WorkspaceInvitationViewCreateData is the typed request payload for WorkspaceInvitationView.CreateTyped.
-type WorkspaceInvitationViewCreateData struct {
-	App *string `json:"app,omitempty"`
-	Id *string `json:"id,omitempty"`
-	InviterId string `json:"inviter_id"`
-	Role string `json:"role"`
-	UserEmail string `json:"user_email"`
-	WorkspaceId string `json:"workspace_id"`
-}
-
-// WorkspaceInvitationViewUpdateData is the typed request payload for WorkspaceInvitationView.UpdateTyped.
-type WorkspaceInvitationViewUpdateData struct {
+// WorkspaceInvitationUpdateData is the typed request payload for WorkspaceInvitation.UpdateTyped.
+type WorkspaceInvitationUpdateData struct {
 	InviteCode string `json:"invite_code"`
 	App *string `json:"app,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -1082,18 +931,75 @@ type WorkspaceInvitationViewUpdateData struct {
 	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
-// WorkspaceUserView is the typed data model for the workspace_user_view entity.
-type WorkspaceUserView struct {
+// WorkspaceInvitationRemoveMatch is the typed request payload for WorkspaceInvitation.RemoveTyped.
+type WorkspaceInvitationRemoveMatch struct {
+	App *string `json:"app,omitempty"`
+	Id string `json:"id"`
+	InviterId *string `json:"inviter_id,omitempty"`
+	Role *string `json:"role,omitempty"`
+	UserEmail *string `json:"user_email,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
 }
 
-// WorkspaceUserViewCreateData is the typed request payload for WorkspaceUserView.CreateTyped.
-type WorkspaceUserViewCreateData struct {
-	UserId int `json:"user_id"`
+// WorkspaceProject is the typed data model for the workspace_project entity.
+type WorkspaceProject struct {
+}
+
+// WorkspaceProjectListMatch is the typed request payload for WorkspaceProject.ListTyped.
+type WorkspaceProjectListMatch struct {
 	WorkspaceId int `json:"workspace_id"`
+	Cursor *any `json:"cursor,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+}
+
+// WorkspaceUser is the typed data model for the workspace_user entity.
+type WorkspaceUser struct {
+}
+
+// WorkspaceUserListMatch is the typed request payload for WorkspaceUser.ListTyped.
+type WorkspaceUserListMatch struct {
+	Cursor *any `json:"cursor,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	WorkspaceId *string `json:"workspace_id,omitempty"`
+}
+
+// WorkspaceUserCreateData is the typed request payload for WorkspaceUser.CreateTyped.
+type WorkspaceUserCreateData struct {
 	CustomSortingApplied *bool `json:"custom_sorting_applied,omitempty"`
+	FullName string `json:"full_name"`
+	Id *string `json:"id,omitempty"`
+	ImageId *string `json:"image_id,omitempty"`
 	InviteCode *any `json:"invite_code,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
 	ProjectSortPreference *string `json:"project_sort_preference,omitempty"`
 	Role *string `json:"role,omitempty"`
+	Timezone string `json:"timezone"`
+	UserEmail string `json:"user_email"`
+	UserId string `json:"user_id"`
+	WorkspaceId string `json:"workspace_id"`
+}
+
+// WorkspaceUserUpdateData is the typed request payload for WorkspaceUser.UpdateTyped.
+type WorkspaceUserUpdateData struct {
+	Id int `json:"id"`
+	WorkspaceId int `json:"workspace_id"`
+	CustomSortingApplied *bool `json:"custom_sorting_applied,omitempty"`
+	FullName *string `json:"full_name,omitempty"`
+	ImageId *string `json:"image_id,omitempty"`
+	InviteCode *any `json:"invite_code,omitempty"`
+	IsDeleted *bool `json:"is_deleted,omitempty"`
+	ProjectSortPreference *string `json:"project_sort_preference,omitempty"`
+	Role *string `json:"role,omitempty"`
+	Timezone *string `json:"timezone,omitempty"`
+	UserEmail *string `json:"user_email,omitempty"`
+	UserId *string `json:"user_id,omitempty"`
+}
+
+// WorkspaceUserRemoveMatch is the typed request payload for WorkspaceUser.RemoveTyped.
+type WorkspaceUserRemoveMatch struct {
+	Id int `json:"id"`
+	WorkspaceId int `json:"workspace_id"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

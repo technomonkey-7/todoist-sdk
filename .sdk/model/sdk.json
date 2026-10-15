@@ -117,278 +117,6 @@
         "target": {}
       },
       "entity": {
-        "active": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "access": {
-              "a": true,
-              "h": "Access",
-              "n": "access",
-              "r": true,
-              "sh": "Project access configuration.",
-              "t": "`$ANY`",
-              "union": {
-                "branches": 3,
-                "count": 1,
-                "depth": 4
-              }
-            },
-            "archived_date": {
-              "a": true,
-              "h": "Archived Date",
-              "n": "archived_date",
-              "r": false,
-              "sh": "Date and time when the project was archived, or `null` if active.",
-              "t": "`$ANY`"
-            },
-            "archived_timestamp": {
-              "a": true,
-              "h": "Archived Timestamp",
-              "n": "archived_timestamp",
-              "r": false,
-              "sh": "Unix timestamp for when the project was archived, or 0 if active.",
-              "t": "`$INTEGER`"
-            },
-            "color": {
-              "a": true,
-              "h": "Color",
-              "n": "color",
-              "r": false,
-              "sh": "Numeric project color code.",
-              "t": "`$ANY`"
-            },
-            "default_order": {
-              "a": true,
-              "h": "Default Order",
-              "n": "default_order",
-              "r": false,
-              "sh": "Default order of the project in workspace views.",
-              "t": "`$INTEGER`"
-            },
-            "default_order_key": {
-              "a": true,
-              "h": "Default Order Key",
-              "n": "default_order_key",
-              "r": false,
-              "sh": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together).",
-              "t": "`$ANY`"
-            },
-            "description": {
-              "a": true,
-              "h": "Description",
-              "n": "description",
-              "r": false,
-              "sh": "Project description.",
-              "t": "`$STRING`"
-            },
-            "folder_id": {
-              "a": true,
-              "h": "Folder Id",
-              "n": "folder_id",
-              "r": false,
-              "sh": "Numeric ID of the folder that contains the project, or `null`.",
-              "t": "`$STRING`"
-            },
-            "icon": {
-              "a": true,
-              "h": "Icon",
-              "n": "icon",
-              "r": false,
-              "sh": "Project icon name, or `null` for the default icon.",
-              "t": "`$ANY`"
-            },
-            "initiated_by_uid": {
-              "a": true,
-              "h": "Initiated By Uid",
-              "n": "initiated_by_uid",
-              "r": true,
-              "sh": "Numeric ID of the user requesting the workspace project.",
-              "t": "`$INTEGER`"
-            },
-            "is_archived": {
-              "a": true,
-              "h": "Is Archived",
-              "n": "is_archived",
-              "r": false,
-              "sh": "Whether the workspace project is archived.",
-              "t": "`$BOOLEAN`"
-            },
-            "is_frozen": {
-              "a": true,
-              "h": "Is Frozen",
-              "n": "is_frozen",
-              "r": false,
-              "sh": "Whether the project is frozen and cannot be modified.",
-              "t": "`$BOOLEAN`"
-            },
-            "is_invite_only": {
-              "a": true,
-              "h": "Is Invite Only",
-              "n": "is_invite_only",
-              "r": false,
-              "sh": "Whether joining the workspace project requires an invitation.",
-              "t": "`$BOOLEAN`"
-            },
-            "is_project_insights_enabled": {
-              "a": true,
-              "h": "Is Project Insights Enabled",
-              "n": "is_project_insights_enabled",
-              "r": false,
-              "sh": "Whether project insights are enabled for the project.",
-              "t": "`$BOOLEAN`"
-            },
-            "name": {
-              "a": true,
-              "h": "Name",
-              "n": "name",
-              "r": false,
-              "sh": "Project name.",
-              "t": "`$STRING`"
-            },
-            "project_id": {
-              "a": true,
-              "h": "Project Id",
-              "n": "project_id",
-              "r": true,
-              "sh": "String ID of the project.",
-              "t": "`$STRING`"
-            },
-            "public_access": {
-              "a": true,
-              "h": "Public Access",
-              "n": "public_access",
-              "r": true,
-              "sh": "Whether the project is publicly accessible.",
-              "t": "`$BOOLEAN`"
-            },
-            "role": {
-              "a": true,
-              "h": "Role",
-              "n": "role",
-              "r": false,
-              "t": "`$ANY`"
-            },
-            "status": {
-              "a": true,
-              "h": "Status",
-              "n": "status",
-              "r": false,
-              "sh": "Project status.",
-              "t": "`$STRING`"
-            },
-            "view_style": {
-              "a": true,
-              "h": "View Style",
-              "n": "view_style",
-              "r": false,
-              "sh": "Project view style.",
-              "t": "`$STRING`"
-            },
-            "workspace_id": {
-              "a": true,
-              "h": "Workspace Id",
-              "n": "workspace_id",
-              "r": true,
-              "sh": "Numeric ID of the workspace that contains the project.",
-              "t": "`$INTEGER`"
-            }
-          },
-          "name": "active",
-          "op": {
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/v1/workspaces/{workspace_id}/projects/active",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "workspace_id",
-                        "or": "workspace_id",
-                        "r": true,
-                        "t": "`$INTEGER`"
-                      }
-                    ],
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "cursor",
-                        "or": "cursor",
-                        "r": false,
-                        "t": "`$ANY`"
-                      },
-                      {
-                        "a": true,
-                        "ex": 100,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/v1/workspaces/{workspace_id}/projects/active",
-                  "q": {
-                    "exist": [
-                      "workspace_id"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "workspaces"
-                    },
-                    {
-                      "var": "workspace_id"
-                    },
-                    {
-                      "lit": "projects"
-                    },
-                    {
-                      "lit": "active"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.workspace_projects`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": [
-              [
-                "$.main.kit.entity.workspace"
-              ]
-            ]
-          }
-        },
         "activity": {
           "active": true,
           "alias": {
@@ -670,423 +398,6 @@
                   "t": {
                     "req": "`reqdata`",
                     "res": "`body.results`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "archived": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "access": {
-              "a": true,
-              "h": "Access",
-              "n": "access",
-              "r": true,
-              "sh": "Project access configuration.",
-              "t": "`$ANY`",
-              "union": {
-                "branches": 3,
-                "count": 1,
-                "depth": 4
-              }
-            },
-            "archived_date": {
-              "a": true,
-              "h": "Archived Date",
-              "n": "archived_date",
-              "r": false,
-              "sh": "Date and time when the project was archived, or `null` if active.",
-              "t": "`$ANY`"
-            },
-            "archived_timestamp": {
-              "a": true,
-              "h": "Archived Timestamp",
-              "n": "archived_timestamp",
-              "r": false,
-              "sh": "Unix timestamp for when the project was archived, or 0 if active.",
-              "t": "`$INTEGER`"
-            },
-            "color": {
-              "a": true,
-              "h": "Color",
-              "n": "color",
-              "r": false,
-              "sh": "Numeric project color code.",
-              "t": "`$ANY`"
-            },
-            "default_order": {
-              "a": true,
-              "h": "Default Order",
-              "n": "default_order",
-              "r": false,
-              "sh": "Default order of the project in workspace views.",
-              "t": "`$INTEGER`"
-            },
-            "default_order_key": {
-              "a": true,
-              "h": "Default Order Key",
-              "n": "default_order_key",
-              "r": false,
-              "sh": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together).",
-              "t": "`$ANY`"
-            },
-            "description": {
-              "a": true,
-              "h": "Description",
-              "n": "description",
-              "r": false,
-              "sh": "Project description.",
-              "t": "`$STRING`"
-            },
-            "folder_id": {
-              "a": true,
-              "h": "Folder Id",
-              "n": "folder_id",
-              "r": false,
-              "sh": "Numeric ID of the folder that contains the project, or `null`.",
-              "t": "`$STRING`"
-            },
-            "icon": {
-              "a": true,
-              "h": "Icon",
-              "n": "icon",
-              "r": false,
-              "sh": "Project icon name, or `null` for the default icon.",
-              "t": "`$ANY`"
-            },
-            "initiated_by_uid": {
-              "a": true,
-              "h": "Initiated By Uid",
-              "n": "initiated_by_uid",
-              "r": true,
-              "sh": "Numeric ID of the user requesting the workspace project.",
-              "t": "`$INTEGER`"
-            },
-            "is_archived": {
-              "a": true,
-              "h": "Is Archived",
-              "n": "is_archived",
-              "r": false,
-              "sh": "Whether the workspace project is archived.",
-              "t": "`$BOOLEAN`"
-            },
-            "is_frozen": {
-              "a": true,
-              "h": "Is Frozen",
-              "n": "is_frozen",
-              "r": false,
-              "sh": "Whether the project is frozen and cannot be modified.",
-              "t": "`$BOOLEAN`"
-            },
-            "is_invite_only": {
-              "a": true,
-              "h": "Is Invite Only",
-              "n": "is_invite_only",
-              "r": false,
-              "sh": "Whether joining the workspace project requires an invitation.",
-              "t": "`$BOOLEAN`"
-            },
-            "is_project_insights_enabled": {
-              "a": true,
-              "h": "Is Project Insights Enabled",
-              "n": "is_project_insights_enabled",
-              "r": false,
-              "sh": "Whether project insights are enabled for the project.",
-              "t": "`$BOOLEAN`"
-            },
-            "name": {
-              "a": true,
-              "h": "Name",
-              "n": "name",
-              "r": false,
-              "sh": "Project name.",
-              "t": "`$STRING`"
-            },
-            "project_id": {
-              "a": true,
-              "h": "Project Id",
-              "n": "project_id",
-              "r": true,
-              "sh": "String ID of the project.",
-              "t": "`$STRING`"
-            },
-            "public_access": {
-              "a": true,
-              "h": "Public Access",
-              "n": "public_access",
-              "r": true,
-              "sh": "Whether the project is publicly accessible.",
-              "t": "`$BOOLEAN`"
-            },
-            "role": {
-              "a": true,
-              "h": "Role",
-              "n": "role",
-              "r": false,
-              "t": "`$ANY`"
-            },
-            "status": {
-              "a": true,
-              "h": "Status",
-              "n": "status",
-              "r": false,
-              "sh": "Project status.",
-              "t": "`$STRING`"
-            },
-            "view_style": {
-              "a": true,
-              "h": "View Style",
-              "n": "view_style",
-              "r": false,
-              "sh": "Project view style.",
-              "t": "`$STRING`"
-            },
-            "workspace_id": {
-              "a": true,
-              "h": "Workspace Id",
-              "n": "workspace_id",
-              "r": true,
-              "sh": "Numeric ID of the workspace that contains the project.",
-              "t": "`$INTEGER`"
-            }
-          },
-          "name": "archived",
-          "op": {
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/v1/workspaces/{workspace_id}/projects/archived",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "workspace_id",
-                        "or": "workspace_id",
-                        "r": true,
-                        "t": "`$INTEGER`"
-                      }
-                    ],
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "cursor",
-                        "or": "cursor",
-                        "r": false,
-                        "t": "`$ANY`"
-                      },
-                      {
-                        "a": true,
-                        "ex": 100,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/v1/workspaces/{workspace_id}/projects/archived",
-                  "q": {
-                    "exist": [
-                      "workspace_id"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "workspaces"
-                    },
-                    {
-                      "var": "workspace_id"
-                    },
-                    {
-                      "lit": "projects"
-                    },
-                    {
-                      "lit": "archived"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.workspace_projects`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": [
-              [
-                "$.main.kit.entity.workspace"
-              ]
-            ]
-          }
-        },
-        "authorization": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "token": {
-              "a": true,
-              "h": "Token",
-              "n": "token",
-              "r": true,
-              "sh": "The token to be revoked (access token).",
-              "t": "`$STRING`"
-            },
-            "token_type_hint": {
-              "a": true,
-              "h": "Token Type Hint",
-              "n": "token_type_hint",
-              "r": false,
-              "sh": "A hint about the type of the token being revoked (optional).",
-              "t": "`$ANY`"
-            }
-          },
-          "name": "authorization",
-          "op": {
-            "create": {
-              "input": "data",
-              "name": "create",
-              "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "token",
-                    "token_type_hint"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/revoke",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/revoke",
-                  "q": {},
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "revoke"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            },
-            "remove": {
-              "input": "data",
-              "name": "remove",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "DELETE /api/v1/access_tokens",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "access_token",
-                        "or": "access_token",
-                        "r": true,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "client_id",
-                        "or": "client_id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "client_secret",
-                        "or": "client_secret",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "DELETE",
-                  "o": "/api/v1/access_tokens",
-                  "q": {
-                    "exist": [
-                      "access_token",
-                      "client_id",
-                      "client_secret"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "access_tokens"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
                   }
                 }
               ]
@@ -2736,6 +2047,69 @@
           },
           "name": "email",
           "op": {
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "DELETE /api/v1/emails",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "obj_id",
+                        "or": "obj_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "obj_type",
+                        "or": "obj_type",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "DELETE",
+                  "o": "/api/v1/emails",
+                  "q": {
+                    "exist": [
+                      "obj_id",
+                      "obj_type"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "emails"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
             "update": {
               "input": "data",
               "name": "update",
@@ -2909,6 +2283,10 @@
                 "create": {
                   "req": false,
                   "type": "`$ANY`"
+                },
+                "update": {
+                  "req": false,
+                  "type": "`$ANY`"
                 }
               },
               "r": true,
@@ -2944,7 +2322,7 @@
               "h": "Name",
               "n": "name",
               "op": {
-                "create": {
+                "update": {
                   "req": false,
                   "type": "`$STRING`"
                 }
@@ -2972,65 +2350,6 @@
               "input": "data",
               "name": "create",
               "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "default_order",
-                    "name"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/folders/{folder_id}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "id",
-                        "or": "folder_id",
-                        "r": true,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/folders/{folder_id}",
-                  "q": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "r": {
-                    "param": {
-                      "folder_id": "id"
-                    }
-                  },
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "folders"
-                    },
-                    {
-                      "var": "id"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
                 {
                   "a": true,
                   "bf": [
@@ -3229,6 +2548,71 @@
                   },
                   "k": "http",
                   "m": "DELETE",
+                  "o": "/api/v1/folders/{folder_id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "folder_id": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "folders"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "update": {
+              "input": "data",
+              "name": "update",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "default_order",
+                    "name"
+                  ],
+                  "co": {
+                    "id": "POST /api/v1/folders/{folder_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "folder_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "POST",
                   "o": "/api/v1/folders/{folder_id}",
                   "q": {
                     "exist": [
@@ -3556,124 +2940,6 @@
           },
           "relations": {
             "ancestors": []
-          }
-        },
-        "invite": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "app": {
-              "a": true,
-              "h": "App",
-              "n": "app",
-              "r": false,
-              "sh": "For first-party clients usage only.",
-              "t": "`$STRING`"
-            },
-            "email_list": {
-              "a": true,
-              "h": "Email List",
-              "n": "email_list",
-              "r": false,
-              "sh": "List of user emails to invite to the workspace.",
-              "t": "`$ANY`"
-            },
-            "invited_emails": {
-              "a": true,
-              "h": "Invited Emails",
-              "n": "invited_emails",
-              "r": true,
-              "sh": "Emails successfully invited to the workspace.",
-              "t": "`$ARRAY`"
-            },
-            "role": {
-              "a": true,
-              "h": "Role",
-              "n": "role",
-              "r": false,
-              "sh": "Role assigned to invited users.",
-              "t": "`$ANY`"
-            }
-          },
-          "name": "invite",
-          "op": {
-            "create": {
-              "input": "data",
-              "name": "create",
-              "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "app",
-                    "email_list",
-                    "role"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/workspaces/{workspace_id}/users/invite",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "workspace_id",
-                        "or": "workspace_id",
-                        "r": true,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/workspaces/{workspace_id}/users/invite",
-                  "q": {
-                    "exist": [
-                      "workspace_id"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "workspaces"
-                    },
-                    {
-                      "var": "workspace_id"
-                    },
-                    {
-                      "lit": "users"
-                    },
-                    {
-                      "lit": "invite"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": [
-              [
-                "$.main.kit.entity.workspace"
-              ]
-            ]
           }
         },
         "label": {
@@ -4142,367 +3408,6 @@
               "a": true,
               "h": "Id",
               "n": "id",
-              "r": false,
-              "t": "`$STRING`"
-            }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "location_reminder",
-          "op": {
-            "remove": {
-              "input": "data",
-              "name": "remove",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "DELETE /api/v1/location_reminders/{reminder_id}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "id",
-                        "or": "reminder_id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "DELETE",
-                  "o": "/api/v1/location_reminders/{reminder_id}",
-                  "q": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "r": {
-                    "param": {
-                      "reminder_id": "id"
-                    }
-                  },
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "location_reminders"
-                    },
-                    {
-                      "var": "id"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "member_view": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "full_name": {
-              "a": true,
-              "h": "Full Name",
-              "n": "full_name",
-              "r": true,
-              "sh": "Full name of the workspace member.",
-              "t": "`$STRING`"
-            },
-            "image_id": {
-              "a": true,
-              "h": "Image Id",
-              "n": "image_id",
-              "r": false,
-              "sh": "Avatar image ID of the workspace member, or `null`.",
-              "t": "`$STRING`"
-            },
-            "is_deleted": {
-              "a": true,
-              "h": "Is Deleted",
-              "n": "is_deleted",
-              "r": false,
-              "sh": "Whether the workspace member is deleted.",
-              "t": "`$BOOLEAN`"
-            },
-            "role": {
-              "a": true,
-              "h": "Role",
-              "n": "role",
-              "r": true,
-              "sh": "Workspace role assigned to the member.",
-              "t": "`$STRING`"
-            },
-            "timezone": {
-              "a": true,
-              "h": "Timezone",
-              "n": "timezone",
-              "r": true,
-              "sh": "Timezone of the workspace member.",
-              "t": "`$STRING`"
-            },
-            "user_email": {
-              "a": true,
-              "h": "User Email",
-              "n": "user_email",
-              "r": true,
-              "sh": "Email address of the workspace member.",
-              "t": "`$STRING`"
-            },
-            "user_id": {
-              "a": true,
-              "h": "User Id",
-              "n": "user_id",
-              "r": true,
-              "sh": "String ID of the workspace member.",
-              "t": "`$STRING`"
-            },
-            "workspace_id": {
-              "a": true,
-              "h": "Workspace Id",
-              "n": "workspace_id",
-              "r": true,
-              "sh": "String ID of the workspace.",
-              "t": "`$STRING`"
-            }
-          },
-          "name": "member_view",
-          "op": {
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/v1/workspaces/users",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "cursor",
-                        "or": "cursor",
-                        "r": false,
-                        "t": "`$ANY`"
-                      },
-                      {
-                        "a": true,
-                        "ex": 100,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "ex": "id",
-                        "k": "query",
-                        "n": "sort",
-                        "or": "sort",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "workspace_id",
-                        "or": "workspace_id",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/v1/workspaces/users",
-                  "q": {},
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "workspaces"
-                    },
-                    {
-                      "lit": "users"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.workspace_users`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "migrate_personal_token": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "access_token": {
-              "a": true,
-              "h": "Access Token",
-              "n": "access_token",
-              "r": true,
-              "sh": "OAuth access token created from the personal token.",
-              "t": "`$ANY`"
-            },
-            "client_id": {
-              "a": true,
-              "h": "Client Id",
-              "n": "client_id",
-              "r": true,
-              "sh": "The unique Client ID of the Todoist application that you registered.",
-              "t": "`$STRING`"
-            },
-            "client_secret": {
-              "a": true,
-              "h": "Client Secret",
-              "n": "client_secret",
-              "r": true,
-              "sh": "The unique Client Secret of the Todoist application that you registered.",
-              "t": "`$STRING`"
-            },
-            "expires_in": {
-              "a": true,
-              "h": "Expires In",
-              "n": "expires_in",
-              "r": true,
-              "sh": "Access token lifetime in seconds.",
-              "t": "`$INTEGER`"
-            },
-            "personal_token": {
-              "a": true,
-              "h": "Personal Token",
-              "n": "personal_token",
-              "r": true,
-              "sh": "Token obtained from the email/password authentication.",
-              "t": "`$STRING`"
-            },
-            "scope": {
-              "a": true,
-              "h": "Scope",
-              "n": "scope",
-              "r": true,
-              "sh": "Scopes of the OAuth token.",
-              "t": "`$STRING`"
-            },
-            "token_type": {
-              "a": true,
-              "h": "Token Type",
-              "n": "token_type",
-              "r": true,
-              "sh": "OAuth token type.",
-              "t": "`$STRING`"
-            }
-          },
-          "name": "migrate_personal_token",
-          "op": {
-            "create": {
-              "input": "data",
-              "name": "create",
-              "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "client_id",
-                    "client_secret",
-                    "personal_token",
-                    "scope"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/access_tokens/migrate_personal_token",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/access_tokens/migrate_personal_token",
-                  "q": {},
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "access_tokens"
-                    },
-                    {
-                      "lit": "migrate_personal_token"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "notification_location_sync_view": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
               "r": true,
               "sh": "String ID of the location reminder",
               "t": "`$STRING`"
@@ -4528,7 +3433,7 @@
               "h": "Loc Lat",
               "n": "loc_lat",
               "op": {
-                "create": {
+                "update": {
                   "req": false,
                   "type": "`$ANY`"
                 }
@@ -4542,7 +3447,7 @@
               "h": "Loc Long",
               "n": "loc_long",
               "op": {
-                "create": {
+                "update": {
                   "req": false,
                   "type": "`$ANY`"
                 }
@@ -4556,7 +3461,7 @@
               "h": "Loc Trigger",
               "n": "loc_trigger",
               "op": {
-                "create": {
+                "update": {
                   "req": false,
                   "type": "`$ANY`"
                 }
@@ -4570,7 +3475,7 @@
               "h": "Name",
               "n": "name",
               "op": {
-                "create": {
+                "update": {
                   "req": false,
                   "type": "`$STRING`"
                 }
@@ -4603,6 +3508,10 @@
                 "create": {
                   "req": false,
                   "type": "`$INTEGER`"
+                },
+                "update": {
+                  "req": false,
+                  "type": "`$NUMBER`"
                 }
               },
               "r": true,
@@ -4630,70 +3539,12 @@
             "field": "id",
             "name": "id"
           },
-          "name": "notification_location_sync_view",
+          "name": "location_reminder",
           "op": {
             "create": {
               "input": "data",
               "name": "create",
               "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "loc_lat",
-                    "loc_long",
-                    "loc_trigger",
-                    "name",
-                    "radius"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/location_reminders/{reminder_id}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "reminder_id",
-                        "or": "reminder_id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/location_reminders/{reminder_id}",
-                  "q": {
-                    "exist": [
-                      "reminder_id"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "location_reminders"
-                    },
-                    {
-                      "var": "reminder_id"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
                 {
                   "a": true,
                   "bf": [
@@ -4820,7 +3671,7 @@
                       {
                         "a": true,
                         "k": "param",
-                        "n": "reminder_id",
+                        "n": "id",
                         "or": "reminder_id",
                         "r": true,
                         "t": "`$STRING`"
@@ -4832,10 +3683,14 @@
                   "o": "/api/v1/location_reminders/{reminder_id}",
                   "q": {
                     "exist": [
-                      "reminder_id"
+                      "id"
                     ]
                   },
-                  "r": {},
+                  "r": {
+                    "param": {
+                      "reminder_id": "id"
+                    }
+                  },
                   "rs": {
                     "kind": "json",
                     "media": "application/json"
@@ -4851,7 +3706,136 @@
                       "lit": "location_reminders"
                     },
                     {
-                      "var": "reminder_id"
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "DELETE /api/v1/location_reminders/{reminder_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "reminder_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "DELETE",
+                  "o": "/api/v1/location_reminders/{reminder_id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "reminder_id": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "location_reminders"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "update": {
+              "input": "data",
+              "name": "update",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "loc_lat",
+                    "loc_long",
+                    "loc_trigger",
+                    "name",
+                    "radius"
+                  ],
+                  "co": {
+                    "id": "POST /api/v1/location_reminders/{reminder_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "reminder_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/location_reminders/{reminder_id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "reminder_id": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "location_reminders"
+                    },
+                    {
+                      "var": "id"
                     }
                   ],
                   "t": {
@@ -4863,212 +3847,62 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "$.main.kit.entity.location_reminder"
-              ]
-            ]
+            "ancestors": []
           }
         },
-        "notification_sync_view": {
+        "notification_setting": {
           "active": true,
           "alias": {
             "field": {}
           },
           "fields": {
-            "due": {
+            "dont_notify": {
               "a": true,
-              "h": "Due",
-              "n": "due",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$ANY`"
-                }
-              },
-              "r": true,
-              "sh": "Datetime when the reminder fires, or `null` if unset.",
-              "t": "`$ANY`"
-            },
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": true,
-              "sh": "String ID of the reminder.",
-              "t": "`$STRING`"
-            },
-            "is_deleted": {
-              "a": true,
-              "h": "Is Deleted",
-              "n": "is_deleted",
-              "r": true,
-              "sh": "Whether the reminder is deleted.",
-              "t": "`$BOOLEAN`"
-            },
-            "is_urgent": {
-              "a": true,
-              "h": "Is Urgent",
-              "n": "is_urgent",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$BOOLEAN`"
-                }
-              },
-              "r": true,
-              "sh": "Whether the reminder should be delivered urgently.",
-              "t": "`$BOOLEAN`"
-            },
-            "item_id": {
-              "a": true,
-              "h": "Item Id",
-              "n": "item_id",
-              "r": true,
-              "sh": "String ID of the task that owns the reminder.",
-              "t": "`$STRING`"
-            },
-            "minute_offset": {
-              "a": true,
-              "h": "Minute Offset",
-              "n": "minute_offset",
-              "op": {
-                "create": {
-                  "req": false,
-                  "type": "`$ANY`"
-                }
-              },
-              "r": true,
-              "sh": "Minutes before the task due time for relative reminders.",
-              "t": "`$ANY`"
-            },
-            "notify_uid": {
-              "a": true,
-              "h": "Notify Uid",
-              "n": "notify_uid",
-              "r": true,
-              "sh": "String ID of the user who receives the reminder.",
-              "t": "`$STRING`"
-            },
-            "reminder_type": {
-              "a": true,
-              "h": "Reminder Type",
-              "n": "reminder_type",
+              "h": "Dont Notify",
+              "n": "dont_notify",
               "r": false,
-              "sh": "Type of the reminder: 'relative' or 'absolute'",
+              "sh": "Whether notifications should be disabled for the selected type and channel.",
+              "t": "`$ANY`"
+            },
+            "notification_type": {
+              "a": true,
+              "h": "Notification Type",
+              "n": "notification_type",
+              "r": true,
+              "sh": "Notification type to update.",
               "t": "`$STRING`"
             },
             "service": {
               "a": true,
               "h": "Service",
               "n": "service",
-              "r": false,
-              "sh": "Notification service type: 'email', 'push'.",
-              "t": "`$STRING`"
-            },
-            "task_id": {
-              "a": true,
-              "h": "Task Id",
-              "n": "task_id",
               "r": true,
-              "sh": "String ID of the task",
-              "t": "`$STRING`"
-            },
-            "type": {
-              "a": true,
-              "h": "Type",
-              "n": "type",
-              "r": true,
-              "sh": "Reminder type.",
+              "sh": "Notification channel to update.",
               "t": "`$STRING`"
             }
           },
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "notification_sync_view",
+          "name": "notification_setting",
           "op": {
-            "create": {
+            "update": {
               "input": "data",
-              "name": "create",
+              "name": "update",
               "points": [
                 {
                   "a": true,
                   "bf": [
-                    "due",
-                    "is_urgent",
-                    "minute_offset",
+                    "dont_notify",
+                    "notification_type",
                     "service"
                   ],
                   "co": {
-                    "id": "POST /api/v1/reminders/{reminder_id}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "reminder_id",
-                        "or": "reminder_id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/reminders/{reminder_id}",
-                  "q": {
-                    "exist": [
-                      "reminder_id"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "reminders"
-                    },
-                    {
-                      "var": "reminder_id"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "bf": [
-                    "due",
-                    "is_urgent",
-                    "minute_offset",
-                    "reminder_type",
-                    "service",
-                    "task_id"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/reminders",
+                    "id": "PUT /api/v1/notification_setting",
                     "source": "openapi3",
                     "version": 2
                   },
                   "g": {},
                   "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/reminders",
+                  "m": "PUT",
+                  "o": "/api/v1/notification_setting",
                   "q": {},
                   "r": {},
                   "rs": {
@@ -5083,131 +3917,7 @@
                       "lit": "v1"
                     },
                     {
-                      "lit": "reminders"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            },
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/v1/reminders",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "cursor",
-                        "or": "cursor",
-                        "r": false,
-                        "t": "`$ANY`"
-                      },
-                      {
-                        "a": true,
-                        "ex": 50,
-                        "k": "query",
-                        "n": "limit",
-                        "or": "limit",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "task_id",
-                        "or": "task_id",
-                        "r": false,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/v1/reminders",
-                  "q": {},
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "reminders"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body.results`"
-                  }
-                }
-              ]
-            },
-            "load": {
-              "input": "data",
-              "name": "load",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/v1/reminders/{reminder_id}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "reminder_id",
-                        "or": "reminder_id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/v1/reminders/{reminder_id}",
-                  "q": {
-                    "exist": [
-                      "reminder_id"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "reminders"
-                    },
-                    {
-                      "var": "reminder_id"
+                      "lit": "notification_setting"
                     }
                   ],
                   "t": {
@@ -5219,11 +3929,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "$.main.kit.entity.reminder"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "plan_detail": {
@@ -6224,132 +4930,7 @@
           "alias": {
             "field": {}
           },
-          "fields": {
-            "comments": {
-              "a": true,
-              "h": "Comments",
-              "n": "comments",
-              "r": true,
-              "sh": "Task comments created by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 4,
-                "count": 1,
-                "depth": 6
-              }
-            },
-            "discarded_fields": {
-              "a": true,
-              "h": "Discarded Fields",
-              "n": "discarded_fields",
-              "r": true,
-              "sh": "Task properties the importer dropped from one or more imported tasks because the plan in force does not include them.",
-              "t": "`$ARRAY`"
-            },
-            "locale": {
-              "a": true,
-              "h": "Locale",
-              "n": "locale",
-              "r": false,
-              "sh": "Locale to use for localized template content.",
-              "t": "`$STRING`"
-            },
-            "project_id": {
-              "a": true,
-              "h": "Project Id",
-              "n": "project_id",
-              "r": true,
-              "sh": "String ID of the project to import the template into.",
-              "t": "`$STRING`"
-            },
-            "project_notes": {
-              "a": true,
-              "h": "Project Notes",
-              "n": "project_notes",
-              "r": true,
-              "sh": "Project comments created by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 4,
-                "count": 1,
-                "depth": 6
-              }
-            },
-            "project_view_options_defaults": {
-              "a": true,
-              "h": "Project View Options Defaults",
-              "n": "project_view_options_defaults",
-              "r": true,
-              "sh": "View options defaults applied to the imported project.",
-              "t": "`$ARRAY`"
-            },
-            "projects": {
-              "a": true,
-              "h": "Projects",
-              "n": "projects",
-              "r": true,
-              "sh": "Projects created or updated by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 3,
-                "count": 2,
-                "depth": 9
-              }
-            },
-            "reminders": {
-              "a": true,
-              "h": "Reminders",
-              "n": "reminders",
-              "r": true,
-              "sh": "Reminders created by the import.",
-              "t": "`$ARRAY`"
-            },
-            "sections": {
-              "a": true,
-              "h": "Sections",
-              "n": "sections",
-              "r": true,
-              "sh": "Sections created by the import.",
-              "t": "`$ARRAY`"
-            },
-            "status": {
-              "a": true,
-              "h": "Status",
-              "n": "status",
-              "r": true,
-              "sh": "Always `ok` on success.",
-              "t": "`$STRING`"
-            },
-            "tasks": {
-              "a": true,
-              "h": "Tasks",
-              "n": "tasks",
-              "r": true,
-              "sh": "Tasks created by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 2,
-                "count": 1,
-                "depth": 6
-              }
-            },
-            "template_id": {
-              "a": true,
-              "h": "Template Id",
-              "n": "template_id",
-              "r": true,
-              "sh": "ID of the saved template to import.",
-              "t": "`$STRING`"
-            },
-            "template_type": {
-              "a": true,
-              "h": "Template Type",
-              "n": "template_type",
-              "r": true,
-              "sh": "Type of template that was imported.",
-              "t": "`$STRING`"
-            }
-          },
+          "fields": {},
           "name": "project_import",
           "op": {
             "create": {
@@ -6367,7 +4948,9 @@
                   "k": "http",
                   "m": "POST",
                   "o": "/api/v1/templates/import_into_project_from_file",
-                  "q": {},
+                  "q": {
+                    "$action": "from_file"
+                  },
                   "r": {},
                   "rb": {
                     "fields": [
@@ -6422,7 +5005,9 @@
                   "k": "http",
                   "m": "POST",
                   "o": "/api/v1/templates/import_into_project_from_template_id",
-                  "q": {},
+                  "q": {
+                    "$action": "from_template"
+                  },
                   "r": {},
                   "rs": {
                     "kind": "json",
@@ -6446,135 +5031,7 @@
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "project_import_create_response_with_object": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "comments": {
-              "a": true,
-              "h": "Comments",
-              "n": "comments",
-              "r": true,
-              "sh": "Task comments created by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 4,
-                "count": 1,
-                "depth": 6
-              }
-            },
-            "discarded_fields": {
-              "a": true,
-              "h": "Discarded Fields",
-              "n": "discarded_fields",
-              "r": true,
-              "sh": "Task properties the importer dropped from one or more imported tasks because the plan in force does not include them.",
-              "t": "`$ARRAY`"
-            },
-            "project_id": {
-              "a": true,
-              "h": "Project Id",
-              "n": "project_id",
-              "r": true,
-              "sh": "ID of the project created from the template.",
-              "t": "`$STRING`"
-            },
-            "project_notes": {
-              "a": true,
-              "h": "Project Notes",
-              "n": "project_notes",
-              "r": true,
-              "sh": "Project comments created by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 4,
-                "count": 1,
-                "depth": 6
-              }
-            },
-            "project_view_options_defaults": {
-              "a": true,
-              "h": "Project View Options Defaults",
-              "n": "project_view_options_defaults",
-              "r": true,
-              "sh": "View options defaults applied to the imported project.",
-              "t": "`$ARRAY`"
-            },
-            "projects": {
-              "a": true,
-              "h": "Projects",
-              "n": "projects",
-              "r": true,
-              "sh": "Projects created by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 3,
-                "count": 2,
-                "depth": 9
-              }
-            },
-            "reminders": {
-              "a": true,
-              "h": "Reminders",
-              "n": "reminders",
-              "r": true,
-              "sh": "Reminders created by the import.",
-              "t": "`$ARRAY`"
-            },
-            "sections": {
-              "a": true,
-              "h": "Sections",
-              "n": "sections",
-              "r": true,
-              "sh": "Sections created by the import.",
-              "t": "`$ARRAY`"
-            },
-            "status": {
-              "a": true,
-              "h": "Status",
-              "n": "status",
-              "r": true,
-              "sh": "Always `ok` on success.",
-              "t": "`$STRING`"
-            },
-            "tasks": {
-              "a": true,
-              "h": "Tasks",
-              "n": "tasks",
-              "r": true,
-              "sh": "Tasks created by the import.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 2,
-                "count": 1,
-                "depth": 6
-              }
-            },
-            "template_type": {
-              "a": true,
-              "h": "Template Type",
-              "n": "template_type",
-              "r": true,
-              "sh": "Type of template that was imported.",
-              "t": "`$STRING`"
-            }
-          },
-          "name": "project_import_create_response_with_object",
-          "op": {
-            "create": {
-              "input": "data",
-              "name": "create",
-              "points": [
+                },
                 {
                   "a": true,
                   "co": {
@@ -6586,7 +5043,9 @@
                   "k": "http",
                   "m": "POST",
                   "o": "/api/v1/templates/create_project_from_file",
-                  "q": {},
+                  "q": {
+                    "$action": "new_project_from_file"
+                  },
                   "r": {},
                   "rb": {
                     "fields": [
@@ -6635,17 +5094,210 @@
             "ancestors": []
           }
         },
+        "project_permission": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "project_collaborator_actions": {
+              "a": true,
+              "h": "Project Collaborator Actions",
+              "n": "project_collaborator_actions",
+              "r": true,
+              "sh": "Project collaborator roles and their allowed actions.",
+              "t": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 3
+              }
+            },
+            "workspace_collaborator_actions": {
+              "a": true,
+              "h": "Workspace Collaborator Actions",
+              "n": "workspace_collaborator_actions",
+              "r": true,
+              "sh": "Workspace collaborator roles and their allowed actions.",
+              "t": "`$ARRAY`",
+              "union": {
+                "branches": 2,
+                "count": 1,
+                "depth": 3
+              }
+            }
+          },
+          "name": "project_permission",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/projects/permissions",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/projects/permissions",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "projects"
+                    },
+                    {
+                      "lit": "permissions"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
         "reminder": {
           "active": true,
           "alias": {
             "field": {}
           },
           "fields": {
+            "due": {
+              "a": true,
+              "h": "Due",
+              "n": "due",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$ANY`"
+                },
+                "update": {
+                  "req": false,
+                  "type": "`$ANY`"
+                }
+              },
+              "r": true,
+              "sh": "Datetime when the reminder fires, or `null` if unset.",
+              "t": "`$ANY`"
+            },
             "id": {
               "a": true,
               "h": "Id",
               "n": "id",
+              "r": true,
+              "sh": "String ID of the reminder.",
+              "t": "`$STRING`"
+            },
+            "is_deleted": {
+              "a": true,
+              "h": "Is Deleted",
+              "n": "is_deleted",
+              "r": true,
+              "sh": "Whether the reminder is deleted.",
+              "t": "`$BOOLEAN`"
+            },
+            "is_urgent": {
+              "a": true,
+              "h": "Is Urgent",
+              "n": "is_urgent",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$BOOLEAN`"
+                },
+                "update": {
+                  "req": false,
+                  "type": "`$BOOLEAN`"
+                }
+              },
+              "r": true,
+              "sh": "Whether the reminder should be delivered urgently.",
+              "t": "`$BOOLEAN`"
+            },
+            "item_id": {
+              "a": true,
+              "h": "Item Id",
+              "n": "item_id",
+              "r": true,
+              "sh": "String ID of the task that owns the reminder.",
+              "t": "`$STRING`"
+            },
+            "minute_offset": {
+              "a": true,
+              "h": "Minute Offset",
+              "n": "minute_offset",
+              "op": {
+                "create": {
+                  "req": false,
+                  "type": "`$ANY`"
+                },
+                "update": {
+                  "req": false,
+                  "type": "`$ANY`"
+                }
+              },
+              "r": true,
+              "sh": "Minutes before the task due time for relative reminders.",
+              "t": "`$ANY`"
+            },
+            "notify_uid": {
+              "a": true,
+              "h": "Notify Uid",
+              "n": "notify_uid",
+              "r": true,
+              "sh": "String ID of the user who receives the reminder.",
+              "t": "`$STRING`"
+            },
+            "reminder_type": {
+              "a": true,
+              "h": "Reminder Type",
+              "n": "reminder_type",
               "r": false,
+              "sh": "Type of the reminder: 'relative' or 'absolute'",
+              "t": "`$STRING`"
+            },
+            "service": {
+              "a": true,
+              "h": "Service",
+              "n": "service",
+              "r": false,
+              "sh": "Notification service type: 'email', 'push'.",
+              "t": "`$STRING`"
+            },
+            "task_id": {
+              "a": true,
+              "h": "Task Id",
+              "n": "task_id",
+              "r": true,
+              "sh": "String ID of the task",
+              "t": "`$STRING`"
+            },
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": true,
+              "sh": "Reminder type.",
               "t": "`$STRING`"
             }
           },
@@ -6655,6 +5307,181 @@
           },
           "name": "reminder",
           "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "due",
+                    "is_urgent",
+                    "minute_offset",
+                    "reminder_type",
+                    "service",
+                    "task_id"
+                  ],
+                  "co": {
+                    "id": "POST /api/v1/reminders",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/reminders",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "reminders"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/reminders",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$ANY`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 50,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "task_id",
+                        "or": "task_id",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/reminders",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "reminders"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.results`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/reminders/{reminder_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "reminder_id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/reminders/{reminder_id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "reminder_id": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "reminders"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
             "remove": {
               "input": "data",
               "name": "remove",
@@ -6715,40 +5542,21 @@
                   }
                 }
               ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "remove_workspace_user": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "id": {
-              "a": true,
-              "h": "Id",
-              "n": "id",
-              "r": false,
-              "t": "`$STRING`"
-            }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
-          },
-          "name": "remove_workspace_user",
-          "op": {
-            "remove": {
+            },
+            "update": {
               "input": "data",
-              "name": "remove",
+              "name": "update",
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "due",
+                    "is_urgent",
+                    "minute_offset",
+                    "service"
+                  ],
                   "co": {
-                    "id": "DELETE /api/v1/workspaces/{workspace_id}/users/{user_id}",
+                    "id": "POST /api/v1/reminders/{reminder_id}",
                     "source": "openapi3",
                     "version": 2
                   },
@@ -6758,32 +5566,23 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "user_id",
+                        "or": "reminder_id",
                         "r": true,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "workspace_id",
-                        "or": "workspace_id",
-                        "r": true,
-                        "t": "`$INTEGER`"
+                        "t": "`$STRING`"
                       }
                     ]
                   },
                   "k": "http",
-                  "m": "DELETE",
-                  "o": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                  "m": "POST",
+                  "o": "/api/v1/reminders/{reminder_id}",
                   "q": {
                     "exist": [
-                      "id",
-                      "workspace_id"
+                      "id"
                     ]
                   },
                   "r": {
                     "param": {
-                      "user_id": "id"
+                      "reminder_id": "id"
                     }
                   },
                   "rs": {
@@ -6798,102 +5597,10 @@
                       "lit": "v1"
                     },
                     {
-                      "lit": "workspaces"
-                    },
-                    {
-                      "var": "workspace_id"
-                    },
-                    {
-                      "lit": "users"
+                      "lit": "reminders"
                     },
                     {
                       "var": "id"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": [
-              [
-                "$.main.kit.entity.workspace"
-              ]
-            ]
-          }
-        },
-        "role_to_action_mapping_view": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {
-            "project_collaborator_actions": {
-              "a": true,
-              "h": "Project Collaborator Actions",
-              "n": "project_collaborator_actions",
-              "r": true,
-              "sh": "Project collaborator roles and their allowed actions.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 2,
-                "count": 1,
-                "depth": 3
-              }
-            },
-            "workspace_collaborator_actions": {
-              "a": true,
-              "h": "Workspace Collaborator Actions",
-              "n": "workspace_collaborator_actions",
-              "r": true,
-              "sh": "Workspace collaborator roles and their allowed actions.",
-              "t": "`$ARRAY`",
-              "union": {
-                "branches": 2,
-                "count": 1,
-                "depth": 3
-              }
-            }
-          },
-          "name": "role_to_action_mapping_view",
-          "op": {
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /api/v1/projects/permissions",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/api/v1/projects/permissions",
-                  "q": {},
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "projects"
-                    },
-                    {
-                      "lit": "permissions"
                     }
                   ],
                   "t": {
@@ -7813,82 +6520,6 @@
             "ancestors": []
           }
         },
-        "status_ok": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": {},
-          "name": "status_ok",
-          "op": {
-            "remove": {
-              "input": "data",
-              "name": "remove",
-              "points": [
-                {
-                  "a": true,
-                  "co": {
-                    "id": "DELETE /api/v1/emails",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "obj_id",
-                        "or": "obj_id",
-                        "r": true,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "obj_type",
-                        "or": "obj_type",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "DELETE",
-                  "o": "/api/v1/emails",
-                  "q": {
-                    "exist": [
-                      "obj_id",
-                      "obj_type"
-                    ]
-                  },
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "emails"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            }
-          },
-          "relations": {
-            "ancestors": []
-          }
-        },
         "subscription_info": {
           "active": true,
           "alias": {
@@ -8037,7 +6668,9 @@
                   "k": "http",
                   "m": "POST",
                   "o": "/api/v1/payments/reactivate_plan",
-                  "q": {},
+                  "q": {
+                    "$action": "reactivate_plan"
+                  },
                   "r": {},
                   "rs": {
                     "kind": "json",
@@ -9763,14 +8396,6 @@
               "sh": "Date when user was deleted (ISO 8601 format)",
               "t": "`$ANY`"
             },
-            "dont_notify": {
-              "a": true,
-              "h": "Dont Notify",
-              "n": "dont_notify",
-              "r": false,
-              "sh": "Whether notifications should be disabled for the selected type and channel.",
-              "t": "`$ANY`"
-            },
             "email": {
               "a": true,
               "h": "Email",
@@ -9955,14 +8580,6 @@
               "sh": "The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday)",
               "t": "`$INTEGER`"
             },
-            "notification_type": {
-              "a": true,
-              "h": "Notification Type",
-              "n": "notification_type",
-              "r": true,
-              "sh": "Notification type to update.",
-              "t": "`$STRING`"
-            },
             "onboarded_dated_tasks_created": {
               "a": true,
               "h": "Onboarded Dated Tasks Created",
@@ -10074,14 +8691,6 @@
               "r": false,
               "sh": "The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user).",
               "t": "`$ANY`"
-            },
-            "service": {
-              "a": true,
-              "h": "Service",
-              "n": "service",
-              "r": true,
-              "sh": "Notification channel to update.",
-              "t": "`$STRING`"
             },
             "share_limit": {
               "a": true,
@@ -10210,9 +8819,9 @@
           },
           "name": "user",
           "op": {
-            "list": {
+            "load": {
               "input": "data",
-              "name": "list",
+              "name": "load",
               "points": [
                 {
                   "a": true,
@@ -10248,50 +8857,6 @@
                   }
                 }
               ]
-            },
-            "update": {
-              "input": "data",
-              "name": "update",
-              "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "dont_notify",
-                    "notification_type",
-                    "service"
-                  ],
-                  "co": {
-                    "id": "PUT /api/v1/notification_setting",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "PUT",
-                  "o": "/api/v1/notification_setting",
-                  "q": {},
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "notification_setting"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
             }
           },
           "relations": {
@@ -10309,7 +8874,7 @@
               "h": "Description",
               "n": "description",
               "r": false,
-              "sh": "Updated workspace description.",
+              "sh": "Description of the workspace.",
               "t": "`$STRING`"
             },
             "domain_discovery": {
@@ -10317,15 +8882,15 @@
               "h": "Domain Discovery",
               "n": "domain_discovery",
               "r": false,
-              "sh": "Updated domain discovery setting.",
-              "t": "`$ANY`"
+              "sh": "Whether users with matching email domains can discover this workspace.",
+              "t": "`$BOOLEAN`"
             },
             "domain_name": {
               "a": true,
               "h": "Domain Name",
               "n": "domain_name",
               "r": false,
-              "sh": "Updated workspace email domain.",
+              "sh": "Workspace email domain.",
               "t": "`$ANY`"
             },
             "id": {
@@ -10356,7 +8921,7 @@
               "h": "Is Guest Allowed",
               "n": "is_guest_allowed",
               "r": false,
-              "sh": "Updated guest access status.",
+              "sh": "Whether guests are allowed in the workspace.",
               "t": "`$BOOLEAN`"
             },
             "is_link_sharing_enabled": {
@@ -10364,7 +8929,7 @@
               "h": "Is Link Sharing Enabled",
               "n": "is_link_sharing_enabled",
               "r": false,
-              "sh": "Updated link sharing status.",
+              "sh": "Whether link sharing is enabled for the workspace.",
               "t": "`$BOOLEAN`"
             },
             "is_trial_pending": {
@@ -10372,7 +8937,7 @@
               "h": "Is Trial Pending",
               "n": "is_trial_pending",
               "r": false,
-              "sh": "Updated trial pending state.",
+              "sh": "Whether the workspace is waiting for trial confirmation.",
               "t": "`$BOOLEAN`"
             },
             "name": {
@@ -10380,7 +8945,7 @@
               "h": "Name",
               "n": "name",
               "r": false,
-              "sh": "Updated workspace name.",
+              "sh": "Name of the workspace.",
               "t": "`$STRING`"
             },
             "properties": {
@@ -10388,7 +8953,7 @@
               "h": "Properties",
               "n": "properties",
               "r": false,
-              "sh": "Updated workspace properties.",
+              "sh": "Workspace properties.",
               "t": "`$ANY`"
             },
             "restrict_email_domains": {
@@ -10396,8 +8961,8 @@
               "h": "Restrict Email Domains",
               "n": "restrict_email_domains",
               "r": false,
-              "sh": "Updated email domain restriction setting.",
-              "t": "`$ANY`"
+              "sh": "Whether workspace invites are restricted to workspace domain.",
+              "t": "`$BOOLEAN`"
             }
           },
           "id": {
@@ -10410,74 +8975,6 @@
               "input": "data",
               "name": "create",
               "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "description",
-                    "domain_discovery",
-                    "domain_name",
-                    "invite_code",
-                    "is_collapsed",
-                    "is_guest_allowed",
-                    "is_link_sharing_enabled",
-                    "is_trial_pending",
-                    "name",
-                    "properties",
-                    "restrict_email_domains"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/workspaces/{workspace_id}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "id",
-                        "or": "workspace_id",
-                        "r": true,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/workspaces/{workspace_id}",
-                  "q": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "r": {
-                    "param": {
-                      "workspace_id": "id"
-                    }
-                  },
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "workspaces"
-                    },
-                    {
-                      "var": "id"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
                 {
                   "a": true,
                   "bf": [
@@ -10791,13 +9288,87 @@
                   }
                 }
               ]
+            },
+            "update": {
+              "input": "data",
+              "name": "update",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "description",
+                    "domain_discovery",
+                    "domain_name",
+                    "invite_code",
+                    "is_collapsed",
+                    "is_guest_allowed",
+                    "is_link_sharing_enabled",
+                    "is_trial_pending",
+                    "name",
+                    "properties",
+                    "restrict_email_domains"
+                  ],
+                  "co": {
+                    "id": "POST /api/v1/workspaces/{workspace_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "workspace_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/workspaces/{workspace_id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "workspace_id": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
             }
           },
           "relations": {
             "ancestors": []
           }
         },
-        "workspace_invitation_view": {
+        "workspace_invitation": {
           "active": true,
           "alias": {
             "field": {}
@@ -10856,57 +9427,8 @@
             "field": "id",
             "name": "id"
           },
-          "name": "workspace_invitation_view",
+          "name": "workspace_invitation",
           "op": {
-            "create": {
-              "input": "data",
-              "name": "create",
-              "points": [
-                {
-                  "a": true,
-                  "bf": [
-                    "user_email",
-                    "workspace_id"
-                  ],
-                  "co": {
-                    "id": "POST /api/v1/workspaces/invitations/delete",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {},
-                  "k": "http",
-                  "m": "POST",
-                  "o": "/api/v1/workspaces/invitations/delete",
-                  "q": {},
-                  "r": {},
-                  "rs": {
-                    "kind": "json",
-                    "media": "application/json"
-                  },
-                  "s": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "v1"
-                    },
-                    {
-                      "lit": "workspaces"
-                    },
-                    {
-                      "lit": "invitations"
-                    },
-                    {
-                      "lit": "delete"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            },
             "list": {
               "input": "data",
               "name": "list",
@@ -10967,6 +9489,55 @@
                 }
               ]
             },
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "user_email",
+                    "workspace_id"
+                  ],
+                  "co": {
+                    "id": "POST /api/v1/workspaces/invitations/delete",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/workspaces/invitations/delete",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "lit": "invitations"
+                    },
+                    {
+                      "lit": "delete"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
             "update": {
               "input": "data",
               "name": "update",
@@ -10994,6 +9565,7 @@
                   "m": "PUT",
                   "o": "/api/v1/workspaces/invitations/{invite_code}/accept",
                   "q": {
+                    "$action": "accept",
                     "exist": [
                       "invite_code"
                     ]
@@ -11051,6 +9623,7 @@
                   "m": "PUT",
                   "o": "/api/v1/workspaces/invitations/{invite_code}/reject",
                   "q": {
+                    "$action": "reject",
                     "exist": [
                       "invite_code"
                     ]
@@ -11092,7 +9665,356 @@
             "ancestors": []
           }
         },
-        "workspace_user_view": {
+        "workspace_project": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "access": {
+              "a": true,
+              "h": "Access",
+              "n": "access",
+              "r": true,
+              "sh": "Project access configuration.",
+              "t": "`$ANY`",
+              "union": {
+                "branches": 3,
+                "count": 1,
+                "depth": 4
+              }
+            },
+            "archived_date": {
+              "a": true,
+              "h": "Archived Date",
+              "n": "archived_date",
+              "r": false,
+              "sh": "Date and time when the project was archived, or `null` if active.",
+              "t": "`$ANY`"
+            },
+            "archived_timestamp": {
+              "a": true,
+              "h": "Archived Timestamp",
+              "n": "archived_timestamp",
+              "r": false,
+              "sh": "Unix timestamp for when the project was archived, or 0 if active.",
+              "t": "`$INTEGER`"
+            },
+            "color": {
+              "a": true,
+              "h": "Color",
+              "n": "color",
+              "r": false,
+              "sh": "Numeric project color code.",
+              "t": "`$ANY`"
+            },
+            "default_order": {
+              "a": true,
+              "h": "Default Order",
+              "n": "default_order",
+              "r": false,
+              "sh": "Default order of the project in workspace views.",
+              "t": "`$INTEGER`"
+            },
+            "default_order_key": {
+              "a": true,
+              "h": "Default Order Key",
+              "n": "default_order_key",
+              "r": false,
+              "sh": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together).",
+              "t": "`$ANY`"
+            },
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "sh": "Project description.",
+              "t": "`$STRING`"
+            },
+            "folder_id": {
+              "a": true,
+              "h": "Folder Id",
+              "n": "folder_id",
+              "r": false,
+              "sh": "Numeric ID of the folder that contains the project, or `null`.",
+              "t": "`$STRING`"
+            },
+            "icon": {
+              "a": true,
+              "h": "Icon",
+              "n": "icon",
+              "r": false,
+              "sh": "Project icon name, or `null` for the default icon.",
+              "t": "`$ANY`"
+            },
+            "initiated_by_uid": {
+              "a": true,
+              "h": "Initiated By Uid",
+              "n": "initiated_by_uid",
+              "r": true,
+              "sh": "Numeric ID of the user requesting the workspace project.",
+              "t": "`$INTEGER`"
+            },
+            "is_archived": {
+              "a": true,
+              "h": "Is Archived",
+              "n": "is_archived",
+              "r": false,
+              "sh": "Whether the workspace project is archived.",
+              "t": "`$BOOLEAN`"
+            },
+            "is_frozen": {
+              "a": true,
+              "h": "Is Frozen",
+              "n": "is_frozen",
+              "r": false,
+              "sh": "Whether the project is frozen and cannot be modified.",
+              "t": "`$BOOLEAN`"
+            },
+            "is_invite_only": {
+              "a": true,
+              "h": "Is Invite Only",
+              "n": "is_invite_only",
+              "r": false,
+              "sh": "Whether joining the workspace project requires an invitation.",
+              "t": "`$BOOLEAN`"
+            },
+            "is_project_insights_enabled": {
+              "a": true,
+              "h": "Is Project Insights Enabled",
+              "n": "is_project_insights_enabled",
+              "r": false,
+              "sh": "Whether project insights are enabled for the project.",
+              "t": "`$BOOLEAN`"
+            },
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Project name.",
+              "t": "`$STRING`"
+            },
+            "project_id": {
+              "a": true,
+              "h": "Project Id",
+              "n": "project_id",
+              "r": true,
+              "sh": "String ID of the project.",
+              "t": "`$STRING`"
+            },
+            "public_access": {
+              "a": true,
+              "h": "Public Access",
+              "n": "public_access",
+              "r": true,
+              "sh": "Whether the project is publicly accessible.",
+              "t": "`$BOOLEAN`"
+            },
+            "role": {
+              "a": true,
+              "h": "Role",
+              "n": "role",
+              "r": false,
+              "t": "`$ANY`"
+            },
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "Project status.",
+              "t": "`$STRING`"
+            },
+            "view_style": {
+              "a": true,
+              "h": "View Style",
+              "n": "view_style",
+              "r": false,
+              "sh": "Project view style.",
+              "t": "`$STRING`"
+            },
+            "workspace_id": {
+              "a": true,
+              "h": "Workspace Id",
+              "n": "workspace_id",
+              "r": true,
+              "sh": "Numeric ID of the workspace that contains the project.",
+              "t": "`$INTEGER`"
+            }
+          },
+          "name": "workspace_project",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/workspaces/{workspace_id}/projects/active",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "workspace_id",
+                        "or": "workspace_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$ANY`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 100,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/workspaces/{workspace_id}/projects/active",
+                  "q": {
+                    "exist": [
+                      "workspace_id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "projects"
+                    },
+                    {
+                      "lit": "active"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.workspace_projects`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/workspaces/{workspace_id}/projects/archived",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "workspace_id",
+                        "or": "workspace_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$ANY`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 100,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/workspaces/{workspace_id}/projects/archived",
+                  "q": {
+                    "$action": "archived",
+                    "exist": [
+                      "workspace_id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "projects"
+                    },
+                    {
+                      "lit": "archived"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.workspace_projects`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "$.main.kit.entity.workspace"
+              ]
+            ]
+          }
+        },
+        "workspace_user": {
           "active": true,
           "alias": {
             "field": {}
@@ -11106,6 +10028,29 @@
               "sh": "Whether the user has custom project sorting enabled.",
               "t": "`$BOOLEAN`"
             },
+            "full_name": {
+              "a": true,
+              "h": "Full Name",
+              "n": "full_name",
+              "r": true,
+              "sh": "Full name of the workspace member.",
+              "t": "`$STRING`"
+            },
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "image_id": {
+              "a": true,
+              "h": "Image Id",
+              "n": "image_id",
+              "r": false,
+              "sh": "Avatar image ID of the workspace member, or `null`.",
+              "t": "`$STRING`"
+            },
             "invite_code": {
               "a": true,
               "h": "Invite Code",
@@ -11113,6 +10058,14 @@
               "r": false,
               "sh": "Workspace invite code to join with.",
               "t": "`$ANY`"
+            },
+            "is_deleted": {
+              "a": true,
+              "h": "Is Deleted",
+              "n": "is_deleted",
+              "r": false,
+              "sh": "Whether the workspace member is deleted.",
+              "t": "`$BOOLEAN`"
             },
             "project_sort_preference": {
               "a": true,
@@ -11127,13 +10080,33 @@
               "h": "Role",
               "n": "role",
               "op": {
-                "create": {
+                "list": {
+                  "req": true,
+                  "type": "`$STRING`"
+                },
+                "update": {
                   "req": true,
                   "type": "`$STRING`"
                 }
               },
               "r": false,
               "sh": "Workspace role assigned to the user.",
+              "t": "`$STRING`"
+            },
+            "timezone": {
+              "a": true,
+              "h": "Timezone",
+              "n": "timezone",
+              "r": true,
+              "sh": "Timezone of the workspace member.",
+              "t": "`$STRING`"
+            },
+            "user_email": {
+              "a": true,
+              "h": "User Email",
+              "n": "user_email",
+              "r": true,
+              "sh": "Email address of the workspace member.",
               "t": "`$STRING`"
             },
             "user_id": {
@@ -11159,7 +10132,11 @@
               "t": "`$STRING`"
             }
           },
-          "name": "workspace_user_view",
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "workspace_user",
           "op": {
             "create": {
               "input": "data",
@@ -11168,23 +10145,17 @@
                 {
                   "a": true,
                   "bf": [
+                    "app",
+                    "email_list",
                     "role"
                   ],
                   "co": {
-                    "id": "POST /api/v1/workspaces/{workspace_id}/users/{user_id}",
+                    "id": "POST /api/v1/workspaces/{workspace_id}/users/invite",
                     "source": "openapi3",
                     "version": 2
                   },
                   "g": {
                     "params": [
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "user_id",
-                        "or": "user_id",
-                        "r": true,
-                        "t": "`$INTEGER`"
-                      },
                       {
                         "a": true,
                         "k": "param",
@@ -11197,10 +10168,10 @@
                   },
                   "k": "http",
                   "m": "POST",
-                  "o": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                  "o": "/api/v1/workspaces/{workspace_id}/users/invite",
                   "q": {
+                    "$action": "invite",
                     "exist": [
-                      "user_id",
                       "workspace_id"
                     ]
                   },
@@ -11226,7 +10197,7 @@
                       "lit": "users"
                     },
                     {
-                      "var": "user_id"
+                      "lit": "invite"
                     }
                   ],
                   "t": {
@@ -11275,13 +10246,246 @@
                   }
                 }
               ]
+            },
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/workspaces/users",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "cursor",
+                        "or": "cursor",
+                        "r": false,
+                        "t": "`$ANY`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 100,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "id",
+                        "k": "query",
+                        "n": "sort",
+                        "or": "sort",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "workspace_id",
+                        "or": "workspace_id",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/workspaces/users",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "lit": "users"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.workspace_users`"
+                  }
+                }
+              ]
+            },
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "DELETE /api/v1/workspaces/{workspace_id}/users/{user_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "user_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "workspace_id",
+                        "or": "workspace_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "DELETE",
+                  "o": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "workspace_id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "user_id": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "users"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            },
+            "update": {
+              "input": "data",
+              "name": "update",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "role"
+                  ],
+                  "co": {
+                    "id": "POST /api/v1/workspaces/{workspace_id}/users/{user_id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "user_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "workspace_id",
+                        "or": "workspace_id",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "workspace_id"
+                    ]
+                  },
+                  "r": {
+                    "param": {
+                      "user_id": "id"
+                    }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "workspaces"
+                    },
+                    {
+                      "var": "workspace_id"
+                    },
+                    {
+                      "lit": "users"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
             }
           },
           "relations": {
             "ancestors": [
               [
-                "$.main.kit.entity.workspace",
-                "$.main.kit.entity.user"
+                "$.main.kit.entity.workspace"
               ]
             ]
           }
@@ -11385,34 +10589,6 @@
         }
       },
       "flow": {
-        "BasicActiveFlow": {
-          "active": true,
-          "entity": "active",
-          "key$": "BasicActiveFlow",
-          "kind": "basic",
-          "name": "BasicActiveFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {},
-              "m": {
-                "workspace_id": "workspace01"
-              },
-              "o": "list",
-              "s": [],
-              "v": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "active_ref01"
-                  }
-                }
-              ]
-            }
-          ]
-        },
         "BasicActivityFlow": {
           "active": true,
           "entity": "activity",
@@ -11436,67 +10612,6 @@
                   }
                 }
               ]
-            }
-          ]
-        },
-        "BasicArchivedFlow": {
-          "active": true,
-          "entity": "archived",
-          "key$": "BasicArchivedFlow",
-          "kind": "basic",
-          "name": "BasicArchivedFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {},
-              "m": {
-                "workspace_id": "workspace01"
-              },
-              "o": "list",
-              "s": [],
-              "v": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "archived_ref01"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "BasicAuthorizationFlow": {
-          "active": true,
-          "entity": "authorization",
-          "key$": "BasicAuthorizationFlow",
-          "kind": "basic",
-          "name": "BasicAuthorizationFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "ref": "authorization_ref01"
-              },
-              "m": {},
-              "o": "create",
-              "s": [],
-              "v": []
-            },
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "ref": "authorization_ref01",
-                "suffix": "_rm0"
-              },
-              "m": {},
-              "o": "remove",
-              "s": [],
-              "v": []
             }
           ]
         },
@@ -11865,6 +10980,27 @@
               "i": {
                 "ref": "folder_ref01",
                 "srcdatavar": "folder_ref01_data",
+                "suffix": "_up0",
+                "textfield": "name"
+              },
+              "m": {},
+              "o": "update",
+              "s": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-folder_ref01"
+                  }
+                }
+              ],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "folder_ref01",
+                "srcdatavar": "folder_ref01_data",
                 "suffix": "_dt0"
               },
               "m": {
@@ -11967,29 +11103,6 @@
                   }
                 }
               ]
-            }
-          ]
-        },
-        "BasicInviteFlow": {
-          "active": true,
-          "entity": "invite",
-          "key$": "BasicInviteFlow",
-          "kind": "basic",
-          "name": "BasicInviteFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "ref": "invite_ref01"
-              },
-              "m": {
-                "workspace_id": "workspace01"
-              },
-              "o": "create",
-              "s": [],
-              "v": []
             }
           ]
         },
@@ -12112,68 +11225,12 @@
           "kind": "basic",
           "name": "BasicLocationReminderFlow",
           "param": {},
-          "step": []
-        },
-        "BasicMemberViewFlow": {
-          "active": true,
-          "entity": "member_view",
-          "key$": "BasicMemberViewFlow",
-          "kind": "basic",
-          "name": "BasicMemberViewFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {},
-              "m": {},
-              "o": "list",
-              "s": [],
-              "v": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "member_view_ref01"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "BasicMigratePersonalTokenFlow": {
-          "active": true,
-          "entity": "migrate_personal_token",
-          "key$": "BasicMigratePersonalTokenFlow",
-          "kind": "basic",
-          "name": "BasicMigratePersonalTokenFlow",
-          "param": {},
           "step": [
             {
               "a": true,
               "d": {},
               "i": {
-                "ref": "migrate_personal_token_ref01"
-              },
-              "m": {},
-              "o": "create",
-              "s": [],
-              "v": []
-            }
-          ]
-        },
-        "BasicNotificationLocationSyncViewFlow": {
-          "active": true,
-          "entity": "notification_location_sync_view",
-          "key$": "BasicNotificationLocationSyncViewFlow",
-          "kind": "basic",
-          "name": "BasicNotificationLocationSyncViewFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "ref": "notification_location_sync_view_ref01"
+                "ref": "location_reminder_ref01"
               },
               "m": {},
               "o": "create",
@@ -12191,7 +11248,7 @@
                 {
                   "apply": "ItemExists",
                   "def": {
-                    "ref": "notification_location_sync_view_ref01"
+                    "ref": "location_reminder_ref01"
                   }
                 }
               ]
@@ -12200,12 +11257,33 @@
               "a": true,
               "d": {},
               "i": {
-                "ref": "notification_location_sync_view_ref01",
-                "srcdatavar": "notification_location_sync_view_ref01_data",
+                "ref": "location_reminder_ref01",
+                "srcdatavar": "location_reminder_ref01_data",
+                "suffix": "_up0",
+                "textfield": "item_id"
+              },
+              "m": {},
+              "o": "update",
+              "s": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-location_reminder_ref01"
+                  }
+                }
+              ],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "location_reminder_ref01",
+                "srcdatavar": "location_reminder_ref01_data",
                 "suffix": "_dt0"
               },
               "m": {
-                "id": "notification_location_sync_view01"
+                "id": "location_reminder01"
               },
               "o": "load",
               "s": [],
@@ -12213,69 +11291,73 @@
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-notification_location_sync_view_ref01"
+                    "mark": "Mark01-location_reminder_ref01"
                   }
                 }
               ]
-            }
-          ]
-        },
-        "BasicNotificationSyncViewFlow": {
-          "active": true,
-          "entity": "notification_sync_view",
-          "key$": "BasicNotificationSyncViewFlow",
-          "kind": "basic",
-          "name": "BasicNotificationSyncViewFlow",
-          "param": {},
-          "step": [
+            },
             {
               "a": true,
               "d": {},
               "i": {
-                "ref": "notification_sync_view_ref01"
+                "ref": "location_reminder_ref01",
+                "suffix": "_rm0"
               },
-              "m": {},
-              "o": "create",
+              "m": {
+                "id": "location_reminder01"
+              },
+              "o": "remove",
               "s": [],
               "v": []
             },
             {
               "a": true,
               "d": {},
-              "i": {},
+              "i": {
+                "suffix": "_rt0"
+              },
               "m": {},
               "o": "list",
               "s": [],
               "v": [
                 {
-                  "apply": "ItemExists",
+                  "apply": "ItemNotExists",
                   "def": {
-                    "ref": "notification_sync_view_ref01"
+                    "ref": "location_reminder_ref01"
                   }
                 }
               ]
-            },
+            }
+          ]
+        },
+        "BasicNotificationSettingFlow": {
+          "active": true,
+          "entity": "notification_setting",
+          "key$": "BasicNotificationSettingFlow",
+          "kind": "basic",
+          "name": "BasicNotificationSettingFlow",
+          "param": {},
+          "step": [
             {
               "a": true,
               "d": {},
               "i": {
-                "ref": "notification_sync_view_ref01",
-                "srcdatavar": "notification_sync_view_ref01_data",
-                "suffix": "_dt0"
+                "ref": "notification_setting_ref01",
+                "srcdatavar": "notification_setting_ref01_data",
+                "suffix": "_up0",
+                "textfield": "notification_type"
               },
-              "m": {
-                "id": "notification_sync_view01"
-              },
-              "o": "load",
-              "s": [],
-              "v": [
+              "m": {},
+              "o": "update",
+              "s": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-notification_sync_view_ref01"
+                    "mark": "Mark01-notification_setting_ref01"
                   }
                 }
-              ]
+              ],
+              "v": []
             }
           ]
         },
@@ -12443,27 +11525,6 @@
             }
           ]
         },
-        "BasicProjectImportCreateResponseWithObjectFlow": {
-          "active": true,
-          "entity": "project_import_create_response_with_object",
-          "key$": "BasicProjectImportCreateResponseWithObjectFlow",
-          "kind": "basic",
-          "name": "BasicProjectImportCreateResponseWithObjectFlow",
-          "param": {},
-          "step": [
-            {
-              "a": true,
-              "d": {},
-              "i": {
-                "ref": "project_import_create_response_with_object_ref01"
-              },
-              "m": {},
-              "o": "create",
-              "s": [],
-              "v": []
-            }
-          ]
-        },
         "BasicProjectImportFlow": {
           "active": true,
           "entity": "project_import",
@@ -12485,30 +11546,12 @@
             }
           ]
         },
-        "BasicReminderFlow": {
+        "BasicProjectPermissionFlow": {
           "active": true,
-          "entity": "reminder",
-          "key$": "BasicReminderFlow",
+          "entity": "project_permission",
+          "key$": "BasicProjectPermissionFlow",
           "kind": "basic",
-          "name": "BasicReminderFlow",
-          "param": {},
-          "step": []
-        },
-        "BasicRemoveWorkspaceUserFlow": {
-          "active": true,
-          "entity": "remove_workspace_user",
-          "key$": "BasicRemoveWorkspaceUserFlow",
-          "kind": "basic",
-          "name": "BasicRemoveWorkspaceUserFlow",
-          "param": {},
-          "step": []
-        },
-        "BasicRoleToActionMappingViewFlow": {
-          "active": true,
-          "entity": "role_to_action_mapping_view",
-          "key$": "BasicRoleToActionMappingViewFlow",
-          "kind": "basic",
-          "name": "BasicRoleToActionMappingViewFlow",
+          "name": "BasicProjectPermissionFlow",
           "param": {},
           "step": [
             {
@@ -12522,7 +11565,119 @@
                 {
                   "apply": "ItemExists",
                   "def": {
-                    "ref": "role_to_action_mapping_view_ref01"
+                    "ref": "project_permission_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicReminderFlow": {
+          "active": true,
+          "entity": "reminder",
+          "key$": "BasicReminderFlow",
+          "kind": "basic",
+          "name": "BasicReminderFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "reminder_ref01"
+              },
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "reminder_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "reminder_ref01",
+                "srcdatavar": "reminder_ref01_data",
+                "suffix": "_up0",
+                "textfield": "item_id"
+              },
+              "m": {},
+              "o": "update",
+              "s": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-reminder_ref01"
+                  }
+                }
+              ],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "reminder_ref01",
+                "srcdatavar": "reminder_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {
+                "id": "reminder01"
+              },
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-reminder_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "reminder_ref01",
+                "suffix": "_rm0"
+              },
+              "m": {
+                "id": "reminder01"
+              },
+              "o": "remove",
+              "s": [],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "suffix": "_rt0"
+              },
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemNotExists",
+                  "def": {
+                    "ref": "reminder_ref01"
                   }
                 }
               ]
@@ -12687,15 +11842,6 @@
               "v": []
             }
           ]
-        },
-        "BasicStatusOkFlow": {
-          "active": true,
-          "entity": "status_ok",
-          "key$": "BasicStatusOkFlow",
-          "kind": "basic",
-          "name": "BasicStatusOkFlow",
-          "param": {},
-          "step": []
         },
         "BasicSubscriptionInfoFlow": {
           "active": true,
@@ -12951,39 +12097,22 @@
             {
               "a": true,
               "d": {},
-              "i": {},
-              "m": {},
-              "o": "list",
-              "s": [],
-              "v": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "user_ref01"
-                  }
-                }
-              ]
-            },
-            {
-              "a": true,
-              "d": {},
               "i": {
                 "ref": "user_ref01",
                 "srcdatavar": "user_ref01_data",
-                "suffix": "_up0",
-                "textfield": "business_account_id"
+                "suffix": "_dt0"
               },
               "m": {},
-              "o": "update",
-              "s": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
                     "mark": "Mark01-user_ref01"
                   }
                 }
-              ],
-              "v": []
+              ]
             }
           ]
         },
@@ -13021,6 +12150,27 @@
                   }
                 }
               ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "workspace_ref01",
+                "srcdatavar": "workspace_ref01_data",
+                "suffix": "_up0",
+                "textfield": "description"
+              },
+              "m": {},
+              "o": "update",
+              "s": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-workspace_ref01"
+                  }
+                }
+              ],
+              "v": []
             },
             {
               "a": true,
@@ -13078,21 +12228,98 @@
             }
           ]
         },
-        "BasicWorkspaceInvitationViewFlow": {
+        "BasicWorkspaceInvitationFlow": {
           "active": true,
-          "entity": "workspace_invitation_view",
-          "key$": "BasicWorkspaceInvitationViewFlow",
+          "entity": "workspace_invitation",
+          "key$": "BasicWorkspaceInvitationFlow",
           "kind": "basic",
-          "name": "BasicWorkspaceInvitationViewFlow",
+          "name": "BasicWorkspaceInvitationFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "workspace_invitation_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "workspace_invitation_ref01",
+                "srcdatavar": "workspace_invitation_ref01_data",
+                "suffix": "_up0",
+                "textfield": "app"
+              },
+              "m": {},
+              "o": "update",
+              "s": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-workspace_invitation_ref01"
+                  }
+                }
+              ],
+              "v": []
+            }
+          ]
+        },
+        "BasicWorkspaceProjectFlow": {
+          "active": true,
+          "entity": "workspace_project",
+          "key$": "BasicWorkspaceProjectFlow",
+          "kind": "basic",
+          "name": "BasicWorkspaceProjectFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {
+                "workspace_id": "workspace01"
+              },
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "workspace_project_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWorkspaceUserFlow": {
+          "active": true,
+          "entity": "workspace_user",
+          "key$": "BasicWorkspaceUserFlow",
+          "kind": "basic",
+          "name": "BasicWorkspaceUserFlow",
           "param": {},
           "step": [
             {
               "a": true,
               "d": {},
               "i": {
-                "ref": "workspace_invitation_view_ref01"
+                "ref": "workspace_user_ref01"
               },
-              "m": {},
+              "m": {
+                "workspace_id": "workspace01"
+              },
               "o": "create",
               "s": [],
               "v": []
@@ -13108,19 +12335,21 @@
                 {
                   "apply": "ItemExists",
                   "def": {
-                    "ref": "workspace_invitation_view_ref01"
+                    "ref": "workspace_user_ref01"
                   }
                 }
               ]
             },
             {
               "a": true,
-              "d": {},
+              "d": {
+                "workspace_id": "workspace01"
+              },
               "i": {
-                "ref": "workspace_invitation_view_ref01",
-                "srcdatavar": "workspace_invitation_view_ref01_data",
+                "ref": "workspace_user_ref01",
+                "srcdatavar": "workspace_user_ref01_data",
                 "suffix": "_up0",
-                "textfield": "app"
+                "textfield": "full_name"
               },
               "m": {},
               "o": "update",
@@ -13128,32 +12357,44 @@
                 {
                   "apply": "TextFieldMark",
                   "def": {
-                    "mark": "Mark01-workspace_invitation_view_ref01"
+                    "mark": "Mark01-workspace_user_ref01"
                   }
                 }
               ],
               "v": []
-            }
-          ]
-        },
-        "BasicWorkspaceUserViewFlow": {
-          "active": true,
-          "entity": "workspace_user_view",
-          "key$": "BasicWorkspaceUserViewFlow",
-          "kind": "basic",
-          "name": "BasicWorkspaceUserViewFlow",
-          "param": {},
-          "step": [
+            },
             {
               "a": true,
               "d": {},
               "i": {
-                "ref": "workspace_user_view_ref01"
+                "ref": "workspace_user_ref01",
+                "suffix": "_rm0"
               },
-              "m": {},
-              "o": "create",
+              "m": {
+                "id": "workspace_user01",
+                "workspace_id": "workspace01"
+              },
+              "o": "remove",
               "s": [],
               "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "suffix": "_rt0"
+              },
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemNotExists",
+                  "def": {
+                    "ref": "workspace_user_ref01"
+                  }
+                }
+              ]
             }
           ]
         }

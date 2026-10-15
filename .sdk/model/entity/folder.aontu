@@ -26,6 +26,10 @@ main: kit: entity: folder: {
           req: false
           type: "`$ANY`"
         }
+        update: {
+          req: false
+          type: "`$ANY`"
+        }
       }
       r: true
       sh: "Default position of the folder in the workspace."
@@ -56,7 +60,7 @@ main: kit: entity: folder: {
       h: "Name"
       n: "name"
       op: {
-        create: {
+        update: {
           req: false
           type: "`$STRING`"
         }
@@ -84,62 +88,6 @@ main: kit: entity: folder: {
     create: {
       name: "create"
       points: [
-        {
-          bf: [
-            "default_order"
-            "name"
-          ]
-          co: {
-            id: "POST /api/v1/folders/{folder_id}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                k: "param"
-                n: "id"
-                or: "folder_id"
-                r: true
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "POST"
-          o: "/api/v1/folders/{folder_id}"
-          q: {
-            exist: [
-              "id"
-            ]
-          }
-          r: {
-            param: {
-              folder_id: "id"
-            }
-          }
-          rs: {
-            kind: "json"
-            media: "application/json"
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "v1"
-            }
-            {
-              lit: "folders"
-            }
-            {
-              var: "id"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
         {
           bf: [
             "child_order"
@@ -318,6 +266,67 @@ main: kit: entity: folder: {
             ]
           }
           m: "DELETE"
+          o: "/api/v1/folders/{folder_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              folder_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "folders"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "default_order"
+            "name"
+          ]
+          co: {
+            id: "POST /api/v1/folders/{folder_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "folder_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "POST"
           o: "/api/v1/folders/{folder_id}"
           q: {
             exist: [

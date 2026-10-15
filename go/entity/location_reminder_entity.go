@@ -293,24 +293,151 @@ func (e *LocationReminderEntity) streamSteps(ctx *core.Context) error {
 	return nil
 }
 
-func (e *LocationReminderEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("load", e.name)
+
+func (e *LocationReminderEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":   "load",
+		"ctrl":     ctrl,
+		"match":    e.match,
+		"data":     e.data,
+		"reqmatch": reqmatch,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// LocationReminderLoadMatch and returns an LocationReminder. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *LocationReminderEntity) LoadTyped(reqmatch LocationReminderLoadMatch, ctrl map[string]any) (LocationReminder, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return LocationReminder{}, err
+	}
+	return typedFrom[LocationReminder](res), nil
 }
 
 
-func (e *LocationReminderEntity) List(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("list", e.name)
+
+
+func (e *LocationReminderEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":   "list",
+		"ctrl":     ctrl,
+		"match":    e.match,
+		"data":     e.data,
+		"reqmatch": reqmatch,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+		}
+	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// LocationReminderListMatch and returns []LocationReminder. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *LocationReminderEntity) ListTyped(reqmatch LocationReminderListMatch, ctrl map[string]any) ([]LocationReminder, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[LocationReminder](res), nil
 }
 
 
-func (e *LocationReminderEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("create", e.name)
+
+
+func (e *LocationReminderEntity) Create(reqdata map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":  "create",
+		"ctrl":    ctrl,
+		"match":   e.match,
+		"data":    e.data,
+		"reqdata": reqdata,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// LocationReminderCreateData and returns an LocationReminder. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *LocationReminderEntity) CreateTyped(reqdata LocationReminderCreateData, ctrl map[string]any) (LocationReminder, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return LocationReminder{}, err
+	}
+	return typedFrom[LocationReminder](res), nil
 }
 
 
-func (e *LocationReminderEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("update", e.name)
+
+
+func (e *LocationReminderEntity) Update(reqdata map[string]any, ctrl map[string]any) (any, error) {
+	utility := e.utility
+	ctx := utility.MakeContext(map[string]any{
+		"opname":  "update",
+		"ctrl":    ctrl,
+		"match":   e.match,
+		"data":    e.data,
+		"reqdata": reqdata,
+	}, e.entctx)
+
+	return e.runOp(ctx, func() {
+		if ctx.Result != nil {
+			if ctx.Result.Resmatch != nil {
+				e.match = ctx.Result.Resmatch
+			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
+		}
+	})
 }
+
+// UpdateTyped is the statically-typed variant of Update: it takes an
+// LocationReminderUpdateData and returns an LocationReminder. It delegates to the untyped
+// Update (identical runtime) and converts at the typed boundary.
+func (e *LocationReminderEntity) UpdateTyped(reqdata LocationReminderUpdateData, ctrl map[string]any) (LocationReminder, error) {
+	res, err := e.Update(asMap(reqdata), ctrl)
+	if err != nil {
+		return LocationReminder{}, err
+	}
+	return typedFrom[LocationReminder](res), nil
+}
+
 
 
 func (e *LocationReminderEntity) Patch(_ map[string]any, _ map[string]any) (any, error) {

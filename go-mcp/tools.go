@@ -13,31 +13,31 @@ import (
 
 // ListArgs is what an agent sends to todoist_list.
 type ListArgs struct {
-	Entity string         `json:"entity" jsonschema:"one of: active | activity | archived | backup | collaborator | comment | completed_task | folder | history | id_mapping | label | member_view | notification_location_sync_view | notification_sync_view | plan_detail | productivity_stat | project | role_to_action_mapping_view | section | shared_label | task | usage_summary | user | workspace | workspace_invitation_view"`
+	Entity string         `json:"entity" jsonschema:"one of: activity | backup | collaborator | comment | completed_task | folder | history | id_mapping | label | location_reminder | plan_detail | productivity_stat | project | project_permission | reminder | section | shared_label | task | usage_summary | workspace | workspace_invitation | workspace_project | workspace_user"`
 	Query  map[string]any `json:"query,omitempty" jsonschema:"optional filter map; omit it for the first page"`
 }
 
 // LoadArgs is what an agent sends to todoist_load.
 type LoadArgs struct {
-	Entity string         `json:"entity" jsonschema:"one of: backup | comment | credit_state | file_url | folder | label | notification_location_sync_view | notification_sync_view | project | section | task | template | workspace"`
+	Entity string         `json:"entity" jsonschema:"one of: backup | comment | credit_state | file_url | folder | label | location_reminder | project | reminder | section | task | template | user | workspace"`
 	Query  map[string]any `json:"query" jsonschema:"match map naming the record, such as {\"id\":1}"`
 }
 
 // CreateArgs is what an agent sends to todoist_create.
 type CreateArgs struct {
-	Entity string         `json:"entity" jsonschema:"one of: authorization | billing_portal_url | comment | folder | invite | label | migrate_personal_token | notification_location_sync_view | notification_sync_view | project | project_import | project_import_create_response_with_object | section | subscription_info | task | top_up | upload | workspace | workspace_invitation_view | workspace_user_view"`
+	Entity string         `json:"entity" jsonschema:"one of: billing_portal_url | comment | folder | label | location_reminder | project | reminder | section | subscription_info | task | top_up | upload | workspace | workspace_user"`
 	Data   map[string]any `json:"data" jsonschema:"the new record's fields"`
 }
 
 // UpdateArgs is what an agent sends to todoist_update.
 type UpdateArgs struct {
-	Entity string         `json:"entity" jsonschema:"one of: comment | email | label | project | section | shared_label | task | user | workspace_invitation_view"`
+	Entity string         `json:"entity" jsonschema:"one of: comment | email | folder | label | location_reminder | notification_setting | project | reminder | section | shared_label | task | workspace | workspace_user"`
 	Data   map[string]any `json:"data" jsonschema:"the record's id and the fields to change"`
 }
 
 // RemoveArgs is what an agent sends to todoist_remove.
 type RemoveArgs struct {
-	Entity string         `json:"entity" jsonschema:"one of: authorization | comment | folder | label | location_reminder | project | reminder | remove_workspace_user | section | shared_label | status_ok | task | upload | workspace"`
+	Entity string         `json:"entity" jsonschema:"one of: comment | email | folder | label | location_reminder | project | reminder | section | shared_label | task | upload | workspace | workspace_invitation | workspace_user"`
 	Query  map[string]any `json:"query" jsonschema:"match map naming the record, such as {\"id\":1}"`
 }
 
@@ -46,7 +46,7 @@ func registerTools(server *mcp.Server, client *sdk.TodoistSDK) {
 		Name:        "todoist_list",
 		Description: "List records from Todoist. Args: entity, query (optional filter map; omit it for the first page). Returns the first page of records as JSON.",
 		Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true},
-		InputSchema: entitySchema[ListArgs]("active", "activity", "archived", "backup", "collaborator", "comment", "completed_task", "folder", "history", "id_mapping", "label", "member_view", "notification_location_sync_view", "notification_sync_view", "plan_detail", "productivity_stat", "project", "role_to_action_mapping_view", "section", "shared_label", "task", "usage_summary", "user", "workspace", "workspace_invitation_view"),
+		InputSchema: entitySchema[ListArgs]("activity", "backup", "collaborator", "comment", "completed_task", "folder", "history", "id_mapping", "label", "location_reminder", "plan_detail", "productivity_stat", "project", "project_permission", "reminder", "section", "shared_label", "task", "usage_summary", "workspace", "workspace_invitation", "workspace_project", "workspace_user"),
 	}, func(ctx context.Context, req *mcp.CallToolRequest, args ListArgs) (*mcp.CallToolResult, any, error) {
 		return runOp(ctx, client, "list", args.Entity, args.Query)
 	})
@@ -54,7 +54,7 @@ func registerTools(server *mcp.Server, client *sdk.TodoistSDK) {
 		Name:        "todoist_load",
 		Description: "Load one record from Todoist. Args: entity, query (match map naming the record, such as {\"id\":1}). Returns the record as JSON.",
 		Annotations: &mcp.ToolAnnotations{ReadOnlyHint: true},
-		InputSchema: entitySchema[LoadArgs]("backup", "comment", "credit_state", "file_url", "folder", "label", "notification_location_sync_view", "notification_sync_view", "project", "section", "task", "template", "workspace"),
+		InputSchema: entitySchema[LoadArgs]("backup", "comment", "credit_state", "file_url", "folder", "label", "location_reminder", "project", "reminder", "section", "task", "template", "user", "workspace"),
 	}, func(ctx context.Context, req *mcp.CallToolRequest, args LoadArgs) (*mcp.CallToolResult, any, error) {
 		return runOp(ctx, client, "load", args.Entity, args.Query)
 	})
@@ -62,7 +62,7 @@ func registerTools(server *mcp.Server, client *sdk.TodoistSDK) {
 		Name:        "todoist_create",
 		Description: "Create a record in Todoist. Args: entity, data (the new record's fields). Returns the created record as JSON.",
 		Annotations: &mcp.ToolAnnotations{DestructiveHint: hint(false)},
-		InputSchema: entitySchema[CreateArgs]("authorization", "billing_portal_url", "comment", "folder", "invite", "label", "migrate_personal_token", "notification_location_sync_view", "notification_sync_view", "project", "project_import", "project_import_create_response_with_object", "section", "subscription_info", "task", "top_up", "upload", "workspace", "workspace_invitation_view", "workspace_user_view"),
+		InputSchema: entitySchema[CreateArgs]("billing_portal_url", "comment", "folder", "label", "location_reminder", "project", "reminder", "section", "subscription_info", "task", "top_up", "upload", "workspace", "workspace_user"),
 	}, func(ctx context.Context, req *mcp.CallToolRequest, args CreateArgs) (*mcp.CallToolResult, any, error) {
 		return runOp(ctx, client, "create", args.Entity, args.Data)
 	})
@@ -70,7 +70,7 @@ func registerTools(server *mcp.Server, client *sdk.TodoistSDK) {
 		Name:        "todoist_update",
 		Description: "Update a record in Todoist. Args: entity, data (the record's id and the fields to change). Returns the updated record as JSON.",
 		Annotations: &mcp.ToolAnnotations{DestructiveHint: hint(true)},
-		InputSchema: entitySchema[UpdateArgs]("comment", "email", "label", "project", "section", "shared_label", "task", "user", "workspace_invitation_view"),
+		InputSchema: entitySchema[UpdateArgs]("comment", "email", "folder", "label", "location_reminder", "notification_setting", "project", "reminder", "section", "shared_label", "task", "workspace", "workspace_user"),
 	}, func(ctx context.Context, req *mcp.CallToolRequest, args UpdateArgs) (*mcp.CallToolResult, any, error) {
 		return runOp(ctx, client, "update", args.Entity, args.Data)
 	})
@@ -78,7 +78,7 @@ func registerTools(server *mcp.Server, client *sdk.TodoistSDK) {
 		Name:        "todoist_remove",
 		Description: "Remove a record from Todoist. Args: entity, query (match map naming the record, such as {\"id\":1}). Returns the removed record as JSON.",
 		Annotations: &mcp.ToolAnnotations{DestructiveHint: hint(true)},
-		InputSchema: entitySchema[RemoveArgs]("authorization", "comment", "folder", "label", "location_reminder", "project", "reminder", "remove_workspace_user", "section", "shared_label", "status_ok", "task", "upload", "workspace"),
+		InputSchema: entitySchema[RemoveArgs]("comment", "email", "folder", "label", "location_reminder", "project", "reminder", "section", "shared_label", "task", "upload", "workspace", "workspace_invitation", "workspace_user"),
 	}, func(ctx context.Context, req *mcp.CallToolRequest, args RemoveArgs) (*mcp.CallToolResult, any, error) {
 		return runOp(ctx, client, "remove", args.Entity, args.Query)
 	})
@@ -145,14 +145,8 @@ func runOp(_ context.Context, client *sdk.TodoistSDK, op string, entity string, 
 // emits one `case "<name>":` per entity defined in the SDK model.
 func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 	switch strings.ToLower(name) {
-	case "active":
-		return client.Active(nil), nil
 	case "activity":
 		return client.Activity(nil), nil
-	case "archived":
-		return client.Archived(nil), nil
-	case "authorization":
-		return client.Authorization(nil), nil
 	case "backup":
 		return client.Backup(nil), nil
 	case "billing_portal_url":
@@ -175,20 +169,12 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.History(nil), nil
 	case "id_mapping":
 		return client.IdMapping(nil), nil
-	case "invite":
-		return client.Invite(nil), nil
 	case "label":
 		return client.Label(nil), nil
 	case "location_reminder":
 		return client.LocationReminder(nil), nil
-	case "member_view":
-		return client.MemberView(nil), nil
-	case "migrate_personal_token":
-		return client.MigratePersonalToken(nil), nil
-	case "notification_location_sync_view":
-		return client.NotificationLocationSyncView(nil), nil
-	case "notification_sync_view":
-		return client.NotificationSyncView(nil), nil
+	case "notification_setting":
+		return client.NotificationSetting(nil), nil
 	case "plan_detail":
 		return client.PlanDetail(nil), nil
 	case "productivity_stat":
@@ -197,20 +183,14 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.Project(nil), nil
 	case "project_import":
 		return client.ProjectImport(nil), nil
-	case "project_import_create_response_with_object":
-		return client.ProjectImportCreateResponseWithObject(nil), nil
+	case "project_permission":
+		return client.ProjectPermission(nil), nil
 	case "reminder":
 		return client.Reminder(nil), nil
-	case "remove_workspace_user":
-		return client.RemoveWorkspaceUser(nil), nil
-	case "role_to_action_mapping_view":
-		return client.RoleToActionMappingView(nil), nil
 	case "section":
 		return client.Section(nil), nil
 	case "shared_label":
 		return client.SharedLabel(nil), nil
-	case "status_ok":
-		return client.StatusOk(nil), nil
 	case "subscription_info":
 		return client.SubscriptionInfo(nil), nil
 	case "task":
@@ -227,10 +207,12 @@ func entityFor(client *sdk.TodoistSDK, name string) (sdk.TodoistEntity, error) {
 		return client.User(nil), nil
 	case "workspace":
 		return client.Workspace(nil), nil
-	case "workspace_invitation_view":
-		return client.WorkspaceInvitationView(nil), nil
-	case "workspace_user_view":
-		return client.WorkspaceUserView(nil), nil
+	case "workspace_invitation":
+		return client.WorkspaceInvitation(nil), nil
+	case "workspace_project":
+		return client.WorkspaceProject(nil), nil
+	case "workspace_user":
+		return client.WorkspaceUser(nil), nil
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)
 }

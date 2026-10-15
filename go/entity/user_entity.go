@@ -293,58 +293,15 @@ func (e *UserEntity) streamSteps(ctx *core.Context) error {
 	return nil
 }
 
-func (e *UserEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("load", e.name)
-}
 
-
-
-func (e *UserEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+func (e *UserEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
 	ctx := utility.MakeContext(map[string]any{
-		"opname":   "list",
+		"opname":   "load",
 		"ctrl":     ctrl,
 		"match":    e.match,
 		"data":     e.data,
 		"reqmatch": reqmatch,
-	}, e.entctx)
-
-	return e.runOp(ctx, func() {
-		if ctx.Result != nil {
-			if ctx.Result.Resmatch != nil {
-				e.match = ctx.Result.Resmatch
-			}
-		}
-	})
-}
-
-// ListTyped is the statically-typed variant of List: it takes an
-// UserListMatch and returns []User. It delegates to the untyped
-// List (identical runtime) and converts at the typed boundary.
-func (e *UserEntity) ListTyped(reqmatch UserListMatch, ctrl map[string]any) ([]User, error) {
-	res, err := e.List(asMap(reqmatch), ctrl)
-	if err != nil {
-		return nil, err
-	}
-	return typedSliceFrom[User](res), nil
-}
-
-
-
-func (e *UserEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("create", e.name)
-}
-
-
-
-func (e *UserEntity) Update(reqdata map[string]any, ctrl map[string]any) (any, error) {
-	utility := e.utility
-	ctx := utility.MakeContext(map[string]any{
-		"opname":  "update",
-		"ctrl":    ctrl,
-		"match":   e.match,
-		"data":    e.data,
-		"reqdata": reqdata,
 	}, e.entctx)
 
 	return e.runOp(ctx, func() {
@@ -362,17 +319,32 @@ func (e *UserEntity) Update(reqdata map[string]any, ctrl map[string]any) (any, e
 	})
 }
 
-// UpdateTyped is the statically-typed variant of Update: it takes an
-// UserUpdateData and returns an User. It delegates to the untyped
-// Update (identical runtime) and converts at the typed boundary.
-func (e *UserEntity) UpdateTyped(reqdata UserUpdateData, ctrl map[string]any) (User, error) {
-	res, err := e.Update(asMap(reqdata), ctrl)
+// LoadTyped is the statically-typed variant of Load: it takes an
+// UserLoadMatch and returns an User. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *UserEntity) LoadTyped(reqmatch UserLoadMatch, ctrl map[string]any) (User, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
 	if err != nil {
 		return User{}, err
 	}
 	return typedFrom[User](res), nil
 }
 
+
+
+func (e *UserEntity) List(_ map[string]any, _ map[string]any) (any, error) {
+	return core.UnsupportedOp("list", e.name)
+}
+
+
+func (e *UserEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
+	return core.UnsupportedOp("create", e.name)
+}
+
+
+func (e *UserEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
+	return core.UnsupportedOp("update", e.name)
+}
 
 
 func (e *UserEntity) Patch(_ map[string]any, _ map[string]any) (any, error) {

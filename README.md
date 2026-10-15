@@ -36,14 +36,14 @@ Create a personal API token in Todoist under Settings, Integrations, Developer. 
 
 ## Entities, not endpoints
 
-This SDK exposes the API as **43 semantic entities** that you
+This SDK exposes the API as **34 semantic entities** that you
 call directly, instead of assembling URL paths and query strings. See the [Entities](#entities) table below for the full list. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
 support (`list`, `load`, `create`, `update`, `remove`):
 
 ```ts
 const client = new TodoistSDK()
-const items = await client.Active().list({ workspace_id: 1 })
+const items = await client.Activity().list()
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -110,17 +110,11 @@ const client = new TodoistSDK({
   apikey: process.env.TODOIST_APIKEY,
 })
 
-// List all actives (returns ActiveEntity[], one entity per record)
-const actives = await client.Active().list({ workspace_id: 1 })
-for (const active of actives) {
-  console.log(active.data())
+// List all activitys (returns ActivityEntity[], one entity per record)
+const activitys = await client.Activity().list()
+for (const activity of activitys) {
+  console.log(activity.data())
 }
-
-// Load a specific notificationlocationsyncview (returns the entity, a NotificationLocationSyncViewEntity)
-const notificationlocationsyncview = await client.NotificationLocationSyncView().load({
-  reminder_id: 'example_reminder_id',
-})
-console.log(notificationlocationsyncview.data())
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -157,53 +151,44 @@ Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
 
 ## Entities
 
-The API exposes 43 entities:
+The API exposes 34 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Active** | The Active entity (list). | `/api/v1/workspaces/{workspace_id}/projects/active` |
 | **Activity** | The Activity entity (list). | `/api/v1/activities` |
-| **Archived** | The Archived entity (list). | `/api/v1/workspaces/{workspace_id}/projects/archived` |
-| **Authorization** | The Authorization entity (create, remove). | `/api/v1/revoke` |
 | **Backup** | The Backup entity (list, load). | `/api/v1/backups` |
 | **BillingPortalUrl** | The BillingPortalUrl entity (create). | `/api/v1/payments/cancel_plan_with_redirect_to_stripe` |
 | **Collaborator** | The Collaborator entity (list). | `/api/v1/projects/{project_id}/collaborators` |
 | **Comment** | The Comment entity (create, list, load, remove, update). | `/api/v1/comments` |
 | **CompletedTask** | The CompletedTask entity (list). | `/api/v1/tasks/completed/by_completion_date` |
 | **CreditState** | The CreditState entity (load). | `/api/v1/usage_billing/state` |
-| **Email** | The Email entity (update). | `/api/v1/emails` |
+| **Email** | The Email entity (remove, update). | `/api/v1/emails` |
 | **FileUrl** | The FileUrl entity (load). | `/api/v1/templates/url` |
-| **Folder** | The Folder entity (create, list, load, remove). | `/api/v1/folders` |
+| **Folder** | The Folder entity (create, list, load, remove, update). | `/api/v1/folders` |
 | **History** | The History entity (list). | `/api/v1/usage_billing/history` |
 | **IdMapping** | The IdMapping entity (list). | `/api/v1/id_mappings/{obj_name}/{obj_ids}` |
-| **Invite** | The Invite entity (create). | `/api/v1/workspaces/{workspace_id}/users/invite` |
 | **Label** | The Label entity (create, list, load, remove, update). | `/api/v1/labels` |
-| **LocationReminder** | The LocationReminder entity (remove). | `/api/v1/location_reminders/{reminder_id}` |
-| **MemberView** | The MemberView entity (list). | `/api/v1/workspaces/users` |
-| **MigratePersonalToken** | The MigratePersonalToken entity (create). | `/api/v1/access_tokens/migrate_personal_token` |
-| **NotificationLocationSyncView** | The NotificationLocationSyncView entity (create, list, load). | `/api/v1/location_reminders` |
-| **NotificationSyncView** | The NotificationSyncView entity (create, list, load). | `/api/v1/reminders` |
+| **LocationReminder** | The LocationReminder entity (create, list, load, remove, update). | `/api/v1/location_reminders` |
+| **NotificationSetting** | The NotificationSetting entity (update). | `/api/v1/notification_setting` |
 | **PlanDetail** | The PlanDetail entity (list). | `/api/v1/workspaces/plan_details` |
 | **ProductivityStat** | The ProductivityStat entity (list). | `/api/v1/tasks/completed/stats` |
 | **Project** | The Project entity (create, list, load, remove, update). | `/api/v1/projects` |
 | **ProjectImport** | The ProjectImport entity (create). | `/api/v1/templates/import_into_project_from_file` |
-| **ProjectImportCreateResponseWithObject** | The ProjectImportCreateResponseWithObject entity (create). | `/api/v1/templates/create_project_from_file` |
-| **Reminder** | The Reminder entity (remove). | `/api/v1/reminders/{reminder_id}` |
-| **RemoveWorkspaceUser** | The RemoveWorkspaceUser entity (remove). | `/api/v1/workspaces/{workspace_id}/users/{user_id}` |
-| **RoleToActionMappingView** | The RoleToActionMappingView entity (list). | `/api/v1/projects/permissions` |
+| **ProjectPermission** | The ProjectPermission entity (list). | `/api/v1/projects/permissions` |
+| **Reminder** | The Reminder entity (create, list, load, remove, update). | `/api/v1/reminders` |
 | **Section** | The Section entity (create, list, load, remove, update). | `/api/v1/sections` |
 | **SharedLabel** | The SharedLabel entity (list, remove, update). | `/api/v1/labels/shared` |
-| **StatusOk** | The StatusOk entity (remove). | `/api/v1/emails` |
 | **SubscriptionInfo** | The SubscriptionInfo entity (create). | `/api/v1/payments/get_subscription_info` |
 | **Task** | The Task entity (create, list, load, remove, update). | `/api/v1/tasks` |
 | **Template** | The Template entity (load). | `/api/v1/templates/file` |
 | **TopUp** | The TopUp entity (create). | `/api/v1/usage_billing/top_up` |
 | **Upload** | The Upload entity (create, remove). | `/api/v1/uploads` |
 | **UsageSummary** | The UsageSummary entity (list). | `/api/v1/usage_billing/usage_summary` |
-| **User** | The User entity (list, update). | `/api/v1/user` |
-| **Workspace** | The Workspace entity (create, list, load, remove). | `/api/v1/workspaces` |
-| **WorkspaceInvitationView** | The WorkspaceInvitationView entity (create, list, update). | `/api/v1/workspaces/invitations/all` |
-| **WorkspaceUserView** | The WorkspaceUserView entity (create). | `/api/v1/workspaces/{workspace_id}/users/{user_id}` |
+| **User** | The User entity (load). | `/api/v1/user` |
+| **Workspace** | The Workspace entity (create, list, load, remove, update). | `/api/v1/workspaces` |
+| **WorkspaceInvitation** | The WorkspaceInvitation entity (list, remove, update). | `/api/v1/workspaces/invitations/all` |
+| **WorkspaceProject** | The WorkspaceProject entity (list). | `/api/v1/workspaces/{workspace_id}/projects/active` |
+| **WorkspaceUser** | The WorkspaceUser entity (create, list, remove, update). | `/api/v1/workspaces/users` |
 
 The operations available across these entities are **load**, **list**, **create**, **update**, **remove** — see each entity's
 own list above for exactly which it supports.
@@ -220,10 +205,10 @@ client = TodoistSDK({
     "apikey": os.environ.get("TODOIST_APIKEY"),
 })
 
-# List all actives (a list of entities, one per record; raises on error)
-actives = client.Active().list({"workspace_id": 1})
-for active in actives:
-    print(active.data_get())
+# List all activitys (a list of entities, one per record; raises on error)
+activitys = client.Activity().list()
+for activity in activitys:
+    print(activity.data_get())
 ```
 
 ### Golang
@@ -235,23 +220,14 @@ client := sdk.NewTodoistSDK(map[string]any{
     "apikey": os.Getenv("TODOIST_APIKEY"),
 })
 
-// List all actives (one entity per record; err is non-nil on failure)
-actives, err := client.Active(nil).List(map[string]any{"workspace_id": 1}, nil)
+// List all activitys (one entity per record; err is non-nil on failure)
+activitys, err := client.Activity(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-for _, active := range actives.([]any) {
-    fmt.Println(active.(sdk.Entity).Data())
+for _, activity := range activitys.([]any) {
+    fmt.Println(activity.(sdk.Entity).Data())
 }
-
-// Load a specific notificationlocationsyncview (returns the entity; err is non-nil on failure)
-notificationLocationSyncView, err := client.NotificationLocationSyncView(nil).Load(
-    map[string]any{"reminder_id": "example_reminder_id"}, nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println(notificationLocationSyncView.(sdk.Entity).Data())
 ```
 
 ## Direct and prepare

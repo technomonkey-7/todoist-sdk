@@ -31,35 +31,25 @@ class TestProjectImportEntity:
         ent = testsdk.ProjectImport(None)
         assert ent is not None
 
-    def test_should_refuse_an_invalid_request(self):
-        if "validate" not in (shared_config().get("feature") or {}):
-            pytest.skip("feature not present in this SDK: validate")
-        client = TodoistSDK.test(
-            None, {"feature": {"validate": {"active": True}}})
-        with pytest.raises(Exception) as err:
-            client.ProjectImport(None).create({"comments": "x", "discarded_fields": "x", "locale": 1, "project_id": "x", "project_notes": "x", "project_view_options_defaults": "x", "projects": "x", "reminders": "x", "sections": "x", "status": "x", "tasks": "x", "template_id": "x", "template_type": "x"}, None)
-        assert "validate_failed" == getattr(err.value, "code", None)
-
     def test_should_run_basic_flow(self):
         setup = _project_import_basic_setup(None)
         # Per-op sdk-test-control.json skip — basic test exercises a flow with
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["create"]:
+        for _op in []:
             _skip, _reason = runner.is_control_skipped("entityOp", "project_import." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
                 return
         client = setup["client"]
 
-        # CREATE
-        project_import_ref01_ent = client.ProjectImport(None)
-        project_import_ref01_data = helpers.to_map(vs.getprop(
-            vs.getpath(setup["data"], "new.project_import"), "project_import_ref01"))
-
-        project_import_ref01_data = helpers.to_map(runner.entity_data(project_import_ref01_ent.create(project_import_ref01_data, None)))
-        assert project_import_ref01_data is not None
+        # Bootstrap entity data from existing test data.
+        project_import_ref01_data_raw = vs.items(helpers.to_map(
+            vs.getpath(setup["data"], "existing.project_import")))
+        project_import_ref01_data = None
+        if len(project_import_ref01_data_raw) > 0:
+            project_import_ref01_data = helpers.to_map(project_import_ref01_data_raw[0][1])
 
 
 

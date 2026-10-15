@@ -181,3 +181,134 @@ guide: entity: shared_label: path: {
   }
 }
 guide: entity: paginated_list_str: active: false
+
+
+# Beyond the five core resources: the same two patterns, and schema names
+# replaced with the resource's own name.
+
+# Reminders and location reminders.
+guide: entity: reminder: path: {
+  "/api/v1/reminders": {
+    op: create: method: POST
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/reminders/{reminder_id}": {
+    op: load: method: GET
+    op: update: method: POST
+  }
+}
+guide: entity: notification_sync_view: active: false
+
+guide: entity: location_reminder: path: {
+  "/api/v1/location_reminders": {
+    op: create: method: POST
+    op: list: { method: GET, transform: res: "`body.results`" }
+  }
+  "/api/v1/location_reminders/{reminder_id}": {
+    op: load: method: GET
+    op: update: method: POST
+  }
+}
+guide: entity: notification_location_sync_view: active: false
+
+# Folder and workspace: POST /{id} is an update.
+guide: entity: folder: path: "/api/v1/folders/{folder_id}": {
+  op: create: active: false
+  op: update: method: POST
+}
+guide: entity: workspace: path: "/api/v1/workspaces/{workspace_id}": {
+  op: create: active: false
+  op: update: method: POST
+}
+
+# The user is a singleton read with GET /user. Notification settings are their own entity.
+guide: entity: user: path: {
+  "/api/v1/user": {
+    op: list: active: false
+    op: load: method: GET
+  }
+  "/api/v1/notification_setting": { active: false }
+}
+guide: entity: notification_setting: path: "/api/v1/notification_setting": op: update: method: PUT
+
+# A project's or task's forwarding email: PUT gets or creates it, DELETE disables it.
+guide: entity: email: path: "/api/v1/emails": op: remove: method: DELETE
+guide: entity: status_ok: active: false
+
+# Workspace projects, active by default, archived as an action.
+guide: entity: workspace_project: path: {
+  "/api/v1/workspaces/{workspace_id}/projects/active": {
+    op: list: { method: GET, transform: res: "`body.workspace_projects`" }
+  }
+  "/api/v1/workspaces/{workspace_id}/projects/archived": {
+    action: archived: {}
+    op: list: { method: GET, transform: res: "`body.workspace_projects`" }
+  }
+}
+guide: entity: active: active: false
+guide: entity: archived: active: false
+
+# Workspace users: list, role change, removal, joining a workspace, and
+# inviting people to one (an action on create).
+guide: entity: workspace_user: path: {
+  "/api/v1/workspaces/users": {
+    op: list: { method: GET, transform: res: "`body.workspace_users`" }
+  }
+  "/api/v1/workspaces/{workspace_id}/users/{user_id}": {
+    rename: param: user_id: "id"
+    op: update: method: POST
+    op: remove: method: DELETE
+  }
+  "/api/v1/workspaces/join": {
+    op: create: method: POST
+  }
+  "/api/v1/workspaces/{workspace_id}/users/invite": {
+    action: invite: {}
+    op: create: method: POST
+  }
+}
+guide: entity: member_view: active: false
+guide: entity: workspace_user_view: active: false
+guide: entity: remove_workspace_user: active: false
+guide: entity: invite: active: false
+
+# Workspace invitations: accept and reject were one unreachable point.
+guide: entity: workspace_invitation: path: {
+  "/api/v1/workspaces/invitations/all": {
+    op: list: method: GET
+  }
+  "/api/v1/workspaces/invitations/{invite_code}/accept": {
+    action: accept: {}
+    op: update: method: PUT
+  }
+  "/api/v1/workspaces/invitations/{invite_code}/reject": {
+    action: reject: {}
+    op: update: method: PUT
+  }
+  "/api/v1/workspaces/invitations/delete": {
+    op: remove: method: POST
+  }
+}
+guide: entity: workspace_invitation_view: active: false
+
+guide: entity: project_permission: path: "/api/v1/projects/permissions": op: list: method: GET
+guide: entity: role_to_action_mapping_view: active: false
+
+# Template imports: three POSTs that shared one unreachable slot, now actions.
+guide: entity: project_import: path: {
+  "/api/v1/templates/import_into_project_from_file": { action: from_file: {} }
+  "/api/v1/templates/import_into_project_from_template_id": { action: from_template: {} }
+  "/api/v1/templates/create_project_from_file": {
+    action: new_project_from_file: {}
+    op: create: method: POST
+  }
+}
+guide: entity: project_import_create_response_with_object: active: false
+
+guide: entity: subscription_info: path: "/api/v1/payments/reactivate_plan": action: reactivate_plan: {}
+
+# OAuth application endpoints. Revoking a token and migrating a personal token
+# take the app's client_id and client_secret, which a personal token cannot
+# supply, so these are left out of the SDK (listed under Coverage in the README).
+guide: entity: authorization: active: false
+guide: entity: migrate_personal_token: active: false

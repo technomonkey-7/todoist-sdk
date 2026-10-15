@@ -341,28 +341,10 @@ class TodoistSDK:
         return res
 
 
-    def Active(self, data=None) -> "ActiveEntity":
-        """Entity factory: client.Active().list() / client.Active().load({"id": ...})."""
-        from todoist_sdk.entity.active_entity import ActiveEntity
-        return ActiveEntity(self, data)
-
-
     def Activity(self, data=None) -> "ActivityEntity":
         """Entity factory: client.Activity().list() / client.Activity().load({"id": ...})."""
         from todoist_sdk.entity.activity_entity import ActivityEntity
         return ActivityEntity(self, data)
-
-
-    def Archived(self, data=None) -> "ArchivedEntity":
-        """Entity factory: client.Archived().list() / client.Archived().load({"id": ...})."""
-        from todoist_sdk.entity.archived_entity import ArchivedEntity
-        return ArchivedEntity(self, data)
-
-
-    def Authorization(self, data=None) -> "AuthorizationEntity":
-        """Entity factory: client.Authorization().list() / client.Authorization().load({"id": ...})."""
-        from todoist_sdk.entity.authorization_entity import AuthorizationEntity
-        return AuthorizationEntity(self, data)
 
 
     def Backup(self, data=None) -> "BackupEntity":
@@ -431,12 +413,6 @@ class TodoistSDK:
         return IdMappingEntity(self, data)
 
 
-    def Invite(self, data=None) -> "InviteEntity":
-        """Entity factory: client.Invite().list() / client.Invite().load({"id": ...})."""
-        from todoist_sdk.entity.invite_entity import InviteEntity
-        return InviteEntity(self, data)
-
-
     def Label(self, data=None) -> "LabelEntity":
         """Entity factory: client.Label().list() / client.Label().load({"id": ...})."""
         from todoist_sdk.entity.label_entity import LabelEntity
@@ -449,28 +425,10 @@ class TodoistSDK:
         return LocationReminderEntity(self, data)
 
 
-    def MemberView(self, data=None) -> "MemberViewEntity":
-        """Entity factory: client.MemberView().list() / client.MemberView().load({"id": ...})."""
-        from todoist_sdk.entity.member_view_entity import MemberViewEntity
-        return MemberViewEntity(self, data)
-
-
-    def MigratePersonalToken(self, data=None) -> "MigratePersonalTokenEntity":
-        """Entity factory: client.MigratePersonalToken().list() / client.MigratePersonalToken().load({"id": ...})."""
-        from todoist_sdk.entity.migrate_personal_token_entity import MigratePersonalTokenEntity
-        return MigratePersonalTokenEntity(self, data)
-
-
-    def NotificationLocationSyncView(self, data=None) -> "NotificationLocationSyncViewEntity":
-        """Entity factory: client.NotificationLocationSyncView().list() / client.NotificationLocationSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.notification_location_sync_view_entity import NotificationLocationSyncViewEntity
-        return NotificationLocationSyncViewEntity(self, data)
-
-
-    def NotificationSyncView(self, data=None) -> "NotificationSyncViewEntity":
-        """Entity factory: client.NotificationSyncView().list() / client.NotificationSyncView().load({"id": ...})."""
-        from todoist_sdk.entity.notification_sync_view_entity import NotificationSyncViewEntity
-        return NotificationSyncViewEntity(self, data)
+    def NotificationSetting(self, data=None) -> "NotificationSettingEntity":
+        """Entity factory: client.NotificationSetting().list() / client.NotificationSetting().load({"id": ...})."""
+        from todoist_sdk.entity.notification_setting_entity import NotificationSettingEntity
+        return NotificationSettingEntity(self, data)
 
 
     def PlanDetail(self, data=None) -> "PlanDetailEntity":
@@ -497,28 +455,16 @@ class TodoistSDK:
         return ProjectImportEntity(self, data)
 
 
-    def ProjectImportCreateResponseWithObject(self, data=None) -> "ProjectImportCreateResponseWithObjectEntity":
-        """Entity factory: client.ProjectImportCreateResponseWithObject().list() / client.ProjectImportCreateResponseWithObject().load({"id": ...})."""
-        from todoist_sdk.entity.project_import_create_response_with_object_entity import ProjectImportCreateResponseWithObjectEntity
-        return ProjectImportCreateResponseWithObjectEntity(self, data)
+    def ProjectPermission(self, data=None) -> "ProjectPermissionEntity":
+        """Entity factory: client.ProjectPermission().list() / client.ProjectPermission().load({"id": ...})."""
+        from todoist_sdk.entity.project_permission_entity import ProjectPermissionEntity
+        return ProjectPermissionEntity(self, data)
 
 
     def Reminder(self, data=None) -> "ReminderEntity":
         """Entity factory: client.Reminder().list() / client.Reminder().load({"id": ...})."""
         from todoist_sdk.entity.reminder_entity import ReminderEntity
         return ReminderEntity(self, data)
-
-
-    def RemoveWorkspaceUser(self, data=None) -> "RemoveWorkspaceUserEntity":
-        """Entity factory: client.RemoveWorkspaceUser().list() / client.RemoveWorkspaceUser().load({"id": ...})."""
-        from todoist_sdk.entity.remove_workspace_user_entity import RemoveWorkspaceUserEntity
-        return RemoveWorkspaceUserEntity(self, data)
-
-
-    def RoleToActionMappingView(self, data=None) -> "RoleToActionMappingViewEntity":
-        """Entity factory: client.RoleToActionMappingView().list() / client.RoleToActionMappingView().load({"id": ...})."""
-        from todoist_sdk.entity.role_to_action_mapping_view_entity import RoleToActionMappingViewEntity
-        return RoleToActionMappingViewEntity(self, data)
 
 
     def Section(self, data=None) -> "SectionEntity":
@@ -531,12 +477,6 @@ class TodoistSDK:
         """Entity factory: client.SharedLabel().list() / client.SharedLabel().load({"id": ...})."""
         from todoist_sdk.entity.shared_label_entity import SharedLabelEntity
         return SharedLabelEntity(self, data)
-
-
-    def StatusOk(self, data=None) -> "StatusOkEntity":
-        """Entity factory: client.StatusOk().list() / client.StatusOk().load({"id": ...})."""
-        from todoist_sdk.entity.status_ok_entity import StatusOkEntity
-        return StatusOkEntity(self, data)
 
 
     def SubscriptionInfo(self, data=None) -> "SubscriptionInfoEntity":
@@ -587,16 +527,22 @@ class TodoistSDK:
         return WorkspaceEntity(self, data)
 
 
-    def WorkspaceInvitationView(self, data=None) -> "WorkspaceInvitationViewEntity":
-        """Entity factory: client.WorkspaceInvitationView().list() / client.WorkspaceInvitationView().load({"id": ...})."""
-        from todoist_sdk.entity.workspace_invitation_view_entity import WorkspaceInvitationViewEntity
-        return WorkspaceInvitationViewEntity(self, data)
+    def WorkspaceInvitation(self, data=None) -> "WorkspaceInvitationEntity":
+        """Entity factory: client.WorkspaceInvitation().list() / client.WorkspaceInvitation().load({"id": ...})."""
+        from todoist_sdk.entity.workspace_invitation_entity import WorkspaceInvitationEntity
+        return WorkspaceInvitationEntity(self, data)
 
 
-    def WorkspaceUserView(self, data=None) -> "WorkspaceUserViewEntity":
-        """Entity factory: client.WorkspaceUserView().list() / client.WorkspaceUserView().load({"id": ...})."""
-        from todoist_sdk.entity.workspace_user_view_entity import WorkspaceUserViewEntity
-        return WorkspaceUserViewEntity(self, data)
+    def WorkspaceProject(self, data=None) -> "WorkspaceProjectEntity":
+        """Entity factory: client.WorkspaceProject().list() / client.WorkspaceProject().load({"id": ...})."""
+        from todoist_sdk.entity.workspace_project_entity import WorkspaceProjectEntity
+        return WorkspaceProjectEntity(self, data)
+
+
+    def WorkspaceUser(self, data=None) -> "WorkspaceUserEntity":
+        """Entity factory: client.WorkspaceUser().list() / client.WorkspaceUser().load({"id": ...})."""
+        from todoist_sdk.entity.workspace_user_entity import WorkspaceUserEntity
+        return WorkspaceUserEntity(self, data)
 
 
 
@@ -626,10 +572,7 @@ class TodoistSDK:
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from todoist_sdk.entity.active_entity import ActiveEntity
     from todoist_sdk.entity.activity_entity import ActivityEntity
-    from todoist_sdk.entity.archived_entity import ArchivedEntity
-    from todoist_sdk.entity.authorization_entity import AuthorizationEntity
     from todoist_sdk.entity.backup_entity import BackupEntity
     from todoist_sdk.entity.billing_portal_url_entity import BillingPortalUrlEntity
     from todoist_sdk.entity.collaborator_entity import CollaboratorEntity
@@ -641,24 +584,17 @@ if TYPE_CHECKING:
     from todoist_sdk.entity.folder_entity import FolderEntity
     from todoist_sdk.entity.history_entity import HistoryEntity
     from todoist_sdk.entity.id_mapping_entity import IdMappingEntity
-    from todoist_sdk.entity.invite_entity import InviteEntity
     from todoist_sdk.entity.label_entity import LabelEntity
     from todoist_sdk.entity.location_reminder_entity import LocationReminderEntity
-    from todoist_sdk.entity.member_view_entity import MemberViewEntity
-    from todoist_sdk.entity.migrate_personal_token_entity import MigratePersonalTokenEntity
-    from todoist_sdk.entity.notification_location_sync_view_entity import NotificationLocationSyncViewEntity
-    from todoist_sdk.entity.notification_sync_view_entity import NotificationSyncViewEntity
+    from todoist_sdk.entity.notification_setting_entity import NotificationSettingEntity
     from todoist_sdk.entity.plan_detail_entity import PlanDetailEntity
     from todoist_sdk.entity.productivity_stat_entity import ProductivityStatEntity
     from todoist_sdk.entity.project_entity import ProjectEntity
     from todoist_sdk.entity.project_import_entity import ProjectImportEntity
-    from todoist_sdk.entity.project_import_create_response_with_object_entity import ProjectImportCreateResponseWithObjectEntity
+    from todoist_sdk.entity.project_permission_entity import ProjectPermissionEntity
     from todoist_sdk.entity.reminder_entity import ReminderEntity
-    from todoist_sdk.entity.remove_workspace_user_entity import RemoveWorkspaceUserEntity
-    from todoist_sdk.entity.role_to_action_mapping_view_entity import RoleToActionMappingViewEntity
     from todoist_sdk.entity.section_entity import SectionEntity
     from todoist_sdk.entity.shared_label_entity import SharedLabelEntity
-    from todoist_sdk.entity.status_ok_entity import StatusOkEntity
     from todoist_sdk.entity.subscription_info_entity import SubscriptionInfoEntity
     from todoist_sdk.entity.task_entity import TaskEntity
     from todoist_sdk.entity.template_entity import TemplateEntity
@@ -667,5 +603,6 @@ if TYPE_CHECKING:
     from todoist_sdk.entity.usage_summary_entity import UsageSummaryEntity
     from todoist_sdk.entity.user_entity import UserEntity
     from todoist_sdk.entity.workspace_entity import WorkspaceEntity
-    from todoist_sdk.entity.workspace_invitation_view_entity import WorkspaceInvitationViewEntity
-    from todoist_sdk.entity.workspace_user_view_entity import WorkspaceUserViewEntity
+    from todoist_sdk.entity.workspace_invitation_entity import WorkspaceInvitationEntity
+    from todoist_sdk.entity.workspace_project_entity import WorkspaceProjectEntity
+    from todoist_sdk.entity.workspace_user_entity import WorkspaceUserEntity

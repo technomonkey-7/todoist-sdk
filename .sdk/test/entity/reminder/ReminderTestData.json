@@ -2,23 +2,84 @@
   "existing": {
     "reminder": {
       "REMINDER00": {
-        "id": "REMINDER00"
+        "due": "s6e",
+        "id": "REMINDER00",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "s73",
+        "notify_uid": "s74",
+        "reminder_type": "s75",
+        "service": "s76",
+        "task_id": "TASK01",
+        "type": "s78"
       },
       "REMINDER01": {
-        "id": "REMINDER01"
+        "due": "sdc",
+        "id": "REMINDER01",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "se1",
+        "notify_uid": "se2",
+        "reminder_type": "se3",
+        "service": "se4",
+        "task_id": "TASK01",
+        "type": "se6"
       },
       "REMINDER02": {
-        "id": "REMINDER02"
+        "due": "s14a",
+        "id": "REMINDER02",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "s14f",
+        "notify_uid": "s150",
+        "reminder_type": "s151",
+        "service": "s152",
+        "task_id": "TASK01",
+        "type": "s154"
       }
     }
   },
   "new": {
     "reminder": {
-      "reminder_ref01": {}
+      "reminder_ref01": {
+        "due": "s1b8",
+        "is_deleted": true,
+        "is_urgent": false,
+        "item_id": "ITEM01",
+        "minute_offset": "s1bd",
+        "notify_uid": "s1be",
+        "reminder_type": "s1bf",
+        "service": "s1c0",
+        "task_id": "TASK01",
+        "type": "s1c2"
+      }
     }
   },
   "requests": {
+    "POST /api/v1/reminders": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/reminders": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "DELETE /api/v1/reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/reminders/{reminder_id}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

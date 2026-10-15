@@ -49,18 +49,6 @@ const client = TodoistSDK.test()
 
 ### Instance Methods
 
-#### `Active(data?: object)`
-
-Create a new `Active` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ActiveEntity` instance.
-
 #### `Activity(data?: object)`
 
 Create a new `Activity` entity instance.
@@ -72,30 +60,6 @@ Create a new `Activity` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `ActivityEntity` instance.
-
-#### `Archived(data?: object)`
-
-Create a new `Archived` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `ArchivedEntity` instance.
-
-#### `Authorization(data?: object)`
-
-Create a new `Authorization` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `AuthorizationEntity` instance.
 
 #### `Backup(data?: object)`
 
@@ -229,18 +193,6 @@ Create a new `IdMapping` entity instance.
 
 **Returns:** `IdMappingEntity` instance.
 
-#### `Invite(data?: object)`
-
-Create a new `Invite` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `InviteEntity` instance.
-
 #### `Label(data?: object)`
 
 Create a new `Label` entity instance.
@@ -265,21 +217,9 @@ Create a new `LocationReminder` entity instance.
 
 **Returns:** `LocationReminderEntity` instance.
 
-#### `MemberView(data?: object)`
+#### `NotificationSetting(data?: object)`
 
-Create a new `MemberView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `MemberViewEntity` instance.
-
-#### `MigratePersonalToken(data?: object)`
-
-Create a new `MigratePersonalToken` entity instance.
+Create a new `NotificationSetting` entity instance.
 
 **Parameters:**
 
@@ -287,31 +227,7 @@ Create a new `MigratePersonalToken` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `MigratePersonalTokenEntity` instance.
-
-#### `NotificationLocationSyncView(data?: object)`
-
-Create a new `NotificationLocationSyncView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `NotificationLocationSyncViewEntity` instance.
-
-#### `NotificationSyncView(data?: object)`
-
-Create a new `NotificationSyncView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `NotificationSyncViewEntity` instance.
+**Returns:** `NotificationSettingEntity` instance.
 
 #### `PlanDetail(data?: object)`
 
@@ -361,9 +277,9 @@ Create a new `ProjectImport` entity instance.
 
 **Returns:** `ProjectImportEntity` instance.
 
-#### `ProjectImportCreateResponseWithObject(data?: object)`
+#### `ProjectPermission(data?: object)`
 
-Create a new `ProjectImportCreateResponseWithObject` entity instance.
+Create a new `ProjectPermission` entity instance.
 
 **Parameters:**
 
@@ -371,7 +287,7 @@ Create a new `ProjectImportCreateResponseWithObject` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `ProjectImportCreateResponseWithObjectEntity` instance.
+**Returns:** `ProjectPermissionEntity` instance.
 
 #### `Reminder(data?: object)`
 
@@ -384,30 +300,6 @@ Create a new `Reminder` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `ReminderEntity` instance.
-
-#### `RemoveWorkspaceUser(data?: object)`
-
-Create a new `RemoveWorkspaceUser` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `RemoveWorkspaceUserEntity` instance.
-
-#### `RoleToActionMappingView(data?: object)`
-
-Create a new `RoleToActionMappingView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `RoleToActionMappingViewEntity` instance.
 
 #### `Section(data?: object)`
 
@@ -432,18 +324,6 @@ Create a new `SharedLabel` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `SharedLabelEntity` instance.
-
-#### `StatusOk(data?: object)`
-
-Create a new `StatusOk` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `StatusOkEntity` instance.
 
 #### `SubscriptionInfo(data?: object)`
 
@@ -541,21 +421,9 @@ Create a new `Workspace` entity instance.
 
 **Returns:** `WorkspaceEntity` instance.
 
-#### `WorkspaceInvitationView(data?: object)`
+#### `WorkspaceInvitation(data?: object)`
 
-Create a new `WorkspaceInvitationView` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `WorkspaceInvitationViewEntity` instance.
-
-#### `WorkspaceUserView(data?: object)`
-
-Create a new `WorkspaceUserView` entity instance.
+Create a new `WorkspaceInvitation` entity instance.
 
 **Parameters:**
 
@@ -563,7 +431,31 @@ Create a new `WorkspaceUserView` entity instance.
 | --- | --- | --- |
 | `data` | `object` | Initial entity data. |
 
-**Returns:** `WorkspaceUserViewEntity` instance.
+**Returns:** `WorkspaceInvitationEntity` instance.
+
+#### `WorkspaceProject(data?: object)`
+
+Create a new `WorkspaceProject` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `WorkspaceProjectEntity` instance.
+
+#### `WorkspaceUser(data?: object)`
+
+Create a new `WorkspaceUser` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `WorkspaceUserEntity` instance.
 
 #### `options()`
 
@@ -622,76 +514,6 @@ as `callopts.signal`, and ends when it aborts.
 
 ---
 
-## ActiveEntity
-
-```ts
-const active = client.Active()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access` | `any` | Yes | Project access configuration. |
-| `archived_date` | `any` | No | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `number` | No | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `any` | No | Numeric project color code. |
-| `default_order` | `number` | No | Default order of the project in workspace views. |
-| `default_order_key` | `any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `string` | No | Project description. |
-| `folder_id` | `string` | No | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `any` | No | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `number` | Yes | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `boolean` | No | Whether the workspace project is archived. |
-| `is_frozen` | `boolean` | No | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `boolean` | No | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `boolean` | No | Whether project insights are enabled for the project. |
-| `name` | `string` | No | Project name. |
-| `project_id` | `string` | Yes | String ID of the project. |
-| `public_access` | `boolean` | Yes | Whether the project is publicly accessible. |
-| `role` | `any` | No |  |
-| `status` | `string` | No | Project status. |
-| `view_style` | `string` | No | Project view style. |
-| `workspace_id` | `number` | Yes | Numeric ID of the workspace that contains the project. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.Active().list({ workspace_id: 1 })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ActiveEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## ActivityEntity
 
 ```ts
@@ -738,137 +560,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## ArchivedEntity
-
-```ts
-const archived = client.Archived()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access` | `any` | Yes | Project access configuration. |
-| `archived_date` | `any` | No | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `number` | No | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `any` | No | Numeric project color code. |
-| `default_order` | `number` | No | Default order of the project in workspace views. |
-| `default_order_key` | `any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `string` | No | Project description. |
-| `folder_id` | `string` | No | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `any` | No | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `number` | Yes | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `boolean` | No | Whether the workspace project is archived. |
-| `is_frozen` | `boolean` | No | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `boolean` | No | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `boolean` | No | Whether project insights are enabled for the project. |
-| `name` | `string` | No | Project name. |
-| `project_id` | `string` | Yes | String ID of the project. |
-| `public_access` | `boolean` | Yes | Whether the project is publicly accessible. |
-| `role` | `any` | No |  |
-| `status` | `string` | No | Project status. |
-| `view_style` | `string` | No | Project view style. |
-| `workspace_id` | `number` | Yes | Numeric ID of the workspace that contains the project. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.Archived().list({ workspace_id: 1 })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `ArchivedEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## AuthorizationEntity
-
-```ts
-const authorization = client.Authorization()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `token` | `string` | Yes | The token to be revoked (access token). |
-| `token_type_hint` | `any` | No | A hint about the type of the token being revoked (optional). |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.Authorization().create({
-  token: 'example_token',
-})
-```
-
-#### `remove(match: object, ctrl?: object)`
-
-Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
-
-```ts
-const result = await client.Authorization().remove({ access_token: 'access_token', client_id: 'client_id', client_secret: 'client_secret' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `AuthorizationEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -1381,6 +1072,14 @@ const email = client.Email()
 
 ### Operations
 
+#### `remove(match: object, ctrl?: object)`
+
+Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
+
+```ts
+const result = await client.Email().remove({ obj_id: 'obj_id', obj_type: 'obj_type' })
+```
+
 #### `update(data: object, ctrl?: object)`
 
 Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
@@ -1490,15 +1189,15 @@ const folder = client.Folder()
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `child_order` | - | - | Yes | - |
-| `default_order` | - | - | Yes | - |
-| `default_order_key` | - | - | - | - |
-| `id` | - | - | - | - |
-| `is_deleted` | - | - | - | - |
-| `name` | - | - | Yes | - |
-| `workspace_id` | - | - | - | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `child_order` | - | - | Yes | - | - |
+| `default_order` | - | - | Yes | Yes | - |
+| `default_order_key` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `workspace_id` | - | - | - | - | - |
 
 ### Operations
 
@@ -1508,10 +1207,10 @@ Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Folder().create({
-  id: 1,
   child_order: 1,
   default_order: 1,
   default_order_key: 'example_default_order_key',
+  id: 'example_id',
   is_deleted: true,
   name: 'example_name',
   workspace_id: 'example_workspace_id',
@@ -1540,6 +1239,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 
 ```ts
 const result = await client.Folder().remove({ id: 1 })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Folder().update({
+  id: 1,
+  // Fields to update
+})
 ```
 
 ### Common Methods
@@ -1668,62 +1378,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `IdMappingEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## InviteEntity
-
-```ts
-const invite = client.Invite()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `app` | `string` | No | For first-party clients usage only. |
-| `email_list` | `any` | No | List of user emails to invite to the workspace. |
-| `invited_emails` | `any[]` | Yes | Emails successfully invited to the workspace. |
-| `role` | `any` | No | Role assigned to invited users. |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.Invite().create({
-  workspace_id: 1,
-  invited_emails: [],
-})
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `InviteEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -1872,9 +1526,73 @@ const location_reminder = client.LocationReminder()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `id` | `string` | Yes | String ID of the location reminder |
+| `is_deleted` | `boolean` | Yes | Whether the location reminder is deleted |
+| `item_id` | `string` | Yes | String ID of the task |
+| `loc_lat` | `string` | Yes | Latitude of the location |
+| `loc_long` | `string` | Yes | Longitude of the location |
+| `loc_trigger` | `string` | Yes | Trigger type for the location reminder |
+| `name` | `string` | Yes | Name of the location |
+| `notify_uid` | `string` | Yes | String ID of the user who will receive the reminder |
+| `project_id` | `string` | Yes | String ID of the project containing the task |
+| `radius` | `number` | Yes | Radius in meters |
+| `task_id` | `string` | Yes | String ID of the task |
+| `type` | `string` | No | The reminder type |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `item_id` | - | - | - | - | - |
+| `loc_lat` | - | - | - | Yes | - |
+| `loc_long` | - | - | - | Yes | - |
+| `loc_trigger` | - | - | - | Yes | - |
+| `name` | - | - | - | Yes | - |
+| `notify_uid` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `radius` | - | - | Yes | Yes | - |
+| `task_id` | - | - | - | - | - |
+| `type` | - | - | - | - | - |
 
 ### Operations
+
+#### `create(data: object, ctrl?: object)`
+
+Create a new entity with the given data. Resolves to the created entity.
+
+```ts
+const result = await client.LocationReminder().create({
+  id: 'example_id',
+  is_deleted: true,
+  item_id: 'example_item_id',
+  loc_lat: 'example_loc_lat',
+  loc_long: 'example_loc_long',
+  loc_trigger: 'example_loc_trigger',
+  name: 'example_name',
+  notify_uid: 'example_notify_uid',
+  project_id: 'example_project_id',
+  radius: 1,
+  task_id: 'example_task_id',
+})
+```
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.LocationReminder().list()
+```
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
+
+```ts
+const result = await client.LocationReminder().load({ id: 'location_reminder_id' })
+```
 
 #### `remove(match: object, ctrl?: object)`
 
@@ -1882,6 +1600,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 
 ```ts
 const result = await client.LocationReminder().remove({ id: 'location_reminder_id' })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.LocationReminder().update({
+  id: 'location_reminder_id',
+  // Fields to update
+})
 ```
 
 ### Common Methods
@@ -1912,96 +1641,29 @@ Return a copy of the entity options.
 
 ---
 
-## MemberViewEntity
+## NotificationSettingEntity
 
 ```ts
-const member_view = client.MemberView()
+const notification_setting = client.NotificationSetting()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `full_name` | `string` | Yes | Full name of the workspace member. |
-| `image_id` | `string` | No | Avatar image ID of the workspace member, or `null`. |
-| `is_deleted` | `boolean` | No | Whether the workspace member is deleted. |
-| `role` | `string` | Yes | Workspace role assigned to the member. |
-| `timezone` | `string` | Yes | Timezone of the workspace member. |
-| `user_email` | `string` | Yes | Email address of the workspace member. |
-| `user_id` | `string` | Yes | String ID of the workspace member. |
-| `workspace_id` | `string` | Yes | String ID of the workspace. |
+| `dont_notify` | `any` | No | Whether notifications should be disabled for the selected type and channel. |
+| `notification_type` | `string` | Yes | Notification type to update. |
+| `service` | `string` | Yes | Notification channel to update. |
 
 ### Operations
 
-#### `list(match: object, ctrl?: object)`
+#### `update(data: object, ctrl?: object)`
 
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.MemberView().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `MemberViewEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## MigratePersonalTokenEntity
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
 
 ```ts
-const migrate_personal_token = client.MigratePersonalToken()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access_token` | `any` | Yes | OAuth access token created from the personal token. |
-| `client_id` | `string` | Yes | The unique Client ID of the Todoist application that you registered. |
-| `client_secret` | `string` | Yes | The unique Client Secret of the Todoist application that you registered. |
-| `expires_in` | `number` | Yes | Access token lifetime in seconds. |
-| `personal_token` | `string` | Yes | Token obtained from the email/password authentication. |
-| `scope` | `string` | Yes | Scopes of the OAuth token. |
-| `token_type` | `string` | Yes | OAuth token type. |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.MigratePersonalToken().create({
-  access_token: 'example_access_token',
-  client_id: 'example_client_id',
-  client_secret: 'example_client_secret',
-  expires_in: 1,
-  personal_token: 'example_personal_token',
-  scope: 'example_scope',
-  token_type: 'example_token_type',
+const result = await client.NotificationSetting().update({
+  // Fields to update
 })
 ```
 
@@ -2019,217 +1681,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `MigratePersonalTokenEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## NotificationLocationSyncViewEntity
-
-```ts
-const notification_location_sync_view = client.NotificationLocationSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `string` | Yes | String ID of the location reminder |
-| `is_deleted` | `boolean` | Yes | Whether the location reminder is deleted |
-| `item_id` | `string` | Yes | String ID of the task |
-| `loc_lat` | `string` | Yes | Latitude of the location |
-| `loc_long` | `string` | Yes | Longitude of the location |
-| `loc_trigger` | `string` | Yes | Trigger type for the location reminder |
-| `name` | `string` | Yes | Name of the location |
-| `notify_uid` | `string` | Yes | String ID of the user who will receive the reminder |
-| `project_id` | `string` | Yes | String ID of the project containing the task |
-| `radius` | `number` | Yes | Radius in meters |
-| `task_id` | `string` | Yes | String ID of the task |
-| `type` | `string` | No | The reminder type |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `item_id` | - | - | - |
-| `loc_lat` | - | - | Yes |
-| `loc_long` | - | - | Yes |
-| `loc_trigger` | - | - | Yes |
-| `name` | - | - | Yes |
-| `notify_uid` | - | - | - |
-| `project_id` | - | - | - |
-| `radius` | - | - | Yes |
-| `task_id` | - | - | - |
-| `type` | - | - | - |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.NotificationLocationSyncView().create({
-  reminder_id: 'example_reminder_id',
-  id: 'example_id',
-  is_deleted: true,
-  item_id: 'example_item_id',
-  loc_lat: 'example_loc_lat',
-  loc_long: 'example_loc_long',
-  loc_trigger: 'example_loc_trigger',
-  name: 'example_name',
-  notify_uid: 'example_notify_uid',
-  project_id: 'example_project_id',
-  radius: 1,
-  task_id: 'example_task_id',
-})
-```
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.NotificationLocationSyncView().list()
-```
-
-#### `load(match: object, ctrl?: object)`
-
-Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
-
-```ts
-const result = await client.NotificationLocationSyncView().load({ reminder_id: 'reminder_id' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `NotificationLocationSyncViewEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## NotificationSyncViewEntity
-
-```ts
-const notification_sync_view = client.NotificationSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `due` | `any` | Yes | Datetime when the reminder fires, or `null` if unset. |
-| `id` | `string` | Yes | String ID of the reminder. |
-| `is_deleted` | `boolean` | Yes | Whether the reminder is deleted. |
-| `is_urgent` | `boolean` | Yes | Whether the reminder should be delivered urgently. |
-| `item_id` | `string` | Yes | String ID of the task that owns the reminder. |
-| `minute_offset` | `any` | Yes | Minutes before the task due time for relative reminders. |
-| `notify_uid` | `string` | Yes | String ID of the user who receives the reminder. |
-| `reminder_type` | `string` | No | Type of the reminder: 'relative' or 'absolute' |
-| `service` | `string` | No | Notification service type: 'email', 'push'. |
-| `task_id` | `string` | Yes | String ID of the task |
-| `type` | `string` | Yes | Reminder type. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `due` | - | - | Yes |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `is_urgent` | - | - | Yes |
-| `item_id` | - | - | - |
-| `minute_offset` | - | - | Yes |
-| `notify_uid` | - | - | - |
-| `reminder_type` | - | - | - |
-| `service` | - | - | - |
-| `task_id` | - | - | - |
-| `type` | - | - | - |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.NotificationSyncView().create({
-  reminder_id: 'example_reminder_id',
-  due: 'example_due',
-  id: 'example_id',
-  is_deleted: true,
-  is_urgent: true,
-  item_id: 'example_item_id',
-  minute_offset: 'example_minute_offset',
-  notify_uid: 'example_notify_uid',
-  task_id: 'example_task_id',
-  type: 'example_type',
-})
-```
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.NotificationSyncView().list()
-```
-
-#### `load(match: object, ctrl?: object)`
-
-Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
-
-```ts
-const result = await client.NotificationSyncView().load({ reminder_id: 'reminder_id' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `NotificationSyncViewEntity` instance with the same client and
+Create a new `NotificationSettingEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2504,48 +1956,33 @@ Return a copy of the entity options.
 const project_import = client.ProjectImport()
 ```
 
-### Fields
+### Actions
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `comments` | `any[]` | Yes | Task comments created by the import. |
-| `discarded_fields` | `any[]` | Yes | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `locale` | `string` | No | Locale to use for localized template content. |
-| `project_id` | `string` | Yes | String ID of the project to import the template into. |
-| `project_notes` | `any[]` | Yes | Project comments created by the import. |
-| `project_view_options_defaults` | `any[]` | Yes | View options defaults applied to the imported project. |
-| `projects` | `any[]` | Yes | Projects created or updated by the import. |
-| `reminders` | `any[]` | Yes | Reminders created by the import. |
-| `sections` | `any[]` | Yes | Sections created by the import. |
-| `status` | `string` | Yes | Always `ok` on success. |
-| `tasks` | `any[]` | Yes | Tasks created by the import. |
-| `template_id` | `string` | Yes | ID of the saved template to import. |
-| `template_type` | `string` | Yes | Type of template that was imported. |
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `from_file` | `/api/v1/templates/import_into_project_from_file` | `client.ProjectImport().create({ $action: 'from_file', ... })` |
+| `from_template` | `/api/v1/templates/import_into_project_from_template_id` | `client.ProjectImport().create({ $action: 'from_template', ... })` |
+| `new_project_from_file` | `/api/v1/templates/create_project_from_file` | `client.ProjectImport().create({ $action: 'new_project_from_file', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+ProjectImport record — check the API definition for its shape.
+
+```ts
+const result = await client.ProjectImport().create({
+  $action: 'from_file',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
 #### `create(data: object, ctrl?: object)`
 
 Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.ProjectImport().create({
-  comments: [],
-  discarded_fields: [],
-  project_id: 'example_project_id',
-  project_notes: [],
-  project_view_options_defaults: [],
-  projects: [],
-  reminders: [],
-  sections: [],
-  status: 'example_status',
-  tasks: [],
-  template_id: 'example_template_id',
-  template_type: 'example_template_type',
-})
-```
-
-Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -2575,51 +2012,28 @@ Return a copy of the entity options.
 
 ---
 
-## ProjectImportCreateResponseWithObjectEntity
+## ProjectPermissionEntity
 
 ```ts
-const project_import_create_response_with_object = client.ProjectImportCreateResponseWithObject()
+const project_permission = client.ProjectPermission()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `comments` | `any[]` | Yes | Task comments created by the import. |
-| `discarded_fields` | `any[]` | Yes | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `project_id` | `string` | Yes | ID of the project created from the template. |
-| `project_notes` | `any[]` | Yes | Project comments created by the import. |
-| `project_view_options_defaults` | `any[]` | Yes | View options defaults applied to the imported project. |
-| `projects` | `any[]` | Yes | Projects created by the import. |
-| `reminders` | `any[]` | Yes | Reminders created by the import. |
-| `sections` | `any[]` | Yes | Sections created by the import. |
-| `status` | `string` | Yes | Always `ok` on success. |
-| `tasks` | `any[]` | Yes | Tasks created by the import. |
-| `template_type` | `string` | Yes | Type of template that was imported. |
+| `project_collaborator_actions` | `any[]` | Yes | Project collaborator roles and their allowed actions. |
+| `workspace_collaborator_actions` | `any[]` | Yes | Workspace collaborator roles and their allowed actions. |
 
 ### Operations
 
-#### `create(data: object, ctrl?: object)`
+#### `list(match: object, ctrl?: object)`
 
-Create a new entity with the given data. Resolves to the created entity.
+List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
-const result = await client.ProjectImportCreateResponseWithObject().create({
-  comments: [],
-  discarded_fields: [],
-  project_id: 'example_project_id',
-  project_notes: [],
-  project_view_options_defaults: [],
-  projects: [],
-  reminders: [],
-  sections: [],
-  status: 'example_status',
-  tasks: [],
-  template_type: 'example_template_type',
-})
+const results = await client.ProjectPermission().list()
 ```
-
-Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -2635,7 +2049,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `ProjectImportCreateResponseWithObjectEntity` instance with the same client and
+Create a new `ProjectPermissionEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -2659,9 +2073,69 @@ const reminder = client.Reminder()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `due` | `any` | Yes | Datetime when the reminder fires, or `null` if unset. |
+| `id` | `string` | Yes | String ID of the reminder. |
+| `is_deleted` | `boolean` | Yes | Whether the reminder is deleted. |
+| `is_urgent` | `boolean` | Yes | Whether the reminder should be delivered urgently. |
+| `item_id` | `string` | Yes | String ID of the task that owns the reminder. |
+| `minute_offset` | `any` | Yes | Minutes before the task due time for relative reminders. |
+| `notify_uid` | `string` | Yes | String ID of the user who receives the reminder. |
+| `reminder_type` | `string` | No | Type of the reminder: 'relative' or 'absolute' |
+| `service` | `string` | No | Notification service type: 'email', 'push'. |
+| `task_id` | `string` | Yes | String ID of the task |
+| `type` | `string` | Yes | Reminder type. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `due` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `is_urgent` | - | - | Yes | Yes | - |
+| `item_id` | - | - | - | - | - |
+| `minute_offset` | - | - | Yes | Yes | - |
+| `notify_uid` | - | - | - | - | - |
+| `reminder_type` | - | - | - | - | - |
+| `service` | - | - | - | - | - |
+| `task_id` | - | - | - | - | - |
+| `type` | - | - | - | - | - |
 
 ### Operations
+
+#### `create(data: object, ctrl?: object)`
+
+Create a new entity with the given data. Resolves to the created entity.
+
+```ts
+const result = await client.Reminder().create({
+  due: 'example_due',
+  id: 'example_id',
+  is_deleted: true,
+  is_urgent: true,
+  item_id: 'example_item_id',
+  minute_offset: 'example_minute_offset',
+  notify_uid: 'example_notify_uid',
+  task_id: 'example_task_id',
+  type: 'example_type',
+})
+```
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.Reminder().list()
+```
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
+
+```ts
+const result = await client.Reminder().load({ id: 'reminder_id' })
+```
 
 #### `remove(match: object, ctrl?: object)`
 
@@ -2669,6 +2143,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 
 ```ts
 const result = await client.Reminder().remove({ id: 'reminder_id' })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Reminder().update({
+  id: 'reminder_id',
+  // Fields to update
+})
 ```
 
 ### Common Methods
@@ -2686,107 +2171,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `ReminderEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## RemoveWorkspaceUserEntity
-
-```ts
-const remove_workspace_user = client.RemoveWorkspaceUser()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `string` | No |  |
-
-### Operations
-
-#### `remove(match: object, ctrl?: object)`
-
-Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
-
-```ts
-const result = await client.RemoveWorkspaceUser().remove({ id: 1, workspace_id: 1 })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `RemoveWorkspaceUserEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## RoleToActionMappingViewEntity
-
-```ts
-const role_to_action_mapping_view = client.RoleToActionMappingView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `project_collaborator_actions` | `any[]` | Yes | Project collaborator roles and their allowed actions. |
-| `workspace_collaborator_actions` | `any[]` | Yes | Workspace collaborator roles and their allowed actions. |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.RoleToActionMappingView().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `RoleToActionMappingViewEntity` instance with the same client and
 options.
 
 #### `client()`
@@ -3024,50 +2408,6 @@ Return a copy of the entity options.
 
 ---
 
-## StatusOkEntity
-
-```ts
-const status_ok = client.StatusOk()
-```
-
-### Operations
-
-#### `remove(match: object, ctrl?: object)`
-
-Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
-
-```ts
-const result = await client.StatusOk().remove({ obj_id: 'obj_id', obj_type: 'obj_type' })
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `StatusOkEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## SubscriptionInfoEntity
 
 ```ts
@@ -3089,6 +2429,26 @@ const subscription_info = client.SubscriptionInfo()
 | `plan` | `string` | Yes | Plan tier the user is currently on. |
 | `plan_price` | `any` | Yes | Price of the active plan, when known. |
 | `status` | `string` | Yes | Current subscription status. |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `reactivate_plan` | `/api/v1/payments/reactivate_plan` | `client.SubscriptionInfo().create({ $action: 'reactivate_plan', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+SubscriptionInfo record — check the API definition for its shape.
+
+```ts
+const result = await client.SubscriptionInfo().create({
+  $action: 'reactivate_plan',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -3629,7 +2989,6 @@ const user = client.User()
 | `date_format` | `number` | Yes | Whether to use the DD-MM-YYYY date format (if set to 0), or the MM-DD-YYYY format (if set to 1) |
 | `days_off` | `any[]` | Yes | Array of integers representing user's days off (between 1 and 7, where 1 is Monday and 7 is Sunday) |
 | `deleted_at` | `any` | No | Date when user was deleted (ISO 8601 format) |
-| `dont_notify` | `any` | No | Whether notifications should be disabled for the selected type and channel. |
 | `email` | `string` | Yes | User's email address |
 | `feature_identifier` | `string` | Yes | Feature identifier for feature flag evaluations |
 | `features` | `Record<string, any>` | Yes | Feature flags and settings for the user |
@@ -3653,7 +3012,6 @@ const user = client.User()
 | `lang` | `string` | Yes | The user's language |
 | `mfa_enabled` | `boolean` | Yes | Whether multi-factor authentication is enabled |
 | `next_week` | `number` | Yes | The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday) |
-| `notification_type` | `string` | Yes | Notification type to update. |
 | `onboarded_dated_tasks_created` | `any` | No | True once the user has created at least 1 task with a due date that includes a time component (excluding auto-seeded getting-started-guide tasks). |
 | `onboarded_desktop_accessed` | `any` | No | True once the user has synced from Web, macOS, or Windows. |
 | `onboarded_mobile_accessed` | `any` | No | True once the user has synced from iOS or Android. |
@@ -3668,7 +3026,6 @@ const user = client.User()
 | `onboarding_use_cases` | `any` | No | Use cases the user selected during onboarding |
 | `premium_status` | `any` | No | Outlines why a user is premium, possible values are: not_premium, current_personal_plan, legacy_personal_plan or teams_business_member |
 | `premium_until` | `any` | No | The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user). |
-| `service` | `string` | Yes | Notification channel to update. |
 | `share_limit` | `number` | Yes | Maximum number of collaborators allowed in shared projects |
 | `sort_order` | `number` | Yes | Whether to show projects in an oldest dates first order (if set to 0), or a oldest dates last order (if set to 1) |
 | `start_day` | `number` | Yes | The first day of the week (between 1 and 7, where 1 is Monday and 7 is Sunday) |
@@ -3687,22 +3044,12 @@ const user = client.User()
 
 ### Operations
 
-#### `list(match: object, ctrl?: object)`
+#### `load(match: object, ctrl?: object)`
 
-List entities matching the given criteria. Resolves to an array of entities, one per record.
-
-```ts
-const results = await client.User().list()
-```
-
-#### `update(data: object, ctrl?: object)`
-
-Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+Load a single entity matching the given criteria. Resolves to the entity, whose record `data()` reads.
 
 ```ts
-const result = await client.User().update({
-  // Fields to update
-})
+const result = await client.User().load({ id: 'user_id' })
 ```
 
 ### Common Methods
@@ -3743,18 +3090,18 @@ const workspace = client.Workspace()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No | Updated workspace description. |
-| `domain_discovery` | `any` | No | Updated domain discovery setting. |
-| `domain_name` | `any` | No | Updated workspace email domain. |
+| `description` | `string` | No | Description of the workspace. |
+| `domain_discovery` | `boolean` | No | Whether users with matching email domains can discover this workspace. |
+| `domain_name` | `any` | No | Workspace email domain. |
 | `id` | `string` | No |  |
 | `invite_code` | `any` | No | Regenerate workspace invite code when set. |
 | `is_collapsed` | `boolean` | No | Updated collapse state for current user. |
-| `is_guest_allowed` | `boolean` | No | Updated guest access status. |
-| `is_link_sharing_enabled` | `boolean` | No | Updated link sharing status. |
-| `is_trial_pending` | `boolean` | No | Updated trial pending state. |
-| `name` | `string` | No | Updated workspace name. |
-| `properties` | `any` | No | Updated workspace properties. |
-| `restrict_email_domains` | `any` | No | Updated email domain restriction setting. |
+| `is_guest_allowed` | `boolean` | No | Whether guests are allowed in the workspace. |
+| `is_link_sharing_enabled` | `boolean` | No | Whether link sharing is enabled for the workspace. |
+| `is_trial_pending` | `boolean` | No | Whether the workspace is waiting for trial confirmation. |
+| `name` | `string` | No | Name of the workspace. |
+| `properties` | `any` | No | Workspace properties. |
+| `restrict_email_domains` | `boolean` | No | Whether workspace invites are restricted to workspace domain. |
 
 ### Actions
 
@@ -3785,7 +3132,6 @@ Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
 const result = await client.Workspace().create({
-  id: 1,
 })
 ```
 
@@ -3813,6 +3159,17 @@ Remove the entity matching the given criteria. Resolves to the entity, marked as
 
 ```ts
 const result = await client.Workspace().remove({ id: 1 })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+```ts
+const result = await client.Workspace().update({
+  id: 1,
+  // Fields to update
+})
 ```
 
 ### Common Methods
@@ -3843,10 +3200,10 @@ Return a copy of the entity options.
 
 ---
 
-## WorkspaceInvitationViewEntity
+## WorkspaceInvitationEntity
 
 ```ts
-const workspace_invitation_view = client.WorkspaceInvitationView()
+const workspace_invitation = client.WorkspaceInvitation()
 ```
 
 ### Fields
@@ -3860,6 +3217,227 @@ const workspace_invitation_view = client.WorkspaceInvitationView()
 | `user_email` | `string` | Yes | The invited person's email. |
 | `workspace_id` | `string` | Yes | ID of the workspace |
 
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `accept` | `/api/v1/workspaces/invitations/{invite_code}/accept` | `client.WorkspaceInvitation().update({ $action: 'accept', ... })` |
+| `reject` | `/api/v1/workspaces/invitations/{invite_code}/reject` | `client.WorkspaceInvitation().update({ $action: 'reject', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+WorkspaceInvitation record — check the API definition for its shape.
+
+```ts
+const result = await client.WorkspaceInvitation().update({
+  $action: 'accept',
+  /* ...the action's own arguments */
+})
+```
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.WorkspaceInvitation().list({ workspace_id: 1 })
+```
+
+#### `remove(match: object, ctrl?: object)`
+
+Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
+
+```ts
+const result = await client.WorkspaceInvitation().remove({ id: 'workspace_invitation_id' })
+```
+
+#### `update(data: object, ctrl?: object)`
+
+Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `WorkspaceInvitationEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `TodoistSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## WorkspaceProjectEntity
+
+```ts
+const workspace_project = client.WorkspaceProject()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `access` | `any` | Yes | Project access configuration. |
+| `archived_date` | `any` | No | Date and time when the project was archived, or `null` if active. |
+| `archived_timestamp` | `number` | No | Unix timestamp for when the project was archived, or 0 if active. |
+| `color` | `any` | No | Numeric project color code. |
+| `default_order` | `number` | No | Default order of the project in workspace views. |
+| `default_order_key` | `any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
+| `description` | `string` | No | Project description. |
+| `folder_id` | `string` | No | Numeric ID of the folder that contains the project, or `null`. |
+| `icon` | `any` | No | Project icon name, or `null` for the default icon. |
+| `initiated_by_uid` | `number` | Yes | Numeric ID of the user requesting the workspace project. |
+| `is_archived` | `boolean` | No | Whether the workspace project is archived. |
+| `is_frozen` | `boolean` | No | Whether the project is frozen and cannot be modified. |
+| `is_invite_only` | `boolean` | No | Whether joining the workspace project requires an invitation. |
+| `is_project_insights_enabled` | `boolean` | No | Whether project insights are enabled for the project. |
+| `name` | `string` | No | Project name. |
+| `project_id` | `string` | Yes | String ID of the project. |
+| `public_access` | `boolean` | Yes | Whether the project is publicly accessible. |
+| `role` | `any` | No |  |
+| `status` | `string` | No | Project status. |
+| `view_style` | `string` | No | Project view style. |
+| `workspace_id` | `number` | Yes | Numeric ID of the workspace that contains the project. |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `archived` | `/api/v1/workspaces/{workspace_id}/projects/archived` | `client.WorkspaceProject().list({ $action: 'archived', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+WorkspaceProject record — check the API definition for its shape.
+
+```ts
+const result = await client.WorkspaceProject().list({
+  $action: 'archived',
+  /* ...the action's own arguments */
+})
+```
+
+### Operations
+
+#### `list(match: object, ctrl?: object)`
+
+List entities matching the given criteria. Resolves to an array of entities, one per record.
+
+```ts
+const results = await client.WorkspaceProject().list({ workspace_id: 1 })
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `WorkspaceProjectEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `TodoistSDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## WorkspaceUserEntity
+
+```ts
+const workspace_user = client.WorkspaceUser()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `custom_sorting_applied` | `boolean` | No | Whether the user has custom project sorting enabled. |
+| `full_name` | `string` | Yes | Full name of the workspace member. |
+| `id` | `string` | No |  |
+| `image_id` | `string` | No | Avatar image ID of the workspace member, or `null`. |
+| `invite_code` | `any` | No | Workspace invite code to join with. |
+| `is_deleted` | `boolean` | No | Whether the workspace member is deleted. |
+| `project_sort_preference` | `string` | No | Project sorting preference for the user. |
+| `role` | `string` | No | Workspace role assigned to the user. |
+| `timezone` | `string` | Yes | Timezone of the workspace member. |
+| `user_email` | `string` | Yes | Email address of the workspace member. |
+| `user_id` | `string` | Yes | String ID of the workspace user. |
+| `workspace_id` | `string` | Yes | String ID of the workspace. |
+
+### Field Usage by Operation
+
+| Field | list | create | update | remove |
+| --- | --- | --- | --- | --- |
+| `custom_sorting_applied` | - | - | - | - |
+| `full_name` | - | - | - | - |
+| `id` | - | - | - | - |
+| `image_id` | - | - | - | - |
+| `invite_code` | - | - | - | - |
+| `is_deleted` | - | - | - | - |
+| `project_sort_preference` | - | - | - | - |
+| `role` | Yes | - | Yes | - |
+| `timezone` | - | - | - | - |
+| `user_email` | - | - | - | - |
+| `user_id` | - | - | - | - |
+| `workspace_id` | - | Yes | - | - |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `invite` | `/api/v1/workspaces/{workspace_id}/users/invite` | `client.WorkspaceUser().create({ $action: 'invite', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+WorkspaceUser record — check the API definition for its shape.
+
+```ts
+const result = await client.WorkspaceUser().create({
+  $action: 'invite',
+  /* ...the action's own arguments */
+})
+```
+
 ### Operations
 
 #### `create(data: object, ctrl?: object)`
@@ -3867,10 +3445,11 @@ const workspace_invitation_view = client.WorkspaceInvitationView()
 Create a new entity with the given data. Resolves to the created entity.
 
 ```ts
-const result = await client.WorkspaceInvitationView().create({
-  inviter_id: 'example_inviter_id',
-  role: 'example_role',
+const result = await client.WorkspaceUser().create({
+  full_name: 'example_full_name',
+  timezone: 'example_timezone',
   user_email: 'example_user_email',
+  user_id: 'example_user_id',
   workspace_id: 'example_workspace_id',
 })
 ```
@@ -3880,7 +3459,15 @@ const result = await client.WorkspaceInvitationView().create({
 List entities matching the given criteria. Resolves to an array of entities, one per record.
 
 ```ts
-const results = await client.WorkspaceInvitationView().list({ workspace_id: 1 })
+const results = await client.WorkspaceUser().list()
+```
+
+#### `remove(match: object, ctrl?: object)`
+
+Remove the entity matching the given criteria. Resolves to the entity, marked as deleted.
+
+```ts
+const result = await client.WorkspaceUser().remove({ id: 1, workspace_id: 1 })
 ```
 
 #### `update(data: object, ctrl?: object)`
@@ -3888,8 +3475,9 @@ const results = await client.WorkspaceInvitationView().list({ workspace_id: 1 })
 Update an existing entity. The data must include the entity `id`. Resolves to the updated entity.
 
 ```ts
-const result = await client.WorkspaceInvitationView().update({
-  invite_code: 'invite_code',
+const result = await client.WorkspaceUser().update({
+  id: 1,
+  workspace_id: 1,
   // Fields to update
 })
 ```
@@ -3908,76 +3496,7 @@ Get or set the entity match criteria. Works the same as `data()`.
 
 #### `make()`
 
-Create a new `WorkspaceInvitationViewEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TodoistSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## WorkspaceUserViewEntity
-
-```ts
-const workspace_user_view = client.WorkspaceUserView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `custom_sorting_applied` | `boolean` | No | Whether the user has custom project sorting enabled. |
-| `invite_code` | `any` | No | Workspace invite code to join with. |
-| `project_sort_preference` | `string` | No | Project sorting preference for the user. |
-| `role` | `string` | No | Workspace role assigned to the user. |
-| `user_id` | `string` | Yes | String ID of the workspace user. |
-| `workspace_id` | `string` | Yes | String ID of the workspace. |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `custom_sorting_applied` | - |
-| `invite_code` | - |
-| `project_sort_preference` | - |
-| `role` | Yes |
-| `user_id` | - |
-| `workspace_id` | Yes |
-
-### Operations
-
-#### `create(data: object, ctrl?: object)`
-
-Create a new entity with the given data. Resolves to the created entity.
-
-```ts
-const result = await client.WorkspaceUserView().create({
-  user_id: 1,
-  workspace_id: 1,
-})
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `WorkspaceUserViewEntity` instance with the same client and
+Create a new `WorkspaceUserEntity` instance with the same client and
 options.
 
 #### `client()`

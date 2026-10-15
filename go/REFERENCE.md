@@ -48,21 +48,9 @@ client := sdk.TestSDK(testopts, sdkopts)
 
 ### Instance Methods
 
-#### `Active(data map[string]any) TodoistEntity`
-
-Create a new `Active` entity instance. Pass `nil` for no initial data.
-
 #### `Activity(data map[string]any) TodoistEntity`
 
 Create a new `Activity` entity instance. Pass `nil` for no initial data.
-
-#### `Archived(data map[string]any) TodoistEntity`
-
-Create a new `Archived` entity instance. Pass `nil` for no initial data.
-
-#### `Authorization(data map[string]any) TodoistEntity`
-
-Create a new `Authorization` entity instance. Pass `nil` for no initial data.
 
 #### `Backup(data map[string]any) TodoistEntity`
 
@@ -108,10 +96,6 @@ Create a new `History` entity instance. Pass `nil` for no initial data.
 
 Create a new `IdMapping` entity instance. Pass `nil` for no initial data.
 
-#### `Invite(data map[string]any) TodoistEntity`
-
-Create a new `Invite` entity instance. Pass `nil` for no initial data.
-
 #### `Label(data map[string]any) TodoistEntity`
 
 Create a new `Label` entity instance. Pass `nil` for no initial data.
@@ -120,21 +104,9 @@ Create a new `Label` entity instance. Pass `nil` for no initial data.
 
 Create a new `LocationReminder` entity instance. Pass `nil` for no initial data.
 
-#### `MemberView(data map[string]any) TodoistEntity`
+#### `NotificationSetting(data map[string]any) TodoistEntity`
 
-Create a new `MemberView` entity instance. Pass `nil` for no initial data.
-
-#### `MigratePersonalToken(data map[string]any) TodoistEntity`
-
-Create a new `MigratePersonalToken` entity instance. Pass `nil` for no initial data.
-
-#### `NotificationLocationSyncView(data map[string]any) TodoistEntity`
-
-Create a new `NotificationLocationSyncView` entity instance. Pass `nil` for no initial data.
-
-#### `NotificationSyncView(data map[string]any) TodoistEntity`
-
-Create a new `NotificationSyncView` entity instance. Pass `nil` for no initial data.
+Create a new `NotificationSetting` entity instance. Pass `nil` for no initial data.
 
 #### `PlanDetail(data map[string]any) TodoistEntity`
 
@@ -152,21 +124,13 @@ Create a new `Project` entity instance. Pass `nil` for no initial data.
 
 Create a new `ProjectImport` entity instance. Pass `nil` for no initial data.
 
-#### `ProjectImportCreateResponseWithObject(data map[string]any) TodoistEntity`
+#### `ProjectPermission(data map[string]any) TodoistEntity`
 
-Create a new `ProjectImportCreateResponseWithObject` entity instance. Pass `nil` for no initial data.
+Create a new `ProjectPermission` entity instance. Pass `nil` for no initial data.
 
 #### `Reminder(data map[string]any) TodoistEntity`
 
 Create a new `Reminder` entity instance. Pass `nil` for no initial data.
-
-#### `RemoveWorkspaceUser(data map[string]any) TodoistEntity`
-
-Create a new `RemoveWorkspaceUser` entity instance. Pass `nil` for no initial data.
-
-#### `RoleToActionMappingView(data map[string]any) TodoistEntity`
-
-Create a new `RoleToActionMappingView` entity instance. Pass `nil` for no initial data.
 
 #### `Section(data map[string]any) TodoistEntity`
 
@@ -175,10 +139,6 @@ Create a new `Section` entity instance. Pass `nil` for no initial data.
 #### `SharedLabel(data map[string]any) TodoistEntity`
 
 Create a new `SharedLabel` entity instance. Pass `nil` for no initial data.
-
-#### `StatusOk(data map[string]any) TodoistEntity`
-
-Create a new `StatusOk` entity instance. Pass `nil` for no initial data.
 
 #### `SubscriptionInfo(data map[string]any) TodoistEntity`
 
@@ -212,13 +172,17 @@ Create a new `User` entity instance. Pass `nil` for no initial data.
 
 Create a new `Workspace` entity instance. Pass `nil` for no initial data.
 
-#### `WorkspaceInvitationView(data map[string]any) TodoistEntity`
+#### `WorkspaceInvitation(data map[string]any) TodoistEntity`
 
-Create a new `WorkspaceInvitationView` entity instance. Pass `nil` for no initial data.
+Create a new `WorkspaceInvitation` entity instance. Pass `nil` for no initial data.
 
-#### `WorkspaceUserView(data map[string]any) TodoistEntity`
+#### `WorkspaceProject(data map[string]any) TodoistEntity`
 
-Create a new `WorkspaceUserView` entity instance. Pass `nil` for no initial data.
+Create a new `WorkspaceProject` entity instance. Pass `nil` for no initial data.
+
+#### `WorkspaceUser(data map[string]any) TodoistEntity`
+
+Create a new `WorkspaceUser` entity instance. Pass `nil` for no initial data.
 
 #### `OptionsMap() map[string]any`
 
@@ -252,87 +216,6 @@ Prepare a fetch definition without sending the request. Accepts the
 same parameters as `Direct()`.
 
 **Returns:** `(map[string]any, error)`
-
-
----
-
-## ActiveEntity
-
-```go
-active := client.Active(nil)
-fmt.Println(active.GetName()) // "active"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access` | `any` | Yes | Project access configuration. |
-| `archived_date` | `any` | No | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `int` | No | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `any` | No | Numeric project color code. |
-| `default_order` | `int` | No | Default order of the project in workspace views. |
-| `default_order_key` | `any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `string` | No | Project description. |
-| `folder_id` | `string` | No | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `any` | No | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `int` | Yes | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `bool` | No | Whether the workspace project is archived. |
-| `is_frozen` | `bool` | No | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `bool` | No | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `bool` | No | Whether project insights are enabled for the project. |
-| `name` | `string` | No | Project name. |
-| `project_id` | `string` | Yes | String ID of the project. |
-| `public_access` | `bool` | Yes | Whether the project is publicly accessible. |
-| `role` | `any` | No |  |
-| `status` | `string` | No | Project status. |
-| `view_style` | `string` | No | Project view style. |
-| `workspace_id` | `int` | Yes | Numeric ID of the workspace that contains the project. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.Active(nil).List(map[string]any{"workspace_id": 1}, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ActiveEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
 
 
 ---
@@ -390,161 +273,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `ActivityEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## ArchivedEntity
-
-```go
-archived := client.Archived(nil)
-fmt.Println(archived.GetName()) // "archived"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access` | `any` | Yes | Project access configuration. |
-| `archived_date` | `any` | No | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `int` | No | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `any` | No | Numeric project color code. |
-| `default_order` | `int` | No | Default order of the project in workspace views. |
-| `default_order_key` | `any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `string` | No | Project description. |
-| `folder_id` | `string` | No | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `any` | No | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `int` | Yes | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `bool` | No | Whether the workspace project is archived. |
-| `is_frozen` | `bool` | No | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `bool` | No | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `bool` | No | Whether project insights are enabled for the project. |
-| `name` | `string` | No | Project name. |
-| `project_id` | `string` | Yes | String ID of the project. |
-| `public_access` | `bool` | Yes | Whether the project is publicly accessible. |
-| `role` | `any` | No |  |
-| `status` | `string` | No | Project status. |
-| `view_style` | `string` | No | Project view style. |
-| `workspace_id` | `int` | Yes | Numeric ID of the workspace that contains the project. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.Archived(nil).List(map[string]any{"workspace_id": 1}, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `ArchivedEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## AuthorizationEntity
-
-```go
-authorization := client.Authorization(nil)
-fmt.Println(authorization.GetName()) // "authorization"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `token` | `string` | Yes | The token to be revoked (access token). |
-| `token_type_hint` | `any` | No | A hint about the type of the token being revoked (optional). |
-
-### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.Authorization(nil).Create(map[string]any{
-    "token": "example_token",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
-
-```go
-result, err := client.Authorization(nil).Remove(map[string]any{"access_token": "access_token", "client_id": "client_id", "client_secret": "client_secret"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `AuthorizationEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -1097,6 +825,18 @@ if err != nil {
 fmt.Println(result.(sdk.Entity).Data())
 ```
 
+#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
+
+```go
+result, err := client.Email(nil).Remove(map[string]any{"obj_id": "obj_id", "obj_type": "obj_type"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
 ### Common Methods
 
 #### `Data(args ...any) any`
@@ -1210,15 +950,15 @@ fmt.Println(folder.GetName()) // "folder"
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `child_order` | - | - | Yes | - |
-| `default_order` | - | - | Yes | - |
-| `default_order_key` | - | - | - | - |
-| `id` | - | - | - | - |
-| `is_deleted` | - | - | - | - |
-| `name` | - | - | Yes | - |
-| `workspace_id` | - | - | - | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `child_order` | - | - | Yes | - | - |
+| `default_order` | - | - | Yes | Yes | - |
+| `default_order_key` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `workspace_id` | - | - | - | - | - |
 
 ### Operations
 
@@ -1254,13 +994,28 @@ Create a new entity with the given data. Returns the created entity; `err` is no
 
 ```go
 result, err := client.Folder(nil).Create(map[string]any{
-    "id": 1,
     "child_order": 1,
     "default_order": 1,
     "default_order_key": "example_default_order_key",
+    "id": "example_id",
     "is_deleted": true,
     "name": "example_name",
     "workspace_id": "example_workspace_id",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Folder(nil).Update(map[string]any{
+    "id": 1,
+    // Fields to update
 }, nil)
 if err != nil {
     panic(err)
@@ -1445,71 +1200,6 @@ Return the entity name.
 
 ---
 
-## InviteEntity
-
-```go
-invite := client.Invite(nil)
-fmt.Println(invite.GetName()) // "invite"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `app` | `string` | No | For first-party clients usage only. |
-| `email_list` | `any` | No | List of user emails to invite to the workspace. |
-| `invited_emails` | `[]any` | Yes | Emails successfully invited to the workspace. |
-| `role` | `any` | No | Role assigned to invited users. |
-
-### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.Invite(nil).Create(map[string]any{
-    "workspace_id": 1,
-    "invited_emails": []any{},
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `InviteEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
 ## LabelEntity
 
 ```go
@@ -1653,9 +1343,102 @@ fmt.Println(locationReminder.GetName()) // "location_reminder"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `id` | `string` | Yes | String ID of the location reminder |
+| `is_deleted` | `bool` | Yes | Whether the location reminder is deleted |
+| `item_id` | `string` | Yes | String ID of the task |
+| `loc_lat` | `string` | Yes | Latitude of the location |
+| `loc_long` | `string` | Yes | Longitude of the location |
+| `loc_trigger` | `string` | Yes | Trigger type for the location reminder |
+| `name` | `string` | Yes | Name of the location |
+| `notify_uid` | `string` | Yes | String ID of the user who will receive the reminder |
+| `project_id` | `string` | Yes | String ID of the project containing the task |
+| `radius` | `int` | Yes | Radius in meters |
+| `task_id` | `string` | Yes | String ID of the task |
+| `type` | `string` | No | The reminder type |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `item_id` | - | - | - | - | - |
+| `loc_lat` | - | - | - | Yes | - |
+| `loc_long` | - | - | - | Yes | - |
+| `loc_trigger` | - | - | - | Yes | - |
+| `name` | - | - | - | Yes | - |
+| `notify_uid` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `radius` | - | - | Yes | Yes | - |
+| `task_id` | - | - | - | - | - |
+| `type` | - | - | - | - | - |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.LocationReminder(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
+
+```go
+result, err := client.LocationReminder(nil).Load(map[string]any{"id": "location_reminder_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
+
+```go
+result, err := client.LocationReminder(nil).Create(map[string]any{
+    "id": "example_id",
+    "is_deleted": true,
+    "item_id": "example_item_id",
+    "loc_lat": "example_loc_lat",
+    "loc_long": "example_loc_long",
+    "loc_trigger": "example_loc_trigger",
+    "name": "example_name",
+    "notify_uid": "example_notify_uid",
+    "project_id": "example_project_id",
+    "radius": 1,
+    "task_id": "example_task_id",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.LocationReminder(nil).Update(map[string]any{
+    "id": "location_reminder_id",
+    // Fields to update
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -1701,108 +1484,30 @@ Return the entity name.
 
 ---
 
-## MemberViewEntity
+## NotificationSettingEntity
 
 ```go
-memberView := client.MemberView(nil)
-fmt.Println(memberView.GetName()) // "member_view"
+notificationSetting := client.NotificationSetting(nil)
+fmt.Println(notificationSetting.GetName()) // "notification_setting"
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `full_name` | `string` | Yes | Full name of the workspace member. |
-| `image_id` | `string` | No | Avatar image ID of the workspace member, or `null`. |
-| `is_deleted` | `bool` | No | Whether the workspace member is deleted. |
-| `role` | `string` | Yes | Workspace role assigned to the member. |
-| `timezone` | `string` | Yes | Timezone of the workspace member. |
-| `user_email` | `string` | Yes | Email address of the workspace member. |
-| `user_id` | `string` | Yes | String ID of the workspace member. |
-| `workspace_id` | `string` | Yes | String ID of the workspace. |
+| `dont_notify` | `any` | No | Whether notifications should be disabled for the selected type and channel. |
+| `notification_type` | `string` | Yes | Notification type to update. |
+| `service` | `string` | Yes | Notification channel to update. |
 
 ### Operations
 
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.MemberView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `MemberViewEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## MigratePersonalTokenEntity
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
 
 ```go
-migratePersonalToken := client.MigratePersonalToken(nil)
-fmt.Println(migratePersonalToken.GetName()) // "migrate_personal_token"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access_token` | `any` | Yes | OAuth access token created from the personal token. |
-| `client_id` | `string` | Yes | The unique Client ID of the Todoist application that you registered. |
-| `client_secret` | `string` | Yes | The unique Client Secret of the Todoist application that you registered. |
-| `expires_in` | `int` | Yes | Access token lifetime in seconds. |
-| `personal_token` | `string` | Yes | Token obtained from the email/password authentication. |
-| `scope` | `string` | Yes | Scopes of the OAuth token. |
-| `token_type` | `string` | Yes | OAuth token type. |
-
-### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.MigratePersonalToken(nil).Create(map[string]any{
-    "access_token": "example_access_token",
-    "client_id": "example_client_id",
-    "client_secret": "example_client_secret",
-    "expires_in": 1,
-    "personal_token": "example_personal_token",
-    "scope": "example_scope",
-    "token_type": "example_token_type",
+result, err := client.NotificationSetting(nil).Update(map[string]any{
+    // Fields to update
 }, nil)
 if err != nil {
     panic(err)
@@ -1824,255 +1529,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `MigratePersonalTokenEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## NotificationLocationSyncViewEntity
-
-```go
-notificationLocationSyncView := client.NotificationLocationSyncView(nil)
-fmt.Println(notificationLocationSyncView.GetName()) // "notification_location_sync_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `string` | Yes | String ID of the location reminder |
-| `is_deleted` | `bool` | Yes | Whether the location reminder is deleted |
-| `item_id` | `string` | Yes | String ID of the task |
-| `loc_lat` | `string` | Yes | Latitude of the location |
-| `loc_long` | `string` | Yes | Longitude of the location |
-| `loc_trigger` | `string` | Yes | Trigger type for the location reminder |
-| `name` | `string` | Yes | Name of the location |
-| `notify_uid` | `string` | Yes | String ID of the user who will receive the reminder |
-| `project_id` | `string` | Yes | String ID of the project containing the task |
-| `radius` | `int` | Yes | Radius in meters |
-| `task_id` | `string` | Yes | String ID of the task |
-| `type` | `string` | No | The reminder type |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `item_id` | - | - | - |
-| `loc_lat` | - | - | Yes |
-| `loc_long` | - | - | Yes |
-| `loc_trigger` | - | - | Yes |
-| `name` | - | - | Yes |
-| `notify_uid` | - | - | - |
-| `project_id` | - | - | - |
-| `radius` | - | - | Yes |
-| `task_id` | - | - | - |
-| `type` | - | - | - |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.NotificationLocationSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
-
-```go
-result, err := client.NotificationLocationSyncView(nil).Load(map[string]any{"reminder_id": "reminder_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.NotificationLocationSyncView(nil).Create(map[string]any{
-    "reminder_id": "example_reminder_id",
-    "id": "example_id",
-    "is_deleted": true,
-    "item_id": "example_item_id",
-    "loc_lat": "example_loc_lat",
-    "loc_long": "example_loc_long",
-    "loc_trigger": "example_loc_trigger",
-    "name": "example_name",
-    "notify_uid": "example_notify_uid",
-    "project_id": "example_project_id",
-    "radius": 1,
-    "task_id": "example_task_id",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `NotificationLocationSyncViewEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## NotificationSyncViewEntity
-
-```go
-notificationSyncView := client.NotificationSyncView(nil)
-fmt.Println(notificationSyncView.GetName()) // "notification_sync_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `due` | `any` | Yes | Datetime when the reminder fires, or `null` if unset. |
-| `id` | `string` | Yes | String ID of the reminder. |
-| `is_deleted` | `bool` | Yes | Whether the reminder is deleted. |
-| `is_urgent` | `bool` | Yes | Whether the reminder should be delivered urgently. |
-| `item_id` | `string` | Yes | String ID of the task that owns the reminder. |
-| `minute_offset` | `any` | Yes | Minutes before the task due time for relative reminders. |
-| `notify_uid` | `string` | Yes | String ID of the user who receives the reminder. |
-| `reminder_type` | `string` | No | Type of the reminder: 'relative' or 'absolute' |
-| `service` | `string` | No | Notification service type: 'email', 'push'. |
-| `task_id` | `string` | Yes | String ID of the task |
-| `type` | `string` | Yes | Reminder type. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `due` | - | - | Yes |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `is_urgent` | - | - | Yes |
-| `item_id` | - | - | - |
-| `minute_offset` | - | - | Yes |
-| `notify_uid` | - | - | - |
-| `reminder_type` | - | - | - |
-| `service` | - | - | - |
-| `task_id` | - | - | - |
-| `type` | - | - | - |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.NotificationSyncView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### `Load(reqmatch, ctrl map[string]any) (any, error)`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
-
-```go
-result, err := client.NotificationSyncView(nil).Load(map[string]any{"reminder_id": "reminder_id"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.NotificationSyncView(nil).Create(map[string]any{
-    "reminder_id": "example_reminder_id",
-    "due": "example_due",
-    "id": "example_id",
-    "is_deleted": true,
-    "is_urgent": true,
-    "item_id": "example_item_id",
-    "minute_offset": "example_minute_offset",
-    "notify_uid": "example_notify_uid",
-    "task_id": "example_task_id",
-    "type": "example_type",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `NotificationSyncViewEntity` instance with the same client and
+Create a new `NotificationSettingEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -2377,53 +1834,6 @@ projectImport := client.ProjectImport(nil)
 fmt.Println(projectImport.GetName()) // "project_import"
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `comments` | `[]any` | Yes | Task comments created by the import. |
-| `discarded_fields` | `[]any` | Yes | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `locale` | `string` | No | Locale to use for localized template content. |
-| `project_id` | `string` | Yes | String ID of the project to import the template into. |
-| `project_notes` | `[]any` | Yes | Project comments created by the import. |
-| `project_view_options_defaults` | `[]any` | Yes | View options defaults applied to the imported project. |
-| `projects` | `[]any` | Yes | Projects created or updated by the import. |
-| `reminders` | `[]any` | Yes | Reminders created by the import. |
-| `sections` | `[]any` | Yes | Sections created by the import. |
-| `status` | `string` | Yes | Always `ok` on success. |
-| `tasks` | `[]any` | Yes | Tasks created by the import. |
-| `template_id` | `string` | Yes | ID of the saved template to import. |
-| `template_type` | `string` | Yes | Type of template that was imported. |
-
-### Operations
-
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.ProjectImport(nil).Create(map[string]any{
-    "comments": []any{},
-    "discarded_fields": []any{},
-    "project_id": "example_project_id",
-    "project_notes": []any{},
-    "project_view_options_defaults": []any{},
-    "projects": []any{},
-    "reminders": []any{},
-    "sections": []any{},
-    "status": "example_status",
-    "tasks": []any{},
-    "template_id": "example_template_id",
-    "template_type": "example_template_type",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
-
 ### Common Methods
 
 #### `Data(args ...any) any`
@@ -2456,56 +1866,35 @@ Return the entity name.
 
 ---
 
-## ProjectImportCreateResponseWithObjectEntity
+## ProjectPermissionEntity
 
 ```go
-projectImportCreateResponseWithObject := client.ProjectImportCreateResponseWithObject(nil)
-fmt.Println(projectImportCreateResponseWithObject.GetName()) // "project_import_create_response_with_object"
+projectPermission := client.ProjectPermission(nil)
+fmt.Println(projectPermission.GetName()) // "project_permission"
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `comments` | `[]any` | Yes | Task comments created by the import. |
-| `discarded_fields` | `[]any` | Yes | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `project_id` | `string` | Yes | ID of the project created from the template. |
-| `project_notes` | `[]any` | Yes | Project comments created by the import. |
-| `project_view_options_defaults` | `[]any` | Yes | View options defaults applied to the imported project. |
-| `projects` | `[]any` | Yes | Projects created by the import. |
-| `reminders` | `[]any` | Yes | Reminders created by the import. |
-| `sections` | `[]any` | Yes | Sections created by the import. |
-| `status` | `string` | Yes | Always `ok` on success. |
-| `tasks` | `[]any` | Yes | Tasks created by the import. |
-| `template_type` | `string` | Yes | Type of template that was imported. |
+| `project_collaborator_actions` | `[]any` | Yes | Project collaborator roles and their allowed actions. |
+| `workspace_collaborator_actions` | `[]any` | Yes | Workspace collaborator roles and their allowed actions. |
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
 
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
-result, err := client.ProjectImportCreateResponseWithObject(nil).Create(map[string]any{
-    "comments": []any{},
-    "discarded_fields": []any{},
-    "project_id": "example_project_id",
-    "project_notes": []any{},
-    "project_view_options_defaults": []any{},
-    "projects": []any{},
-    "reminders": []any{},
-    "sections": []any{},
-    "status": "example_status",
-    "tasks": []any{},
-    "template_type": "example_template_type",
-}, nil)
+results, err := client.ProjectPermission(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(result.(sdk.Entity).Data())
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
-
-Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -2521,7 +1910,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `ProjectImportCreateResponseWithObjectEntity` instance with the same client and
+Create a new `ProjectPermissionEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -2550,9 +1939,98 @@ fmt.Println(reminder.GetName()) // "reminder"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `string` | No |  |
+| `due` | `any` | Yes | Datetime when the reminder fires, or `null` if unset. |
+| `id` | `string` | Yes | String ID of the reminder. |
+| `is_deleted` | `bool` | Yes | Whether the reminder is deleted. |
+| `is_urgent` | `bool` | Yes | Whether the reminder should be delivered urgently. |
+| `item_id` | `string` | Yes | String ID of the task that owns the reminder. |
+| `minute_offset` | `any` | Yes | Minutes before the task due time for relative reminders. |
+| `notify_uid` | `string` | Yes | String ID of the user who receives the reminder. |
+| `reminder_type` | `string` | No | Type of the reminder: 'relative' or 'absolute' |
+| `service` | `string` | No | Notification service type: 'email', 'push'. |
+| `task_id` | `string` | Yes | String ID of the task |
+| `type` | `string` | Yes | Reminder type. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `due` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `is_urgent` | - | - | Yes | Yes | - |
+| `item_id` | - | - | - | - | - |
+| `minute_offset` | - | - | Yes | Yes | - |
+| `notify_uid` | - | - | - | - | - |
+| `reminder_type` | - | - | - | - | - |
+| `service` | - | - | - | - | - |
+| `task_id` | - | - | - | - | - |
+| `type` | - | - | - | - | - |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.Reminder(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
+
+```go
+result, err := client.Reminder(nil).Load(map[string]any{"id": "reminder_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Reminder(nil).Create(map[string]any{
+    "due": "example_due",
+    "id": "example_id",
+    "is_deleted": true,
+    "is_urgent": true,
+    "item_id": "example_item_id",
+    "minute_offset": "example_minute_offset",
+    "notify_uid": "example_notify_uid",
+    "task_id": "example_task_id",
+    "type": "example_type",
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Reminder(nil).Update(map[string]any{
+    "id": "reminder_id",
+    // Fields to update
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -2581,127 +2059,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `ReminderEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## RemoveWorkspaceUserEntity
-
-```go
-removeWorkspaceUser := client.RemoveWorkspaceUser(nil)
-fmt.Println(removeWorkspaceUser.GetName()) // "remove_workspace_user"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `string` | No |  |
-
-### Operations
-
-#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
-
-```go
-result, err := client.RemoveWorkspaceUser(nil).Remove(map[string]any{"id": 1, "workspace_id": 1}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `RemoveWorkspaceUserEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## RoleToActionMappingViewEntity
-
-```go
-roleToActionMappingView := client.RoleToActionMappingView(nil)
-fmt.Println(roleToActionMappingView.GetName()) // "role_to_action_mapping_view"
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `project_collaborator_actions` | `[]any` | Yes | Project collaborator roles and their allowed actions. |
-| `workspace_collaborator_actions` | `[]any` | Yes | Workspace collaborator roles and their allowed actions. |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.RoleToActionMappingView(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `RoleToActionMappingViewEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -2950,59 +2307,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `SharedLabelEntity` instance with the same client and
-options.
-
-#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
-
-Run an operation through the pipeline and send its result items on the
-returned channel, which closes when the stream ends. A `StreamItem` holds
-one item in `Item`, or in `Err` the error that ended the stream: the
-error the operation itself would return, sent as the last value. Under
-`throw: false` in `callopts["ctrl"]`, no error is sent.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## StatusOkEntity
-
-```go
-statusOk := client.StatusOk(nil)
-fmt.Println(statusOk.GetName()) // "status_ok"
-```
-
-### Operations
-
-#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
-
-```go
-result, err := client.StatusOk(nil).Remove(map[string]any{"obj_id": "obj_id", "obj_type": "obj_type"}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `StatusOkEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -3616,7 +2920,6 @@ fmt.Println(user.GetName()) // "user"
 | `date_format` | `int` | Yes | Whether to use the DD-MM-YYYY date format (if set to 0), or the MM-DD-YYYY format (if set to 1) |
 | `days_off` | `[]any` | Yes | Array of integers representing user's days off (between 1 and 7, where 1 is Monday and 7 is Sunday) |
 | `deleted_at` | `any` | No | Date when user was deleted (ISO 8601 format) |
-| `dont_notify` | `any` | No | Whether notifications should be disabled for the selected type and channel. |
 | `email` | `string` | Yes | User's email address |
 | `feature_identifier` | `string` | Yes | Feature identifier for feature flag evaluations |
 | `features` | `map[string]any` | Yes | Feature flags and settings for the user |
@@ -3640,7 +2943,6 @@ fmt.Println(user.GetName()) // "user"
 | `lang` | `string` | Yes | The user's language |
 | `mfa_enabled` | `bool` | Yes | Whether multi-factor authentication is enabled |
 | `next_week` | `int` | Yes | The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday) |
-| `notification_type` | `string` | Yes | Notification type to update. |
 | `onboarded_dated_tasks_created` | `any` | No | True once the user has created at least 1 task with a due date that includes a time component (excluding auto-seeded getting-started-guide tasks). |
 | `onboarded_desktop_accessed` | `any` | No | True once the user has synced from Web, macOS, or Windows. |
 | `onboarded_mobile_accessed` | `any` | No | True once the user has synced from iOS or Android. |
@@ -3655,7 +2957,6 @@ fmt.Println(user.GetName()) // "user"
 | `onboarding_use_cases` | `any` | No | Use cases the user selected during onboarding |
 | `premium_status` | `any` | No | Outlines why a user is premium, possible values are: not_premium, current_personal_plan, legacy_personal_plan or teams_business_member |
 | `premium_until` | `any` | No | The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user). |
-| `service` | `string` | Yes | Notification channel to update. |
 | `share_limit` | `int` | Yes | Maximum number of collaborators allowed in shared projects |
 | `sort_order` | `int` | Yes | Whether to show projects in an oldest dates first order (if set to 0), or a oldest dates last order (if set to 1) |
 | `start_day` | `int` | Yes | The first day of the week (between 1 and 7, where 1 is Monday and 7 is Sunday) |
@@ -3674,28 +2975,12 @@ fmt.Println(user.GetName()) // "user"
 
 ### Operations
 
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
-List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
-
-```go
-results, err := client.User(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-for _, item := range results.([]any) {
-    fmt.Println(item.(sdk.Entity).Data())
-}
-```
-
-#### `Update(reqdata, ctrl map[string]any) (any, error)`
-
-Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+Load a single entity matching the given criteria. Returns the entity, whose record `Data()` reads; `err` is non-nil on failure.
 
 ```go
-result, err := client.User(nil).Update(map[string]any{
-    // Fields to update
-}, nil)
+result, err := client.User(nil).Load(map[string]any{"id": "user_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -3745,18 +3030,18 @@ fmt.Println(workspace.GetName()) // "workspace"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No | Updated workspace description. |
-| `domain_discovery` | `any` | No | Updated domain discovery setting. |
-| `domain_name` | `any` | No | Updated workspace email domain. |
+| `description` | `string` | No | Description of the workspace. |
+| `domain_discovery` | `bool` | No | Whether users with matching email domains can discover this workspace. |
+| `domain_name` | `any` | No | Workspace email domain. |
 | `id` | `string` | No |  |
 | `invite_code` | `any` | No | Regenerate workspace invite code when set. |
 | `is_collapsed` | `bool` | No | Updated collapse state for current user. |
-| `is_guest_allowed` | `bool` | No | Updated guest access status. |
-| `is_link_sharing_enabled` | `bool` | No | Updated link sharing status. |
-| `is_trial_pending` | `bool` | No | Updated trial pending state. |
-| `name` | `string` | No | Updated workspace name. |
-| `properties` | `any` | No | Updated workspace properties. |
-| `restrict_email_domains` | `any` | No | Updated email domain restriction setting. |
+| `is_guest_allowed` | `bool` | No | Whether guests are allowed in the workspace. |
+| `is_link_sharing_enabled` | `bool` | No | Whether link sharing is enabled for the workspace. |
+| `is_trial_pending` | `bool` | No | Whether the workspace is waiting for trial confirmation. |
+| `name` | `string` | No | Name of the workspace. |
+| `properties` | `any` | No | Workspace properties. |
+| `restrict_email_domains` | `bool` | No | Whether workspace invites are restricted to workspace domain. |
 
 ### Operations
 
@@ -3792,7 +3077,6 @@ Create a new entity with the given data. Returns the created entity; `err` is no
 
 ```go
 result, err := client.Workspace(nil).Create(map[string]any{
-    "id": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -3801,6 +3085,21 @@ fmt.Println(result.(sdk.Entity).Data())
 ```
 
 Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.Workspace(nil).Update(map[string]any{
+    "id": 1,
+    // Fields to update
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
 
@@ -3846,11 +3145,11 @@ Return the entity name.
 
 ---
 
-## WorkspaceInvitationViewEntity
+## WorkspaceInvitationEntity
 
 ```go
-workspaceInvitationView := client.WorkspaceInvitationView(nil)
-fmt.Println(workspaceInvitationView.GetName()) // "workspace_invitation_view"
+workspaceInvitation := client.WorkspaceInvitation(nil)
+fmt.Println(workspaceInvitation.GetName()) // "workspace_invitation"
 ```
 
 ### Fields
@@ -3871,7 +3170,7 @@ fmt.Println(workspaceInvitationView.GetName()) // "workspace_invitation_view"
 List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
 
 ```go
-results, err := client.WorkspaceInvitationView(nil).List(map[string]any{"workspace_id": 1}, nil)
+results, err := client.WorkspaceInvitation(nil).List(map[string]any{"workspace_id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -3880,32 +3179,12 @@ for _, item := range results.([]any) {
 }
 ```
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
+#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
 
-Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
-
-```go
-result, err := client.WorkspaceInvitationView(nil).Create(map[string]any{
-    "inviter_id": "example_inviter_id",
-    "role": "example_role",
-    "user_email": "example_user_email",
-    "workspace_id": "example_workspace_id",
-}, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(result.(sdk.Entity).Data())
-```
-
-#### `Update(reqdata, ctrl map[string]any) (any, error)`
-
-Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
 
 ```go
-result, err := client.WorkspaceInvitationView(nil).Update(map[string]any{
-    "invite_code": "invite_code",
-    // Fields to update
-}, nil)
+result, err := client.WorkspaceInvitation(nil).Remove(map[string]any{"id": "workspace_invitation_id"}, nil)
 if err != nil {
     panic(err)
 }
@@ -3926,7 +3205,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `WorkspaceInvitationViewEntity` instance with the same client and
+Create a new `WorkspaceInvitationEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
@@ -3944,11 +3223,92 @@ Return the entity name.
 
 ---
 
-## WorkspaceUserViewEntity
+## WorkspaceProjectEntity
 
 ```go
-workspaceUserView := client.WorkspaceUserView(nil)
-fmt.Println(workspaceUserView.GetName()) // "workspace_user_view"
+workspaceProject := client.WorkspaceProject(nil)
+fmt.Println(workspaceProject.GetName()) // "workspace_project"
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `access` | `any` | Yes | Project access configuration. |
+| `archived_date` | `any` | No | Date and time when the project was archived, or `null` if active. |
+| `archived_timestamp` | `int` | No | Unix timestamp for when the project was archived, or 0 if active. |
+| `color` | `any` | No | Numeric project color code. |
+| `default_order` | `int` | No | Default order of the project in workspace views. |
+| `default_order_key` | `any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
+| `description` | `string` | No | Project description. |
+| `folder_id` | `string` | No | Numeric ID of the folder that contains the project, or `null`. |
+| `icon` | `any` | No | Project icon name, or `null` for the default icon. |
+| `initiated_by_uid` | `int` | Yes | Numeric ID of the user requesting the workspace project. |
+| `is_archived` | `bool` | No | Whether the workspace project is archived. |
+| `is_frozen` | `bool` | No | Whether the project is frozen and cannot be modified. |
+| `is_invite_only` | `bool` | No | Whether joining the workspace project requires an invitation. |
+| `is_project_insights_enabled` | `bool` | No | Whether project insights are enabled for the project. |
+| `name` | `string` | No | Project name. |
+| `project_id` | `string` | Yes | String ID of the project. |
+| `public_access` | `bool` | Yes | Whether the project is publicly accessible. |
+| `role` | `any` | No |  |
+| `status` | `string` | No | Project status. |
+| `view_style` | `string` | No | Project view style. |
+| `workspace_id` | `int` | Yes | Numeric ID of the workspace that contains the project. |
+
+### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.WorkspaceProject(nil).List(map[string]any{"workspace_id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `WorkspaceProjectEntity` instance with the same client and
+options.
+
+#### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`
+
+Run an operation through the pipeline and send its result items on the
+returned channel, which closes when the stream ends. A `StreamItem` holds
+one item in `Item`, or in `Err` the error that ended the stream: the
+error the operation itself would return, sent as the last value. Under
+`throw: false` in `callopts["ctrl"]`, no error is sent.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## WorkspaceUserEntity
+
+```go
+workspaceUser := client.WorkspaceUser(nil)
+fmt.Println(workspaceUser.GetName()) // "workspace_user"
 ```
 
 ### Fields
@@ -3956,34 +3316,91 @@ fmt.Println(workspaceUserView.GetName()) // "workspace_user_view"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `custom_sorting_applied` | `bool` | No | Whether the user has custom project sorting enabled. |
+| `full_name` | `string` | Yes | Full name of the workspace member. |
+| `id` | `string` | No |  |
+| `image_id` | `string` | No | Avatar image ID of the workspace member, or `null`. |
 | `invite_code` | `any` | No | Workspace invite code to join with. |
+| `is_deleted` | `bool` | No | Whether the workspace member is deleted. |
 | `project_sort_preference` | `string` | No | Project sorting preference for the user. |
 | `role` | `string` | No | Workspace role assigned to the user. |
+| `timezone` | `string` | Yes | Timezone of the workspace member. |
+| `user_email` | `string` | Yes | Email address of the workspace member. |
 | `user_id` | `string` | Yes | String ID of the workspace user. |
 | `workspace_id` | `string` | Yes | String ID of the workspace. |
 
 ### Field Usage by Operation
 
-| Field | create |
-| --- | --- |
-| `custom_sorting_applied` | - |
-| `invite_code` | - |
-| `project_sort_preference` | - |
-| `role` | Yes |
-| `user_id` | - |
-| `workspace_id` | Yes |
+| Field | list | create | update | remove |
+| --- | --- | --- | --- | --- |
+| `custom_sorting_applied` | - | - | - | - |
+| `full_name` | - | - | - | - |
+| `id` | - | - | - | - |
+| `image_id` | - | - | - | - |
+| `invite_code` | - | - | - | - |
+| `is_deleted` | - | - | - | - |
+| `project_sort_preference` | - | - | - | - |
+| `role` | Yes | - | Yes | - |
+| `timezone` | - | - | - | - |
+| `user_email` | - | - | - | - |
+| `user_id` | - | - | - | - |
+| `workspace_id` | - | Yes | - | - |
 
 ### Operations
+
+#### `List(reqmatch, ctrl map[string]any) (any, error)`
+
+List entities matching the given criteria. Returns a `[]any` of entities, one per record; `err` is non-nil on failure.
+
+```go
+results, err := client.WorkspaceUser(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+for _, item := range results.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
+```
 
 #### `Create(reqdata, ctrl map[string]any) (any, error)`
 
 Create a new entity with the given data. Returns the created entity; `err` is non-nil on failure.
 
 ```go
-result, err := client.WorkspaceUserView(nil).Create(map[string]any{
-    "user_id": 1,
-    "workspace_id": 1,
+result, err := client.WorkspaceUser(nil).Create(map[string]any{
+    "full_name": "example_full_name",
+    "timezone": "example_timezone",
+    "user_email": "example_user_email",
+    "user_id": "example_user_id",
+    "workspace_id": "example_workspace_id",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Update(reqdata, ctrl map[string]any) (any, error)`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity; `err` is non-nil on failure.
+
+```go
+result, err := client.WorkspaceUser(nil).Update(map[string]any{
+    "id": 1,
+    "workspace_id": 1,
+    // Fields to update
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result.(sdk.Entity).Data())
+```
+
+#### `Remove(reqmatch, ctrl map[string]any) (any, error)`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted; `err` is non-nil on failure.
+
+```go
+result, err := client.WorkspaceUser(nil).Remove(map[string]any{"id": 1, "workspace_id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -4004,7 +3421,7 @@ Get or set the entity match criteria. Works the same as `Data()`.
 
 #### `Make() Entity`
 
-Create a new `WorkspaceUserViewEntity` instance with the same client and
+Create a new `WorkspaceUserEntity` instance with the same client and
 options.
 
 #### `Stream(action string, args map[string]any, callopts map[string]any) <-chan StreamItem`

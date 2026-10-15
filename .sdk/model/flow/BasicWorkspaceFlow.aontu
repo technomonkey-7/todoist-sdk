@@ -30,6 +30,25 @@ main: kit: flow: BasicWorkspaceFlow:
       i: {
         ref: "workspace_ref01",
         srcdatavar: "workspace_ref01_data",
+        suffix: "_up0",
+        textfield: "description"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-workspace_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "workspace_ref01",
+        srcdatavar: "workspace_ref01_data",
         suffix: "_dt0"
       }
 

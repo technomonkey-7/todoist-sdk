@@ -7,27 +7,14 @@ main: kit: flow: BasicUserFlow:
   name: "BasicUserFlow",
   step: [
     {
-      o: "list",
-      v: [
-        {
-          apply: "ItemExists",
-          def: {
-            ref: "user_ref01"
-          }
-        }
-      ]
-    }
-
-    {
       i: {
         ref: "user_ref01",
         srcdatavar: "user_ref01_data",
-        suffix: "_up0",
-        textfield: "business_account_id"
+        suffix: "_dt0"
       }
 
-      o: "update",
-      s: [
+      o: "load",
+      v: [
         {
           apply: "TextFieldMark",
           def: {

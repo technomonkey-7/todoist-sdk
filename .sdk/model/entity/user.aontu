@@ -96,13 +96,6 @@ main: kit: entity: user: {
       sh: "Date when user was deleted (ISO 8601 format)"
       t: "`$ANY`"
     }
-    dont_notify: {
-      h: "Dont Notify"
-      n: "dont_notify"
-      r: false
-      sh: "Whether notifications should be disabled for the selected type and channel."
-      t: "`$ANY`"
-    }
     email: {
       h: "Email"
       n: "email"
@@ -264,13 +257,6 @@ main: kit: entity: user: {
       sh: "The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday)"
       t: "`$INTEGER`"
     }
-    notification_type: {
-      h: "Notification Type"
-      n: "notification_type"
-      r: true
-      sh: "Notification type to update."
-      t: "`$STRING`"
-    }
     onboarded_dated_tasks_created: {
       h: "Onboarded Dated Tasks Created"
       n: "onboarded_dated_tasks_created"
@@ -368,13 +354,6 @@ main: kit: entity: user: {
       r: false
       sh: "The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user)."
       t: "`$ANY`"
-    }
-    service: {
-      h: "Service"
-      n: "service"
-      r: true
-      sh: "Notification channel to update."
-      t: "`$STRING`"
     }
     share_limit: {
       h: "Share Limit"
@@ -490,8 +469,8 @@ main: kit: entity: user: {
 
   name: "user"
   op: {
-    list: {
-      name: "list"
+    load: {
+      name: "load"
       points: [
         {
           co: {
@@ -514,44 +493,6 @@ main: kit: entity: user: {
             }
             {
               lit: "user"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-      ]
-    }
-    update: {
-      name: "update"
-      points: [
-        {
-          bf: [
-            "dont_notify"
-            "notification_type"
-            "service"
-          ]
-          co: {
-            id: "PUT /api/v1/notification_setting"
-            source: "openapi3"
-            version: 2
-          }
-          m: "PUT"
-          o: "/api/v1/notification_setting"
-          rs: {
-            kind: "json"
-            media: "application/json"
-          }
-          s: [
-            {
-              lit: "api"
-            }
-            {
-              lit: "v1"
-            }
-            {
-              lit: "notification_setting"
             }
           ]
           t: {

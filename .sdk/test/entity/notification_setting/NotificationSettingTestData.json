@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "notification_setting": {
+      "NOTIFICATION_SETTING00": {
+        "dont_notify": "s1e",
+        "notification_type": "s1f",
+        "service": "s20",
+        "id": "NOTIFICATION_SETTING00"
+      },
+      "NOTIFICATION_SETTING01": {
+        "dont_notify": "s3c",
+        "notification_type": "s3d",
+        "service": "s3e",
+        "id": "NOTIFICATION_SETTING01"
+      },
+      "NOTIFICATION_SETTING02": {
+        "dont_notify": "s5a",
+        "notification_type": "s5b",
+        "service": "s5c",
+        "id": "NOTIFICATION_SETTING02"
+      }
+    }
+  },
+  "new": {
+    "notification_setting": {
+      "notification_setting_ref01": {
+        "dont_notify": "s78",
+        "notification_type": "s79",
+        "service": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "PUT /api/v1/notification_setting": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

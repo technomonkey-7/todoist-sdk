@@ -47,10 +47,7 @@ class Config {
             "content-type": "application/json"
         },
         entity: {
-            active: {},
             activity: {},
-            archived: {},
-            authorization: {},
             backup: {},
             billing_portal_url: {},
             collaborator: {},
@@ -62,24 +59,17 @@ class Config {
             folder: {},
             history: {},
             id_mapping: {},
-            invite: {},
             label: {},
             location_reminder: {},
-            member_view: {},
-            migrate_personal_token: {},
-            notification_location_sync_view: {},
-            notification_sync_view: {},
+            notification_setting: {},
             plan_detail: {},
             productivity_stat: {},
             project: {},
             project_import: {},
-            project_import_create_response_with_object: {},
+            project_permission: {},
             reminder: {},
-            remove_workspace_user: {},
-            role_to_action_mapping_view: {},
             section: {},
             shared_label: {},
-            status_ok: {},
             subscription_info: {},
             task: {},
             template: {},
@@ -88,234 +78,12 @@ class Config {
             usage_summary: {},
             user: {},
             workspace: {},
-            workspace_invitation_view: {},
-            workspace_user_view: {},
+            workspace_invitation: {},
+            workspace_project: {},
+            workspace_user: {},
         }
     };
     entity = {
-        "active": {
-            "fields": [
-                {
-                    "name": "access",
-                    "title": "Access",
-                    "type": "`$ANY`",
-                    "req": true,
-                    "short": "Project access configuration."
-                },
-                {
-                    "name": "archived_date",
-                    "title": "Archived Date",
-                    "type": "`$ANY`",
-                    "short": "Date and time when the project was archived, or `null` if active."
-                },
-                {
-                    "name": "archived_timestamp",
-                    "title": "Archived Timestamp",
-                    "type": "`$INTEGER`",
-                    "short": "Unix timestamp for when the project was archived, or 0 if active."
-                },
-                {
-                    "name": "color",
-                    "title": "Color",
-                    "type": "`$ANY`",
-                    "short": "Numeric project color code."
-                },
-                {
-                    "name": "default_order",
-                    "title": "Default Order",
-                    "type": "`$INTEGER`",
-                    "short": "Default order of the project in workspace views."
-                },
-                {
-                    "name": "default_order_key",
-                    "title": "Default Order Key",
-                    "type": "`$ANY`",
-                    "short": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together)."
-                },
-                {
-                    "name": "description",
-                    "title": "Description",
-                    "type": "`$STRING`",
-                    "short": "Project description."
-                },
-                {
-                    "name": "folder_id",
-                    "title": "Folder Id",
-                    "type": "`$STRING`",
-                    "short": "Numeric ID of the folder that contains the project, or `null`."
-                },
-                {
-                    "name": "icon",
-                    "title": "Icon",
-                    "type": "`$ANY`",
-                    "short": "Project icon name, or `null` for the default icon."
-                },
-                {
-                    "name": "initiated_by_uid",
-                    "title": "Initiated By Uid",
-                    "type": "`$INTEGER`",
-                    "req": true,
-                    "short": "Numeric ID of the user requesting the workspace project."
-                },
-                {
-                    "name": "is_archived",
-                    "title": "Is Archived",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether the workspace project is archived."
-                },
-                {
-                    "name": "is_frozen",
-                    "title": "Is Frozen",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether the project is frozen and cannot be modified."
-                },
-                {
-                    "name": "is_invite_only",
-                    "title": "Is Invite Only",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether joining the workspace project requires an invitation."
-                },
-                {
-                    "name": "is_project_insights_enabled",
-                    "title": "Is Project Insights Enabled",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether project insights are enabled for the project."
-                },
-                {
-                    "name": "name",
-                    "title": "Name",
-                    "type": "`$STRING`",
-                    "short": "Project name."
-                },
-                {
-                    "name": "project_id",
-                    "title": "Project Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the project."
-                },
-                {
-                    "name": "public_access",
-                    "title": "Public Access",
-                    "type": "`$BOOLEAN`",
-                    "req": true,
-                    "short": "Whether the project is publicly accessible."
-                },
-                {
-                    "name": "role",
-                    "title": "Role",
-                    "type": "`$ANY`"
-                },
-                {
-                    "name": "status",
-                    "title": "Status",
-                    "type": "`$STRING`",
-                    "short": "Project status."
-                },
-                {
-                    "name": "view_style",
-                    "title": "View Style",
-                    "type": "`$STRING`",
-                    "short": "Project view style."
-                },
-                {
-                    "name": "workspace_id",
-                    "title": "Workspace Id",
-                    "type": "`$INTEGER`",
-                    "req": true,
-                    "short": "Numeric ID of the workspace that contains the project."
-                }
-            ],
-            "name": "active",
-            "op": {
-                "list": {
-                    "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/workspaces/{workspace_id}/projects/active",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "workspaces"
-                                },
-                                {
-                                    "var": "workspace_id"
-                                },
-                                {
-                                    "lit": "projects"
-                                },
-                                {
-                                    "lit": "active"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "workspaces",
-                                "{workspace_id}",
-                                "projects",
-                                "active"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.workspace_projects`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "workspace_id",
-                                        "orig": "workspace_id",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "name": "cursor",
-                                        "orig": "cursor",
-                                        "type": "`$ANY`",
-                                        "kind": "query"
-                                    },
-                                    {
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`",
-                                        "kind": "query",
-                                        "example": 100
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "workspace_id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": [
-                    [
-                        "$.main.kit.entity.workspace"
-                    ]
-                ]
-            }
-        },
         "activity": {
             "fields": [
                 {
@@ -543,358 +311,6 @@ class Config {
                                 ]
                             },
                             "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "archived": {
-            "fields": [
-                {
-                    "name": "access",
-                    "title": "Access",
-                    "type": "`$ANY`",
-                    "req": true,
-                    "short": "Project access configuration."
-                },
-                {
-                    "name": "archived_date",
-                    "title": "Archived Date",
-                    "type": "`$ANY`",
-                    "short": "Date and time when the project was archived, or `null` if active."
-                },
-                {
-                    "name": "archived_timestamp",
-                    "title": "Archived Timestamp",
-                    "type": "`$INTEGER`",
-                    "short": "Unix timestamp for when the project was archived, or 0 if active."
-                },
-                {
-                    "name": "color",
-                    "title": "Color",
-                    "type": "`$ANY`",
-                    "short": "Numeric project color code."
-                },
-                {
-                    "name": "default_order",
-                    "title": "Default Order",
-                    "type": "`$INTEGER`",
-                    "short": "Default order of the project in workspace views."
-                },
-                {
-                    "name": "default_order_key",
-                    "title": "Default Order Key",
-                    "type": "`$ANY`",
-                    "short": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together)."
-                },
-                {
-                    "name": "description",
-                    "title": "Description",
-                    "type": "`$STRING`",
-                    "short": "Project description."
-                },
-                {
-                    "name": "folder_id",
-                    "title": "Folder Id",
-                    "type": "`$STRING`",
-                    "short": "Numeric ID of the folder that contains the project, or `null`."
-                },
-                {
-                    "name": "icon",
-                    "title": "Icon",
-                    "type": "`$ANY`",
-                    "short": "Project icon name, or `null` for the default icon."
-                },
-                {
-                    "name": "initiated_by_uid",
-                    "title": "Initiated By Uid",
-                    "type": "`$INTEGER`",
-                    "req": true,
-                    "short": "Numeric ID of the user requesting the workspace project."
-                },
-                {
-                    "name": "is_archived",
-                    "title": "Is Archived",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether the workspace project is archived."
-                },
-                {
-                    "name": "is_frozen",
-                    "title": "Is Frozen",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether the project is frozen and cannot be modified."
-                },
-                {
-                    "name": "is_invite_only",
-                    "title": "Is Invite Only",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether joining the workspace project requires an invitation."
-                },
-                {
-                    "name": "is_project_insights_enabled",
-                    "title": "Is Project Insights Enabled",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether project insights are enabled for the project."
-                },
-                {
-                    "name": "name",
-                    "title": "Name",
-                    "type": "`$STRING`",
-                    "short": "Project name."
-                },
-                {
-                    "name": "project_id",
-                    "title": "Project Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the project."
-                },
-                {
-                    "name": "public_access",
-                    "title": "Public Access",
-                    "type": "`$BOOLEAN`",
-                    "req": true,
-                    "short": "Whether the project is publicly accessible."
-                },
-                {
-                    "name": "role",
-                    "title": "Role",
-                    "type": "`$ANY`"
-                },
-                {
-                    "name": "status",
-                    "title": "Status",
-                    "type": "`$STRING`",
-                    "short": "Project status."
-                },
-                {
-                    "name": "view_style",
-                    "title": "View Style",
-                    "type": "`$STRING`",
-                    "short": "Project view style."
-                },
-                {
-                    "name": "workspace_id",
-                    "title": "Workspace Id",
-                    "type": "`$INTEGER`",
-                    "req": true,
-                    "short": "Numeric ID of the workspace that contains the project."
-                }
-            ],
-            "name": "archived",
-            "op": {
-                "list": {
-                    "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/workspaces/{workspace_id}/projects/archived",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "workspaces"
-                                },
-                                {
-                                    "var": "workspace_id"
-                                },
-                                {
-                                    "lit": "projects"
-                                },
-                                {
-                                    "lit": "archived"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "workspaces",
-                                "{workspace_id}",
-                                "projects",
-                                "archived"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.workspace_projects`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "workspace_id",
-                                        "orig": "workspace_id",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "name": "cursor",
-                                        "orig": "cursor",
-                                        "type": "`$ANY`",
-                                        "kind": "query"
-                                    },
-                                    {
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`",
-                                        "kind": "query",
-                                        "example": 100
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "workspace_id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": [
-                    [
-                        "$.main.kit.entity.workspace"
-                    ]
-                ]
-            }
-        },
-        "authorization": {
-            "fields": [
-                {
-                    "name": "token",
-                    "title": "Token",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "The token to be revoked (access token)."
-                },
-                {
-                    "name": "token_type_hint",
-                    "title": "Token Type Hint",
-                    "type": "`$ANY`",
-                    "short": "A hint about the type of the token being revoked (optional)."
-                }
-            ],
-            "name": "authorization",
-            "op": {
-                "create": {
-                    "input": "data",
-                    "name": "create",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/revoke",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "revoke"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "revoke"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {},
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                },
-                "remove": {
-                    "input": "data",
-                    "name": "remove",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "DELETE",
-                            "orig": "/api/v1/access_tokens",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "access_tokens"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "access_tokens"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "access_token",
-                                        "orig": "access_token",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "reqd": true
-                                    },
-                                    {
-                                        "name": "client_id",
-                                        "orig": "client_id",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "reqd": true
-                                    },
-                                    {
-                                        "name": "client_secret",
-                                        "orig": "client_secret",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "access_token",
-                                    "client_id",
-                                    "client_secret"
-                                ]
-                            },
                             "response": {
                                 "kind": "json",
                                 "media": "application/json"
@@ -2362,6 +1778,68 @@ class Config {
             ],
             "name": "email",
             "op": {
+                "remove": {
+                    "input": "data",
+                    "name": "remove",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "DELETE",
+                            "orig": "/api/v1/emails",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "emails"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "emails"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "obj_id",
+                                        "orig": "obj_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "field": true
+                                    },
+                                    {
+                                        "name": "obj_type",
+                                        "orig": "obj_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "field": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "obj_id",
+                                    "obj_type"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
                 "update": {
                     "input": "data",
                     "name": "update",
@@ -2515,6 +1993,9 @@ class Config {
                     "op": {
                         "create": {
                             "type": "`$ANY`"
+                        },
+                        "update": {
+                            "type": "`$ANY`"
                         }
                     },
                     "short": "Default position of the folder in the workspace."
@@ -2546,7 +2027,7 @@ class Config {
                     "type": "`$STRING`",
                     "req": true,
                     "op": {
-                        "create": {
+                        "update": {
                             "type": "`$STRING`"
                         }
                     },
@@ -2570,60 +2051,6 @@ class Config {
                     "input": "data",
                     "name": "create",
                     "points": [
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/folders/{folder_id}",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "folders"
-                                },
-                                {
-                                    "var": "id"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "folders",
-                                "{id}"
-                            ],
-                            "rename": {
-                                "param": {
-                                    "folder_id": "id"
-                                }
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "id",
-                                        "orig": "folder_id",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        },
                         {
                             "kind": "http",
                             "method": "POST",
@@ -2791,6 +2218,66 @@ class Config {
                         {
                             "kind": "http",
                             "method": "DELETE",
+                            "orig": "/api/v1/folders/{folder_id}",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "folders"
+                                },
+                                {
+                                    "var": "id"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "folders",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "folder_id": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "folder_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
+                "update": {
+                    "input": "data",
+                    "name": "update",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "POST",
                             "orig": "/api/v1/folders/{folder_id}",
                             "segments": [
                                 {
@@ -3102,109 +2589,6 @@ class Config {
             },
             "relations": {
                 "ancestors": []
-            }
-        },
-        "invite": {
-            "fields": [
-                {
-                    "name": "app",
-                    "title": "App",
-                    "type": "`$STRING`",
-                    "short": "For first-party clients usage only."
-                },
-                {
-                    "name": "email_list",
-                    "title": "Email List",
-                    "type": "`$ANY`",
-                    "short": "List of user emails to invite to the workspace."
-                },
-                {
-                    "name": "invited_emails",
-                    "title": "Invited Emails",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Emails successfully invited to the workspace."
-                },
-                {
-                    "name": "role",
-                    "title": "Role",
-                    "type": "`$ANY`",
-                    "short": "Role assigned to invited users."
-                }
-            ],
-            "name": "invite",
-            "op": {
-                "create": {
-                    "input": "data",
-                    "name": "create",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/workspaces/{workspace_id}/users/invite",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "workspaces"
-                                },
-                                {
-                                    "var": "workspace_id"
-                                },
-                                {
-                                    "lit": "users"
-                                },
-                                {
-                                    "lit": "invite"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "workspaces",
-                                "{workspace_id}",
-                                "users",
-                                "invite"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "workspace_id",
-                                        "orig": "workspace_id",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "workspace_id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": [
-                    [
-                        "$.main.kit.entity.workspace"
-                    ]
-                ]
             }
         },
         "label": {
@@ -3626,7 +3010,113 @@ class Config {
                 {
                     "name": "id",
                     "title": "Id",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the location reminder"
+                },
+                {
+                    "name": "is_deleted",
+                    "title": "Is Deleted",
+                    "type": "`$BOOLEAN`",
+                    "req": true,
+                    "short": "Whether the location reminder is deleted"
+                },
+                {
+                    "name": "item_id",
+                    "title": "Item Id",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the task"
+                },
+                {
+                    "name": "loc_lat",
+                    "title": "Loc Lat",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "op": {
+                        "update": {
+                            "type": "`$ANY`"
+                        }
+                    },
+                    "short": "Latitude of the location"
+                },
+                {
+                    "name": "loc_long",
+                    "title": "Loc Long",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "op": {
+                        "update": {
+                            "type": "`$ANY`"
+                        }
+                    },
+                    "short": "Longitude of the location"
+                },
+                {
+                    "name": "loc_trigger",
+                    "title": "Loc Trigger",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "op": {
+                        "update": {
+                            "type": "`$ANY`"
+                        }
+                    },
+                    "short": "Trigger type for the location reminder"
+                },
+                {
+                    "name": "name",
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "op": {
+                        "update": {
+                            "type": "`$STRING`"
+                        }
+                    },
+                    "short": "Name of the location"
+                },
+                {
+                    "name": "notify_uid",
+                    "title": "Notify Uid",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the user who will receive the reminder"
+                },
+                {
+                    "name": "project_id",
+                    "title": "Project Id",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the project containing the task"
+                },
+                {
+                    "name": "radius",
+                    "title": "Radius",
+                    "type": "`$INTEGER`",
+                    "req": true,
+                    "op": {
+                        "create": {
+                            "type": "`$INTEGER`"
+                        },
+                        "update": {
+                            "type": "`$NUMBER`"
+                        }
+                    },
+                    "short": "Radius in meters"
+                },
+                {
+                    "name": "task_id",
+                    "title": "Task Id",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the task"
+                },
+                {
+                    "name": "type",
+                    "title": "Type",
+                    "type": "`$STRING`",
+                    "short": "The reminder type"
                 }
             ],
             "id": {
@@ -3635,6 +3125,165 @@ class Config {
             },
             "name": "location_reminder",
             "op": {
+                "create": {
+                    "input": "data",
+                    "name": "create",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/v1/location_reminders",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "location_reminders"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "location_reminders"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/location_reminders",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "location_reminders"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "location_reminders"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.results`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "cursor",
+                                        "orig": "cursor",
+                                        "type": "`$ANY`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 50
+                                    },
+                                    {
+                                        "name": "task_id",
+                                        "orig": "task_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "field": true
+                                    }
+                                ]
+                            },
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
+                "load": {
+                    "input": "data",
+                    "name": "load",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/location_reminders/{reminder_id}",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "location_reminders"
+                                },
+                                {
+                                    "var": "id"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "location_reminders",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "reminder_id": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "reminder_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
                 "remove": {
                     "input": "data",
                     "name": "remove",
@@ -3694,369 +3343,10 @@ class Config {
                             }
                         }
                     ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "member_view": {
-            "fields": [
-                {
-                    "name": "full_name",
-                    "title": "Full Name",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Full name of the workspace member."
                 },
-                {
-                    "name": "image_id",
-                    "title": "Image Id",
-                    "type": "`$STRING`",
-                    "short": "Avatar image ID of the workspace member, or `null`."
-                },
-                {
-                    "name": "is_deleted",
-                    "title": "Is Deleted",
-                    "type": "`$BOOLEAN`",
-                    "short": "Whether the workspace member is deleted."
-                },
-                {
-                    "name": "role",
-                    "title": "Role",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Workspace role assigned to the member."
-                },
-                {
-                    "name": "timezone",
-                    "title": "Timezone",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Timezone of the workspace member."
-                },
-                {
-                    "name": "user_email",
-                    "title": "User Email",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Email address of the workspace member."
-                },
-                {
-                    "name": "user_id",
-                    "title": "User Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the workspace member."
-                },
-                {
-                    "name": "workspace_id",
-                    "title": "Workspace Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the workspace."
-                }
-            ],
-            "name": "member_view",
-            "op": {
-                "list": {
+                "update": {
                     "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/workspaces/users",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "workspaces"
-                                },
-                                {
-                                    "lit": "users"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "workspaces",
-                                "users"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.workspace_users`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "cursor",
-                                        "orig": "cursor",
-                                        "type": "`$ANY`",
-                                        "kind": "query"
-                                    },
-                                    {
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`",
-                                        "kind": "query",
-                                        "example": 100
-                                    },
-                                    {
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "example": "id"
-                                    },
-                                    {
-                                        "name": "workspace_id",
-                                        "orig": "workspace_id",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "field": true
-                                    }
-                                ]
-                            },
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "migrate_personal_token": {
-            "fields": [
-                {
-                    "name": "access_token",
-                    "title": "Access Token",
-                    "type": "`$ANY`",
-                    "req": true,
-                    "short": "OAuth access token created from the personal token."
-                },
-                {
-                    "name": "client_id",
-                    "title": "Client Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "The unique Client ID of the Todoist application that you registered."
-                },
-                {
-                    "name": "client_secret",
-                    "title": "Client Secret",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "The unique Client Secret of the Todoist application that you registered."
-                },
-                {
-                    "name": "expires_in",
-                    "title": "Expires In",
-                    "type": "`$INTEGER`",
-                    "req": true,
-                    "short": "Access token lifetime in seconds."
-                },
-                {
-                    "name": "personal_token",
-                    "title": "Personal Token",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Token obtained from the email/password authentication."
-                },
-                {
-                    "name": "scope",
-                    "title": "Scope",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Scopes of the OAuth token."
-                },
-                {
-                    "name": "token_type",
-                    "title": "Token Type",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "OAuth token type."
-                }
-            ],
-            "name": "migrate_personal_token",
-            "op": {
-                "create": {
-                    "input": "data",
-                    "name": "create",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/access_tokens/migrate_personal_token",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "access_tokens"
-                                },
-                                {
-                                    "lit": "migrate_personal_token"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "access_tokens",
-                                "migrate_personal_token"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {},
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "notification_location_sync_view": {
-            "fields": [
-                {
-                    "name": "id",
-                    "title": "Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the location reminder"
-                },
-                {
-                    "name": "is_deleted",
-                    "title": "Is Deleted",
-                    "type": "`$BOOLEAN`",
-                    "req": true,
-                    "short": "Whether the location reminder is deleted"
-                },
-                {
-                    "name": "item_id",
-                    "title": "Item Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the task"
-                },
-                {
-                    "name": "loc_lat",
-                    "title": "Loc Lat",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$ANY`"
-                        }
-                    },
-                    "short": "Latitude of the location"
-                },
-                {
-                    "name": "loc_long",
-                    "title": "Loc Long",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$ANY`"
-                        }
-                    },
-                    "short": "Longitude of the location"
-                },
-                {
-                    "name": "loc_trigger",
-                    "title": "Loc Trigger",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$ANY`"
-                        }
-                    },
-                    "short": "Trigger type for the location reminder"
-                },
-                {
-                    "name": "name",
-                    "title": "Name",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$STRING`"
-                        }
-                    },
-                    "short": "Name of the location"
-                },
-                {
-                    "name": "notify_uid",
-                    "title": "Notify Uid",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the user who will receive the reminder"
-                },
-                {
-                    "name": "project_id",
-                    "title": "Project Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the project containing the task"
-                },
-                {
-                    "name": "radius",
-                    "title": "Radius",
-                    "type": "`$INTEGER`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$INTEGER`"
-                        }
-                    },
-                    "short": "Radius in meters"
-                },
-                {
-                    "name": "task_id",
-                    "title": "Task Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the task"
-                },
-                {
-                    "name": "type",
-                    "title": "Type",
-                    "type": "`$STRING`",
-                    "short": "The reminder type"
-                }
-            ],
-            "id": {
-                "field": "id",
-                "name": "id"
-            },
-            "name": "notification_location_sync_view",
-            "op": {
-                "create": {
-                    "input": "data",
-                    "name": "create",
+                    "name": "update",
                     "points": [
                         {
                             "kind": "http",
@@ -4073,16 +3363,20 @@ class Config {
                                     "lit": "location_reminders"
                                 },
                                 {
-                                    "var": "reminder_id"
+                                    "var": "id"
                                 }
                             ],
                             "parts": [
                                 "api",
                                 "v1",
                                 "location_reminders",
-                                "{reminder_id}"
+                                "{id}"
                             ],
-                            "rename": {},
+                            "rename": {
+                                "param": {
+                                    "reminder_id": "id"
+                                }
+                            },
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
@@ -4090,7 +3384,7 @@ class Config {
                             "args": {
                                 "params": [
                                     {
-                                        "name": "reminder_id",
+                                        "name": "id",
                                         "orig": "reminder_id",
                                         "type": "`$STRING`",
                                         "kind": "param",
@@ -4100,156 +3394,7 @@ class Config {
                             },
                             "select": {
                                 "exist": [
-                                    "reminder_id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/location_reminders",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "location_reminders"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "location_reminders"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {},
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                },
-                "list": {
-                    "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/location_reminders",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "location_reminders"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "location_reminders"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.results`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "cursor",
-                                        "orig": "cursor",
-                                        "type": "`$ANY`",
-                                        "kind": "query"
-                                    },
-                                    {
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`",
-                                        "kind": "query",
-                                        "example": 50
-                                    },
-                                    {
-                                        "name": "task_id",
-                                        "orig": "task_id",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "field": true
-                                    }
-                                ]
-                            },
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                },
-                "load": {
-                    "input": "data",
-                    "name": "load",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/location_reminders/{reminder_id}",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "location_reminders"
-                                },
-                                {
-                                    "var": "reminder_id"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "location_reminders",
-                                "{reminder_id}"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "reminder_id",
-                                        "orig": "reminder_id",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "reminder_id"
+                                    "id"
                                 ]
                             },
                             "response": {
@@ -4261,120 +3406,42 @@ class Config {
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "$.main.kit.entity.location_reminder"
-                    ]
-                ]
+                "ancestors": []
             }
         },
-        "notification_sync_view": {
+        "notification_setting": {
             "fields": [
                 {
-                    "name": "due",
-                    "title": "Due",
+                    "name": "dont_notify",
+                    "title": "Dont Notify",
                     "type": "`$ANY`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$ANY`"
-                        }
-                    },
-                    "short": "Datetime when the reminder fires, or `null` if unset."
+                    "short": "Whether notifications should be disabled for the selected type and channel."
                 },
                 {
-                    "name": "id",
-                    "title": "Id",
+                    "name": "notification_type",
+                    "title": "Notification Type",
                     "type": "`$STRING`",
                     "req": true,
-                    "short": "String ID of the reminder."
-                },
-                {
-                    "name": "is_deleted",
-                    "title": "Is Deleted",
-                    "type": "`$BOOLEAN`",
-                    "req": true,
-                    "short": "Whether the reminder is deleted."
-                },
-                {
-                    "name": "is_urgent",
-                    "title": "Is Urgent",
-                    "type": "`$BOOLEAN`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$BOOLEAN`"
-                        }
-                    },
-                    "short": "Whether the reminder should be delivered urgently."
-                },
-                {
-                    "name": "item_id",
-                    "title": "Item Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the task that owns the reminder."
-                },
-                {
-                    "name": "minute_offset",
-                    "title": "Minute Offset",
-                    "type": "`$ANY`",
-                    "req": true,
-                    "op": {
-                        "create": {
-                            "type": "`$ANY`"
-                        }
-                    },
-                    "short": "Minutes before the task due time for relative reminders."
-                },
-                {
-                    "name": "notify_uid",
-                    "title": "Notify Uid",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the user who receives the reminder."
-                },
-                {
-                    "name": "reminder_type",
-                    "title": "Reminder Type",
-                    "type": "`$STRING`",
-                    "short": "Type of the reminder: 'relative' or 'absolute'"
+                    "short": "Notification type to update."
                 },
                 {
                     "name": "service",
                     "title": "Service",
                     "type": "`$STRING`",
-                    "short": "Notification service type: 'email', 'push'."
-                },
-                {
-                    "name": "task_id",
-                    "title": "Task Id",
-                    "type": "`$STRING`",
                     "req": true,
-                    "short": "String ID of the task"
-                },
-                {
-                    "name": "type",
-                    "title": "Type",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Reminder type."
+                    "short": "Notification channel to update."
                 }
             ],
-            "id": {
-                "field": "id",
-                "name": "id"
-            },
-            "name": "notification_sync_view",
+            "name": "notification_setting",
             "op": {
-                "create": {
+                "update": {
                     "input": "data",
-                    "name": "create",
+                    "name": "update",
                     "points": [
                         {
                             "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/reminders/{reminder_id}",
+                            "method": "PUT",
+                            "orig": "/api/v1/notification_setting",
                             "segments": [
                                 {
                                     "lit": "api"
@@ -4383,63 +3450,13 @@ class Config {
                                     "lit": "v1"
                                 },
                                 {
-                                    "lit": "reminders"
-                                },
-                                {
-                                    "var": "reminder_id"
+                                    "lit": "notification_setting"
                                 }
                             ],
                             "parts": [
                                 "api",
                                 "v1",
-                                "reminders",
-                                "{reminder_id}"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "reminder_id",
-                                        "orig": "reminder_id",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "reminder_id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/reminders",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "reminders"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "reminders"
+                                "notification_setting"
                             ],
                             "rename": {},
                             "transform": {
@@ -4454,131 +3471,10 @@ class Config {
                             }
                         }
                     ]
-                },
-                "list": {
-                    "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/reminders",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "reminders"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "reminders"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.results`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "cursor",
-                                        "orig": "cursor",
-                                        "type": "`$ANY`",
-                                        "kind": "query"
-                                    },
-                                    {
-                                        "name": "limit",
-                                        "orig": "limit",
-                                        "type": "`$INTEGER`",
-                                        "kind": "query",
-                                        "example": 50
-                                    },
-                                    {
-                                        "name": "task_id",
-                                        "orig": "task_id",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "field": true
-                                    }
-                                ]
-                            },
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                },
-                "load": {
-                    "input": "data",
-                    "name": "load",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/reminders/{reminder_id}",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "reminders"
-                                },
-                                {
-                                    "var": "reminder_id"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "reminders",
-                                "{reminder_id}"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "reminder_id",
-                                        "orig": "reminder_id",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "reminder_id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "$.main.kit.entity.reminder"
-                    ]
-                ]
+                "ancestors": []
             }
         },
         "plan_detail": {
@@ -5474,98 +4370,7 @@ class Config {
             }
         },
         "project_import": {
-            "fields": [
-                {
-                    "name": "comments",
-                    "title": "Comments",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Task comments created by the import."
-                },
-                {
-                    "name": "discarded_fields",
-                    "title": "Discarded Fields",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Task properties the importer dropped from one or more imported tasks because the plan in force does not include them."
-                },
-                {
-                    "name": "locale",
-                    "title": "Locale",
-                    "type": "`$STRING`",
-                    "short": "Locale to use for localized template content."
-                },
-                {
-                    "name": "project_id",
-                    "title": "Project Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "String ID of the project to import the template into."
-                },
-                {
-                    "name": "project_notes",
-                    "title": "Project Notes",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Project comments created by the import."
-                },
-                {
-                    "name": "project_view_options_defaults",
-                    "title": "Project View Options Defaults",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "View options defaults applied to the imported project."
-                },
-                {
-                    "name": "projects",
-                    "title": "Projects",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Projects created or updated by the import."
-                },
-                {
-                    "name": "reminders",
-                    "title": "Reminders",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Reminders created by the import."
-                },
-                {
-                    "name": "sections",
-                    "title": "Sections",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Sections created by the import."
-                },
-                {
-                    "name": "status",
-                    "title": "Status",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Always `ok` on success."
-                },
-                {
-                    "name": "tasks",
-                    "title": "Tasks",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Tasks created by the import."
-                },
-                {
-                    "name": "template_id",
-                    "title": "Template Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "ID of the saved template to import."
-                },
-                {
-                    "name": "template_type",
-                    "title": "Template Type",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Type of template that was imported."
-                }
-            ],
+            "fields": [],
             "name": "project_import",
             "op": {
                 "create": {
@@ -5602,7 +4407,9 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {},
+                            "select": {
+                                "$action": "from_file"
+                            },
                             "body": {
                                 "fields": [
                                     {
@@ -5652,105 +4459,14 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {},
+                            "select": {
+                                "$action": "from_template"
+                            },
                             "response": {
                                 "kind": "json",
                                 "media": "application/json"
                             }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "project_import_create_response_with_object": {
-            "fields": [
-                {
-                    "name": "comments",
-                    "title": "Comments",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Task comments created by the import."
-                },
-                {
-                    "name": "discarded_fields",
-                    "title": "Discarded Fields",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Task properties the importer dropped from one or more imported tasks because the plan in force does not include them."
-                },
-                {
-                    "name": "project_id",
-                    "title": "Project Id",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "ID of the project created from the template."
-                },
-                {
-                    "name": "project_notes",
-                    "title": "Project Notes",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Project comments created by the import."
-                },
-                {
-                    "name": "project_view_options_defaults",
-                    "title": "Project View Options Defaults",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "View options defaults applied to the imported project."
-                },
-                {
-                    "name": "projects",
-                    "title": "Projects",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Projects created by the import."
-                },
-                {
-                    "name": "reminders",
-                    "title": "Reminders",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Reminders created by the import."
-                },
-                {
-                    "name": "sections",
-                    "title": "Sections",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Sections created by the import."
-                },
-                {
-                    "name": "status",
-                    "title": "Status",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Always `ok` on success."
-                },
-                {
-                    "name": "tasks",
-                    "title": "Tasks",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Tasks created by the import."
-                },
-                {
-                    "name": "template_type",
-                    "title": "Template Type",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Type of template that was imported."
-                }
-            ],
-            "name": "project_import_create_response_with_object",
-            "op": {
-                "create": {
-                    "input": "data",
-                    "name": "create",
-                    "points": [
+                        },
                         {
                             "kind": "http",
                             "method": "POST",
@@ -5781,7 +4497,9 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {},
+                            "select": {
+                                "$action": "new_project_from_file"
+                            },
                             "body": {
                                 "fields": [
                                     {
@@ -5811,12 +4529,172 @@ class Config {
                 "ancestors": []
             }
         },
+        "project_permission": {
+            "fields": [
+                {
+                    "name": "project_collaborator_actions",
+                    "title": "Project Collaborator Actions",
+                    "type": "`$ARRAY`",
+                    "req": true,
+                    "short": "Project collaborator roles and their allowed actions."
+                },
+                {
+                    "name": "workspace_collaborator_actions",
+                    "title": "Workspace Collaborator Actions",
+                    "type": "`$ARRAY`",
+                    "req": true,
+                    "short": "Workspace collaborator roles and their allowed actions."
+                }
+            ],
+            "name": "project_permission",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/projects/permissions",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "projects"
+                                },
+                                {
+                                    "lit": "permissions"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "projects",
+                                "permissions"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": []
+            }
+        },
         "reminder": {
             "fields": [
                 {
+                    "name": "due",
+                    "title": "Due",
+                    "type": "`$ANY`",
+                    "req": true,
+                    "op": {
+                        "create": {
+                            "type": "`$ANY`"
+                        },
+                        "update": {
+                            "type": "`$ANY`"
+                        }
+                    },
+                    "short": "Datetime when the reminder fires, or `null` if unset."
+                },
+                {
                     "name": "id",
                     "title": "Id",
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the reminder."
+                },
+                {
+                    "name": "is_deleted",
+                    "title": "Is Deleted",
+                    "type": "`$BOOLEAN`",
+                    "req": true,
+                    "short": "Whether the reminder is deleted."
+                },
+                {
+                    "name": "is_urgent",
+                    "title": "Is Urgent",
+                    "type": "`$BOOLEAN`",
+                    "req": true,
+                    "op": {
+                        "create": {
+                            "type": "`$BOOLEAN`"
+                        },
+                        "update": {
+                            "type": "`$BOOLEAN`"
+                        }
+                    },
+                    "short": "Whether the reminder should be delivered urgently."
+                },
+                {
+                    "name": "item_id",
+                    "title": "Item Id",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the task that owns the reminder."
+                },
+                {
+                    "name": "minute_offset",
+                    "title": "Minute Offset",
+                    "type": "`$ANY`",
+                    "req": true,
+                    "op": {
+                        "create": {
+                            "type": "`$ANY`"
+                        },
+                        "update": {
+                            "type": "`$ANY`"
+                        }
+                    },
+                    "short": "Minutes before the task due time for relative reminders."
+                },
+                {
+                    "name": "notify_uid",
+                    "title": "Notify Uid",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the user who receives the reminder."
+                },
+                {
+                    "name": "reminder_type",
+                    "title": "Reminder Type",
+                    "type": "`$STRING`",
+                    "short": "Type of the reminder: 'relative' or 'absolute'"
+                },
+                {
+                    "name": "service",
+                    "title": "Service",
+                    "type": "`$STRING`",
+                    "short": "Notification service type: 'email', 'push'."
+                },
+                {
+                    "name": "task_id",
+                    "title": "Task Id",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the task"
+                },
+                {
+                    "name": "type",
+                    "title": "Type",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "Reminder type."
                 }
             ],
             "id": {
@@ -5825,6 +4703,165 @@ class Config {
             },
             "name": "reminder",
             "op": {
+                "create": {
+                    "input": "data",
+                    "name": "create",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/v1/reminders",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "reminders"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "reminders"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/reminders",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "reminders"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "reminders"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.results`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "cursor",
+                                        "orig": "cursor",
+                                        "type": "`$ANY`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 50
+                                    },
+                                    {
+                                        "name": "task_id",
+                                        "orig": "task_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "field": true
+                                    }
+                                ]
+                            },
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
+                "load": {
+                    "input": "data",
+                    "name": "load",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/reminders/{reminder_id}",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "reminders"
+                                },
+                                {
+                                    "var": "id"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "reminders",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "reminder_id": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "reminder_id",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
                 "remove": {
                     "input": "data",
                     "name": "remove",
@@ -5884,34 +4921,15 @@ class Config {
                             }
                         }
                     ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
-        "remove_workspace_user": {
-            "fields": [
-                {
-                    "name": "id",
-                    "title": "Id",
-                    "type": "`$STRING`"
-                }
-            ],
-            "id": {
-                "field": "id",
-                "name": "id"
-            },
-            "name": "remove_workspace_user",
-            "op": {
-                "remove": {
+                },
+                "update": {
                     "input": "data",
-                    "name": "remove",
+                    "name": "update",
                     "points": [
                         {
                             "kind": "http",
-                            "method": "DELETE",
-                            "orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                            "method": "POST",
+                            "orig": "/api/v1/reminders/{reminder_id}",
                             "segments": [
                                 {
                                     "lit": "api"
@@ -5920,13 +4938,7 @@ class Config {
                                     "lit": "v1"
                                 },
                                 {
-                                    "lit": "workspaces"
-                                },
-                                {
-                                    "var": "workspace_id"
-                                },
-                                {
-                                    "lit": "users"
+                                    "lit": "reminders"
                                 },
                                 {
                                     "var": "id"
@@ -5935,14 +4947,12 @@ class Config {
                             "parts": [
                                 "api",
                                 "v1",
-                                "workspaces",
-                                "{workspace_id}",
-                                "users",
+                                "reminders",
                                 "{id}"
                             ],
                             "rename": {
                                 "param": {
-                                    "user_id": "id"
+                                    "reminder_id": "id"
                                 }
                             },
                             "transform": {
@@ -5953,15 +4963,8 @@ class Config {
                                 "params": [
                                     {
                                         "name": "id",
-                                        "orig": "user_id",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    },
-                                    {
-                                        "name": "workspace_id",
-                                        "orig": "workspace_id",
-                                        "type": "`$INTEGER`",
+                                        "orig": "reminder_id",
+                                        "type": "`$STRING`",
                                         "kind": "param",
                                         "reqd": true
                                     }
@@ -5969,80 +4972,9 @@ class Config {
                             },
                             "select": {
                                 "exist": [
-                                    "id",
-                                    "workspace_id"
+                                    "id"
                                 ]
                             },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": [
-                    [
-                        "$.main.kit.entity.workspace"
-                    ]
-                ]
-            }
-        },
-        "role_to_action_mapping_view": {
-            "fields": [
-                {
-                    "name": "project_collaborator_actions",
-                    "title": "Project Collaborator Actions",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Project collaborator roles and their allowed actions."
-                },
-                {
-                    "name": "workspace_collaborator_actions",
-                    "title": "Workspace Collaborator Actions",
-                    "type": "`$ARRAY`",
-                    "req": true,
-                    "short": "Workspace collaborator roles and their allowed actions."
-                }
-            ],
-            "name": "role_to_action_mapping_view",
-            "op": {
-                "list": {
-                    "input": "data",
-                    "name": "list",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/api/v1/projects/permissions",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "projects"
-                                },
-                                {
-                                    "lit": "permissions"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "projects",
-                                "permissions"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {},
-                            "select": {},
                             "response": {
                                 "kind": "json",
                                 "media": "application/json"
@@ -6881,75 +5813,6 @@ class Config {
                 "ancestors": []
             }
         },
-        "status_ok": {
-            "fields": [],
-            "name": "status_ok",
-            "op": {
-                "remove": {
-                    "input": "data",
-                    "name": "remove",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "DELETE",
-                            "orig": "/api/v1/emails",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "emails"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "emails"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "query": [
-                                    {
-                                        "name": "obj_id",
-                                        "orig": "obj_id",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "reqd": true
-                                    },
-                                    {
-                                        "name": "obj_type",
-                                        "orig": "obj_type",
-                                        "type": "`$STRING`",
-                                        "kind": "query",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "obj_id",
-                                    "obj_type"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                }
-            },
-            "relations": {
-                "ancestors": []
-            }
-        },
         "subscription_info": {
             "fields": [
                 {
@@ -7102,7 +5965,9 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {},
+                            "select": {
+                                "$action": "reactivate_plan"
+                            },
                             "response": {
                                 "kind": "json",
                                 "media": "application/json"
@@ -8588,12 +7453,6 @@ class Config {
                     "short": "Date when user was deleted (ISO 8601 format)"
                 },
                 {
-                    "name": "dont_notify",
-                    "title": "Dont Notify",
-                    "type": "`$ANY`",
-                    "short": "Whether notifications should be disabled for the selected type and channel."
-                },
-                {
                     "name": "email",
                     "title": "Email",
                     "type": "`$STRING`",
@@ -8747,13 +7606,6 @@ class Config {
                     "short": "The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday)"
                 },
                 {
-                    "name": "notification_type",
-                    "title": "Notification Type",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Notification type to update."
-                },
-                {
                     "name": "onboarded_dated_tasks_created",
                     "title": "Onboarded Dated Tasks Created",
                     "type": "`$ANY`",
@@ -8839,13 +7691,6 @@ class Config {
                     "title": "Premium Until",
                     "type": "`$ANY`",
                     "short": "The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user)."
-                },
-                {
-                    "name": "service",
-                    "title": "Service",
-                    "type": "`$STRING`",
-                    "req": true,
-                    "short": "Notification channel to update."
                 },
                 {
                     "name": "share_limit",
@@ -8955,9 +7800,9 @@ class Config {
             },
             "name": "user",
             "op": {
-                "list": {
+                "load": {
                     "input": "data",
-                    "name": "list",
+                    "name": "load",
                     "points": [
                         {
                             "kind": "http",
@@ -8992,44 +7837,6 @@ class Config {
                             }
                         }
                     ]
-                },
-                "update": {
-                    "input": "data",
-                    "name": "update",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "PUT",
-                            "orig": "/api/v1/notification_setting",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "notification_setting"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "notification_setting"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {},
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
                 }
             },
             "relations": {
@@ -9042,19 +7849,19 @@ class Config {
                     "name": "description",
                     "title": "Description",
                     "type": "`$STRING`",
-                    "short": "Updated workspace description."
+                    "short": "Description of the workspace."
                 },
                 {
                     "name": "domain_discovery",
                     "title": "Domain Discovery",
-                    "type": "`$ANY`",
-                    "short": "Updated domain discovery setting."
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether users with matching email domains can discover this workspace."
                 },
                 {
                     "name": "domain_name",
                     "title": "Domain Name",
                     "type": "`$ANY`",
-                    "short": "Updated workspace email domain."
+                    "short": "Workspace email domain."
                 },
                 {
                     "name": "id",
@@ -9077,37 +7884,37 @@ class Config {
                     "name": "is_guest_allowed",
                     "title": "Is Guest Allowed",
                     "type": "`$BOOLEAN`",
-                    "short": "Updated guest access status."
+                    "short": "Whether guests are allowed in the workspace."
                 },
                 {
                     "name": "is_link_sharing_enabled",
                     "title": "Is Link Sharing Enabled",
                     "type": "`$BOOLEAN`",
-                    "short": "Updated link sharing status."
+                    "short": "Whether link sharing is enabled for the workspace."
                 },
                 {
                     "name": "is_trial_pending",
                     "title": "Is Trial Pending",
                     "type": "`$BOOLEAN`",
-                    "short": "Updated trial pending state."
+                    "short": "Whether the workspace is waiting for trial confirmation."
                 },
                 {
                     "name": "name",
                     "title": "Name",
                     "type": "`$STRING`",
-                    "short": "Updated workspace name."
+                    "short": "Name of the workspace."
                 },
                 {
                     "name": "properties",
                     "title": "Properties",
                     "type": "`$ANY`",
-                    "short": "Updated workspace properties."
+                    "short": "Workspace properties."
                 },
                 {
                     "name": "restrict_email_domains",
                     "title": "Restrict Email Domains",
-                    "type": "`$ANY`",
-                    "short": "Updated email domain restriction setting."
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether workspace invites are restricted to workspace domain."
                 }
             ],
             "id": {
@@ -9120,60 +7927,6 @@ class Config {
                     "input": "data",
                     "name": "create",
                     "points": [
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/workspaces/{workspace_id}",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "workspaces"
-                                },
-                                {
-                                    "var": "id"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "workspaces",
-                                "{id}"
-                            ],
-                            "rename": {
-                                "param": {
-                                    "workspace_id": "id"
-                                }
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "id",
-                                        "orig": "workspace_id",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ]
-                            },
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        },
                         {
                             "kind": "http",
                             "method": "POST",
@@ -9471,13 +8224,73 @@ class Config {
                             }
                         }
                     ]
+                },
+                "update": {
+                    "input": "data",
+                    "name": "update",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/v1/workspaces/{workspace_id}",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "workspaces"
+                                },
+                                {
+                                    "var": "id"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "workspaces",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "workspace_id": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "workspace_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
                 }
             },
             "relations": {
                 "ancestors": []
             }
         },
-        "workspace_invitation_view": {
+        "workspace_invitation": {
             "fields": [
                 {
                     "name": "app",
@@ -9524,54 +8337,8 @@ class Config {
                 "field": "id",
                 "name": "id"
             },
-            "name": "workspace_invitation_view",
+            "name": "workspace_invitation",
             "op": {
-                "create": {
-                    "input": "data",
-                    "name": "create",
-                    "points": [
-                        {
-                            "kind": "http",
-                            "method": "POST",
-                            "orig": "/api/v1/workspaces/invitations/delete",
-                            "segments": [
-                                {
-                                    "lit": "api"
-                                },
-                                {
-                                    "lit": "v1"
-                                },
-                                {
-                                    "lit": "workspaces"
-                                },
-                                {
-                                    "lit": "invitations"
-                                },
-                                {
-                                    "lit": "delete"
-                                }
-                            ],
-                            "parts": [
-                                "api",
-                                "v1",
-                                "workspaces",
-                                "invitations",
-                                "delete"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {},
-                            "select": {},
-                            "response": {
-                                "kind": "json",
-                                "media": "application/json"
-                            }
-                        }
-                    ]
-                },
                 "list": {
                     "input": "data",
                     "name": "list",
@@ -9633,6 +8400,52 @@ class Config {
                         }
                     ]
                 },
+                "remove": {
+                    "input": "data",
+                    "name": "remove",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/v1/workspaces/invitations/delete",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "workspaces"
+                                },
+                                {
+                                    "lit": "invitations"
+                                },
+                                {
+                                    "lit": "delete"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "workspaces",
+                                "invitations",
+                                "delete"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
                 "update": {
                     "input": "data",
                     "name": "update",
@@ -9686,6 +8499,7 @@ class Config {
                                 ]
                             },
                             "select": {
+                                "$action": "accept",
                                 "exist": [
                                     "invite_code"
                                 ]
@@ -9744,6 +8558,7 @@ class Config {
                                 ]
                             },
                             "select": {
+                                "$action": "reject",
                                 "exist": [
                                     "invite_code"
                                 ]
@@ -9760,7 +8575,304 @@ class Config {
                 "ancestors": []
             }
         },
-        "workspace_user_view": {
+        "workspace_project": {
+            "fields": [
+                {
+                    "name": "access",
+                    "title": "Access",
+                    "type": "`$ANY`",
+                    "req": true,
+                    "short": "Project access configuration."
+                },
+                {
+                    "name": "archived_date",
+                    "title": "Archived Date",
+                    "type": "`$ANY`",
+                    "short": "Date and time when the project was archived, or `null` if active."
+                },
+                {
+                    "name": "archived_timestamp",
+                    "title": "Archived Timestamp",
+                    "type": "`$INTEGER`",
+                    "short": "Unix timestamp for when the project was archived, or 0 if active."
+                },
+                {
+                    "name": "color",
+                    "title": "Color",
+                    "type": "`$ANY`",
+                    "short": "Numeric project color code."
+                },
+                {
+                    "name": "default_order",
+                    "title": "Default Order",
+                    "type": "`$INTEGER`",
+                    "short": "Default order of the project in workspace views."
+                },
+                {
+                    "name": "default_order_key",
+                    "title": "Default Order Key",
+                    "type": "`$ANY`",
+                    "short": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together)."
+                },
+                {
+                    "name": "description",
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Project description."
+                },
+                {
+                    "name": "folder_id",
+                    "title": "Folder Id",
+                    "type": "`$STRING`",
+                    "short": "Numeric ID of the folder that contains the project, or `null`."
+                },
+                {
+                    "name": "icon",
+                    "title": "Icon",
+                    "type": "`$ANY`",
+                    "short": "Project icon name, or `null` for the default icon."
+                },
+                {
+                    "name": "initiated_by_uid",
+                    "title": "Initiated By Uid",
+                    "type": "`$INTEGER`",
+                    "req": true,
+                    "short": "Numeric ID of the user requesting the workspace project."
+                },
+                {
+                    "name": "is_archived",
+                    "title": "Is Archived",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether the workspace project is archived."
+                },
+                {
+                    "name": "is_frozen",
+                    "title": "Is Frozen",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether the project is frozen and cannot be modified."
+                },
+                {
+                    "name": "is_invite_only",
+                    "title": "Is Invite Only",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether joining the workspace project requires an invitation."
+                },
+                {
+                    "name": "is_project_insights_enabled",
+                    "title": "Is Project Insights Enabled",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether project insights are enabled for the project."
+                },
+                {
+                    "name": "name",
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "short": "Project name."
+                },
+                {
+                    "name": "project_id",
+                    "title": "Project Id",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "String ID of the project."
+                },
+                {
+                    "name": "public_access",
+                    "title": "Public Access",
+                    "type": "`$BOOLEAN`",
+                    "req": true,
+                    "short": "Whether the project is publicly accessible."
+                },
+                {
+                    "name": "role",
+                    "title": "Role",
+                    "type": "`$ANY`"
+                },
+                {
+                    "name": "status",
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Project status."
+                },
+                {
+                    "name": "view_style",
+                    "title": "View Style",
+                    "type": "`$STRING`",
+                    "short": "Project view style."
+                },
+                {
+                    "name": "workspace_id",
+                    "title": "Workspace Id",
+                    "type": "`$INTEGER`",
+                    "req": true,
+                    "short": "Numeric ID of the workspace that contains the project."
+                }
+            ],
+            "name": "workspace_project",
+            "op": {
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/workspaces/{workspace_id}/projects/active",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "workspaces"
+                                },
+                                {
+                                    "var": "workspace_id"
+                                },
+                                {
+                                    "lit": "projects"
+                                },
+                                {
+                                    "lit": "active"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "workspaces",
+                                "{workspace_id}",
+                                "projects",
+                                "active"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.workspace_projects`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "workspace_id",
+                                        "orig": "workspace_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "cursor",
+                                        "orig": "cursor",
+                                        "type": "`$ANY`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "workspace_id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/workspaces/{workspace_id}/projects/archived",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "workspaces"
+                                },
+                                {
+                                    "var": "workspace_id"
+                                },
+                                {
+                                    "lit": "projects"
+                                },
+                                {
+                                    "lit": "archived"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "workspaces",
+                                "{workspace_id}",
+                                "projects",
+                                "archived"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.workspace_projects`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "workspace_id",
+                                        "orig": "workspace_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "cursor",
+                                        "orig": "cursor",
+                                        "type": "`$ANY`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "$action": "archived",
+                                "exist": [
+                                    "workspace_id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                }
+            },
+            "relations": {
+                "ancestors": [
+                    [
+                        "$.main.kit.entity.workspace"
+                    ]
+                ]
+            }
+        },
+        "workspace_user": {
             "fields": [
                 {
                     "name": "custom_sorting_applied",
@@ -9769,10 +8881,34 @@ class Config {
                     "short": "Whether the user has custom project sorting enabled."
                 },
                 {
+                    "name": "full_name",
+                    "title": "Full Name",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "Full name of the workspace member."
+                },
+                {
+                    "name": "id",
+                    "title": "Id",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "image_id",
+                    "title": "Image Id",
+                    "type": "`$STRING`",
+                    "short": "Avatar image ID of the workspace member, or `null`."
+                },
+                {
                     "name": "invite_code",
                     "title": "Invite Code",
                     "type": "`$ANY`",
                     "short": "Workspace invite code to join with."
+                },
+                {
+                    "name": "is_deleted",
+                    "title": "Is Deleted",
+                    "type": "`$BOOLEAN`",
+                    "short": "Whether the workspace member is deleted."
                 },
                 {
                     "name": "project_sort_preference",
@@ -9785,12 +8921,30 @@ class Config {
                     "title": "Role",
                     "type": "`$STRING`",
                     "op": {
-                        "create": {
+                        "list": {
+                            "req": true,
+                            "type": "`$STRING`"
+                        },
+                        "update": {
                             "req": true,
                             "type": "`$STRING`"
                         }
                     },
                     "short": "Workspace role assigned to the user."
+                },
+                {
+                    "name": "timezone",
+                    "title": "Timezone",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "Timezone of the workspace member."
+                },
+                {
+                    "name": "user_email",
+                    "title": "User Email",
+                    "type": "`$STRING`",
+                    "req": true,
+                    "short": "Email address of the workspace member."
                 },
                 {
                     "name": "user_id",
@@ -9812,7 +8966,11 @@ class Config {
                     "short": "String ID of the workspace."
                 }
             ],
-            "name": "workspace_user_view",
+            "id": {
+                "field": "id",
+                "name": "id"
+            },
+            "name": "workspace_user",
             "op": {
                 "create": {
                     "input": "data",
@@ -9821,7 +8979,7 @@ class Config {
                         {
                             "kind": "http",
                             "method": "POST",
-                            "orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                            "orig": "/api/v1/workspaces/{workspace_id}/users/invite",
                             "segments": [
                                 {
                                     "lit": "api"
@@ -9839,7 +8997,7 @@ class Config {
                                     "lit": "users"
                                 },
                                 {
-                                    "var": "user_id"
+                                    "lit": "invite"
                                 }
                             ],
                             "parts": [
@@ -9848,7 +9006,7 @@ class Config {
                                 "workspaces",
                                 "{workspace_id}",
                                 "users",
-                                "{user_id}"
+                                "invite"
                             ],
                             "rename": {},
                             "transform": {
@@ -9857,13 +9015,6 @@ class Config {
                             },
                             "args": {
                                 "params": [
-                                    {
-                                        "name": "user_id",
-                                        "orig": "user_id",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    },
                                     {
                                         "name": "workspace_id",
                                         "orig": "workspace_id",
@@ -9874,8 +9025,8 @@ class Config {
                                 ]
                             },
                             "select": {
+                                "$action": "invite",
                                 "exist": [
-                                    "user_id",
                                     "workspace_id"
                                 ]
                             },
@@ -9921,13 +9072,236 @@ class Config {
                             }
                         }
                     ]
+                },
+                "list": {
+                    "input": "data",
+                    "name": "list",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "GET",
+                            "orig": "/api/v1/workspaces/users",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "workspaces"
+                                },
+                                {
+                                    "lit": "users"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "workspaces",
+                                "users"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.workspace_users`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "cursor",
+                                        "orig": "cursor",
+                                        "type": "`$ANY`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "limit",
+                                        "orig": "limit",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "id"
+                                    },
+                                    {
+                                        "name": "workspace_id",
+                                        "orig": "workspace_id",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "field": true
+                                    }
+                                ]
+                            },
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
+                "remove": {
+                    "input": "data",
+                    "name": "remove",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "DELETE",
+                            "orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "workspaces"
+                                },
+                                {
+                                    "var": "workspace_id"
+                                },
+                                {
+                                    "lit": "users"
+                                },
+                                {
+                                    "var": "id"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "workspaces",
+                                "{workspace_id}",
+                                "users",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "user_id": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "user_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "workspace_id",
+                                        "orig": "workspace_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id",
+                                    "workspace_id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
+                },
+                "update": {
+                    "input": "data",
+                    "name": "update",
+                    "points": [
+                        {
+                            "kind": "http",
+                            "method": "POST",
+                            "orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+                            "segments": [
+                                {
+                                    "lit": "api"
+                                },
+                                {
+                                    "lit": "v1"
+                                },
+                                {
+                                    "lit": "workspaces"
+                                },
+                                {
+                                    "var": "workspace_id"
+                                },
+                                {
+                                    "lit": "users"
+                                },
+                                {
+                                    "var": "id"
+                                }
+                            ],
+                            "parts": [
+                                "api",
+                                "v1",
+                                "workspaces",
+                                "{workspace_id}",
+                                "users",
+                                "{id}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "user_id": "id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "id",
+                                        "orig": "user_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "workspace_id",
+                                        "orig": "workspace_id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id",
+                                    "workspace_id"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        }
+                    ]
                 }
             },
             "relations": {
                 "ancestors": [
                     [
-                        "$.main.kit.entity.workspace",
-                        "$.main.kit.entity.user"
+                        "$.main.kit.entity.workspace"
                     ]
                 ]
             }

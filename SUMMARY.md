@@ -103,25 +103,11 @@
 
 This guide introduces the API, the client libraries, and the companion tools in this repository. Start with the API capabilities, choose a client for your application, and use the linked reference when you need exact request and response details.
 
-The selected API surface contains 43 entities and 108 HTTP routes. There are 3 SDK targets and 2 companion tools.
+The selected API surface contains 34 entities and 105 HTTP routes. There are 3 SDK targets and 2 companion tools.
 
 An entity groups related API operations. An operation can have several routes with different inputs or authentication requirements. The SDK exposes the entity and its operations using the conventions of the selected language.
 
 ## What the API provides
-
-### Active
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `access`: Project access configuration.
-- `archived_date`: Date and time when the project was archived, or `null` if active.
-- `archived_timestamp`: Unix timestamp for when the project was archived, or 0 if active.
-- `color`: Numeric project color code.
-- `default_order`: Default order of the project in workspace views.
 
 ### Activity
 
@@ -136,31 +122,6 @@ Key fields to recognise:
 - `extra_data`: This object contains at least the `name` of the project, or the `content` of an item or comment, and optionally the `last_name` if a project was renamed, the `last_content` if an item or note was renamed, the `due_date` and `last_due_date` if an item&#39;s due date changed, the `responsible_uid` and `last_responsible_uid` if an item&#39;s responsible uid changed, the `description` and `last_description` if an item&#39;s description changed, the `priority` and `last_priority` if an item&#39;s priority changed, the `deadline` and `last_deadline` if an item&#39;s deadline changed, the `duration`, `last_duration`, `duration_unit`, and `last_duration_unit` if an item&#39;s duration changed, the `source_project_id` and `destination_project_id` if a task was moved between projects, the `section_id` on completion snapshots and section-move events, the `last_section_id` on section-move events indicating the previous section, and the `client` that caused the logging of the event
 - `extra_data_id`: Internal ID for the extra activity data row.
 - `id`: The internal unique identifier for this activity log entry.
-
-### Archived
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `access`: Project access configuration.
-- `archived_date`: Date and time when the project was archived, or `null` if active.
-- `archived_timestamp`: Unix timestamp for when the project was archived, or 0 if active.
-- `color`: Numeric project color code.
-- `default_order`: Default order of the project in workspace views.
-
-### Authorization
-
-Results: Successful Response.
-
-SDK operations: `create`, `remove`.
-
-Key fields to recognise:
-
-- `token`: The token to be revoked (access token).
-- `token_type_hint`: A hint about the type of the token being revoked (optional).
 
 ### Backup
 
@@ -244,7 +205,7 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `update`.
+SDK operations: `remove`, `update`.
 
 Key fields to recognise:
 
@@ -267,7 +228,7 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `create`, `list`, `load`, `remove`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
@@ -302,19 +263,6 @@ Key fields to recognise:
 - `new_id`: Curent ID for the object.
 - `old_id`: Legacy ID for the object.
 
-### Invite
-
-Results: Successful Response.
-
-SDK operations: `create`.
-
-Key fields to recognise:
-
-- `app`: For first-party clients usage only.
-- `email_list`: List of user emails to invite to the workspace.
-- `invited_emails`: Emails successfully invited to the workspace.
-- `role`: Role assigned to invited users.
-
 ### Label
 
 Results: Successful Response.
@@ -333,41 +281,7 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `remove`.
-
-### MemberView
-
-Results: Successful Response.
-
-SDK operations: `list`.
-
-Key fields to recognise:
-
-- `full_name`: Full name of the workspace member.
-- `image_id`: Avatar image ID of the workspace member, or `null`.
-- `is_deleted`: Whether the workspace member is deleted.
-- `role`: Workspace role assigned to the member.
-- `timezone`: Timezone of the workspace member.
-
-### MigratePersonalToken
-
-Results: Successful Response.
-
-SDK operations: `create`.
-
-Key fields to recognise:
-
-- `access_token`: OAuth access token created from the personal token.
-- `client_id`: The unique Client ID of the Todoist application that you registered.
-- `client_secret`: The unique Client Secret of the Todoist application that you registered.
-- `expires_in`: Access token lifetime in seconds.
-- `personal_token`: Token obtained from the email/password authentication.
-
-### NotificationLocationSyncView
-
-Results: Successful Response.
-
-SDK operations: `create`, `list`, `load`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
@@ -377,19 +291,17 @@ Key fields to recognise:
 - `loc_lat`: Latitude of the location
 - `loc_long`: Longitude of the location
 
-### NotificationSyncView
+### NotificationSetting
 
 Results: Successful Response.
 
-SDK operations: `create`, `list`, `load`.
+SDK operations: `update`.
 
 Key fields to recognise:
 
-- `due`: Datetime when the reminder fires, or `null` if unset.
-- `id`: String ID of the reminder.
-- `is_deleted`: Whether the reminder is deleted.
-- `is_urgent`: Whether the reminder should be delivered urgently.
-- `item_id`: String ID of the task that owns the reminder.
+- `dont_notify`: Whether notifications should be disabled for the selected type and channel.
+- `notification_type`: Notification type to update.
+- `service`: Notification channel to update.
 
 ### PlanDetail
 
@@ -436,41 +348,7 @@ Results: Successful Response.
 
 SDK operations: `create`.
 
-Key fields to recognise:
-
-- `comments`: Task comments created by the import.
-- `discarded_fields`: Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. Empty when nothing was dropped. `reason` says which plan has to change: `workspace_plan_limit` for the workspace the project belongs to, `personal_plan_limit` for the importing user&#39;s own subscription.
-- `locale`: Locale to use for localized template content.
-- `project_id`: String ID of the project that contains the section.
-- `project_notes`: Project comments created by the import.
-
-### ProjectImportCreateResponseWithObject
-
-Results: Successful Response.
-
-SDK operations: `create`.
-
-Key fields to recognise:
-
-- `comments`: Task comments created by the import.
-- `discarded_fields`: Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. Empty when nothing was dropped. `reason` says which plan has to change: `workspace_plan_limit` for the workspace the project belongs to, `personal_plan_limit` for the importing user&#39;s own subscription.
-- `project_id`: ID of the project created from the template.
-- `project_notes`: Project comments created by the import.
-- `project_view_options_defaults`: View options defaults applied to the imported project.
-
-### Reminder
-
-Results: Successful Response.
-
-SDK operations: `remove`.
-
-### RemoveWorkspaceUser
-
-Results: Successful Response.
-
-SDK operations: `remove`.
-
-### RoleToActionMappingView
+### ProjectPermission
 
 Results: Successful Response.
 
@@ -480,6 +358,20 @@ Key fields to recognise:
 
 - `project_collaborator_actions`: Project collaborator roles and their allowed actions.
 - `workspace_collaborator_actions`: Workspace collaborator roles and their allowed actions.
+
+### Reminder
+
+Results: Successful Response.
+
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
+
+Key fields to recognise:
+
+- `due`: Datetime when the reminder fires, or `null` if unset.
+- `id`: String ID of the reminder.
+- `is_deleted`: Whether the reminder is deleted.
+- `is_urgent`: Whether the reminder should be delivered urgently.
+- `item_id`: String ID of the task that owns the reminder.
 
 ### Section
 
@@ -507,12 +399,6 @@ Key fields to recognise:
 - `new_name`: New shared label name to apply to matching tasks.
 - `next_cursor`: Cursor for the next page of results, or `null` when there are no more results.
 - `results`: Objects in the current page of results.
-
-### StatusOk
-
-Results: Successful Response.
-
-SDK operations: `remove`.
 
 ### SubscriptionInfo
 
@@ -594,7 +480,7 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `list`, `update`.
+SDK operations: `load`.
 
 Key fields to recognise:
 
@@ -608,7 +494,7 @@ Key fields to recognise:
 
 Results: Successful Response.
 
-SDK operations: `create`, `list`, `load`, `remove`.
+SDK operations: `create`, `list`, `load`, `remove`, `update`.
 
 Key fields to recognise:
 
@@ -618,11 +504,11 @@ Key fields to recognise:
 - `id`: String ID of the workspace.
 - `invite_code`: Opaque code to invite users to the workspace, or `null`.
 
-### WorkspaceInvitationView
+### WorkspaceInvitation
 
 Results: Successful Response.
 
-SDK operations: `create`, `list`, `update`.
+SDK operations: `list`, `remove`, `update`.
 
 Key fields to recognise:
 
@@ -632,19 +518,33 @@ Key fields to recognise:
 - `role`: Workspace role granted by the invitation.
 - `user_email`: The invited person&#39;s email.
 
-### WorkspaceUserView
+### WorkspaceProject
 
 Results: Successful Response.
 
-SDK operations: `create`.
+SDK operations: `list`.
+
+Key fields to recognise:
+
+- `access`: Project access configuration.
+- `archived_date`: Date and time when the project was archived, or `null` if active.
+- `archived_timestamp`: Unix timestamp for when the project was archived, or 0 if active.
+- `color`: Numeric project color code.
+- `default_order`: Default order of the project in workspace views.
+
+### WorkspaceUser
+
+Results: Successful Response.
+
+SDK operations: `create`, `list`, `remove`, `update`.
 
 Key fields to recognise:
 
 - `custom_sorting_applied`: Whether the user has custom project sorting enabled.
+- `full_name`: Full name of the workspace member.
+- `image_id`: Avatar image ID of the workspace member, or `null`.
 - `invite_code`: Workspace invite code to join with.
-- `project_sort_preference`: Project sorting preference for the user.
-- `role`: Workspace role assigned to the user.
-- `user_id`: String ID of the workspace user.
+- `is_deleted`: Whether the workspace member is deleted.
 
 ### Route map
 
@@ -652,11 +552,7 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 
 | Entity | SDK operation | HTTP route | Authentication |
 | --- | --- | --- | --- |
-| Active | `list` | `GET /api/v1/workspaces/{workspace_id}/projects/active` | See reference |
 | Activity | `list` | `GET /api/v1/activities` | See reference |
-| Archived | `list` | `GET /api/v1/workspaces/{workspace_id}/projects/archived` | See reference |
-| Authorization | `create` | `POST /api/v1/revoke` | See reference |
-| Authorization | `remove` | `DELETE /api/v1/access_tokens` | See reference |
 | Backup | `list` | `GET /api/v1/backups` | See reference |
 | Backup | `load` | `GET /api/v1/backups/download` | See reference |
 | BillingPortalUrl | `create` | `POST /api/v1/payments/cancel_plan_with_redirect_to_stripe` | See reference |
@@ -671,33 +567,28 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | CompletedTask | `list` | `GET /api/v1/tasks/completed/by_completion_date` | See reference |
 | CompletedTask | `list` | `GET /api/v1/tasks/completed/by_due_date` | See reference |
 | CreditState | `load` | `GET /api/v1/usage_billing/state` | See reference |
+| Email | `remove` | `DELETE /api/v1/emails` | See reference |
 | Email | `update` | `PUT /api/v1/emails` | See reference |
 | FileUrl | `load` | `GET /api/v1/templates/url` | See reference |
-| Folder | `create` | `POST /api/v1/folders/{folder_id}` | See reference |
 | Folder | `create` | `POST /api/v1/folders` | See reference |
 | Folder | `list` | `GET /api/v1/folders` | See reference |
 | Folder | `load` | `GET /api/v1/folders/{folder_id}` | See reference |
 | Folder | `remove` | `DELETE /api/v1/folders/{folder_id}` | See reference |
+| Folder | `update` | `POST /api/v1/folders/{folder_id}` | See reference |
 | History | `list` | `GET /api/v1/usage_billing/history` | See reference |
 | IdMapping | `list` | `GET /api/v1/id_mappings/{obj_name}/{obj_ids}` | See reference |
-| Invite | `create` | `POST /api/v1/workspaces/{workspace_id}/users/invite` | See reference |
 | Label | `create` | `POST /api/v1/labels` | See reference |
 | Label | `list` | `GET /api/v1/labels/search` | See reference |
 | Label | `list` | `GET /api/v1/labels` | See reference |
 | Label | `load` | `GET /api/v1/labels/{label_id}` | See reference |
 | Label | `remove` | `DELETE /api/v1/labels/{label_id}` | See reference |
 | Label | `update` | `POST /api/v1/labels/{label_id}` | See reference |
+| LocationReminder | `create` | `POST /api/v1/location_reminders` | See reference |
+| LocationReminder | `list` | `GET /api/v1/location_reminders` | See reference |
+| LocationReminder | `load` | `GET /api/v1/location_reminders/{reminder_id}` | See reference |
 | LocationReminder | `remove` | `DELETE /api/v1/location_reminders/{reminder_id}` | See reference |
-| MemberView | `list` | `GET /api/v1/workspaces/users` | See reference |
-| MigratePersonalToken | `create` | `POST /api/v1/access_tokens/migrate_personal_token` | See reference |
-| NotificationLocationSyncView | `create` | `POST /api/v1/location_reminders/{reminder_id}` | See reference |
-| NotificationLocationSyncView | `create` | `POST /api/v1/location_reminders` | See reference |
-| NotificationLocationSyncView | `list` | `GET /api/v1/location_reminders` | See reference |
-| NotificationLocationSyncView | `load` | `GET /api/v1/location_reminders/{reminder_id}` | See reference |
-| NotificationSyncView | `create` | `POST /api/v1/reminders/{reminder_id}` | See reference |
-| NotificationSyncView | `create` | `POST /api/v1/reminders` | See reference |
-| NotificationSyncView | `list` | `GET /api/v1/reminders` | See reference |
-| NotificationSyncView | `load` | `GET /api/v1/reminders/{reminder_id}` | See reference |
+| LocationReminder | `update` | `POST /api/v1/location_reminders/{reminder_id}` | See reference |
+| NotificationSetting | `update` | `PUT /api/v1/notification_setting` | See reference |
 | PlanDetail | `list` | `GET /api/v1/workspaces/plan_details` | See reference |
 | ProductivityStat | `list` | `GET /api/v1/tasks/completed/stats` | See reference |
 | Project | `create` | `POST /api/v1/projects` | See reference |
@@ -712,10 +603,13 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Project | `update` | `POST /api/v1/projects/{project_id}/unarchive` | See reference |
 | ProjectImport | `create` | `POST /api/v1/templates/import_into_project_from_file` | See reference |
 | ProjectImport | `create` | `POST /api/v1/templates/import_into_project_from_template_id` | See reference |
-| ProjectImportCreateResponseWithObject | `create` | `POST /api/v1/templates/create_project_from_file` | See reference |
+| ProjectImport | `create` | `POST /api/v1/templates/create_project_from_file` | See reference |
+| ProjectPermission | `list` | `GET /api/v1/projects/permissions` | See reference |
+| Reminder | `create` | `POST /api/v1/reminders` | See reference |
+| Reminder | `list` | `GET /api/v1/reminders` | See reference |
+| Reminder | `load` | `GET /api/v1/reminders/{reminder_id}` | See reference |
 | Reminder | `remove` | `DELETE /api/v1/reminders/{reminder_id}` | See reference |
-| RemoveWorkspaceUser | `remove` | `DELETE /api/v1/workspaces/{workspace_id}/users/{user_id}` | See reference |
-| RoleToActionMappingView | `list` | `GET /api/v1/projects/permissions` | See reference |
+| Reminder | `update` | `POST /api/v1/reminders/{reminder_id}` | See reference |
 | Section | `create` | `POST /api/v1/sections` | See reference |
 | Section | `list` | `GET /api/v1/sections/search` | See reference |
 | Section | `list` | `GET /api/v1/sections` | See reference |
@@ -727,7 +621,6 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | SharedLabel | `list` | `GET /api/v1/labels/shared` | See reference |
 | SharedLabel | `remove` | `POST /api/v1/labels/shared/remove` | See reference |
 | SharedLabel | `update` | `POST /api/v1/labels/shared/rename` | See reference |
-| StatusOk | `remove` | `DELETE /api/v1/emails` | See reference |
 | SubscriptionInfo | `create` | `POST /api/v1/payments/get_subscription_info` | See reference |
 | SubscriptionInfo | `create` | `POST /api/v1/payments/reactivate_plan` | See reference |
 | Task | `create` | `POST /api/v1/tasks` | See reference |
@@ -745,21 +638,25 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | Upload | `create` | `POST /api/v1/uploads` | See reference |
 | Upload | `remove` | `DELETE /api/v1/uploads` | See reference |
 | UsageSummary | `list` | `GET /api/v1/usage_billing/usage_summary` | See reference |
-| User | `list` | `GET /api/v1/user` | See reference |
-| User | `update` | `PUT /api/v1/notification_setting` | See reference |
-| Workspace | `create` | `POST /api/v1/workspaces/{workspace_id}` | See reference |
+| User | `load` | `GET /api/v1/user` | See reference |
 | Workspace | `create` | `POST /api/v1/workspaces` | See reference |
 | Workspace | `create` | `POST /api/v1/workspaces/logo` | See reference |
 | Workspace | `list` | `GET /api/v1/workspaces/invitations` | See reference |
 | Workspace | `list` | `GET /api/v1/workspaces` | See reference |
 | Workspace | `load` | `GET /api/v1/workspaces/{workspace_id}` | See reference |
 | Workspace | `remove` | `DELETE /api/v1/workspaces/{workspace_id}` | See reference |
-| WorkspaceInvitationView | `create` | `POST /api/v1/workspaces/invitations/delete` | See reference |
-| WorkspaceInvitationView | `list` | `GET /api/v1/workspaces/invitations/all` | See reference |
-| WorkspaceInvitationView | `update` | `PUT /api/v1/workspaces/invitations/{invite_code}/accept` | See reference |
-| WorkspaceInvitationView | `update` | `PUT /api/v1/workspaces/invitations/{invite_code}/reject` | See reference |
-| WorkspaceUserView | `create` | `POST /api/v1/workspaces/{workspace_id}/users/{user_id}` | See reference |
-| WorkspaceUserView | `create` | `POST /api/v1/workspaces/join` | See reference |
+| Workspace | `update` | `POST /api/v1/workspaces/{workspace_id}` | See reference |
+| WorkspaceInvitation | `list` | `GET /api/v1/workspaces/invitations/all` | See reference |
+| WorkspaceInvitation | `remove` | `POST /api/v1/workspaces/invitations/delete` | See reference |
+| WorkspaceInvitation | `update` | `PUT /api/v1/workspaces/invitations/{invite_code}/accept` | See reference |
+| WorkspaceInvitation | `update` | `PUT /api/v1/workspaces/invitations/{invite_code}/reject` | See reference |
+| WorkspaceProject | `list` | `GET /api/v1/workspaces/{workspace_id}/projects/active` | See reference |
+| WorkspaceProject | `list` | `GET /api/v1/workspaces/{workspace_id}/projects/archived` | See reference |
+| WorkspaceUser | `create` | `POST /api/v1/workspaces/{workspace_id}/users/invite` | See reference |
+| WorkspaceUser | `create` | `POST /api/v1/workspaces/join` | See reference |
+| WorkspaceUser | `list` | `GET /api/v1/workspaces/users` | See reference |
+| WorkspaceUser | `remove` | `DELETE /api/v1/workspaces/{workspace_id}/users/{user_id}` | See reference |
+| WorkspaceUser | `update` | `POST /api/v1/workspaces/{workspace_id}/users/{user_id}` | See reference |
 
 ## Connect to the API
 
@@ -804,8 +701,8 @@ Use the MCP server to expose supported API operations to an MCP client.
 
 Repository directory: `go-mcp/`. Not published. Build from the go-mcp directory.
 
-- `todoist_list`: List records for an entity. Supported entities: `active`, `activity`, `archived`, `backup`, `collaborator`, `comment`, `completed_task`, `folder`, `history`, `id_mapping`, `label`, `member_view`, `notification_location_sync_view`, `notification_sync_view`, `plan_detail`, `productivity_stat`, `project`, `role_to_action_mapping_view`, `section`, `shared_label`, `task`, `usage_summary`, `user`, `workspace`, `workspace_invitation_view`.
-- `todoist_load`: Load one record for an entity. Supported entities: `backup`, `comment`, `credit_state`, `file_url`, `folder`, `label`, `notification_location_sync_view`, `notification_sync_view`, `project`, `section`, `task`, `template`, `workspace`.
+- `todoist_list`: List records for an entity. Supported entities: `activity`, `backup`, `collaborator`, `comment`, `completed_task`, `folder`, `history`, `id_mapping`, `label`, `location_reminder`, `plan_detail`, `productivity_stat`, `project`, `project_permission`, `reminder`, `section`, `shared_label`, `task`, `usage_summary`, `workspace`, `workspace_invitation`, `workspace_project`, `workspace_user`.
+- `todoist_load`: Load one record for an entity. Supported entities: `backup`, `comment`, `credit_state`, `file_url`, `folder`, `label`, `location_reminder`, `project`, `reminder`, `section`, `task`, `template`, `user`, `workspace`.
 
 ## Operational features
 

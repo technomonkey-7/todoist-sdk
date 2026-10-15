@@ -28,7 +28,7 @@ Each feature is generated into every SDK target — as a directory
 `<lang>/src/feature/<name>/` (ts/js) or a flat file in the `<lang>/feature/`
 package (other languages). Each target's guide documents its features.
 
-**Entities** (43): `Active`, `Activity`, `Archived`, `Authorization`, `Backup`, `BillingPortalUrl`, `Collaborator`, `Comment`, `CompletedTask`, `CreditState`, `Email`, `FileUrl`, `Folder`, `History`, `IdMapping`, `Invite`, `Label`, `LocationReminder`, `MemberView`, `MigratePersonalToken`, `NotificationLocationSyncView`, `NotificationSyncView`, `PlanDetail`, `ProductivityStat`, `Project`, `ProjectImport`, `ProjectImportCreateResponseWithObject`, `Reminder`, `RemoveWorkspaceUser`, `RoleToActionMappingView`, `Section`, `SharedLabel`, `StatusOk`, `SubscriptionInfo`, `Task`, `Template`, `TopUp`, `Upload`, `UsageSummary`, `User`, `Workspace`, `WorkspaceInvitationView`, `WorkspaceUserView`.
+**Entities** (34): `Activity`, `Backup`, `BillingPortalUrl`, `Collaborator`, `Comment`, `CompletedTask`, `CreditState`, `Email`, `FileUrl`, `Folder`, `History`, `IdMapping`, `Label`, `LocationReminder`, `NotificationSetting`, `PlanDetail`, `ProductivityStat`, `Project`, `ProjectImport`, `ProjectPermission`, `Reminder`, `Section`, `SharedLabel`, `SubscriptionInfo`, `Task`, `Template`, `TopUp`, `Upload`, `UsageSummary`, `User`, `Workspace`, `WorkspaceInvitation`, `WorkspaceProject`, `WorkspaceUser`.
 
 ## Generating and updating the SDK
 

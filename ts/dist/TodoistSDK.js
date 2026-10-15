@@ -2,10 +2,7 @@
 // Todoist Ts SDK
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SDK = exports.TodoistSDK = exports.TodoistEntityBase = exports.BaseFeature = exports.config = exports.stdutil = void 0;
-const ActiveEntity_1 = require("./entity/ActiveEntity");
 const ActivityEntity_1 = require("./entity/ActivityEntity");
-const ArchivedEntity_1 = require("./entity/ArchivedEntity");
-const AuthorizationEntity_1 = require("./entity/AuthorizationEntity");
 const BackupEntity_1 = require("./entity/BackupEntity");
 const BillingPortalUrlEntity_1 = require("./entity/BillingPortalUrlEntity");
 const CollaboratorEntity_1 = require("./entity/CollaboratorEntity");
@@ -17,24 +14,17 @@ const FileUrlEntity_1 = require("./entity/FileUrlEntity");
 const FolderEntity_1 = require("./entity/FolderEntity");
 const HistoryEntity_1 = require("./entity/HistoryEntity");
 const IdMappingEntity_1 = require("./entity/IdMappingEntity");
-const InviteEntity_1 = require("./entity/InviteEntity");
 const LabelEntity_1 = require("./entity/LabelEntity");
 const LocationReminderEntity_1 = require("./entity/LocationReminderEntity");
-const MemberViewEntity_1 = require("./entity/MemberViewEntity");
-const MigratePersonalTokenEntity_1 = require("./entity/MigratePersonalTokenEntity");
-const NotificationLocationSyncViewEntity_1 = require("./entity/NotificationLocationSyncViewEntity");
-const NotificationSyncViewEntity_1 = require("./entity/NotificationSyncViewEntity");
+const NotificationSettingEntity_1 = require("./entity/NotificationSettingEntity");
 const PlanDetailEntity_1 = require("./entity/PlanDetailEntity");
 const ProductivityStatEntity_1 = require("./entity/ProductivityStatEntity");
 const ProjectEntity_1 = require("./entity/ProjectEntity");
 const ProjectImportEntity_1 = require("./entity/ProjectImportEntity");
-const ProjectImportCreateResponseWithObjectEntity_1 = require("./entity/ProjectImportCreateResponseWithObjectEntity");
+const ProjectPermissionEntity_1 = require("./entity/ProjectPermissionEntity");
 const ReminderEntity_1 = require("./entity/ReminderEntity");
-const RemoveWorkspaceUserEntity_1 = require("./entity/RemoveWorkspaceUserEntity");
-const RoleToActionMappingViewEntity_1 = require("./entity/RoleToActionMappingViewEntity");
 const SectionEntity_1 = require("./entity/SectionEntity");
 const SharedLabelEntity_1 = require("./entity/SharedLabelEntity");
-const StatusOkEntity_1 = require("./entity/StatusOkEntity");
 const SubscriptionInfoEntity_1 = require("./entity/SubscriptionInfoEntity");
 const TaskEntity_1 = require("./entity/TaskEntity");
 const TemplateEntity_1 = require("./entity/TemplateEntity");
@@ -43,8 +33,9 @@ const UploadEntity_1 = require("./entity/UploadEntity");
 const UsageSummaryEntity_1 = require("./entity/UsageSummaryEntity");
 const UserEntity_1 = require("./entity/UserEntity");
 const WorkspaceEntity_1 = require("./entity/WorkspaceEntity");
-const WorkspaceInvitationViewEntity_1 = require("./entity/WorkspaceInvitationViewEntity");
-const WorkspaceUserViewEntity_1 = require("./entity/WorkspaceUserViewEntity");
+const WorkspaceInvitationEntity_1 = require("./entity/WorkspaceInvitationEntity");
+const WorkspaceProjectEntity_1 = require("./entity/WorkspaceProjectEntity");
+const WorkspaceUserEntity_1 = require("./entity/WorkspaceUserEntity");
 const node_util_1 = require("node:util");
 const Config_1 = require("./Config");
 Object.defineProperty(exports, "config", { enumerable: true, get: function () { return Config_1.config; } });
@@ -280,33 +271,12 @@ class TodoistSDK {
         }
         return res;
     }
-    // Entity access: `client.Active().list()` / `client.Active().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Active(entopts) {
-        const self = this;
-        return new ActiveEntity_1.ActiveEntity(self, entopts);
-    }
     // Entity access: `client.Activity().list()` / `client.Activity().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
     Activity(entopts) {
         const self = this;
         return new ActivityEntity_1.ActivityEntity(self, entopts);
-    }
-    // Entity access: `client.Archived().list()` / `client.Archived().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Archived(entopts) {
-        const self = this;
-        return new ArchivedEntity_1.ArchivedEntity(self, entopts);
-    }
-    // Entity access: `client.Authorization().list()` / `client.Authorization().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Authorization(entopts) {
-        const self = this;
-        return new AuthorizationEntity_1.AuthorizationEntity(self, entopts);
     }
     // Entity access: `client.Backup().list()` / `client.Backup().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -385,13 +355,6 @@ class TodoistSDK {
         const self = this;
         return new IdMappingEntity_1.IdMappingEntity(self, entopts);
     }
-    // Entity access: `client.Invite().list()` / `client.Invite().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    Invite(entopts) {
-        const self = this;
-        return new InviteEntity_1.InviteEntity(self, entopts);
-    }
     // Entity access: `client.Label().list()` / `client.Label().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
@@ -406,33 +369,12 @@ class TodoistSDK {
         const self = this;
         return new LocationReminderEntity_1.LocationReminderEntity(self, entopts);
     }
-    // Entity access: `client.MemberView().list()` / `client.MemberView().load({ id })`.
+    // Entity access: `client.NotificationSetting().list()` / `client.NotificationSetting().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    MemberView(entopts) {
+    NotificationSetting(entopts) {
         const self = this;
-        return new MemberViewEntity_1.MemberViewEntity(self, entopts);
-    }
-    // Entity access: `client.MigratePersonalToken().list()` / `client.MigratePersonalToken().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    MigratePersonalToken(entopts) {
-        const self = this;
-        return new MigratePersonalTokenEntity_1.MigratePersonalTokenEntity(self, entopts);
-    }
-    // Entity access: `client.NotificationLocationSyncView().list()` / `client.NotificationLocationSyncView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    NotificationLocationSyncView(entopts) {
-        const self = this;
-        return new NotificationLocationSyncViewEntity_1.NotificationLocationSyncViewEntity(self, entopts);
-    }
-    // Entity access: `client.NotificationSyncView().list()` / `client.NotificationSyncView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    NotificationSyncView(entopts) {
-        const self = this;
-        return new NotificationSyncViewEntity_1.NotificationSyncViewEntity(self, entopts);
+        return new NotificationSettingEntity_1.NotificationSettingEntity(self, entopts);
     }
     // Entity access: `client.PlanDetail().list()` / `client.PlanDetail().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -462,12 +404,12 @@ class TodoistSDK {
         const self = this;
         return new ProjectImportEntity_1.ProjectImportEntity(self, entopts);
     }
-    // Entity access: `client.ProjectImportCreateResponseWithObject().list()` / `client.ProjectImportCreateResponseWithObject().load({ id })`.
+    // Entity access: `client.ProjectPermission().list()` / `client.ProjectPermission().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    ProjectImportCreateResponseWithObject(entopts) {
+    ProjectPermission(entopts) {
         const self = this;
-        return new ProjectImportCreateResponseWithObjectEntity_1.ProjectImportCreateResponseWithObjectEntity(self, entopts);
+        return new ProjectPermissionEntity_1.ProjectPermissionEntity(self, entopts);
     }
     // Entity access: `client.Reminder().list()` / `client.Reminder().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -475,20 +417,6 @@ class TodoistSDK {
     Reminder(entopts) {
         const self = this;
         return new ReminderEntity_1.ReminderEntity(self, entopts);
-    }
-    // Entity access: `client.RemoveWorkspaceUser().list()` / `client.RemoveWorkspaceUser().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    RemoveWorkspaceUser(entopts) {
-        const self = this;
-        return new RemoveWorkspaceUserEntity_1.RemoveWorkspaceUserEntity(self, entopts);
-    }
-    // Entity access: `client.RoleToActionMappingView().list()` / `client.RoleToActionMappingView().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    RoleToActionMappingView(entopts) {
-        const self = this;
-        return new RoleToActionMappingViewEntity_1.RoleToActionMappingViewEntity(self, entopts);
     }
     // Entity access: `client.Section().list()` / `client.Section().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -503,13 +431,6 @@ class TodoistSDK {
     SharedLabel(entopts) {
         const self = this;
         return new SharedLabelEntity_1.SharedLabelEntity(self, entopts);
-    }
-    // Entity access: `client.StatusOk().list()` / `client.StatusOk().load({ id })`.
-    // The argument is the entity OPTIONS object (passed to the entity
-    // constructor as entopts), not initial entity data.
-    StatusOk(entopts) {
-        const self = this;
-        return new StatusOkEntity_1.StatusOkEntity(self, entopts);
     }
     // Entity access: `client.SubscriptionInfo().list()` / `client.SubscriptionInfo().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
@@ -567,19 +488,26 @@ class TodoistSDK {
         const self = this;
         return new WorkspaceEntity_1.WorkspaceEntity(self, entopts);
     }
-    // Entity access: `client.WorkspaceInvitationView().list()` / `client.WorkspaceInvitationView().load({ id })`.
+    // Entity access: `client.WorkspaceInvitation().list()` / `client.WorkspaceInvitation().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    WorkspaceInvitationView(entopts) {
+    WorkspaceInvitation(entopts) {
         const self = this;
-        return new WorkspaceInvitationViewEntity_1.WorkspaceInvitationViewEntity(self, entopts);
+        return new WorkspaceInvitationEntity_1.WorkspaceInvitationEntity(self, entopts);
     }
-    // Entity access: `client.WorkspaceUserView().list()` / `client.WorkspaceUserView().load({ id })`.
+    // Entity access: `client.WorkspaceProject().list()` / `client.WorkspaceProject().load({ id })`.
     // The argument is the entity OPTIONS object (passed to the entity
     // constructor as entopts), not initial entity data.
-    WorkspaceUserView(entopts) {
+    WorkspaceProject(entopts) {
         const self = this;
-        return new WorkspaceUserViewEntity_1.WorkspaceUserViewEntity(self, entopts);
+        return new WorkspaceProjectEntity_1.WorkspaceProjectEntity(self, entopts);
+    }
+    // Entity access: `client.WorkspaceUser().list()` / `client.WorkspaceUser().load({ id })`.
+    // The argument is the entity OPTIONS object (passed to the entity
+    // constructor as entopts), not initial entity data.
+    WorkspaceUser(entopts) {
+        const self = this;
+        return new WorkspaceUserEntity_1.WorkspaceUserEntity(self, entopts);
     }
     static test(testoptsarg, sdkoptsarg) {
         const struct = stdutil.struct;

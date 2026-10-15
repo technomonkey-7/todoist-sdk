@@ -42,21 +42,9 @@ client = TodoistSDK.test()
 
 ### Instance Methods
 
-#### `Active(data=None)`
-
-Create a new `ActiveEntity` instance. Pass `None` for no initial data.
-
 #### `Activity(data=None)`
 
 Create a new `ActivityEntity` instance. Pass `None` for no initial data.
-
-#### `Archived(data=None)`
-
-Create a new `ArchivedEntity` instance. Pass `None` for no initial data.
-
-#### `Authorization(data=None)`
-
-Create a new `AuthorizationEntity` instance. Pass `None` for no initial data.
 
 #### `Backup(data=None)`
 
@@ -102,10 +90,6 @@ Create a new `HistoryEntity` instance. Pass `None` for no initial data.
 
 Create a new `IdMappingEntity` instance. Pass `None` for no initial data.
 
-#### `Invite(data=None)`
-
-Create a new `InviteEntity` instance. Pass `None` for no initial data.
-
 #### `Label(data=None)`
 
 Create a new `LabelEntity` instance. Pass `None` for no initial data.
@@ -114,21 +98,9 @@ Create a new `LabelEntity` instance. Pass `None` for no initial data.
 
 Create a new `LocationReminderEntity` instance. Pass `None` for no initial data.
 
-#### `MemberView(data=None)`
+#### `NotificationSetting(data=None)`
 
-Create a new `MemberViewEntity` instance. Pass `None` for no initial data.
-
-#### `MigratePersonalToken(data=None)`
-
-Create a new `MigratePersonalTokenEntity` instance. Pass `None` for no initial data.
-
-#### `NotificationLocationSyncView(data=None)`
-
-Create a new `NotificationLocationSyncViewEntity` instance. Pass `None` for no initial data.
-
-#### `NotificationSyncView(data=None)`
-
-Create a new `NotificationSyncViewEntity` instance. Pass `None` for no initial data.
+Create a new `NotificationSettingEntity` instance. Pass `None` for no initial data.
 
 #### `PlanDetail(data=None)`
 
@@ -146,21 +118,13 @@ Create a new `ProjectEntity` instance. Pass `None` for no initial data.
 
 Create a new `ProjectImportEntity` instance. Pass `None` for no initial data.
 
-#### `ProjectImportCreateResponseWithObject(data=None)`
+#### `ProjectPermission(data=None)`
 
-Create a new `ProjectImportCreateResponseWithObjectEntity` instance. Pass `None` for no initial data.
+Create a new `ProjectPermissionEntity` instance. Pass `None` for no initial data.
 
 #### `Reminder(data=None)`
 
 Create a new `ReminderEntity` instance. Pass `None` for no initial data.
-
-#### `RemoveWorkspaceUser(data=None)`
-
-Create a new `RemoveWorkspaceUserEntity` instance. Pass `None` for no initial data.
-
-#### `RoleToActionMappingView(data=None)`
-
-Create a new `RoleToActionMappingViewEntity` instance. Pass `None` for no initial data.
 
 #### `Section(data=None)`
 
@@ -169,10 +133,6 @@ Create a new `SectionEntity` instance. Pass `None` for no initial data.
 #### `SharedLabel(data=None)`
 
 Create a new `SharedLabelEntity` instance. Pass `None` for no initial data.
-
-#### `StatusOk(data=None)`
-
-Create a new `StatusOkEntity` instance. Pass `None` for no initial data.
 
 #### `SubscriptionInfo(data=None)`
 
@@ -206,13 +166,17 @@ Create a new `UserEntity` instance. Pass `None` for no initial data.
 
 Create a new `WorkspaceEntity` instance. Pass `None` for no initial data.
 
-#### `WorkspaceInvitationView(data=None)`
+#### `WorkspaceInvitation(data=None)`
 
-Create a new `WorkspaceInvitationViewEntity` instance. Pass `None` for no initial data.
+Create a new `WorkspaceInvitationEntity` instance. Pass `None` for no initial data.
 
-#### `WorkspaceUserView(data=None)`
+#### `WorkspaceProject(data=None)`
 
-Create a new `WorkspaceUserViewEntity` instance. Pass `None` for no initial data.
+Create a new `WorkspaceProjectEntity` instance. Pass `None` for no initial data.
+
+#### `WorkspaceUser(data=None)`
+
+Create a new `WorkspaceUserEntity` instance. Pass `None` for no initial data.
 
 #### `options_map() -> dict`
 
@@ -242,79 +206,6 @@ Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok
 #### `prepare(fetchargs=None) -> dict`
 
 Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
-
-
----
-
-## ActiveEntity
-
-```python
-active = client.Active()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access` | `Any` | Yes | Project access configuration. |
-| `archived_date` | `Any` | No | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `int` | No | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `Any` | No | Numeric project color code. |
-| `default_order` | `int` | No | Default order of the project in workspace views. |
-| `default_order_key` | `Any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `str` | No | Project description. |
-| `folder_id` | `str` | No | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `Any` | No | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `int` | Yes | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `bool` | No | Whether the workspace project is archived. |
-| `is_frozen` | `bool` | No | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `bool` | No | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `bool` | No | Whether project insights are enabled for the project. |
-| `name` | `str` | No | Project name. |
-| `project_id` | `str` | Yes | String ID of the project. |
-| `public_access` | `bool` | Yes | Whether the project is publicly accessible. |
-| `role` | `Any` | No |  |
-| `status` | `str` | No | Project status. |
-| `view_style` | `str` | No | Project view style. |
-| `workspace_id` | `int` | Yes | Numeric ID of the workspace that contains the project. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[ActiveEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.Active().list({"workspace_id": 1})
-for active in results:
-    print(active.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ActiveEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
 
 
 ---
@@ -373,141 +264,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ActivityEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## ArchivedEntity
-
-```python
-archived = client.Archived()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access` | `Any` | Yes | Project access configuration. |
-| `archived_date` | `Any` | No | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `int` | No | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `Any` | No | Numeric project color code. |
-| `default_order` | `int` | No | Default order of the project in workspace views. |
-| `default_order_key` | `Any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `str` | No | Project description. |
-| `folder_id` | `str` | No | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `Any` | No | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `int` | Yes | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `bool` | No | Whether the workspace project is archived. |
-| `is_frozen` | `bool` | No | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `bool` | No | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `bool` | No | Whether project insights are enabled for the project. |
-| `name` | `str` | No | Project name. |
-| `project_id` | `str` | Yes | String ID of the project. |
-| `public_access` | `bool` | Yes | Whether the project is publicly accessible. |
-| `role` | `Any` | No |  |
-| `status` | `str` | No | Project status. |
-| `view_style` | `str` | No | Project view style. |
-| `workspace_id` | `int` | Yes | Numeric ID of the workspace that contains the project. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[ArchivedEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.Archived().list({"workspace_id": 1})
-for archived in results:
-    print(archived.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `ArchivedEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## AuthorizationEntity
-
-```python
-authorization = client.Authorization()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `token` | `str` | Yes | The token to be revoked (access token). |
-| `token_type_hint` | `Any` | No | A hint about the type of the token being revoked (optional). |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> AuthorizationEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.Authorization().create({
-    "token": "example_token",  # str
-})
-```
-
-#### `remove(reqmatch, ctrl=None) -> AuthorizationEntity`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
-
-```python
-result = client.Authorization().remove({"access_token": "access_token", "client_id": "client_id", "client_secret": "client_secret"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `AuthorizationEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -968,6 +724,14 @@ email = client.Email()
 
 ### Operations
 
+#### `remove(reqmatch, ctrl=None) -> EmailEntity`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
+
+```python
+result = client.Email().remove({"obj_id": "obj_id", "obj_type": "obj_type"})
+```
+
 #### `update(reqdata, ctrl=None) -> EmailEntity`
 
 Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
@@ -1079,15 +843,15 @@ folder = client.Folder()
 
 ### Field Usage by Operation
 
-| Field | load | list | create | remove |
-| --- | --- | --- | --- | --- |
-| `child_order` | - | - | Yes | - |
-| `default_order` | - | - | Yes | - |
-| `default_order_key` | - | - | - | - |
-| `id` | - | - | - | - |
-| `is_deleted` | - | - | - | - |
-| `name` | - | - | Yes | - |
-| `workspace_id` | - | - | - | - |
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `child_order` | - | - | Yes | - | - |
+| `default_order` | - | - | Yes | Yes | - |
+| `default_order_key` | - | - | - | - | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `name` | - | - | - | Yes | - |
+| `workspace_id` | - | - | - | - | - |
 
 ### Operations
 
@@ -1097,10 +861,10 @@ Create a new entity with the given data. Returns the created entity and raises o
 
 ```python
 result = client.Folder().create({
-    "id": 1,  # int
     "child_order": 1,  # int
     "default_order": 1,  # int
     "default_order_key": "example_default_order_key",  # Any
+    "id": "example_id",  # str
     "is_deleted": True,  # bool
     "name": "example_name",  # str
     "workspace_id": "example_workspace_id",  # str
@@ -1131,6 +895,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 
 ```python
 result = client.Folder().remove({"id": 1})
+```
+
+#### `update(reqdata, ctrl=None) -> FolderEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Folder().update({
+    "id": 1,
+    # Fields to update
+})
 ```
 
 ### Common Methods
@@ -1279,63 +1054,6 @@ Return the entity name.
 
 ---
 
-## InviteEntity
-
-```python
-invite = client.Invite()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `app` | `str` | No | For first-party clients usage only. |
-| `email_list` | `Any` | No | List of user emails to invite to the workspace. |
-| `invited_emails` | `list` | Yes | Emails successfully invited to the workspace. |
-| `role` | `Any` | No | Role assigned to invited users. |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> InviteEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.Invite().create({
-    "workspace_id": 1,  # int
-    "invited_emails": [],  # list
-})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `InviteEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
 ## LabelEntity
 
 ```python
@@ -1454,9 +1172,75 @@ location_reminder = client.LocationReminder()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
+| `id` | `str` | Yes | String ID of the location reminder |
+| `is_deleted` | `bool` | Yes | Whether the location reminder is deleted |
+| `item_id` | `str` | Yes | String ID of the task |
+| `loc_lat` | `str` | Yes | Latitude of the location |
+| `loc_long` | `str` | Yes | Longitude of the location |
+| `loc_trigger` | `str` | Yes | Trigger type for the location reminder |
+| `name` | `str` | Yes | Name of the location |
+| `notify_uid` | `str` | Yes | String ID of the user who will receive the reminder |
+| `project_id` | `str` | Yes | String ID of the project containing the task |
+| `radius` | `int` | Yes | Radius in meters |
+| `task_id` | `str` | Yes | String ID of the task |
+| `type` | `str` | No | The reminder type |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `item_id` | - | - | - | - | - |
+| `loc_lat` | - | - | - | Yes | - |
+| `loc_long` | - | - | - | Yes | - |
+| `loc_trigger` | - | - | - | Yes | - |
+| `name` | - | - | - | Yes | - |
+| `notify_uid` | - | - | - | - | - |
+| `project_id` | - | - | - | - | - |
+| `radius` | - | - | Yes | Yes | - |
+| `task_id` | - | - | - | - | - |
+| `type` | - | - | - | - | - |
 
 ### Operations
+
+#### `create(reqdata, ctrl=None) -> LocationReminderEntity`
+
+Create a new entity with the given data. Returns the created entity and raises on error.
+
+```python
+result = client.LocationReminder().create({
+    "id": "example_id",  # str
+    "is_deleted": True,  # bool
+    "item_id": "example_item_id",  # str
+    "loc_lat": "example_loc_lat",  # str
+    "loc_long": "example_loc_long",  # str
+    "loc_trigger": "example_loc_trigger",  # str
+    "name": "example_name",  # str
+    "notify_uid": "example_notify_uid",  # str
+    "project_id": "example_project_id",  # str
+    "radius": 1,  # int
+    "task_id": "example_task_id",  # str
+})
+```
+
+#### `list(reqmatch=None, ctrl=None) -> list[LocationReminderEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.LocationReminder().list()
+for location_reminder in results:
+    print(location_reminder.data_get())
+```
+
+#### `load(reqmatch, ctrl=None) -> LocationReminderEntity`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
+
+```python
+result = client.LocationReminder().load({"id": "location_reminder_id"})
+```
 
 #### `remove(reqmatch, ctrl=None) -> LocationReminderEntity`
 
@@ -1464,6 +1248,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 
 ```python
 result = client.LocationReminder().remove({"id": "location_reminder_id"})
+```
+
+#### `update(reqdata, ctrl=None) -> LocationReminderEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.LocationReminder().update({
+    "id": "location_reminder_id",
+    # Fields to update
+})
 ```
 
 ### Common Methods
@@ -1495,99 +1290,29 @@ Return the entity name.
 
 ---
 
-## MemberViewEntity
+## NotificationSettingEntity
 
 ```python
-member_view = client.MemberView()
+notification_setting = client.NotificationSetting()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `full_name` | `str` | Yes | Full name of the workspace member. |
-| `image_id` | `str` | No | Avatar image ID of the workspace member, or `null`. |
-| `is_deleted` | `bool` | No | Whether the workspace member is deleted. |
-| `role` | `str` | Yes | Workspace role assigned to the member. |
-| `timezone` | `str` | Yes | Timezone of the workspace member. |
-| `user_email` | `str` | Yes | Email address of the workspace member. |
-| `user_id` | `str` | Yes | String ID of the workspace member. |
-| `workspace_id` | `str` | Yes | String ID of the workspace. |
+| `dont_notify` | `Any` | No | Whether notifications should be disabled for the selected type and channel. |
+| `notification_type` | `str` | Yes | Notification type to update. |
+| `service` | `str` | Yes | Notification channel to update. |
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list[MemberViewEntity]`
+#### `update(reqdata, ctrl=None) -> NotificationSettingEntity`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.MemberView().list()
-for member_view in results:
-    print(member_view.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `MemberViewEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## MigratePersonalTokenEntity
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
 
 ```python
-migrate_personal_token = client.MigratePersonalToken()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `access_token` | `Any` | Yes | OAuth access token created from the personal token. |
-| `client_id` | `str` | Yes | The unique Client ID of the Todoist application that you registered. |
-| `client_secret` | `str` | Yes | The unique Client Secret of the Todoist application that you registered. |
-| `expires_in` | `int` | Yes | Access token lifetime in seconds. |
-| `personal_token` | `str` | Yes | Token obtained from the email/password authentication. |
-| `scope` | `str` | Yes | Scopes of the OAuth token. |
-| `token_type` | `str` | Yes | OAuth token type. |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> MigratePersonalTokenEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.MigratePersonalToken().create({
-    "access_token": "example_access_token",  # Any
-    "client_id": "example_client_id",  # str
-    "client_secret": "example_client_secret",  # str
-    "expires_in": 1,  # int
-    "personal_token": "example_personal_token",  # str
-    "scope": "example_scope",  # str
-    "token_type": "example_token_type",  # str
+result = client.NotificationSetting().update({
+    # Fields to update
 })
 ```
 
@@ -1611,223 +1336,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `MigratePersonalTokenEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## NotificationLocationSyncViewEntity
-
-```python
-notification_location_sync_view = client.NotificationLocationSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `str` | Yes | String ID of the location reminder |
-| `is_deleted` | `bool` | Yes | Whether the location reminder is deleted |
-| `item_id` | `str` | Yes | String ID of the task |
-| `loc_lat` | `str` | Yes | Latitude of the location |
-| `loc_long` | `str` | Yes | Longitude of the location |
-| `loc_trigger` | `str` | Yes | Trigger type for the location reminder |
-| `name` | `str` | Yes | Name of the location |
-| `notify_uid` | `str` | Yes | String ID of the user who will receive the reminder |
-| `project_id` | `str` | Yes | String ID of the project containing the task |
-| `radius` | `int` | Yes | Radius in meters |
-| `task_id` | `str` | Yes | String ID of the task |
-| `type` | `str` | No | The reminder type |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `item_id` | - | - | - |
-| `loc_lat` | - | - | Yes |
-| `loc_long` | - | - | Yes |
-| `loc_trigger` | - | - | Yes |
-| `name` | - | - | Yes |
-| `notify_uid` | - | - | - |
-| `project_id` | - | - | - |
-| `radius` | - | - | Yes |
-| `task_id` | - | - | - |
-| `type` | - | - | - |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> NotificationLocationSyncViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.NotificationLocationSyncView().create({
-    "reminder_id": "example_reminder_id",  # str
-    "id": "example_id",  # str
-    "is_deleted": True,  # bool
-    "item_id": "example_item_id",  # str
-    "loc_lat": "example_loc_lat",  # str
-    "loc_long": "example_loc_long",  # str
-    "loc_trigger": "example_loc_trigger",  # str
-    "name": "example_name",  # str
-    "notify_uid": "example_notify_uid",  # str
-    "project_id": "example_project_id",  # str
-    "radius": 1,  # int
-    "task_id": "example_task_id",  # str
-})
-```
-
-#### `list(reqmatch=None, ctrl=None) -> list[NotificationLocationSyncViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.NotificationLocationSyncView().list()
-for notification_location_sync_view in results:
-    print(notification_location_sync_view.data_get())
-```
-
-#### `load(reqmatch, ctrl=None) -> NotificationLocationSyncViewEntity`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
-
-```python
-result = client.NotificationLocationSyncView().load({"reminder_id": "reminder_id"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `NotificationLocationSyncViewEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## NotificationSyncViewEntity
-
-```python
-notification_sync_view = client.NotificationSyncView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `due` | `Any` | Yes | Datetime when the reminder fires, or `null` if unset. |
-| `id` | `str` | Yes | String ID of the reminder. |
-| `is_deleted` | `bool` | Yes | Whether the reminder is deleted. |
-| `is_urgent` | `bool` | Yes | Whether the reminder should be delivered urgently. |
-| `item_id` | `str` | Yes | String ID of the task that owns the reminder. |
-| `minute_offset` | `Any` | Yes | Minutes before the task due time for relative reminders. |
-| `notify_uid` | `str` | Yes | String ID of the user who receives the reminder. |
-| `reminder_type` | `str` | No | Type of the reminder: 'relative' or 'absolute' |
-| `service` | `str` | No | Notification service type: 'email', 'push'. |
-| `task_id` | `str` | Yes | String ID of the task |
-| `type` | `str` | Yes | Reminder type. |
-
-### Field Usage by Operation
-
-| Field | load | list | create |
-| --- | --- | --- | --- |
-| `due` | - | - | Yes |
-| `id` | - | - | - |
-| `is_deleted` | - | - | - |
-| `is_urgent` | - | - | Yes |
-| `item_id` | - | - | - |
-| `minute_offset` | - | - | Yes |
-| `notify_uid` | - | - | - |
-| `reminder_type` | - | - | - |
-| `service` | - | - | - |
-| `task_id` | - | - | - |
-| `type` | - | - | - |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> NotificationSyncViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.NotificationSyncView().create({
-    "reminder_id": "example_reminder_id",  # str
-    "due": "example_due",  # Any
-    "id": "example_id",  # str
-    "is_deleted": True,  # bool
-    "is_urgent": True,  # bool
-    "item_id": "example_item_id",  # str
-    "minute_offset": "example_minute_offset",  # Any
-    "notify_uid": "example_notify_uid",  # str
-    "task_id": "example_task_id",  # str
-    "type": "example_type",  # str
-})
-```
-
-#### `list(reqmatch=None, ctrl=None) -> list[NotificationSyncViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.NotificationSyncView().list()
-for notification_sync_view in results:
-    print(notification_sync_view.data_get())
-```
-
-#### `load(reqmatch, ctrl=None) -> NotificationSyncViewEntity`
-
-Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
-
-```python
-result = client.NotificationSyncView().load({"reminder_id": "reminder_id"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `NotificationSyncViewEntity` instance with the same options.
+Create a new `NotificationSettingEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2082,48 +1591,11 @@ Return the entity name.
 project_import = client.ProjectImport()
 ```
 
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `comments` | `list` | Yes | Task comments created by the import. |
-| `discarded_fields` | `list` | Yes | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `locale` | `str` | No | Locale to use for localized template content. |
-| `project_id` | `str` | Yes | String ID of the project to import the template into. |
-| `project_notes` | `list` | Yes | Project comments created by the import. |
-| `project_view_options_defaults` | `list` | Yes | View options defaults applied to the imported project. |
-| `projects` | `list` | Yes | Projects created or updated by the import. |
-| `reminders` | `list` | Yes | Reminders created by the import. |
-| `sections` | `list` | Yes | Sections created by the import. |
-| `status` | `str` | Yes | Always `ok` on success. |
-| `tasks` | `list` | Yes | Tasks created by the import. |
-| `template_id` | `str` | Yes | ID of the saved template to import. |
-| `template_type` | `str` | Yes | Type of template that was imported. |
-
 ### Operations
 
 #### `create(reqdata, ctrl=None) -> ProjectImportEntity`
 
 Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.ProjectImport().create({
-    "comments": [],  # list
-    "discarded_fields": [],  # list
-    "project_id": "example_project_id",  # str
-    "project_notes": [],  # list
-    "project_view_options_defaults": [],  # list
-    "projects": [],  # list
-    "reminders": [],  # list
-    "sections": [],  # list
-    "status": "example_status",  # str
-    "tasks": [],  # list
-    "template_id": "example_template_id",  # str
-    "template_type": "example_template_type",  # str
-})
-```
-
-Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -2154,51 +1626,30 @@ Return the entity name.
 
 ---
 
-## ProjectImportCreateResponseWithObjectEntity
+## ProjectPermissionEntity
 
 ```python
-project_import_create_response_with_object = client.ProjectImportCreateResponseWithObject()
+project_permission = client.ProjectPermission()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `comments` | `list` | Yes | Task comments created by the import. |
-| `discarded_fields` | `list` | Yes | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `project_id` | `str` | Yes | ID of the project created from the template. |
-| `project_notes` | `list` | Yes | Project comments created by the import. |
-| `project_view_options_defaults` | `list` | Yes | View options defaults applied to the imported project. |
-| `projects` | `list` | Yes | Projects created by the import. |
-| `reminders` | `list` | Yes | Reminders created by the import. |
-| `sections` | `list` | Yes | Sections created by the import. |
-| `status` | `str` | Yes | Always `ok` on success. |
-| `tasks` | `list` | Yes | Tasks created by the import. |
-| `template_type` | `str` | Yes | Type of template that was imported. |
+| `project_collaborator_actions` | `list` | Yes | Project collaborator roles and their allowed actions. |
+| `workspace_collaborator_actions` | `list` | Yes | Workspace collaborator roles and their allowed actions. |
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> ProjectImportCreateResponseWithObjectEntity`
+#### `list(reqmatch=None, ctrl=None) -> list[ProjectPermissionEntity]`
 
-Create a new entity with the given data. Returns the created entity and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
-result = client.ProjectImportCreateResponseWithObject().create({
-    "comments": [],  # list
-    "discarded_fields": [],  # list
-    "project_id": "example_project_id",  # str
-    "project_notes": [],  # list
-    "project_view_options_defaults": [],  # list
-    "projects": [],  # list
-    "reminders": [],  # list
-    "sections": [],  # list
-    "status": "example_status",  # str
-    "tasks": [],  # list
-    "template_type": "example_template_type",  # str
-})
+results = client.ProjectPermission().list()
+for project_permission in results:
+    print(project_permission.data_get())
 ```
-
-Declares a `multipart/form-data` body, which this SDK does not encode yet: it sends the data as JSON.
 
 ### Common Methods
 
@@ -2220,7 +1671,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `ProjectImportCreateResponseWithObjectEntity` instance with the same options.
+Create a new `ProjectPermissionEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2239,9 +1690,71 @@ reminder = client.Reminder()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `str` | No |  |
+| `due` | `Any` | Yes | Datetime when the reminder fires, or `null` if unset. |
+| `id` | `str` | Yes | String ID of the reminder. |
+| `is_deleted` | `bool` | Yes | Whether the reminder is deleted. |
+| `is_urgent` | `bool` | Yes | Whether the reminder should be delivered urgently. |
+| `item_id` | `str` | Yes | String ID of the task that owns the reminder. |
+| `minute_offset` | `Any` | Yes | Minutes before the task due time for relative reminders. |
+| `notify_uid` | `str` | Yes | String ID of the user who receives the reminder. |
+| `reminder_type` | `str` | No | Type of the reminder: 'relative' or 'absolute' |
+| `service` | `str` | No | Notification service type: 'email', 'push'. |
+| `task_id` | `str` | Yes | String ID of the task |
+| `type` | `str` | Yes | Reminder type. |
+
+### Field Usage by Operation
+
+| Field | load | list | create | update | remove |
+| --- | --- | --- | --- | --- | --- |
+| `due` | - | - | Yes | Yes | - |
+| `id` | - | - | - | - | - |
+| `is_deleted` | - | - | - | - | - |
+| `is_urgent` | - | - | Yes | Yes | - |
+| `item_id` | - | - | - | - | - |
+| `minute_offset` | - | - | Yes | Yes | - |
+| `notify_uid` | - | - | - | - | - |
+| `reminder_type` | - | - | - | - | - |
+| `service` | - | - | - | - | - |
+| `task_id` | - | - | - | - | - |
+| `type` | - | - | - | - | - |
 
 ### Operations
+
+#### `create(reqdata, ctrl=None) -> ReminderEntity`
+
+Create a new entity with the given data. Returns the created entity and raises on error.
+
+```python
+result = client.Reminder().create({
+    "due": "example_due",  # Any
+    "id": "example_id",  # str
+    "is_deleted": True,  # bool
+    "is_urgent": True,  # bool
+    "item_id": "example_item_id",  # str
+    "minute_offset": "example_minute_offset",  # Any
+    "notify_uid": "example_notify_uid",  # str
+    "task_id": "example_task_id",  # str
+    "type": "example_type",  # str
+})
+```
+
+#### `list(reqmatch=None, ctrl=None) -> list[ReminderEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.Reminder().list()
+for reminder in results:
+    print(reminder.data_get())
+```
+
+#### `load(reqmatch, ctrl=None) -> ReminderEntity`
+
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
+
+```python
+result = client.Reminder().load({"id": "reminder_id"})
+```
 
 #### `remove(reqmatch, ctrl=None) -> ReminderEntity`
 
@@ -2249,6 +1762,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 
 ```python
 result = client.Reminder().remove({"id": "reminder_id"})
+```
+
+#### `update(reqdata, ctrl=None) -> ReminderEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Reminder().update({
+    "id": "reminder_id",
+    # Fields to update
+})
 ```
 
 ### Common Methods
@@ -2272,111 +1796,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `ReminderEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## RemoveWorkspaceUserEntity
-
-```python
-remove_workspace_user = client.RemoveWorkspaceUser()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `id` | `str` | No |  |
-
-### Operations
-
-#### `remove(reqmatch, ctrl=None) -> RemoveWorkspaceUserEntity`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
-
-```python
-result = client.RemoveWorkspaceUser().remove({"id": 1, "workspace_id": 1})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `RemoveWorkspaceUserEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## RoleToActionMappingViewEntity
-
-```python
-role_to_action_mapping_view = client.RoleToActionMappingView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `project_collaborator_actions` | `list` | Yes | Project collaborator roles and their allowed actions. |
-| `workspace_collaborator_actions` | `list` | Yes | Workspace collaborator roles and their allowed actions. |
-
-### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list[RoleToActionMappingViewEntity]`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.RoleToActionMappingView().list()
-for role_to_action_mapping_view in results:
-    print(role_to_action_mapping_view.data_get())
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `RoleToActionMappingViewEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -2585,51 +2004,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `SharedLabelEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## StatusOkEntity
-
-```python
-status_ok = client.StatusOk()
-```
-
-### Operations
-
-#### `remove(reqmatch, ctrl=None) -> StatusOkEntity`
-
-Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
-
-```python
-result = client.StatusOk().remove({"obj_id": "obj_id", "obj_type": "obj_type"})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `StatusOkEntity` instance with the same options.
 
 #### `get_name() -> str`
 
@@ -3165,7 +2539,6 @@ user = client.User()
 | `date_format` | `int` | Yes | Whether to use the DD-MM-YYYY date format (if set to 0), or the MM-DD-YYYY format (if set to 1) |
 | `days_off` | `list` | Yes | Array of integers representing user's days off (between 1 and 7, where 1 is Monday and 7 is Sunday) |
 | `deleted_at` | `Any` | No | Date when user was deleted (ISO 8601 format) |
-| `dont_notify` | `Any` | No | Whether notifications should be disabled for the selected type and channel. |
 | `email` | `str` | Yes | User's email address |
 | `feature_identifier` | `str` | Yes | Feature identifier for feature flag evaluations |
 | `features` | `dict` | Yes | Feature flags and settings for the user |
@@ -3189,7 +2562,6 @@ user = client.User()
 | `lang` | `str` | Yes | The user's language |
 | `mfa_enabled` | `bool` | Yes | Whether multi-factor authentication is enabled |
 | `next_week` | `int` | Yes | The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday) |
-| `notification_type` | `str` | Yes | Notification type to update. |
 | `onboarded_dated_tasks_created` | `Any` | No | True once the user has created at least 1 task with a due date that includes a time component (excluding auto-seeded getting-started-guide tasks). |
 | `onboarded_desktop_accessed` | `Any` | No | True once the user has synced from Web, macOS, or Windows. |
 | `onboarded_mobile_accessed` | `Any` | No | True once the user has synced from iOS or Android. |
@@ -3204,7 +2576,6 @@ user = client.User()
 | `onboarding_use_cases` | `Any` | No | Use cases the user selected during onboarding |
 | `premium_status` | `Any` | No | Outlines why a user is premium, possible values are: not_premium, current_personal_plan, legacy_personal_plan or teams_business_member |
 | `premium_until` | `Any` | No | The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user). |
-| `service` | `str` | Yes | Notification channel to update. |
 | `share_limit` | `int` | Yes | Maximum number of collaborators allowed in shared projects |
 | `sort_order` | `int` | Yes | Whether to show projects in an oldest dates first order (if set to 0), or a oldest dates last order (if set to 1) |
 | `start_day` | `int` | Yes | The first day of the week (between 1 and 7, where 1 is Monday and 7 is Sunday) |
@@ -3223,24 +2594,12 @@ user = client.User()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list[UserEntity]`
+#### `load(reqmatch, ctrl=None) -> UserEntity`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
-
-```python
-results = client.User().list()
-for user in results:
-    print(user.data_get())
-```
-
-#### `update(reqdata, ctrl=None) -> UserEntity`
-
-Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
-result = client.User().update({
-    # Fields to update
-})
+result = client.User().load({"id": "user_id"})
 ```
 
 ### Common Methods
@@ -3282,18 +2641,18 @@ workspace = client.Workspace()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No | Updated workspace description. |
-| `domain_discovery` | `Any` | No | Updated domain discovery setting. |
-| `domain_name` | `Any` | No | Updated workspace email domain. |
+| `description` | `str` | No | Description of the workspace. |
+| `domain_discovery` | `bool` | No | Whether users with matching email domains can discover this workspace. |
+| `domain_name` | `Any` | No | Workspace email domain. |
 | `id` | `str` | No |  |
 | `invite_code` | `Any` | No | Regenerate workspace invite code when set. |
 | `is_collapsed` | `bool` | No | Updated collapse state for current user. |
-| `is_guest_allowed` | `bool` | No | Updated guest access status. |
-| `is_link_sharing_enabled` | `bool` | No | Updated link sharing status. |
-| `is_trial_pending` | `bool` | No | Updated trial pending state. |
-| `name` | `str` | No | Updated workspace name. |
-| `properties` | `Any` | No | Updated workspace properties. |
-| `restrict_email_domains` | `Any` | No | Updated email domain restriction setting. |
+| `is_guest_allowed` | `bool` | No | Whether guests are allowed in the workspace. |
+| `is_link_sharing_enabled` | `bool` | No | Whether link sharing is enabled for the workspace. |
+| `is_trial_pending` | `bool` | No | Whether the workspace is waiting for trial confirmation. |
+| `name` | `str` | No | Name of the workspace. |
+| `properties` | `Any` | No | Workspace properties. |
+| `restrict_email_domains` | `bool` | No | Whether workspace invites are restricted to workspace domain. |
 
 ### Operations
 
@@ -3303,7 +2662,6 @@ Create a new entity with the given data. Returns the created entity and raises o
 
 ```python
 result = client.Workspace().create({
-    "id": 1,  # int
 })
 ```
 
@@ -3335,6 +2693,17 @@ Remove the entity matching the given criteria. Returns the entity, marked as del
 result = client.Workspace().remove({"id": 1})
 ```
 
+#### `update(reqdata, ctrl=None) -> WorkspaceEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+```python
+result = client.Workspace().update({
+    "id": 1,
+    # Fields to update
+})
+```
+
 ### Common Methods
 
 #### `data_get() -> dict`
@@ -3364,10 +2733,10 @@ Return the entity name.
 
 ---
 
-## WorkspaceInvitationViewEntity
+## WorkspaceInvitationEntity
 
 ```python
-workspace_invitation_view = client.WorkspaceInvitationView()
+workspace_invitation = client.WorkspaceInvitation()
 ```
 
 ### Fields
@@ -3383,36 +2752,212 @@ workspace_invitation_view = client.WorkspaceInvitationView()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> WorkspaceInvitationViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.WorkspaceInvitationView().create({
-    "inviter_id": "example_inviter_id",  # str
-    "role": "example_role",  # str
-    "user_email": "example_user_email",  # str
-    "workspace_id": "example_workspace_id",  # str
-})
-```
-
-#### `list(reqmatch=None, ctrl=None) -> list[WorkspaceInvitationViewEntity]`
+#### `list(reqmatch=None, ctrl=None) -> list[WorkspaceInvitationEntity]`
 
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
-results = client.WorkspaceInvitationView().list({"workspace_id": 1})
-for workspace_invitation_view in results:
-    print(workspace_invitation_view.data_get())
+results = client.WorkspaceInvitation().list({"workspace_id": 1})
+for workspace_invitation in results:
+    print(workspace_invitation.data_get())
 ```
 
-#### `update(reqdata, ctrl=None) -> WorkspaceInvitationViewEntity`
+#### `remove(reqmatch, ctrl=None) -> WorkspaceInvitationEntity`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
+
+```python
+result = client.WorkspaceInvitation().remove({"id": "workspace_invitation_id"})
+```
+
+#### `update(reqdata, ctrl=None) -> WorkspaceInvitationEntity`
+
+Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WorkspaceInvitationEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## WorkspaceProjectEntity
+
+```python
+workspace_project = client.WorkspaceProject()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `access` | `Any` | Yes | Project access configuration. |
+| `archived_date` | `Any` | No | Date and time when the project was archived, or `null` if active. |
+| `archived_timestamp` | `int` | No | Unix timestamp for when the project was archived, or 0 if active. |
+| `color` | `Any` | No | Numeric project color code. |
+| `default_order` | `int` | No | Default order of the project in workspace views. |
+| `default_order_key` | `Any` | No | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
+| `description` | `str` | No | Project description. |
+| `folder_id` | `str` | No | Numeric ID of the folder that contains the project, or `null`. |
+| `icon` | `Any` | No | Project icon name, or `null` for the default icon. |
+| `initiated_by_uid` | `int` | Yes | Numeric ID of the user requesting the workspace project. |
+| `is_archived` | `bool` | No | Whether the workspace project is archived. |
+| `is_frozen` | `bool` | No | Whether the project is frozen and cannot be modified. |
+| `is_invite_only` | `bool` | No | Whether joining the workspace project requires an invitation. |
+| `is_project_insights_enabled` | `bool` | No | Whether project insights are enabled for the project. |
+| `name` | `str` | No | Project name. |
+| `project_id` | `str` | Yes | String ID of the project. |
+| `public_access` | `bool` | Yes | Whether the project is publicly accessible. |
+| `role` | `Any` | No |  |
+| `status` | `str` | No | Project status. |
+| `view_style` | `str` | No | Project view style. |
+| `workspace_id` | `int` | Yes | Numeric ID of the workspace that contains the project. |
+
+### Operations
+
+#### `list(reqmatch=None, ctrl=None) -> list[WorkspaceProjectEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.WorkspaceProject().list({"workspace_id": 1})
+for workspace_project in results:
+    print(workspace_project.data_get())
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `WorkspaceProjectEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## WorkspaceUserEntity
+
+```python
+workspace_user = client.WorkspaceUser()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `custom_sorting_applied` | `bool` | No | Whether the user has custom project sorting enabled. |
+| `full_name` | `str` | Yes | Full name of the workspace member. |
+| `id` | `str` | No |  |
+| `image_id` | `str` | No | Avatar image ID of the workspace member, or `null`. |
+| `invite_code` | `Any` | No | Workspace invite code to join with. |
+| `is_deleted` | `bool` | No | Whether the workspace member is deleted. |
+| `project_sort_preference` | `str` | No | Project sorting preference for the user. |
+| `role` | `str` | No | Workspace role assigned to the user. |
+| `timezone` | `str` | Yes | Timezone of the workspace member. |
+| `user_email` | `str` | Yes | Email address of the workspace member. |
+| `user_id` | `str` | Yes | String ID of the workspace user. |
+| `workspace_id` | `str` | Yes | String ID of the workspace. |
+
+### Field Usage by Operation
+
+| Field | list | create | update | remove |
+| --- | --- | --- | --- | --- |
+| `custom_sorting_applied` | - | - | - | - |
+| `full_name` | - | - | - | - |
+| `id` | - | - | - | - |
+| `image_id` | - | - | - | - |
+| `invite_code` | - | - | - | - |
+| `is_deleted` | - | - | - | - |
+| `project_sort_preference` | - | - | - | - |
+| `role` | Yes | - | Yes | - |
+| `timezone` | - | - | - | - |
+| `user_email` | - | - | - | - |
+| `user_id` | - | - | - | - |
+| `workspace_id` | - | Yes | - | - |
+
+### Operations
+
+#### `create(reqdata, ctrl=None) -> WorkspaceUserEntity`
+
+Create a new entity with the given data. Returns the created entity and raises on error.
+
+```python
+result = client.WorkspaceUser().create({
+    "full_name": "example_full_name",  # str
+    "timezone": "example_timezone",  # str
+    "user_email": "example_user_email",  # str
+    "user_id": "example_user_id",  # str
+    "workspace_id": "example_workspace_id",  # str
+})
+```
+
+#### `list(reqmatch=None, ctrl=None) -> list[WorkspaceUserEntity]`
+
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
+
+```python
+results = client.WorkspaceUser().list()
+for workspace_user in results:
+    print(workspace_user.data_get())
+```
+
+#### `remove(reqmatch, ctrl=None) -> WorkspaceUserEntity`
+
+Remove the entity matching the given criteria. Returns the entity, marked as deleted, and raises on error.
+
+```python
+result = client.WorkspaceUser().remove({"id": 1, "workspace_id": 1})
+```
+
+#### `update(reqdata, ctrl=None) -> WorkspaceUserEntity`
 
 Update an existing entity. The data must include the entity `id`. Returns the updated entity and raises on error.
 
 ```python
-result = client.WorkspaceInvitationView().update({
-    "invite_code": "invite_code",
+result = client.WorkspaceUser().update({
+    "id": 1,
+    "workspace_id": 1,
     # Fields to update
 })
 ```
@@ -3437,77 +2982,7 @@ Set the entity match criteria.
 
 #### `make() -> Entity`
 
-Create a new `WorkspaceInvitationViewEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## WorkspaceUserViewEntity
-
-```python
-workspace_user_view = client.WorkspaceUserView()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `custom_sorting_applied` | `bool` | No | Whether the user has custom project sorting enabled. |
-| `invite_code` | `Any` | No | Workspace invite code to join with. |
-| `project_sort_preference` | `str` | No | Project sorting preference for the user. |
-| `role` | `str` | No | Workspace role assigned to the user. |
-| `user_id` | `str` | Yes | String ID of the workspace user. |
-| `workspace_id` | `str` | Yes | String ID of the workspace. |
-
-### Field Usage by Operation
-
-| Field | create |
-| --- | --- |
-| `custom_sorting_applied` | - |
-| `invite_code` | - |
-| `project_sort_preference` | - |
-| `role` | Yes |
-| `user_id` | - |
-| `workspace_id` | Yes |
-
-### Operations
-
-#### `create(reqdata, ctrl=None) -> WorkspaceUserViewEntity`
-
-Create a new entity with the given data. Returns the created entity and raises on error.
-
-```python
-result = client.WorkspaceUserView().create({
-    "user_id": 1,  # int
-    "workspace_id": 1,  # int
-})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `WorkspaceUserViewEntity` instance with the same options.
+Create a new `WorkspaceUserEntity` instance with the same options.
 
 #### `get_name() -> str`
 

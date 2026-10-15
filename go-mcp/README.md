@@ -31,19 +31,19 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // todoist_list: first page of records
-{ "entity": "active", "query": { "workspace_id": 1 } }
+{ "entity": "activity" }
 
 // todoist_load: one record
 { "entity": "backup", "query": { "file": "example" } }
 
 // todoist_create: a new record
-{ "entity": "authorization", "data": { "token": "example" } }
+{ "entity": "billing_portal_url", "data": { "billing_portal_url": "example" } }
 
 // todoist_update: change a record's fields
 { "entity": "comment", "data": { "id": "example", "attachment": "example" } }
 
 // todoist_remove: delete a record
-{ "entity": "authorization", "query": { "access_token": "example", "client_id": "example", "client_secret": "example" } }
+{ "entity": "comment", "query": { "id": "example_id" } }
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -72,8 +72,8 @@ Tool-call arguments (what an agent sends):
    ```
 
 4. **Restart Claude Code.** The `todoist_list`, `todoist_load`, `todoist_create`, `todoist_update` and `todoist_remove` tools now appear in new
-   sessions. Ask the agent to *"list active using todoist"*
-   and it calls `todoist_list` with `{"entity":"active","query":{"workspace_id":1}}`.
+   sessions. Ask the agent to *"list activity using todoist"*
+   and it calls `todoist_list` with `{"entity":"activity"}`.
 
 ## How-to guides
 
@@ -104,7 +104,7 @@ Args: `entity` (required), `query` (optional: optional filter map; omit it for t
 Returns the first page of records as JSON:
 
 ```jsonc
-{ "entity": "active", "query": { "workspace_id": 1 } }
+{ "entity": "activity" }
 ```
 
 ### Call the `todoist_load` tool
@@ -122,7 +122,7 @@ Args: `entity` (required), `data` (required: the new record's fields).
 Returns the created record as JSON:
 
 ```jsonc
-{ "entity": "authorization", "data": { "token": "example" } }
+{ "entity": "billing_portal_url", "data": { "billing_portal_url": "example" } }
 ```
 
 ### Call the `todoist_update` tool
@@ -140,7 +140,7 @@ Args: `entity` (required), `query` (required: match map naming the record, such 
 Returns the removed record as JSON:
 
 ```jsonc
-{ "entity": "authorization", "query": { "access_token": "example", "client_id": "example", "client_secret": "example" } }
+{ "entity": "comment", "query": { "id": "example_id" } }
 ```
 
 ### Turn the write tools off
@@ -176,15 +176,15 @@ failure message (e.g. unknown entity, or an API error).
 ### Entities
 
 Each tool takes as its `entity` argument one of the entities that has its
-operation, of the 43 the SDK has:
+operation, of the 34 the SDK has:
 
 | Tool | Entities |
 |------|----------|
-| `todoist_list` | active, activity, archived, backup, collaborator, comment, completed_task, folder, history, id_mapping, label, member_view, notification_location_sync_view, notification_sync_view, plan_detail, productivity_stat, project, role_to_action_mapping_view, section, shared_label, task, usage_summary, user, workspace, workspace_invitation_view |
-| `todoist_load` | backup, comment, credit_state, file_url, folder, label, notification_location_sync_view, notification_sync_view, project, section, task, template, workspace |
-| `todoist_create` | authorization, billing_portal_url, comment, folder, invite, label, migrate_personal_token, notification_location_sync_view, notification_sync_view, project, project_import, project_import_create_response_with_object, section, subscription_info, task, top_up, upload, workspace, workspace_invitation_view, workspace_user_view |
-| `todoist_update` | comment, email, label, project, section, shared_label, task, user, workspace_invitation_view |
-| `todoist_remove` | authorization, comment, folder, label, location_reminder, project, reminder, remove_workspace_user, section, shared_label, status_ok, task, upload, workspace |
+| `todoist_list` | activity, backup, collaborator, comment, completed_task, folder, history, id_mapping, label, location_reminder, plan_detail, productivity_stat, project, project_permission, reminder, section, shared_label, task, usage_summary, workspace, workspace_invitation, workspace_project, workspace_user |
+| `todoist_load` | backup, comment, credit_state, file_url, folder, label, location_reminder, project, reminder, section, task, template, user, workspace |
+| `todoist_create` | billing_portal_url, comment, folder, label, location_reminder, project, reminder, section, subscription_info, task, top_up, upload, workspace, workspace_user |
+| `todoist_update` | comment, email, folder, label, location_reminder, notification_setting, project, reminder, section, shared_label, task, workspace, workspace_user |
+| `todoist_remove` | comment, email, folder, label, location_reminder, project, reminder, section, shared_label, task, upload, workspace, workspace_invitation, workspace_user |
 
 JSON schemas are emitted by the SDK from each tool's argument struct's
 `json` / `jsonschema` tags — no schema is hand-written. Each tool's
@@ -223,7 +223,7 @@ curl -sN -X POST http://localhost:18080 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
   -H "Mcp-Session-Id: $SESSION" \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"todoist_list","arguments":{"entity":"active","query":{"workspace_id":1}}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"todoist_list","arguments":{"entity":"activity"}}}'
 ```
 
 ## Explanation

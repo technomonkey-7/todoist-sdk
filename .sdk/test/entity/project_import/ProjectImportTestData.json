@@ -2,72 +2,19 @@
   "existing": {
     "project_import": {
       "PROJECT_IMPORT00": {
-        "comments": [],
-        "discarded_fields": [],
-        "locale": "s84",
-        "project_id": "PROJECT01",
-        "project_notes": [],
-        "project_view_options_defaults": [],
-        "projects": [],
-        "reminders": [],
-        "sections": [],
-        "status": "s8b",
-        "tasks": [],
-        "template_id": "TEMPLATE01",
-        "template_type": "s8e",
         "id": "PROJECT_IMPORT00"
       },
       "PROJECT_IMPORT01": {
-        "comments": [],
-        "discarded_fields": [],
-        "locale": "s106",
-        "project_id": "PROJECT01",
-        "project_notes": [],
-        "project_view_options_defaults": [],
-        "projects": [],
-        "reminders": [],
-        "sections": [],
-        "status": "s10d",
-        "tasks": [],
-        "template_id": "TEMPLATE01",
-        "template_type": "s110",
         "id": "PROJECT_IMPORT01"
       },
       "PROJECT_IMPORT02": {
-        "comments": [],
-        "discarded_fields": [],
-        "locale": "s188",
-        "project_id": "PROJECT01",
-        "project_notes": [],
-        "project_view_options_defaults": [],
-        "projects": [],
-        "reminders": [],
-        "sections": [],
-        "status": "s18f",
-        "tasks": [],
-        "template_id": "TEMPLATE01",
-        "template_type": "s192",
         "id": "PROJECT_IMPORT02"
       }
     }
   },
   "new": {
     "project_import": {
-      "project_import_ref01": {
-        "comments": [],
-        "discarded_fields": [],
-        "locale": "s20a",
-        "project_id": "PROJECT01",
-        "project_notes": [],
-        "project_view_options_defaults": [],
-        "projects": [],
-        "reminders": [],
-        "sections": [],
-        "status": "s211",
-        "tasks": [],
-        "template_id": "TEMPLATE01",
-        "template_type": "s214"
-      }
+      "project_import_ref01": {}
     }
   },
   "requests": {
@@ -77,6 +24,11 @@
       "source": "openapi3"
     },
     "POST /api/v1/templates/import_into_project_from_template_id": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/templates/create_project_from_file": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

@@ -43,11 +43,6 @@
     }
   },
   "requests": {
-    "POST /api/v1/folders/{folder_id}": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
     "POST /api/v1/folders": {
       "provenance": "operation-contract",
       "version": 2,
@@ -64,6 +59,11 @@
       "source": "openapi3"
     },
     "DELETE /api/v1/folders/{folder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/folders/{folder_id}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

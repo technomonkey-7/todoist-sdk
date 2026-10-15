@@ -3,7 +3,7 @@
     "workspace": {
       "WORKSPACE00": {
         "description": "s78",
-        "domain_discovery": "s79",
+        "domain_discovery": false,
         "domain_name": "s7a",
         "id": "WORKSPACE00",
         "invite_code": "s7c",
@@ -13,11 +13,11 @@
         "is_trial_pending": true,
         "name": "s81",
         "properties": "s82",
-        "restrict_email_domains": "s83"
+        "restrict_email_domains": false
       },
       "WORKSPACE01": {
         "description": "sf0",
-        "domain_discovery": "sf1",
+        "domain_discovery": false,
         "domain_name": "sf2",
         "id": "WORKSPACE01",
         "invite_code": "sf4",
@@ -27,11 +27,11 @@
         "is_trial_pending": true,
         "name": "sf9",
         "properties": "sfa",
-        "restrict_email_domains": "sfb"
+        "restrict_email_domains": false
       },
       "WORKSPACE02": {
         "description": "s168",
-        "domain_discovery": "s169",
+        "domain_discovery": false,
         "domain_name": "s16a",
         "id": "WORKSPACE02",
         "invite_code": "s16c",
@@ -41,7 +41,7 @@
         "is_trial_pending": true,
         "name": "s171",
         "properties": "s172",
-        "restrict_email_domains": "s173"
+        "restrict_email_domains": false
       }
     }
   },
@@ -49,7 +49,7 @@
     "workspace": {
       "workspace_ref01": {
         "description": "s1e0",
-        "domain_discovery": "s1e1",
+        "domain_discovery": false,
         "domain_name": "s1e2",
         "invite_code": "s1e4",
         "is_collapsed": false,
@@ -58,16 +58,11 @@
         "is_trial_pending": true,
         "name": "s1e9",
         "properties": "s1ea",
-        "restrict_email_domains": "s1eb"
+        "restrict_email_domains": false
       }
     }
   },
   "requests": {
-    "POST /api/v1/workspaces/{workspace_id}": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
     "POST /api/v1/workspaces": {
       "provenance": "operation-contract",
       "version": 2,
@@ -94,6 +89,11 @@
       "source": "openapi3"
     },
     "DELETE /api/v1/workspaces/{workspace_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/workspaces/{workspace_id}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

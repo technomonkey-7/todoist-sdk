@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "project_permission": {
+      "PROJECT_PERMISSION00": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      },
+      "PROJECT_PERMISSION01": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      },
+      "PROJECT_PERMISSION02": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      }
+    }
+  },
+  "new": {
+    "project_permission": {
+      "project_permission_ref01": {
+        "project_collaborator_actions": [],
+        "workspace_collaborator_actions": []
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/projects/permissions": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

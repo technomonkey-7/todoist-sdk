@@ -2,23 +2,88 @@
   "existing": {
     "location_reminder": {
       "LOCATION_REMINDER00": {
-        "id": "LOCATION_REMINDER00"
+        "id": "LOCATION_REMINDER00",
+        "is_deleted": false,
+        "item_id": "ITEM01",
+        "loc_lat": "s7b",
+        "loc_long": "s7c",
+        "loc_trigger": "s7d",
+        "name": "s7e",
+        "notify_uid": "s7f",
+        "project_id": "PROJECT01",
+        "radius": 129,
+        "task_id": "TASK01",
+        "type": "s83"
       },
       "LOCATION_REMINDER01": {
-        "id": "LOCATION_REMINDER01"
+        "id": "LOCATION_REMINDER01",
+        "is_deleted": false,
+        "item_id": "ITEM01",
+        "loc_lat": "sf3",
+        "loc_long": "sf4",
+        "loc_trigger": "sf5",
+        "name": "sf6",
+        "notify_uid": "sf7",
+        "project_id": "PROJECT01",
+        "radius": 249,
+        "task_id": "TASK01",
+        "type": "sfb"
       },
       "LOCATION_REMINDER02": {
-        "id": "LOCATION_REMINDER02"
+        "id": "LOCATION_REMINDER02",
+        "is_deleted": false,
+        "item_id": "ITEM01",
+        "loc_lat": "s16b",
+        "loc_long": "s16c",
+        "loc_trigger": "s16d",
+        "name": "s16e",
+        "notify_uid": "s16f",
+        "project_id": "PROJECT01",
+        "radius": 369,
+        "task_id": "TASK01",
+        "type": "s173"
       }
     }
   },
   "new": {
     "location_reminder": {
-      "location_reminder_ref01": {}
+      "location_reminder_ref01": {
+        "is_deleted": false,
+        "item_id": "ITEM01",
+        "loc_lat": "s1e3",
+        "loc_long": "s1e4",
+        "loc_trigger": "s1e5",
+        "name": "s1e6",
+        "notify_uid": "s1e7",
+        "project_id": "PROJECT01",
+        "radius": 489,
+        "task_id": "TASK01",
+        "type": "s1eb"
+      }
     }
   },
   "requests": {
+    "POST /api/v1/location_reminders": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/location_reminders": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/location_reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "DELETE /api/v1/location_reminders/{reminder_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/location_reminders/{reminder_id}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

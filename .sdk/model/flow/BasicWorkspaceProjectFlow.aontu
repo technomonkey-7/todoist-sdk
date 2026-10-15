@@ -1,0 +1,26 @@
+# BasicWorkspaceProjectFlow
+
+main: kit: flow: BasicWorkspaceProjectFlow:
+{
+  entity: "workspace_project",
+  kind: "basic",
+  name: "BasicWorkspaceProjectFlow",
+  step: [
+    {
+      m: {
+        workspace_id: "workspace01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "workspace_project_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWorkspaceProjectFlow"
+}

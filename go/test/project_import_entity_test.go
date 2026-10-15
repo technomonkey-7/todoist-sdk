@@ -31,19 +31,6 @@ func TestProjectImportEntity(t *testing.T) {
 		}
 	})
 
-	t.Run("validate", func(t *testing.T) {
-		if !fhHasFeature("validate") {
-			t.Skip("feature not present in this SDK: validate")
-		}
-		client := sdk.TestSDK(nil, map[string]any{
-			"feature": map[string]any{"validate": map[string]any{"active": true}},
-		})
-		_, err := client.ProjectImport(nil).Create(map[string]any{"comments": "x", "discarded_fields": "x", "locale": 1, "project_id": "x", "project_notes": "x", "project_view_options_defaults": "x", "projects": "x", "reminders": "x", "sections": "x", "status": "x", "tasks": "x", "template_id": "x", "template_type": "x"}, nil)
-		if sdkerr, ok := err.(*core.TodoistError); !ok || "validate_failed" != sdkerr.Code {
-			t.Fatalf("expected validate_failed, got %v", err)
-		}
-	})
-
 	t.Run("basic", func(tt *testing.T) {
 		var t testing.TB = tt
 		setup := project_importBasicSetup(nil)
@@ -53,7 +40,7 @@ func TestProjectImportEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create"} {
+		for _, _op := range []string{} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "project_import." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -62,22 +49,15 @@ func TestProjectImportEntity(t *testing.T) {
 				return
 			}
 		}
-		client := setup.client
-		_ = client
-
-		// CREATE
-		projectImportRef01Ent := client.ProjectImport(nil)
-		projectImportRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath(setup.data, []any{"new", "project_import"}), "project_import_ref01"))
-
-		projectImportRef01DataResult, err := projectImportRef01Ent.Create(projectImportRef01Data, nil)
-		if err != nil {
-			t.Fatalf("create failed: %v", err)
+		// Bootstrap entity data from existing test data (no create step in flow).
+		projectImportRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.project_import")))
+		var projectImportRef01Data map[string]any
+		if len(projectImportRef01DataRaw) > 0 {
+			projectImportRef01Data = core.ToMapAny(projectImportRef01DataRaw[0][1])
 		}
-		projectImportRef01Data = core.ToMapAny(entityData(projectImportRef01DataResult))
-		if projectImportRef01Data == nil {
-			t.Fatal("expected create result to be a map")
-		}
+		// Discard guards against Go's unused-var check when the flow's steps
+		// happen not to consume the bootstrap data (e.g. list-only flows).
+		_ = projectImportRef01Data
 
 	})
 }

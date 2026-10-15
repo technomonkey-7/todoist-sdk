@@ -4,7 +4,7 @@ Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an 
 
 The Python SDK for the Todoist API — an entity-oriented client following Pythonic conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Active()` — each
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Activity()` — each
 carrying a small, uniform set of operations (`list`, `load`, `create`, `update`, `remove`) instead of raw URL
 paths and query strings. You work with named resources and verbs, which
 keeps the cognitive load low.
@@ -39,31 +39,18 @@ client = TodoistSDK({
 })
 ```
 
-### 2. List active records
+### 2. List activity records
 
 `list()` returns a `list` of entities, one per record, and raises on
 error; an entity's `data_get()` reads its record (a `dict`).
 
 ```python
 try:
-    actives = client.Active().list({"workspace_id": 1})
-    for active in actives:
-        print(active.data_get())
+    activitys = client.Activity().list()
+    for activity in activitys:
+        print(activity.data_get())
 except Exception as err:
     print(f"list failed: {err}")
-```
-
-### 3. Load a notificationlocationsyncview
-
-NotificationLocationSyncView is nested under reminder, so provide the `reminder_id`.
-`load()` returns the ENTITY — call data_get() for the record — and raises on error.
-
-```python
-try:
-    notificationlocationsyncview = client.NotificationLocationSyncView().load({"reminder_id": "example_reminder_id"})
-    print(notificationlocationsyncview.data_get())
-except Exception as err:
-    print(f"load failed: {err}")
 ```
 
 
@@ -220,10 +207,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Active` | `(data) -> ActiveEntity` | Create an Active entity instance. |
 | `Activity` | `(data) -> ActivityEntity` | Create an Activity entity instance. |
-| `Archived` | `(data) -> ArchivedEntity` | Create an Archived entity instance. |
-| `Authorization` | `(data) -> AuthorizationEntity` | Create an Authorization entity instance. |
 | `Backup` | `(data) -> BackupEntity` | Create a Backup entity instance. |
 | `BillingPortalUrl` | `(data) -> BillingPortalUrlEntity` | Create a BillingPortalUrl entity instance. |
 | `Collaborator` | `(data) -> CollaboratorEntity` | Create a Collaborator entity instance. |
@@ -235,24 +219,17 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `Folder` | `(data) -> FolderEntity` | Create a Folder entity instance. |
 | `History` | `(data) -> HistoryEntity` | Create a History entity instance. |
 | `IdMapping` | `(data) -> IdMappingEntity` | Create an IdMapping entity instance. |
-| `Invite` | `(data) -> InviteEntity` | Create an Invite entity instance. |
 | `Label` | `(data) -> LabelEntity` | Create a Label entity instance. |
 | `LocationReminder` | `(data) -> LocationReminderEntity` | Create a LocationReminder entity instance. |
-| `MemberView` | `(data) -> MemberViewEntity` | Create a MemberView entity instance. |
-| `MigratePersonalToken` | `(data) -> MigratePersonalTokenEntity` | Create a MigratePersonalToken entity instance. |
-| `NotificationLocationSyncView` | `(data) -> NotificationLocationSyncViewEntity` | Create a NotificationLocationSyncView entity instance. |
-| `NotificationSyncView` | `(data) -> NotificationSyncViewEntity` | Create a NotificationSyncView entity instance. |
+| `NotificationSetting` | `(data) -> NotificationSettingEntity` | Create a NotificationSetting entity instance. |
 | `PlanDetail` | `(data) -> PlanDetailEntity` | Create a PlanDetail entity instance. |
 | `ProductivityStat` | `(data) -> ProductivityStatEntity` | Create a ProductivityStat entity instance. |
 | `Project` | `(data) -> ProjectEntity` | Create a Project entity instance. |
 | `ProjectImport` | `(data) -> ProjectImportEntity` | Create a ProjectImport entity instance. |
-| `ProjectImportCreateResponseWithObject` | `(data) -> ProjectImportCreateResponseWithObjectEntity` | Create a ProjectImportCreateResponseWithObject entity instance. |
+| `ProjectPermission` | `(data) -> ProjectPermissionEntity` | Create a ProjectPermission entity instance. |
 | `Reminder` | `(data) -> ReminderEntity` | Create a Reminder entity instance. |
-| `RemoveWorkspaceUser` | `(data) -> RemoveWorkspaceUserEntity` | Create a RemoveWorkspaceUser entity instance. |
-| `RoleToActionMappingView` | `(data) -> RoleToActionMappingViewEntity` | Create a RoleToActionMappingView entity instance. |
 | `Section` | `(data) -> SectionEntity` | Create a Section entity instance. |
 | `SharedLabel` | `(data) -> SharedLabelEntity` | Create a SharedLabel entity instance. |
-| `StatusOk` | `(data) -> StatusOkEntity` | Create a StatusOk entity instance. |
 | `SubscriptionInfo` | `(data) -> SubscriptionInfoEntity` | Create a SubscriptionInfo entity instance. |
 | `Task` | `(data) -> TaskEntity` | Create a Task entity instance. |
 | `Template` | `(data) -> TemplateEntity` | Create a Template entity instance. |
@@ -261,8 +238,9 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `UsageSummary` | `(data) -> UsageSummaryEntity` | Create an UsageSummary entity instance. |
 | `User` | `(data) -> UserEntity` | Create an User entity instance. |
 | `Workspace` | `(data) -> WorkspaceEntity` | Create a Workspace entity instance. |
-| `WorkspaceInvitationView` | `(data) -> WorkspaceInvitationViewEntity` | Create a WorkspaceInvitationView entity instance. |
-| `WorkspaceUserView` | `(data) -> WorkspaceUserViewEntity` | Create a WorkspaceUserView entity instance. |
+| `WorkspaceInvitation` | `(data) -> WorkspaceInvitationEntity` | Create a WorkspaceInvitation entity instance. |
+| `WorkspaceProject` | `(data) -> WorkspaceProjectEntity` | Create a WorkspaceProject entity instance. |
+| `WorkspaceUser` | `(data) -> WorkspaceUserEntity` | Create a WorkspaceUser entity instance. |
 
 ### Entity interface
 
@@ -302,36 +280,6 @@ On error, `ok` is `False` and `err` contains the error value.
 
 ### Entities
 
-#### Active
-
-| Field | Description |
-| --- | --- |
-| `access` | Project access configuration. |
-| `archived_date` | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | Numeric project color code. |
-| `default_order` | Default order of the project in workspace views. |
-| `default_order_key` | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | Project description. |
-| `folder_id` | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | Whether the workspace project is archived. |
-| `is_frozen` | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | Whether project insights are enabled for the project. |
-| `name` | Project name. |
-| `project_id` | String ID of the project. |
-| `public_access` | Whether the project is publicly accessible. |
-| `role` |  |
-| `status` | Project status. |
-| `view_style` | Project view style. |
-| `workspace_id` | Numeric ID of the workspace that contains the project. |
-
-Operations: List.
-
-API path: `/api/v1/workspaces/{workspace_id}/projects/active`
-
 #### Activity
 
 | Field | Description |
@@ -350,47 +298,6 @@ API path: `/api/v1/workspaces/{workspace_id}/projects/active`
 Operations: List.
 
 API path: `/api/v1/activities`
-
-#### Archived
-
-| Field | Description |
-| --- | --- |
-| `access` | Project access configuration. |
-| `archived_date` | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | Numeric project color code. |
-| `default_order` | Default order of the project in workspace views. |
-| `default_order_key` | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | Project description. |
-| `folder_id` | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | Whether the workspace project is archived. |
-| `is_frozen` | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | Whether project insights are enabled for the project. |
-| `name` | Project name. |
-| `project_id` | String ID of the project. |
-| `public_access` | Whether the project is publicly accessible. |
-| `role` |  |
-| `status` | Project status. |
-| `view_style` | Project view style. |
-| `workspace_id` | Numeric ID of the workspace that contains the project. |
-
-Operations: List.
-
-API path: `/api/v1/workspaces/{workspace_id}/projects/archived`
-
-#### Authorization
-
-| Field | Description |
-| --- | --- |
-| `token` | The token to be revoked (access token). |
-| `token_type_hint` | A hint about the type of the token being revoked (optional). |
-
-Operations: Create, Remove.
-
-API path: `/api/v1/revoke`
 
 #### Backup
 
@@ -513,7 +420,7 @@ API path: `/api/v1/usage_billing/state`
 | `obj_id` | String ID of the Todoist object. |
 | `obj_type` | Type of Todoist object to create an email for. |
 
-Operations: Update.
+Operations: Remove, Update.
 
 API path: `/api/v1/emails`
 
@@ -540,9 +447,9 @@ API path: `/api/v1/templates/url`
 | `name` | Folder name. |
 | `workspace_id` | String ID of the workspace that contains the folder. |
 
-Operations: Create, List, Load, Remove.
+Operations: Create, List, Load, Remove, Update.
 
-API path: `/api/v1/folders/{folder_id}`
+API path: `/api/v1/folders`
 
 #### History
 
@@ -575,19 +482,6 @@ Operations: List.
 
 API path: `/api/v1/id_mappings/{obj_name}/{obj_ids}`
 
-#### Invite
-
-| Field | Description |
-| --- | --- |
-| `app` | For first-party clients usage only. |
-| `email_list` | List of user emails to invite to the workspace. |
-| `invited_emails` | Emails successfully invited to the workspace. |
-| `role` | Role assigned to invited users. |
-
-Operations: Create.
-
-API path: `/api/v1/workspaces/{workspace_id}/users/invite`
-
 #### Label
 
 | Field | Description |
@@ -606,49 +500,6 @@ API path: `/api/v1/labels`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
-
-Operations: Remove.
-
-API path: `/api/v1/location_reminders/{reminder_id}`
-
-#### MemberView
-
-| Field | Description |
-| --- | --- |
-| `full_name` | Full name of the workspace member. |
-| `image_id` | Avatar image ID of the workspace member, or `null`. |
-| `is_deleted` | Whether the workspace member is deleted. |
-| `role` | Workspace role assigned to the member. |
-| `timezone` | Timezone of the workspace member. |
-| `user_email` | Email address of the workspace member. |
-| `user_id` | String ID of the workspace member. |
-| `workspace_id` | String ID of the workspace. |
-
-Operations: List.
-
-API path: `/api/v1/workspaces/users`
-
-#### MigratePersonalToken
-
-| Field | Description |
-| --- | --- |
-| `access_token` | OAuth access token created from the personal token. |
-| `client_id` | The unique Client ID of the Todoist application that you registered. |
-| `client_secret` | The unique Client Secret of the Todoist application that you registered. |
-| `expires_in` | Access token lifetime in seconds. |
-| `personal_token` | Token obtained from the email/password authentication. |
-| `scope` | Scopes of the OAuth token. |
-| `token_type` | OAuth token type. |
-
-Operations: Create.
-
-API path: `/api/v1/access_tokens/migrate_personal_token`
-
-#### NotificationLocationSyncView
-
-| Field | Description |
-| --- | --- |
 | `id` | String ID of the location reminder |
 | `is_deleted` | Whether the location reminder is deleted |
 | `item_id` | String ID of the task |
@@ -662,29 +513,21 @@ API path: `/api/v1/access_tokens/migrate_personal_token`
 | `task_id` | String ID of the task |
 | `type` | The reminder type |
 
-Operations: Create, List, Load.
+Operations: Create, List, Load, Remove, Update.
 
-API path: `/api/v1/location_reminders/{reminder_id}`
+API path: `/api/v1/location_reminders`
 
-#### NotificationSyncView
+#### NotificationSetting
 
 | Field | Description |
 | --- | --- |
-| `due` | Datetime when the reminder fires, or `null` if unset. |
-| `id` | String ID of the reminder. |
-| `is_deleted` | Whether the reminder is deleted. |
-| `is_urgent` | Whether the reminder should be delivered urgently. |
-| `item_id` | String ID of the task that owns the reminder. |
-| `minute_offset` | Minutes before the task due time for relative reminders. |
-| `notify_uid` | String ID of the user who receives the reminder. |
-| `reminder_type` | Type of the reminder: 'relative' or 'absolute' |
-| `service` | Notification service type: 'email', 'push'. |
-| `task_id` | String ID of the task |
-| `type` | Reminder type. |
+| `dont_notify` | Whether notifications should be disabled for the selected type and channel. |
+| `notification_type` | Notification type to update. |
+| `service` | Notification channel to update. |
 
-Operations: Create, List, Load.
+Operations: Update.
 
-API path: `/api/v1/reminders/{reminder_id}`
+API path: `/api/v1/notification_setting`
 
 #### PlanDetail
 
@@ -743,65 +586,12 @@ API path: `/api/v1/projects`
 
 | Field | Description |
 | --- | --- |
-| `comments` | Task comments created by the import. |
-| `discarded_fields` | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `locale` | Locale to use for localized template content. |
-| `project_id` | String ID of the project to import the template into. |
-| `project_notes` | Project comments created by the import. |
-| `project_view_options_defaults` | View options defaults applied to the imported project. |
-| `projects` | Projects created or updated by the import. |
-| `reminders` | Reminders created by the import. |
-| `sections` | Sections created by the import. |
-| `status` | Always `ok` on success. |
-| `tasks` | Tasks created by the import. |
-| `template_id` | ID of the saved template to import. |
-| `template_type` | Type of template that was imported. |
 
 Operations: Create.
 
 API path: `/api/v1/templates/import_into_project_from_file`
 
-#### ProjectImportCreateResponseWithObject
-
-| Field | Description |
-| --- | --- |
-| `comments` | Task comments created by the import. |
-| `discarded_fields` | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `project_id` | ID of the project created from the template. |
-| `project_notes` | Project comments created by the import. |
-| `project_view_options_defaults` | View options defaults applied to the imported project. |
-| `projects` | Projects created by the import. |
-| `reminders` | Reminders created by the import. |
-| `sections` | Sections created by the import. |
-| `status` | Always `ok` on success. |
-| `tasks` | Tasks created by the import. |
-| `template_type` | Type of template that was imported. |
-
-Operations: Create.
-
-API path: `/api/v1/templates/create_project_from_file`
-
-#### Reminder
-
-| Field | Description |
-| --- | --- |
-| `id` |  |
-
-Operations: Remove.
-
-API path: `/api/v1/reminders/{reminder_id}`
-
-#### RemoveWorkspaceUser
-
-| Field | Description |
-| --- | --- |
-| `id` |  |
-
-Operations: Remove.
-
-API path: `/api/v1/workspaces/{workspace_id}/users/{user_id}`
-
-#### RoleToActionMappingView
+#### ProjectPermission
 
 | Field | Description |
 | --- | --- |
@@ -811,6 +601,26 @@ API path: `/api/v1/workspaces/{workspace_id}/users/{user_id}`
 Operations: List.
 
 API path: `/api/v1/projects/permissions`
+
+#### Reminder
+
+| Field | Description |
+| --- | --- |
+| `due` | Datetime when the reminder fires, or `null` if unset. |
+| `id` | String ID of the reminder. |
+| `is_deleted` | Whether the reminder is deleted. |
+| `is_urgent` | Whether the reminder should be delivered urgently. |
+| `item_id` | String ID of the task that owns the reminder. |
+| `minute_offset` | Minutes before the task due time for relative reminders. |
+| `notify_uid` | String ID of the user who receives the reminder. |
+| `reminder_type` | Type of the reminder: 'relative' or 'absolute' |
+| `service` | Notification service type: 'email', 'push'. |
+| `task_id` | String ID of the task |
+| `type` | Reminder type. |
+
+Operations: Create, List, Load, Remove, Update.
+
+API path: `/api/v1/reminders`
 
 #### Section
 
@@ -847,15 +657,6 @@ API path: `/api/v1/sections`
 Operations: List, Remove, Update.
 
 API path: `/api/v1/labels/shared`
-
-#### StatusOk
-
-| Field | Description |
-| --- | --- |
-
-Operations: Remove.
-
-API path: `/api/v1/emails`
 
 #### SubscriptionInfo
 
@@ -994,7 +795,6 @@ API path: `/api/v1/usage_billing/usage_summary`
 | `date_format` | Whether to use the DD-MM-YYYY date format (if set to 0), or the MM-DD-YYYY format (if set to 1) |
 | `days_off` | Array of integers representing user's days off (between 1 and 7, where 1 is Monday and 7 is Sunday) |
 | `deleted_at` | Date when user was deleted (ISO 8601 format) |
-| `dont_notify` | Whether notifications should be disabled for the selected type and channel. |
 | `email` | User's email address |
 | `feature_identifier` | Feature identifier for feature flag evaluations |
 | `features` | Feature flags and settings for the user |
@@ -1018,7 +818,6 @@ API path: `/api/v1/usage_billing/usage_summary`
 | `lang` | The user's language |
 | `mfa_enabled` | Whether multi-factor authentication is enabled |
 | `next_week` | The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday) |
-| `notification_type` | Notification type to update. |
 | `onboarded_dated_tasks_created` | True once the user has created at least 1 task with a due date that includes a time component (excluding auto-seeded getting-started-guide tasks). |
 | `onboarded_desktop_accessed` | True once the user has synced from Web, macOS, or Windows. |
 | `onboarded_mobile_accessed` | True once the user has synced from iOS or Android. |
@@ -1033,7 +832,6 @@ API path: `/api/v1/usage_billing/usage_summary`
 | `onboarding_use_cases` | Use cases the user selected during onboarding |
 | `premium_status` | Outlines why a user is premium, possible values are: not_premium, current_personal_plan, legacy_personal_plan or teams_business_member |
 | `premium_until` | The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user). |
-| `service` | Notification channel to update. |
 | `share_limit` | Maximum number of collaborators allowed in shared projects |
 | `sort_order` | Whether to show projects in an oldest dates first order (if set to 0), or a oldest dates last order (if set to 1) |
 | `start_day` | The first day of the week (between 1 and 7, where 1 is Monday and 7 is Sunday) |
@@ -1050,7 +848,7 @@ API path: `/api/v1/usage_billing/usage_summary`
 | `weekend_start_day` | The day used when a user chooses to schedule a task for the 'Weekend' (between 1 and 7, where 1 is Monday and 7 is Sunday) |
 | `weekly_goal` | The target number of tasks to complete per week |
 
-Operations: List, Update.
+Operations: Load.
 
 API path: `/api/v1/user`
 
@@ -1058,24 +856,24 @@ API path: `/api/v1/user`
 
 | Field | Description |
 | --- | --- |
-| `description` | Updated workspace description. |
-| `domain_discovery` | Updated domain discovery setting. |
-| `domain_name` | Updated workspace email domain. |
+| `description` | Description of the workspace. |
+| `domain_discovery` | Whether users with matching email domains can discover this workspace. |
+| `domain_name` | Workspace email domain. |
 | `id` |  |
 | `invite_code` | Regenerate workspace invite code when set. |
 | `is_collapsed` | Updated collapse state for current user. |
-| `is_guest_allowed` | Updated guest access status. |
-| `is_link_sharing_enabled` | Updated link sharing status. |
-| `is_trial_pending` | Updated trial pending state. |
-| `name` | Updated workspace name. |
-| `properties` | Updated workspace properties. |
-| `restrict_email_domains` | Updated email domain restriction setting. |
+| `is_guest_allowed` | Whether guests are allowed in the workspace. |
+| `is_link_sharing_enabled` | Whether link sharing is enabled for the workspace. |
+| `is_trial_pending` | Whether the workspace is waiting for trial confirmation. |
+| `name` | Name of the workspace. |
+| `properties` | Workspace properties. |
+| `restrict_email_domains` | Whether workspace invites are restricted to workspace domain. |
 
-Operations: Create, List, Load, Remove.
+Operations: Create, List, Load, Remove, Update.
 
-API path: `/api/v1/workspaces/{workspace_id}`
+API path: `/api/v1/workspaces`
 
-#### WorkspaceInvitationView
+#### WorkspaceInvitation
 
 | Field | Description |
 | --- | --- |
@@ -1086,71 +884,64 @@ API path: `/api/v1/workspaces/{workspace_id}`
 | `user_email` | The invited person's email. |
 | `workspace_id` | ID of the workspace |
 
-Operations: Create, List, Update.
+Operations: List, Remove, Update.
 
-API path: `/api/v1/workspaces/invitations/delete`
+API path: `/api/v1/workspaces/invitations/all`
 
-#### WorkspaceUserView
+#### WorkspaceProject
+
+| Field | Description |
+| --- | --- |
+| `access` | Project access configuration. |
+| `archived_date` | Date and time when the project was archived, or `null` if active. |
+| `archived_timestamp` | Unix timestamp for when the project was archived, or 0 if active. |
+| `color` | Numeric project color code. |
+| `default_order` | Default order of the project in workspace views. |
+| `default_order_key` | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
+| `description` | Project description. |
+| `folder_id` | Numeric ID of the folder that contains the project, or `null`. |
+| `icon` | Project icon name, or `null` for the default icon. |
+| `initiated_by_uid` | Numeric ID of the user requesting the workspace project. |
+| `is_archived` | Whether the workspace project is archived. |
+| `is_frozen` | Whether the project is frozen and cannot be modified. |
+| `is_invite_only` | Whether joining the workspace project requires an invitation. |
+| `is_project_insights_enabled` | Whether project insights are enabled for the project. |
+| `name` | Project name. |
+| `project_id` | String ID of the project. |
+| `public_access` | Whether the project is publicly accessible. |
+| `role` |  |
+| `status` | Project status. |
+| `view_style` | Project view style. |
+| `workspace_id` | Numeric ID of the workspace that contains the project. |
+
+Operations: List.
+
+API path: `/api/v1/workspaces/{workspace_id}/projects/active`
+
+#### WorkspaceUser
 
 | Field | Description |
 | --- | --- |
 | `custom_sorting_applied` | Whether the user has custom project sorting enabled. |
+| `full_name` | Full name of the workspace member. |
+| `id` |  |
+| `image_id` | Avatar image ID of the workspace member, or `null`. |
 | `invite_code` | Workspace invite code to join with. |
+| `is_deleted` | Whether the workspace member is deleted. |
 | `project_sort_preference` | Project sorting preference for the user. |
 | `role` | Workspace role assigned to the user. |
+| `timezone` | Timezone of the workspace member. |
+| `user_email` | Email address of the workspace member. |
 | `user_id` | String ID of the workspace user. |
 | `workspace_id` | String ID of the workspace. |
 
-Operations: Create.
+Operations: Create, List, Remove, Update.
 
-API path: `/api/v1/workspaces/{workspace_id}/users/{user_id}`
+API path: `/api/v1/workspaces/{workspace_id}/users/invite`
 
 
 
 ## Entities
-
-
-### Active
-
-Create an instance: `active = client.Active()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `access` | `Any` | Project access configuration. |
-| `archived_date` | `Any` | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `int` | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `Any` | Numeric project color code. |
-| `default_order` | `int` | Default order of the project in workspace views. |
-| `default_order_key` | `Any` | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `str` | Project description. |
-| `folder_id` | `str` | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `Any` | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `int` | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `bool` | Whether the workspace project is archived. |
-| `is_frozen` | `bool` | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `bool` | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `bool` | Whether project insights are enabled for the project. |
-| `name` | `str` | Project name. |
-| `project_id` | `str` | String ID of the project. |
-| `public_access` | `bool` | Whether the project is publicly accessible. |
-| `role` | `Any` |  |
-| `status` | `str` | Project status. |
-| `view_style` | `str` | Project view style. |
-| `workspace_id` | `int` | Numeric ID of the workspace that contains the project. |
-
-#### Example: List
-
-```python
-actives = client.Active().list({"workspace_id": 1})
-```
 
 
 ### Activity
@@ -1182,76 +973,6 @@ Create an instance: `activity = client.Activity()`
 
 ```python
 activitys = client.Activity().list()
-```
-
-
-### Archived
-
-Create an instance: `archived = client.Archived()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `access` | `Any` | Project access configuration. |
-| `archived_date` | `Any` | Date and time when the project was archived, or `null` if active. |
-| `archived_timestamp` | `int` | Unix timestamp for when the project was archived, or 0 if active. |
-| `color` | `Any` | Numeric project color code. |
-| `default_order` | `int` | Default order of the project in workspace views. |
-| `default_order_key` | `Any` | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
-| `description` | `str` | Project description. |
-| `folder_id` | `str` | Numeric ID of the folder that contains the project, or `null`. |
-| `icon` | `Any` | Project icon name, or `null` for the default icon. |
-| `initiated_by_uid` | `int` | Numeric ID of the user requesting the workspace project. |
-| `is_archived` | `bool` | Whether the workspace project is archived. |
-| `is_frozen` | `bool` | Whether the project is frozen and cannot be modified. |
-| `is_invite_only` | `bool` | Whether joining the workspace project requires an invitation. |
-| `is_project_insights_enabled` | `bool` | Whether project insights are enabled for the project. |
-| `name` | `str` | Project name. |
-| `project_id` | `str` | String ID of the project. |
-| `public_access` | `bool` | Whether the project is publicly accessible. |
-| `role` | `Any` |  |
-| `status` | `str` | Project status. |
-| `view_style` | `str` | Project view style. |
-| `workspace_id` | `int` | Numeric ID of the workspace that contains the project. |
-
-#### Example: List
-
-```python
-archiveds = client.Archived().list({"workspace_id": 1})
-```
-
-
-### Authorization
-
-Create an instance: `authorization = client.Authorization()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-| `remove(match)` | Remove the matching entity. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `token` | `str` | The token to be revoked (access token). |
-| `token_type_hint` | `Any` | A hint about the type of the token being revoked (optional). |
-
-#### Example: Create
-
-```python
-authorization = client.Authorization().create({
-    "token": "example_token",  # str
-})
 ```
 
 
@@ -1487,6 +1208,7 @@ Create an instance: `email = client.Email()`
 
 | Method | Description |
 | --- | --- |
+| `remove(match)` | Remove the matching entity. |
 | `update(data)` | Update an existing entity. |
 
 #### Fields
@@ -1534,6 +1256,7 @@ Create an instance: `folder = client.Folder()`
 | `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
+| `update(data)` | Update an existing entity. |
 
 #### Fields
 
@@ -1563,10 +1286,10 @@ folders = client.Folder().list({"workspace_id": 1})
 
 ```python
 folder = client.Folder().create({
-    "id": 1,  # int
     "child_order": 1,  # int
     "default_order": 1,  # int
     "default_order_key": "example_default_order_key",  # Any
+    "id": "example_id",  # str
     "is_deleted": True,  # bool
     "name": "example_name",  # str
     "workspace_id": "example_workspace_id",  # str
@@ -1631,35 +1354,6 @@ id_mappings = client.IdMapping().list({"obj_id": "example", "obj_name": "example
 ```
 
 
-### Invite
-
-Create an instance: `invite = client.Invite()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `app` | `str` | For first-party clients usage only. |
-| `email_list` | `Any` | List of user emails to invite to the workspace. |
-| `invited_emails` | `list` | Emails successfully invited to the workspace. |
-| `role` | `Any` | Role assigned to invited users. |
-
-#### Example: Create
-
-```python
-invite = client.Invite().create({
-    "workspace_id": 1,  # int
-    "invited_emails": [],  # list
-})
-```
-
-
 ### Label
 
 Create an instance: `label = client.Label()`
@@ -1717,93 +1411,11 @@ Create an instance: `location_reminder = client.LocationReminder()`
 
 | Method | Description |
 | --- | --- |
-| `remove(match)` | Remove the matching entity. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `str` |  |
-
-
-### MemberView
-
-Create an instance: `member_view = client.MemberView()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `full_name` | `str` | Full name of the workspace member. |
-| `image_id` | `str` | Avatar image ID of the workspace member, or `null`. |
-| `is_deleted` | `bool` | Whether the workspace member is deleted. |
-| `role` | `str` | Workspace role assigned to the member. |
-| `timezone` | `str` | Timezone of the workspace member. |
-| `user_email` | `str` | Email address of the workspace member. |
-| `user_id` | `str` | String ID of the workspace member. |
-| `workspace_id` | `str` | String ID of the workspace. |
-
-#### Example: List
-
-```python
-member_views = client.MemberView().list()
-```
-
-
-### MigratePersonalToken
-
-Create an instance: `migrate_personal_token = client.MigratePersonalToken()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `access_token` | `Any` | OAuth access token created from the personal token. |
-| `client_id` | `str` | The unique Client ID of the Todoist application that you registered. |
-| `client_secret` | `str` | The unique Client Secret of the Todoist application that you registered. |
-| `expires_in` | `int` | Access token lifetime in seconds. |
-| `personal_token` | `str` | Token obtained from the email/password authentication. |
-| `scope` | `str` | Scopes of the OAuth token. |
-| `token_type` | `str` | OAuth token type. |
-
-#### Example: Create
-
-```python
-migrate_personal_token = client.MigratePersonalToken().create({
-    "access_token": "example_access_token",  # Any
-    "client_id": "example_client_id",  # str
-    "client_secret": "example_client_secret",  # str
-    "expires_in": 1,  # int
-    "personal_token": "example_personal_token",  # str
-    "scope": "example_scope",  # str
-    "token_type": "example_token_type",  # str
-})
-```
-
-
-### NotificationLocationSyncView
-
-Create an instance: `notification_location_sync_view = client.NotificationLocationSyncView()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 | `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
+| `remove(match)` | Remove the matching entity. |
+| `update(data)` | Update an existing entity. |
 
 #### Fields
 
@@ -1825,20 +1437,19 @@ Create an instance: `notification_location_sync_view = client.NotificationLocati
 #### Example: Load
 
 ```python
-notification_location_sync_view = client.NotificationLocationSyncView().load({"reminder_id": "reminder_id"})
+location_reminder = client.LocationReminder().load({"id": "location_reminder_id"})
 ```
 
 #### Example: List
 
 ```python
-notification_location_sync_views = client.NotificationLocationSyncView().list()
+location_reminders = client.LocationReminder().list()
 ```
 
 #### Example: Create
 
 ```python
-notification_location_sync_view = client.NotificationLocationSyncView().create({
-    "reminder_id": "example_reminder_id",  # str
+location_reminder = client.LocationReminder().create({
     "id": "example_id",  # str
     "is_deleted": True,  # bool
     "item_id": "example_item_id",  # str
@@ -1854,62 +1465,23 @@ notification_location_sync_view = client.NotificationLocationSyncView().create({
 ```
 
 
-### NotificationSyncView
+### NotificationSetting
 
-Create an instance: `notification_sync_view = client.NotificationSyncView()`
+Create an instance: `notification_setting = client.NotificationSetting()`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-| `list()` | List entities, optionally matching the given criteria. |
-| `load(match)` | Load a single entity by match criteria. |
+| `update(data)` | Update an existing entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `due` | `Any` | Datetime when the reminder fires, or `null` if unset. |
-| `id` | `str` | String ID of the reminder. |
-| `is_deleted` | `bool` | Whether the reminder is deleted. |
-| `is_urgent` | `bool` | Whether the reminder should be delivered urgently. |
-| `item_id` | `str` | String ID of the task that owns the reminder. |
-| `minute_offset` | `Any` | Minutes before the task due time for relative reminders. |
-| `notify_uid` | `str` | String ID of the user who receives the reminder. |
-| `reminder_type` | `str` | Type of the reminder: 'relative' or 'absolute' |
-| `service` | `str` | Notification service type: 'email', 'push'. |
-| `task_id` | `str` | String ID of the task |
-| `type` | `str` | Reminder type. |
-
-#### Example: Load
-
-```python
-notification_sync_view = client.NotificationSyncView().load({"reminder_id": "reminder_id"})
-```
-
-#### Example: List
-
-```python
-notification_sync_views = client.NotificationSyncView().list()
-```
-
-#### Example: Create
-
-```python
-notification_sync_view = client.NotificationSyncView().create({
-    "reminder_id": "example_reminder_id",  # str
-    "due": "example_due",  # Any
-    "id": "example_id",  # str
-    "is_deleted": True,  # bool
-    "is_urgent": True,  # bool
-    "item_id": "example_item_id",  # str
-    "minute_offset": "example_minute_offset",  # Any
-    "notify_uid": "example_notify_uid",  # str
-    "task_id": "example_task_id",  # str
-    "type": "example_type",  # str
-})
-```
+| `dont_notify` | `Any` | Whether notifications should be disabled for the selected type and channel. |
+| `notification_type` | `str` | Notification type to update. |
+| `service` | `str` | Notification channel to update. |
 
 
 ### PlanDetail
@@ -2034,126 +1606,10 @@ Create an instance: `project_import = client.ProjectImport()`
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
 
-#### Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `comments` | `list` | Task comments created by the import. |
-| `discarded_fields` | `list` | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `locale` | `str` | Locale to use for localized template content. |
-| `project_id` | `str` | String ID of the project to import the template into. |
-| `project_notes` | `list` | Project comments created by the import. |
-| `project_view_options_defaults` | `list` | View options defaults applied to the imported project. |
-| `projects` | `list` | Projects created or updated by the import. |
-| `reminders` | `list` | Reminders created by the import. |
-| `sections` | `list` | Sections created by the import. |
-| `status` | `str` | Always `ok` on success. |
-| `tasks` | `list` | Tasks created by the import. |
-| `template_id` | `str` | ID of the saved template to import. |
-| `template_type` | `str` | Type of template that was imported. |
+### ProjectPermission
 
-#### Example: Create
-
-```python
-project_import = client.ProjectImport().create({
-    "comments": [],  # list
-    "discarded_fields": [],  # list
-    "project_id": "example_project_id",  # str
-    "project_notes": [],  # list
-    "project_view_options_defaults": [],  # list
-    "projects": [],  # list
-    "reminders": [],  # list
-    "sections": [],  # list
-    "status": "example_status",  # str
-    "tasks": [],  # list
-    "template_id": "example_template_id",  # str
-    "template_type": "example_template_type",  # str
-})
-```
-
-
-### ProjectImportCreateResponseWithObject
-
-Create an instance: `project_import_create_response_with_object = client.ProjectImportCreateResponseWithObject()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `create(data)` | Create a new entity with the given data. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `comments` | `list` | Task comments created by the import. |
-| `discarded_fields` | `list` | Task properties the importer dropped from one or more imported tasks because the plan in force does not include them. |
-| `project_id` | `str` | ID of the project created from the template. |
-| `project_notes` | `list` | Project comments created by the import. |
-| `project_view_options_defaults` | `list` | View options defaults applied to the imported project. |
-| `projects` | `list` | Projects created by the import. |
-| `reminders` | `list` | Reminders created by the import. |
-| `sections` | `list` | Sections created by the import. |
-| `status` | `str` | Always `ok` on success. |
-| `tasks` | `list` | Tasks created by the import. |
-| `template_type` | `str` | Type of template that was imported. |
-
-#### Example: Create
-
-```python
-project_import_create_response_with_object = client.ProjectImportCreateResponseWithObject().create({
-    "comments": [],  # list
-    "discarded_fields": [],  # list
-    "project_id": "example_project_id",  # str
-    "project_notes": [],  # list
-    "project_view_options_defaults": [],  # list
-    "projects": [],  # list
-    "reminders": [],  # list
-    "sections": [],  # list
-    "status": "example_status",  # str
-    "tasks": [],  # list
-    "template_type": "example_template_type",  # str
-})
-```
-
-
-### Reminder
-
-Create an instance: `reminder = client.Reminder()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `remove(match)` | Remove the matching entity. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `str` |  |
-
-
-### RemoveWorkspaceUser
-
-Create an instance: `remove_workspace_user = client.RemoveWorkspaceUser()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `remove(match)` | Remove the matching entity. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `id` | `str` |  |
-
-
-### RoleToActionMappingView
-
-Create an instance: `role_to_action_mapping_view = client.RoleToActionMappingView()`
+Create an instance: `project_permission = client.ProjectPermission()`
 
 #### Operations
 
@@ -2171,7 +1627,66 @@ Create an instance: `role_to_action_mapping_view = client.RoleToActionMappingVie
 #### Example: List
 
 ```python
-role_to_action_mapping_views = client.RoleToActionMappingView().list()
+project_permissions = client.ProjectPermission().list()
+```
+
+
+### Reminder
+
+Create an instance: `reminder = client.Reminder()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `create(data)` | Create a new entity with the given data. |
+| `list()` | List entities, optionally matching the given criteria. |
+| `load(match)` | Load a single entity by match criteria. |
+| `remove(match)` | Remove the matching entity. |
+| `update(data)` | Update an existing entity. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `due` | `Any` | Datetime when the reminder fires, or `null` if unset. |
+| `id` | `str` | String ID of the reminder. |
+| `is_deleted` | `bool` | Whether the reminder is deleted. |
+| `is_urgent` | `bool` | Whether the reminder should be delivered urgently. |
+| `item_id` | `str` | String ID of the task that owns the reminder. |
+| `minute_offset` | `Any` | Minutes before the task due time for relative reminders. |
+| `notify_uid` | `str` | String ID of the user who receives the reminder. |
+| `reminder_type` | `str` | Type of the reminder: 'relative' or 'absolute' |
+| `service` | `str` | Notification service type: 'email', 'push'. |
+| `task_id` | `str` | String ID of the task |
+| `type` | `str` | Reminder type. |
+
+#### Example: Load
+
+```python
+reminder = client.Reminder().load({"id": "reminder_id"})
+```
+
+#### Example: List
+
+```python
+reminders = client.Reminder().list()
+```
+
+#### Example: Create
+
+```python
+reminder = client.Reminder().create({
+    "due": "example_due",  # Any
+    "id": "example_id",  # str
+    "is_deleted": True,  # bool
+    "is_urgent": True,  # bool
+    "item_id": "example_item_id",  # str
+    "minute_offset": "example_minute_offset",  # Any
+    "notify_uid": "example_notify_uid",  # str
+    "task_id": "example_task_id",  # str
+    "type": "example_type",  # str
+})
 ```
 
 
@@ -2267,17 +1782,6 @@ Create an instance: `shared_label = client.SharedLabel()`
 ```python
 shared_labels = client.SharedLabel().list()
 ```
-
-
-### StatusOk
-
-Create an instance: `status_ok = client.StatusOk()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `remove(match)` | Remove the matching entity. |
 
 
 ### SubscriptionInfo
@@ -2551,8 +2055,7 @@ Create an instance: `user = client.User()`
 
 | Method | Description |
 | --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
-| `update(data)` | Update an existing entity. |
+| `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
@@ -2571,7 +2074,6 @@ Create an instance: `user = client.User()`
 | `date_format` | `int` | Whether to use the DD-MM-YYYY date format (if set to 0), or the MM-DD-YYYY format (if set to 1) |
 | `days_off` | `list` | Array of integers representing user's days off (between 1 and 7, where 1 is Monday and 7 is Sunday) |
 | `deleted_at` | `Any` | Date when user was deleted (ISO 8601 format) |
-| `dont_notify` | `Any` | Whether notifications should be disabled for the selected type and channel. |
 | `email` | `str` | User's email address |
 | `feature_identifier` | `str` | Feature identifier for feature flag evaluations |
 | `features` | `dict` | Feature flags and settings for the user |
@@ -2595,7 +2097,6 @@ Create an instance: `user = client.User()`
 | `lang` | `str` | The user's language |
 | `mfa_enabled` | `bool` | Whether multi-factor authentication is enabled |
 | `next_week` | `int` | The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday) |
-| `notification_type` | `str` | Notification type to update. |
 | `onboarded_dated_tasks_created` | `Any` | True once the user has created at least 1 task with a due date that includes a time component (excluding auto-seeded getting-started-guide tasks). |
 | `onboarded_desktop_accessed` | `Any` | True once the user has synced from Web, macOS, or Windows. |
 | `onboarded_mobile_accessed` | `Any` | True once the user has synced from iOS or Android. |
@@ -2610,7 +2111,6 @@ Create an instance: `user = client.User()`
 | `onboarding_use_cases` | `Any` | Use cases the user selected during onboarding |
 | `premium_status` | `Any` | Outlines why a user is premium, possible values are: not_premium, current_personal_plan, legacy_personal_plan or teams_business_member |
 | `premium_until` | `Any` | The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user). |
-| `service` | `str` | Notification channel to update. |
 | `share_limit` | `int` | Maximum number of collaborators allowed in shared projects |
 | `sort_order` | `int` | Whether to show projects in an oldest dates first order (if set to 0), or a oldest dates last order (if set to 1) |
 | `start_day` | `int` | The first day of the week (between 1 and 7, where 1 is Monday and 7 is Sunday) |
@@ -2627,10 +2127,10 @@ Create an instance: `user = client.User()`
 | `weekend_start_day` | `int` | The day used when a user chooses to schedule a task for the 'Weekend' (between 1 and 7, where 1 is Monday and 7 is Sunday) |
 | `weekly_goal` | `int` | The target number of tasks to complete per week |
 
-#### Example: List
+#### Example: Load
 
 ```python
-users = client.User().list()
+user = client.User().load({"id": "user_id"})
 ```
 
 
@@ -2646,23 +2146,24 @@ Create an instance: `workspace = client.Workspace()`
 | `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 | `remove(match)` | Remove the matching entity. |
+| `update(data)` | Update an existing entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` | Updated workspace description. |
-| `domain_discovery` | `Any` | Updated domain discovery setting. |
-| `domain_name` | `Any` | Updated workspace email domain. |
+| `description` | `str` | Description of the workspace. |
+| `domain_discovery` | `bool` | Whether users with matching email domains can discover this workspace. |
+| `domain_name` | `Any` | Workspace email domain. |
 | `id` | `str` |  |
 | `invite_code` | `Any` | Regenerate workspace invite code when set. |
 | `is_collapsed` | `bool` | Updated collapse state for current user. |
-| `is_guest_allowed` | `bool` | Updated guest access status. |
-| `is_link_sharing_enabled` | `bool` | Updated link sharing status. |
-| `is_trial_pending` | `bool` | Updated trial pending state. |
-| `name` | `str` | Updated workspace name. |
-| `properties` | `Any` | Updated workspace properties. |
-| `restrict_email_domains` | `Any` | Updated email domain restriction setting. |
+| `is_guest_allowed` | `bool` | Whether guests are allowed in the workspace. |
+| `is_link_sharing_enabled` | `bool` | Whether link sharing is enabled for the workspace. |
+| `is_trial_pending` | `bool` | Whether the workspace is waiting for trial confirmation. |
+| `name` | `str` | Name of the workspace. |
+| `properties` | `Any` | Workspace properties. |
+| `restrict_email_domains` | `bool` | Whether workspace invites are restricted to workspace domain. |
 
 #### Example: Load
 
@@ -2680,21 +2181,20 @@ workspaces = client.Workspace().list()
 
 ```python
 workspace = client.Workspace().create({
-    "id": 1,  # int
 })
 ```
 
 
-### WorkspaceInvitationView
+### WorkspaceInvitation
 
-Create an instance: `workspace_invitation_view = client.WorkspaceInvitationView()`
+Create an instance: `workspace_invitation = client.WorkspaceInvitation()`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
-| `create(data)` | Create a new entity with the given data. |
 | `list()` | List entities, optionally matching the given criteria. |
+| `remove(match)` | Remove the matching entity. |
 | `update(data)` | Update an existing entity. |
 
 #### Fields
@@ -2711,48 +2211,98 @@ Create an instance: `workspace_invitation_view = client.WorkspaceInvitationView(
 #### Example: List
 
 ```python
-workspace_invitation_views = client.WorkspaceInvitationView().list({"workspace_id": 1})
+workspace_invitations = client.WorkspaceInvitation().list({"workspace_id": 1})
 ```
 
-#### Example: Create
+
+### WorkspaceProject
+
+Create an instance: `workspace_project = client.WorkspaceProject()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `list()` | List entities, optionally matching the given criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `access` | `Any` | Project access configuration. |
+| `archived_date` | `Any` | Date and time when the project was archived, or `null` if active. |
+| `archived_timestamp` | `int` | Unix timestamp for when the project was archived, or 0 if active. |
+| `color` | `Any` | Numeric project color code. |
+| `default_order` | `int` | Default order of the project in workspace views. |
+| `default_order_key` | `Any` | Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together). |
+| `description` | `str` | Project description. |
+| `folder_id` | `str` | Numeric ID of the folder that contains the project, or `null`. |
+| `icon` | `Any` | Project icon name, or `null` for the default icon. |
+| `initiated_by_uid` | `int` | Numeric ID of the user requesting the workspace project. |
+| `is_archived` | `bool` | Whether the workspace project is archived. |
+| `is_frozen` | `bool` | Whether the project is frozen and cannot be modified. |
+| `is_invite_only` | `bool` | Whether joining the workspace project requires an invitation. |
+| `is_project_insights_enabled` | `bool` | Whether project insights are enabled for the project. |
+| `name` | `str` | Project name. |
+| `project_id` | `str` | String ID of the project. |
+| `public_access` | `bool` | Whether the project is publicly accessible. |
+| `role` | `Any` |  |
+| `status` | `str` | Project status. |
+| `view_style` | `str` | Project view style. |
+| `workspace_id` | `int` | Numeric ID of the workspace that contains the project. |
+
+#### Example: List
 
 ```python
-workspace_invitation_view = client.WorkspaceInvitationView().create({
-    "inviter_id": "example_inviter_id",  # str
-    "role": "example_role",  # str
-    "user_email": "example_user_email",  # str
-    "workspace_id": "example_workspace_id",  # str
-})
+workspace_projects = client.WorkspaceProject().list({"workspace_id": 1})
 ```
 
 
-### WorkspaceUserView
+### WorkspaceUser
 
-Create an instance: `workspace_user_view = client.WorkspaceUserView()`
+Create an instance: `workspace_user = client.WorkspaceUser()`
 
 #### Operations
 
 | Method | Description |
 | --- | --- |
 | `create(data)` | Create a new entity with the given data. |
+| `list()` | List entities, optionally matching the given criteria. |
+| `remove(match)` | Remove the matching entity. |
+| `update(data)` | Update an existing entity. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `custom_sorting_applied` | `bool` | Whether the user has custom project sorting enabled. |
+| `full_name` | `str` | Full name of the workspace member. |
+| `id` | `str` |  |
+| `image_id` | `str` | Avatar image ID of the workspace member, or `null`. |
 | `invite_code` | `Any` | Workspace invite code to join with. |
+| `is_deleted` | `bool` | Whether the workspace member is deleted. |
 | `project_sort_preference` | `str` | Project sorting preference for the user. |
 | `role` | `str` | Workspace role assigned to the user. |
+| `timezone` | `str` | Timezone of the workspace member. |
+| `user_email` | `str` | Email address of the workspace member. |
 | `user_id` | `str` | String ID of the workspace user. |
 | `workspace_id` | `str` | String ID of the workspace. |
+
+#### Example: List
+
+```python
+workspace_users = client.WorkspaceUser().list()
+```
 
 #### Example: Create
 
 ```python
-workspace_user_view = client.WorkspaceUserView().create({
-    "user_id": 1,  # int
-    "workspace_id": 1,  # int
+workspace_user = client.WorkspaceUser().create({
+    "full_name": "example_full_name",  # str
+    "timezone": "example_timezone",  # str
+    "user_email": "example_user_email",  # str
+    "user_id": "example_user_id",  # str
+    "workspace_id": "example_workspace_id",  # str
 })
 ```
 
@@ -2782,7 +2332,7 @@ Set `feature.test.active` to enable it, then override any of the options above.
 
 ## Open types
 
-10 fields are carried as open values rather than typed structures.
+3 fields are carried as open values rather than typed structures.
 This follows from the API definition, not from a gap in this SDK: the
 definition describes them with untagged unions —
 `oneOf`/`anyOf` branches with no `discriminator` — so it never states which
@@ -2793,15 +2343,8 @@ guarantee.
 | Entity | Field | Variants | Nesting |
 | --- | --- | --- | --- |
 | `comment` | `file_attachment` | 4 | 3 levels |
-| `project_import` | `comments` | 4 | 6 levels |
-| `project_import` | `project_notes` | 4 | 6 levels |
-| `project_import_create_response_with_object` | `comments` | 4 | 6 levels |
-| `project_import_create_response_with_object` | `project_notes` | 4 | 6 levels |
-| `active` | `access` | 3 | 4 levels |
-| `archived` | `access` | 3 | 4 levels |
 | `project` | `results` | 3 | 9 levels |
-| `project_import` | `projects` | 3 | 9 levels |
-| `project_import_create_response_with_object` | `projects` | 3 | 9 levels |
+| `workspace_project` | `access` | 3 | 4 levels |
 
 These values round-trip unchanged — read them, modify them, send them back. If
 the API adds a `discriminator` to the definition, regenerating will type them.

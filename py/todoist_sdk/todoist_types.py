@@ -16,42 +16,6 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class ActiveRequired(TypedDict):
-    access: Any
-    initiated_by_uid: int
-    project_id: str
-    public_access: bool
-    workspace_id: int
-
-
-class Active(ActiveRequired, total=False):
-    archived_date: Any
-    archived_timestamp: int
-    color: Any
-    default_order: int
-    default_order_key: Any
-    description: str
-    folder_id: str
-    icon: Any
-    is_archived: bool
-    is_frozen: bool
-    is_invite_only: bool
-    is_project_insights_enabled: bool
-    name: str
-    role: Any
-    status: str
-    view_style: str
-
-
-class ActiveListMatchRequired(TypedDict):
-    workspace_id: int
-
-
-class ActiveListMatch(ActiveListMatchRequired, total=False):
-    cursor: Any
-    limit: int
-
-
 class ActivityRequired(TypedDict):
     event_date: str
     event_type: str
@@ -87,64 +51,6 @@ class ActivityListMatch(TypedDict, total=False):
     parent_item_id: str
     parent_project_id: str
     workspace_id: str
-
-
-class ArchivedRequired(TypedDict):
-    access: Any
-    initiated_by_uid: int
-    project_id: str
-    public_access: bool
-    workspace_id: int
-
-
-class Archived(ArchivedRequired, total=False):
-    archived_date: Any
-    archived_timestamp: int
-    color: Any
-    default_order: int
-    default_order_key: Any
-    description: str
-    folder_id: str
-    icon: Any
-    is_archived: bool
-    is_frozen: bool
-    is_invite_only: bool
-    is_project_insights_enabled: bool
-    name: str
-    role: Any
-    status: str
-    view_style: str
-
-
-class ArchivedListMatchRequired(TypedDict):
-    workspace_id: int
-
-
-class ArchivedListMatch(ArchivedListMatchRequired, total=False):
-    cursor: Any
-    limit: int
-
-
-class AuthorizationRequired(TypedDict):
-    token: str
-
-
-class Authorization(AuthorizationRequired, total=False):
-    token_type_hint: Any
-
-
-class AuthorizationCreateDataRequired(TypedDict):
-    token: str
-
-
-class AuthorizationCreateData(AuthorizationCreateDataRequired, total=False):
-    token_type_hint: Any
-
-
-class AuthorizationRemoveMatch(TypedDict):
-    access_token: str
-    client_id: str
-    client_secret: str
 
 
 class Backup(TypedDict):
@@ -342,6 +248,11 @@ class EmailUpdateData(TypedDict, total=False):
     obj_type: str
 
 
+class EmailRemoveMatch(TypedDict):
+    obj_id: str
+    obj_type: str
+
+
 class FileUrl(TypedDict):
     file_name: str
     file_url: str
@@ -379,7 +290,20 @@ class FolderListMatch(FolderListMatchRequired, total=False):
 
 
 class FolderCreateData(TypedDict):
+    child_order: int
+    default_order: int
+    default_order_key: Any
+    id: str
+    is_deleted: bool
+    name: str
+    workspace_id: str
+
+
+class FolderUpdateDataRequired(TypedDict):
     id: int
+
+
+class FolderUpdateData(FolderUpdateDataRequired, total=False):
     child_order: int
     default_order: int
     default_order_key: Any
@@ -426,27 +350,6 @@ class IdMappingListMatch(TypedDict):
     obj_name: str
 
 
-class InviteRequired(TypedDict):
-    invited_emails: list
-
-
-class Invite(InviteRequired, total=False):
-    app: str
-    email_list: Any
-    role: Any
-
-
-class InviteCreateDataRequired(TypedDict):
-    workspace_id: int
-    invited_emails: list
-
-
-class InviteCreateData(InviteCreateDataRequired, total=False):
-    app: str
-    email_list: Any
-    role: Any
-
-
 class Label(TypedDict):
     color: str
     id: str
@@ -487,144 +390,86 @@ class LabelRemoveMatch(TypedDict):
     id: int
 
 
-class LocationReminder(TypedDict, total=False):
+class LocationReminderRequired(TypedDict):
     id: str
+    is_deleted: bool
+    item_id: str
+    loc_lat: str
+    loc_long: str
+    loc_trigger: str
+    name: str
+    notify_uid: str
+    project_id: str
+    radius: int
+    task_id: str
+
+
+class LocationReminder(LocationReminderRequired, total=False):
+    type: str
+
+
+class LocationReminderLoadMatch(TypedDict):
+    id: str
+
+
+class LocationReminderListMatch(TypedDict, total=False):
+    cursor: Any
+    limit: int
+    task_id: str
+
+
+class LocationReminderCreateDataRequired(TypedDict):
+    id: str
+    is_deleted: bool
+    item_id: str
+    loc_lat: str
+    loc_long: str
+    loc_trigger: str
+    name: str
+    notify_uid: str
+    project_id: str
+    radius: int
+    task_id: str
+
+
+class LocationReminderCreateData(LocationReminderCreateDataRequired, total=False):
+    type: str
+
+
+class LocationReminderUpdateDataRequired(TypedDict):
+    id: str
+
+
+class LocationReminderUpdateData(LocationReminderUpdateDataRequired, total=False):
+    is_deleted: bool
+    item_id: str
+    loc_lat: str
+    loc_long: str
+    loc_trigger: str
+    name: str
+    notify_uid: str
+    project_id: str
+    radius: int
+    task_id: str
+    type: str
 
 
 class LocationReminderRemoveMatch(TypedDict):
     id: str
 
 
-class MemberViewRequired(TypedDict):
-    full_name: str
-    role: str
-    timezone: str
-    user_email: str
-    user_id: str
-    workspace_id: str
-
-
-class MemberView(MemberViewRequired, total=False):
-    image_id: str
-    is_deleted: bool
-
-
-class MemberViewListMatch(TypedDict, total=False):
-    cursor: Any
-    limit: int
-    sort: str
-    workspace_id: str
-
-
-class MigratePersonalToken(TypedDict):
-    access_token: Any
-    client_id: str
-    client_secret: str
-    expires_in: int
-    personal_token: str
-    scope: str
-    token_type: str
-
-
-class MigratePersonalTokenCreateData(TypedDict):
-    access_token: Any
-    client_id: str
-    client_secret: str
-    expires_in: int
-    personal_token: str
-    scope: str
-    token_type: str
-
-
-class NotificationLocationSyncViewRequired(TypedDict):
-    id: str
-    is_deleted: bool
-    item_id: str
-    loc_lat: str
-    loc_long: str
-    loc_trigger: str
-    name: str
-    notify_uid: str
-    project_id: str
-    radius: int
-    task_id: str
-
-
-class NotificationLocationSyncView(NotificationLocationSyncViewRequired, total=False):
-    type: str
-
-
-class NotificationLocationSyncViewLoadMatch(TypedDict):
-    reminder_id: str
-
-
-class NotificationLocationSyncViewListMatch(TypedDict, total=False):
-    cursor: Any
-    limit: int
-    task_id: str
-
-
-class NotificationLocationSyncViewCreateDataRequired(TypedDict):
-    reminder_id: str
-    id: str
-    is_deleted: bool
-    item_id: str
-    loc_lat: str
-    loc_long: str
-    loc_trigger: str
-    name: str
-    notify_uid: str
-    project_id: str
-    radius: int
-    task_id: str
-
-
-class NotificationLocationSyncViewCreateData(NotificationLocationSyncViewCreateDataRequired, total=False):
-    type: str
-
-
-class NotificationSyncViewRequired(TypedDict):
-    due: Any
-    id: str
-    is_deleted: bool
-    is_urgent: bool
-    item_id: str
-    minute_offset: Any
-    notify_uid: str
-    task_id: str
-    type: str
-
-
-class NotificationSyncView(NotificationSyncViewRequired, total=False):
-    reminder_type: str
+class NotificationSettingRequired(TypedDict):
+    notification_type: str
     service: str
 
 
-class NotificationSyncViewLoadMatch(TypedDict):
-    reminder_id: str
+class NotificationSetting(NotificationSettingRequired, total=False):
+    dont_notify: Any
 
 
-class NotificationSyncViewListMatch(TypedDict, total=False):
-    cursor: Any
-    limit: int
-    task_id: str
-
-
-class NotificationSyncViewCreateDataRequired(TypedDict):
-    reminder_id: str
-    due: Any
-    id: str
-    is_deleted: bool
-    is_urgent: bool
-    item_id: str
-    minute_offset: Any
-    notify_uid: str
-    task_id: str
-    type: str
-
-
-class NotificationSyncViewCreateData(NotificationSyncViewCreateDataRequired, total=False):
-    reminder_type: str
+class NotificationSettingUpdateData(TypedDict, total=False):
+    dont_notify: Any
+    notification_type: str
     service: str
 
 
@@ -738,97 +583,87 @@ class ProjectRemoveMatch(TypedDict):
     id: str
 
 
-class ProjectImportRequired(TypedDict):
-    comments: list
-    discarded_fields: list
-    project_id: str
-    project_notes: list
-    project_view_options_defaults: list
-    projects: list
-    reminders: list
-    sections: list
-    status: str
-    tasks: list
-    template_id: str
-    template_type: str
+class ProjectImport(TypedDict):
+    pass
 
 
-class ProjectImport(ProjectImportRequired, total=False):
-    locale: str
+class ProjectImportCreateData(TypedDict):
+    pass
 
 
-class ProjectImportCreateDataRequired(TypedDict):
-    comments: list
-    discarded_fields: list
-    project_id: str
-    project_notes: list
-    project_view_options_defaults: list
-    projects: list
-    reminders: list
-    sections: list
-    status: str
-    tasks: list
-    template_id: str
-    template_type: str
+class ProjectPermission(TypedDict):
+    project_collaborator_actions: list
+    workspace_collaborator_actions: list
 
 
-class ProjectImportCreateData(ProjectImportCreateDataRequired, total=False):
-    locale: str
+class ProjectPermissionListMatch(TypedDict, total=False):
+    project_collaborator_actions: list
+    workspace_collaborator_actions: list
 
 
-class ProjectImportCreateResponseWithObject(TypedDict):
-    comments: list
-    discarded_fields: list
-    project_id: str
-    project_notes: list
-    project_view_options_defaults: list
-    projects: list
-    reminders: list
-    sections: list
-    status: str
-    tasks: list
-    template_type: str
-
-
-class ProjectImportCreateResponseWithObjectCreateData(TypedDict):
-    comments: list
-    discarded_fields: list
-    project_id: str
-    project_notes: list
-    project_view_options_defaults: list
-    projects: list
-    reminders: list
-    sections: list
-    status: str
-    tasks: list
-    template_type: str
-
-
-class Reminder(TypedDict, total=False):
+class ReminderRequired(TypedDict):
+    due: Any
     id: str
+    is_deleted: bool
+    is_urgent: bool
+    item_id: str
+    minute_offset: Any
+    notify_uid: str
+    task_id: str
+    type: str
+
+
+class Reminder(ReminderRequired, total=False):
+    reminder_type: str
+    service: str
+
+
+class ReminderLoadMatch(TypedDict):
+    id: str
+
+
+class ReminderListMatch(TypedDict, total=False):
+    cursor: Any
+    limit: int
+    task_id: str
+
+
+class ReminderCreateDataRequired(TypedDict):
+    due: Any
+    id: str
+    is_deleted: bool
+    is_urgent: bool
+    item_id: str
+    minute_offset: Any
+    notify_uid: str
+    task_id: str
+    type: str
+
+
+class ReminderCreateData(ReminderCreateDataRequired, total=False):
+    reminder_type: str
+    service: str
+
+
+class ReminderUpdateDataRequired(TypedDict):
+    id: str
+
+
+class ReminderUpdateData(ReminderUpdateDataRequired, total=False):
+    due: Any
+    is_deleted: bool
+    is_urgent: bool
+    item_id: str
+    minute_offset: Any
+    notify_uid: str
+    reminder_type: str
+    service: str
+    task_id: str
+    type: str
 
 
 class ReminderRemoveMatch(TypedDict):
     id: str
-
-
-class RemoveWorkspaceUser(TypedDict, total=False):
-    id: str
-
-
-class RemoveWorkspaceUserRemoveMatch(TypedDict):
-    id: int
-    workspace_id: int
-
-
-class RoleToActionMappingView(TypedDict):
-    project_collaborator_actions: list
-    workspace_collaborator_actions: list
-
-
-class RoleToActionMappingViewListMatch(TypedDict, total=False):
-    project_collaborator_actions: list
-    workspace_collaborator_actions: list
 
 
 class SectionRequired(TypedDict):
@@ -936,15 +771,6 @@ class SharedLabelRemoveMatch(TypedDict, total=False):
     new_name: str
     next_cursor: Any
     results: list
-
-
-class StatusOk(TypedDict):
-    pass
-
-
-class StatusOkRemoveMatch(TypedDict):
-    obj_id: str
-    obj_type: str
 
 
 class SubscriptionInfo(TypedDict):
@@ -1224,11 +1050,9 @@ class UserRequired(TypedDict):
     lang: str
     mfa_enabled: bool
     next_week: int
-    notification_type: str
     onboarding_completed: bool
     onboarding_initiated: bool
     onboarding_started: bool
-    service: str
     share_limit: int
     sort_order: int
     start_day: int
@@ -1249,7 +1073,6 @@ class User(UserRequired, total=False):
     avatar_small: Any
     business_account_id: str
     deleted_at: Any
-    dont_notify: Any
     free_trial_expires: Any
     getting_started_guide_projects: Any
     image_id: str
@@ -1275,7 +1098,11 @@ class User(UserRequired, total=False):
     urgent_reminder_device: Any
 
 
-class UserListMatch(TypedDict, total=False):
+class UserLoadMatchRequired(TypedDict):
+    id: str
+
+
+class UserLoadMatch(UserLoadMatchRequired, total=False):
     activated_user: bool
     auto_reminder: int
     avatar_big: Any
@@ -1289,7 +1116,6 @@ class UserListMatch(TypedDict, total=False):
     date_format: int
     days_off: list
     deleted_at: Any
-    dont_notify: Any
     email: str
     feature_identifier: str
     features: dict
@@ -1299,7 +1125,6 @@ class UserListMatch(TypedDict, total=False):
     has_magic_number: bool
     has_password: bool
     has_started_a_trial: bool
-    id: str
     image_id: str
     inbox_project_id: str
     is_celebrations_enabled: bool
@@ -1313,7 +1138,6 @@ class UserListMatch(TypedDict, total=False):
     lang: str
     mfa_enabled: bool
     next_week: int
-    notification_type: str
     onboarded_dated_tasks_created: Any
     onboarded_desktop_accessed: Any
     onboarded_mobile_accessed: Any
@@ -1328,78 +1152,6 @@ class UserListMatch(TypedDict, total=False):
     onboarding_use_cases: Any
     premium_status: Any
     premium_until: Any
-    service: str
-    share_limit: int
-    sort_order: int
-    start_day: int
-    start_page: str
-    status: Any
-    theme_appearance: str
-    theme_id: str
-    time_format: Any
-    token: str
-    tz_info: dict
-    urgent_reminder_device: Any
-    verification_status: str
-    websocket_url: str
-    weekend_start_day: int
-    weekly_goal: int
-
-
-class UserUpdateData(TypedDict, total=False):
-    activated_user: bool
-    auto_reminder: int
-    avatar_big: Any
-    avatar_medium: Any
-    avatar_s640: Any
-    avatar_small: Any
-    business_account_id: str
-    completed_count: int
-    completed_today: int
-    daily_goal: int
-    date_format: int
-    days_off: list
-    deleted_at: Any
-    dont_notify: Any
-    email: str
-    feature_identifier: str
-    features: dict
-    free_trial_expires: Any
-    full_name: str
-    getting_started_guide_projects: Any
-    has_magic_number: bool
-    has_password: bool
-    has_started_a_trial: bool
-    id: str
-    image_id: str
-    inbox_project_id: str
-    is_celebrations_enabled: bool
-    is_deleted: bool
-    is_onboarded: bool
-    is_premium: bool
-    joinable_workspace: Any
-    joined_at: Any
-    karma: float
-    karma_trend: Any
-    lang: str
-    mfa_enabled: bool
-    next_week: int
-    notification_type: str
-    onboarded_dated_tasks_created: Any
-    onboarded_desktop_accessed: Any
-    onboarded_mobile_accessed: Any
-    onboarded_tasks_completed: Any
-    onboarding_completed: bool
-    onboarding_initiated: bool
-    onboarding_level: Any
-    onboarding_persona: Any
-    onboarding_role: Any
-    onboarding_started: bool
-    onboarding_team_mode: Any
-    onboarding_use_cases: Any
-    premium_status: Any
-    premium_until: Any
-    service: str
     share_limit: int
     sort_order: int
     start_day: int
@@ -1419,7 +1171,7 @@ class UserUpdateData(TypedDict, total=False):
 
 class Workspace(TypedDict, total=False):
     description: str
-    domain_discovery: Any
+    domain_discovery: bool
     domain_name: Any
     id: str
     invite_code: Any
@@ -1429,7 +1181,7 @@ class Workspace(TypedDict, total=False):
     is_trial_pending: bool
     name: str
     properties: Any
-    restrict_email_domains: Any
+    restrict_email_domains: bool
 
 
 class WorkspaceLoadMatch(TypedDict):
@@ -1438,7 +1190,7 @@ class WorkspaceLoadMatch(TypedDict):
 
 class WorkspaceListMatch(TypedDict, total=False):
     description: str
-    domain_discovery: Any
+    domain_discovery: bool
     domain_name: Any
     id: str
     invite_code: Any
@@ -1448,16 +1200,31 @@ class WorkspaceListMatch(TypedDict, total=False):
     is_trial_pending: bool
     name: str
     properties: Any
-    restrict_email_domains: Any
+    restrict_email_domains: bool
 
 
-class WorkspaceCreateDataRequired(TypedDict):
+class WorkspaceCreateData(TypedDict, total=False):
+    description: str
+    domain_discovery: bool
+    domain_name: Any
+    id: str
+    invite_code: Any
+    is_collapsed: bool
+    is_guest_allowed: bool
+    is_link_sharing_enabled: bool
+    is_trial_pending: bool
+    name: str
+    properties: Any
+    restrict_email_domains: bool
+
+
+class WorkspaceUpdateDataRequired(TypedDict):
     id: int
 
 
-class WorkspaceCreateData(WorkspaceCreateDataRequired, total=False):
+class WorkspaceUpdateData(WorkspaceUpdateDataRequired, total=False):
     description: str
-    domain_discovery: Any
+    domain_discovery: bool
     domain_name: Any
     invite_code: Any
     is_collapsed: bool
@@ -1466,46 +1233,34 @@ class WorkspaceCreateData(WorkspaceCreateDataRequired, total=False):
     is_trial_pending: bool
     name: str
     properties: Any
-    restrict_email_domains: Any
+    restrict_email_domains: bool
 
 
 class WorkspaceRemoveMatch(TypedDict):
     id: int
 
 
-class WorkspaceInvitationViewRequired(TypedDict):
+class WorkspaceInvitationRequired(TypedDict):
     inviter_id: str
     role: str
     user_email: str
     workspace_id: str
 
 
-class WorkspaceInvitationView(WorkspaceInvitationViewRequired, total=False):
+class WorkspaceInvitation(WorkspaceInvitationRequired, total=False):
     app: str
     id: str
 
 
-class WorkspaceInvitationViewListMatch(TypedDict):
+class WorkspaceInvitationListMatch(TypedDict):
     workspace_id: int
 
 
-class WorkspaceInvitationViewCreateDataRequired(TypedDict):
-    inviter_id: str
-    role: str
-    user_email: str
-    workspace_id: str
-
-
-class WorkspaceInvitationViewCreateData(WorkspaceInvitationViewCreateDataRequired, total=False):
-    app: str
-    id: str
-
-
-class WorkspaceInvitationViewUpdateDataRequired(TypedDict):
+class WorkspaceInvitationUpdateDataRequired(TypedDict):
     invite_code: str
 
 
-class WorkspaceInvitationViewUpdateData(WorkspaceInvitationViewUpdateDataRequired, total=False):
+class WorkspaceInvitationUpdateData(WorkspaceInvitationUpdateDataRequired, total=False):
     app: str
     id: str
     inviter_id: str
@@ -1514,25 +1269,115 @@ class WorkspaceInvitationViewUpdateData(WorkspaceInvitationViewUpdateDataRequire
     workspace_id: str
 
 
-class WorkspaceUserViewRequired(TypedDict):
+class WorkspaceInvitationRemoveMatchRequired(TypedDict):
+    id: str
+
+
+class WorkspaceInvitationRemoveMatch(WorkspaceInvitationRemoveMatchRequired, total=False):
+    app: str
+    inviter_id: str
+    role: str
+    user_email: str
+    workspace_id: str
+
+
+class WorkspaceProjectRequired(TypedDict):
+    access: Any
+    initiated_by_uid: int
+    project_id: str
+    public_access: bool
+    workspace_id: int
+
+
+class WorkspaceProject(WorkspaceProjectRequired, total=False):
+    archived_date: Any
+    archived_timestamp: int
+    color: Any
+    default_order: int
+    default_order_key: Any
+    description: str
+    folder_id: str
+    icon: Any
+    is_archived: bool
+    is_frozen: bool
+    is_invite_only: bool
+    is_project_insights_enabled: bool
+    name: str
+    role: Any
+    status: str
+    view_style: str
+
+
+class WorkspaceProjectListMatchRequired(TypedDict):
+    workspace_id: int
+
+
+class WorkspaceProjectListMatch(WorkspaceProjectListMatchRequired, total=False):
+    cursor: Any
+    limit: int
+
+
+class WorkspaceUserRequired(TypedDict):
+    full_name: str
+    timezone: str
+    user_email: str
     user_id: str
     workspace_id: str
 
 
-class WorkspaceUserView(WorkspaceUserViewRequired, total=False):
+class WorkspaceUser(WorkspaceUserRequired, total=False):
     custom_sorting_applied: bool
+    id: str
+    image_id: str
     invite_code: Any
+    is_deleted: bool
     project_sort_preference: str
     role: str
 
 
-class WorkspaceUserViewCreateDataRequired(TypedDict):
-    user_id: int
+class WorkspaceUserListMatch(TypedDict, total=False):
+    cursor: Any
+    limit: int
+    sort: str
+    workspace_id: str
+
+
+class WorkspaceUserCreateDataRequired(TypedDict):
+    full_name: str
+    timezone: str
+    user_email: str
+    user_id: str
+    workspace_id: str
+
+
+class WorkspaceUserCreateData(WorkspaceUserCreateDataRequired, total=False):
+    custom_sorting_applied: bool
+    id: str
+    image_id: str
+    invite_code: Any
+    is_deleted: bool
+    project_sort_preference: str
+    role: str
+
+
+class WorkspaceUserUpdateDataRequired(TypedDict):
+    id: int
     workspace_id: int
 
 
-class WorkspaceUserViewCreateData(WorkspaceUserViewCreateDataRequired, total=False):
+class WorkspaceUserUpdateData(WorkspaceUserUpdateDataRequired, total=False):
     custom_sorting_applied: bool
+    full_name: str
+    image_id: str
     invite_code: Any
+    is_deleted: bool
     project_sort_preference: str
     role: str
+    timezone: str
+    user_email: str
+    user_id: str
+
+
+class WorkspaceUserRemoveMatch(TypedDict):
+    id: int
+    workspace_id: int

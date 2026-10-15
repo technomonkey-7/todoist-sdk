@@ -8,7 +8,119 @@ main: kit: entity: location_reminder: {
     id: {
       h: "Id"
       n: "id"
+      r: true
+      sh: "String ID of the location reminder"
+      t: "`$STRING`"
+    }
+    is_deleted: {
+      h: "Is Deleted"
+      n: "is_deleted"
+      r: true
+      sh: "Whether the location reminder is deleted"
+      t: "`$BOOLEAN`"
+    }
+    item_id: {
+      h: "Item Id"
+      n: "item_id"
+      r: true
+      sh: "String ID of the task"
+      t: "`$STRING`"
+    }
+    loc_lat: {
+      h: "Loc Lat"
+      n: "loc_lat"
+      op: {
+        update: {
+          req: false
+          type: "`$ANY`"
+        }
+      }
+      r: true
+      sh: "Latitude of the location"
+      t: "`$STRING`"
+    }
+    loc_long: {
+      h: "Loc Long"
+      n: "loc_long"
+      op: {
+        update: {
+          req: false
+          type: "`$ANY`"
+        }
+      }
+      r: true
+      sh: "Longitude of the location"
+      t: "`$STRING`"
+    }
+    loc_trigger: {
+      h: "Loc Trigger"
+      n: "loc_trigger"
+      op: {
+        update: {
+          req: false
+          type: "`$ANY`"
+        }
+      }
+      r: true
+      sh: "Trigger type for the location reminder"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        update: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "Name of the location"
+      t: "`$STRING`"
+    }
+    notify_uid: {
+      h: "Notify Uid"
+      n: "notify_uid"
+      r: true
+      sh: "String ID of the user who will receive the reminder"
+      t: "`$STRING`"
+    }
+    project_id: {
+      h: "Project Id"
+      n: "project_id"
+      r: true
+      sh: "String ID of the project containing the task"
+      t: "`$STRING`"
+    }
+    radius: {
+      h: "Radius"
+      n: "radius"
+      op: {
+        create: {
+          req: false
+          type: "`$INTEGER`"
+        }
+        update: {
+          req: false
+          type: "`$NUMBER`"
+        }
+      }
+      r: true
+      sh: "Radius in meters"
+      t: "`$INTEGER`"
+    }
+    task_id: {
+      h: "Task Id"
+      n: "task_id"
+      r: true
+      sh: "String ID of the task"
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
       r: false
+      sh: "The reminder type"
       t: "`$STRING`"
     }
   }
@@ -20,6 +132,163 @@ main: kit: entity: location_reminder: {
 
   name: "location_reminder"
   op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "loc_lat"
+            "loc_long"
+            "loc_trigger"
+            "name"
+            "radius"
+            "task_id"
+          ]
+          co: {
+            id: "POST /api/v1/location_reminders"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/location_reminders"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "location_reminders"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/location_reminders"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 50
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "task_id"
+                or: "task_id"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/location_reminders"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "location_reminders"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.results`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/location_reminders/{reminder_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "reminder_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/location_reminders/{reminder_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              reminder_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "location_reminders"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
     remove: {
       name: "remove"
       points: [
@@ -41,6 +310,70 @@ main: kit: entity: location_reminder: {
             ]
           }
           m: "DELETE"
+          o: "/api/v1/location_reminders/{reminder_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              reminder_id: "id"
+            }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "location_reminders"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    update: {
+      name: "update"
+      points: [
+        {
+          bf: [
+            "loc_lat"
+            "loc_long"
+            "loc_trigger"
+            "name"
+            "radius"
+          ]
+          co: {
+            id: "POST /api/v1/location_reminders/{reminder_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "reminder_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
           o: "/api/v1/location_reminders/{reminder_id}"
           q: {
             exist: [

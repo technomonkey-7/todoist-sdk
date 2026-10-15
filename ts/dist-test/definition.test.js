@@ -9,78 +9,6 @@ const utility_1 = require("./utility");
 // scheme names, and the definition's own response example.
 const PLAN = [
     {
-        "entity": "active",
-        "accessor": "Active",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/workspaces/{workspace_id}/projects/active",
-        "args": [
-            {
-                "name": "workspace_id",
-                "wire": "workspace_id",
-                "value": "p1"
-            }
-        ],
-        "select": {
-            "cursor": "v1",
-            "limit": 100
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "has_more": true,
-            "next_cursor": "x",
-            "workspace_projects": [
-                {
-                    "initiated_by_uid": 1,
-                    "project_id": "x",
-                    "workspace_id": 1,
-                    "public_access": true,
-                    "access": {
-                        "visibility": "restricted",
-                        "configuration": {}
-                    },
-                    "folder_id": 1,
-                    "is_invite_only": true,
-                    "is_archived": true,
-                    "archived_timestamp": 1,
-                    "archived_date": "2026-01-01T00:00:00Z",
-                    "is_frozen": true,
-                    "name": "x",
-                    "color": 1,
-                    "icon": "x",
-                    "view_style": "LIST",
-                    "description": "x",
-                    "status": "PLANNED",
-                    "default_order": 1,
-                    "default_order_key": "x",
-                    "is_project_insights_enabled": true,
-                    "_role": "CREATOR"
-                }
-            ]
-        },
-        "idField": "id"
-    },
-    {
         "entity": "activity",
         "accessor": "Activity",
         "op": "list",
@@ -225,139 +153,6 @@ const PLAN = [
             ],
             "next_cursor": "x"
         },
-        "idField": "id"
-    },
-    {
-        "entity": "archived",
-        "accessor": "Archived",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/workspaces/{workspace_id}/projects/archived",
-        "args": [
-            {
-                "name": "workspace_id",
-                "wire": "workspace_id",
-                "value": "p1"
-            }
-        ],
-        "select": {
-            "cursor": "v1",
-            "limit": 100
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "has_more": true,
-            "next_cursor": "x",
-            "workspace_projects": [
-                {
-                    "initiated_by_uid": 1,
-                    "project_id": "x",
-                    "workspace_id": 1,
-                    "public_access": true,
-                    "access": {
-                        "visibility": "restricted",
-                        "configuration": {}
-                    },
-                    "folder_id": 1,
-                    "is_invite_only": true,
-                    "is_archived": true,
-                    "archived_timestamp": 1,
-                    "archived_date": "2026-01-01T00:00:00Z",
-                    "is_frozen": true,
-                    "name": "x",
-                    "color": 1,
-                    "icon": "x",
-                    "view_style": "LIST",
-                    "description": "x",
-                    "status": "PLANNED",
-                    "default_order": 1,
-                    "default_order_key": "x",
-                    "is_project_insights_enabled": true,
-                    "_role": "CREATOR"
-                }
-            ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "authorization",
-        "accessor": "Authorization",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/revoke",
-        "args": [],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": null,
-        "idField": "id"
-    },
-    {
-        "entity": "authorization",
-        "accessor": "Authorization",
-        "op": "remove",
-        "method": "DELETE",
-        "path": "/api/v1/access_tokens",
-        "args": [],
-        "select": {
-            "access_token": "v1",
-            "client_id": "v1",
-            "client_secret": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "client_id",
-            "client_secret",
-            "access_token"
-        ],
-        "queryArgs": [
-            {
-                "name": "access_token",
-                "wire": "access_token"
-            },
-            {
-                "name": "client_id",
-                "wire": "client_id"
-            },
-            {
-                "name": "client_secret",
-                "wire": "client_secret"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": null,
         "idField": "id"
     },
     {
@@ -1052,6 +847,43 @@ const PLAN = [
     {
         "entity": "email",
         "accessor": "Email",
+        "op": "remove",
+        "method": "DELETE",
+        "path": "/api/v1/emails",
+        "args": [],
+        "select": {
+            "obj_id": "v1",
+            "obj_type": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "obj_type",
+            "obj_id"
+        ],
+        "queryArgs": [
+            {
+                "name": "obj_id",
+                "wire": "obj_id"
+            },
+            {
+                "name": "obj_type",
+                "wire": "obj_type"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "status": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "email",
+        "accessor": "Email",
         "op": "update",
         "method": "PUT",
         "path": "/api/v1/emails",
@@ -1106,40 +938,6 @@ const PLAN = [
         "sample": {
             "file_name": "x",
             "file_url": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "folder",
-        "accessor": "Folder",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/folders/{folder_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "folder_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "name": "x",
-            "workspace_id": "x",
-            "default_order": 1,
-            "default_order_key": "x",
-            "child_order": 1,
-            "is_deleted": true
         },
         "idField": "id"
     },
@@ -1286,6 +1084,40 @@ const PLAN = [
         "idField": "id"
     },
     {
+        "entity": "folder",
+        "accessor": "Folder",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/folders/{folder_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "folder_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "name": "x",
+            "workspace_id": "x",
+            "default_order": 1,
+            "default_order_key": "x",
+            "child_order": 1,
+            "is_deleted": true
+        },
+        "idField": "id"
+    },
+    {
         "entity": "history",
         "accessor": "History",
         "op": "list",
@@ -1385,36 +1217,6 @@ const PLAN = [
                 "new_id": "x"
             }
         ],
-        "idField": "id"
-    },
-    {
-        "entity": "invite",
-        "accessor": "Invite",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/workspaces/{workspace_id}/users/invite",
-        "args": [
-            {
-                "name": "workspace_id",
-                "wire": "workspace_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "invited_emails": [
-                "x"
-            ]
-        },
         "idField": "id"
     },
     {
@@ -1635,156 +1437,6 @@ const PLAN = [
     {
         "entity": "location_reminder",
         "accessor": "LocationReminder",
-        "op": "remove",
-        "method": "DELETE",
-        "path": "/api/v1/location_reminders/{reminder_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "reminder_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": null,
-        "idField": "id"
-    },
-    {
-        "entity": "member_view",
-        "accessor": "MemberView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/workspaces/users",
-        "args": [],
-        "select": {
-            "cursor": "v1",
-            "limit": 100,
-            "sort": "id",
-            "workspace_id": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "workspace_id",
-            "cursor",
-            "limit",
-            "sort"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "sort",
-                "wire": "sort"
-            },
-            {
-                "name": "workspace_id",
-                "wire": "workspace_id"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "has_more": true,
-            "next_cursor": "x",
-            "workspace_users": [
-                {
-                    "user_id": "x",
-                    "workspace_id": "x",
-                    "user_email": "x",
-                    "full_name": "x",
-                    "timezone": "x",
-                    "role": "ADMIN",
-                    "image_id": "x",
-                    "is_deleted": true
-                }
-            ]
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "migrate_personal_token",
-        "accessor": "MigratePersonalToken",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/access_tokens/migrate_personal_token",
-        "args": [],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "access_token": "x",
-            "token_type": "x",
-            "expires_in": 1
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "notification_location_sync_view",
-        "accessor": "NotificationLocationSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/location_reminders/{reminder_id}",
-        "args": [
-            {
-                "name": "reminder_id",
-                "wire": "reminder_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "item_id": "x",
-            "project_id": "x",
-            "notify_uid": "x",
-            "name": "x",
-            "loc_lat": "x",
-            "loc_long": "x",
-            "loc_trigger": "on_enter",
-            "radius": 1,
-            "is_deleted": true,
-            "type": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "notification_location_sync_view",
-        "accessor": "NotificationLocationSyncView",
         "op": "create",
         "method": "POST",
         "path": "/api/v1/location_reminders",
@@ -1815,8 +1467,8 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "notification_location_sync_view",
-        "accessor": "NotificationLocationSyncView",
+        "entity": "location_reminder",
+        "accessor": "LocationReminder",
         "op": "list",
         "method": "GET",
         "path": "/api/v1/location_reminders",
@@ -1873,14 +1525,14 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "notification_location_sync_view",
-        "accessor": "NotificationLocationSyncView",
+        "entity": "location_reminder",
+        "accessor": "LocationReminder",
         "op": "load",
         "method": "GET",
         "path": "/api/v1/location_reminders/{reminder_id}",
         "args": [
             {
-                "name": "reminder_id",
+                "name": "id",
                 "wire": "reminder_id",
                 "value": "p1"
             }
@@ -1911,14 +1563,40 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "notification_sync_view",
-        "accessor": "NotificationSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/reminders/{reminder_id}",
+        "entity": "location_reminder",
+        "accessor": "LocationReminder",
+        "op": "remove",
+        "method": "DELETE",
+        "path": "/api/v1/location_reminders/{reminder_id}",
         "args": [
             {
-                "name": "reminder_id",
+                "name": "id",
+                "wire": "reminder_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "location_reminder",
+        "accessor": "LocationReminder",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/location_reminders/{reminder_id}",
+        "args": [
+            {
+                "name": "id",
                 "wire": "reminder_id",
                 "value": "p1"
             }
@@ -1936,21 +1614,24 @@ const PLAN = [
         "sample": {
             "id": "x",
             "item_id": "x",
+            "project_id": "x",
             "notify_uid": "x",
+            "name": "x",
+            "loc_lat": "x",
+            "loc_long": "x",
+            "loc_trigger": "on_enter",
+            "radius": 1,
             "is_deleted": true,
-            "is_urgent": true,
-            "type": "x",
-            "minute_offset": 1,
-            "due": {}
+            "type": "x"
         },
         "idField": "id"
     },
     {
-        "entity": "notification_sync_view",
-        "accessor": "NotificationSyncView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/reminders",
+        "entity": "notification_setting",
+        "accessor": "NotificationSetting",
+        "op": "update",
+        "method": "PUT",
+        "path": "/api/v1/notification_setting",
         "args": [],
         "select": {},
         "headers": [],
@@ -1962,106 +1643,7 @@ const PLAN = [
         "queryArgs": [],
         "auth": null,
         "status": 200,
-        "sample": {
-            "id": "x",
-            "item_id": "x",
-            "notify_uid": "x",
-            "is_deleted": true,
-            "is_urgent": true,
-            "type": "x",
-            "minute_offset": 1,
-            "due": {}
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "notification_sync_view",
-        "accessor": "NotificationSyncView",
-        "op": "list",
-        "method": "GET",
-        "path": "/api/v1/reminders",
-        "args": [],
-        "select": {
-            "cursor": "v1",
-            "limit": 50,
-            "task_id": "v1"
-        },
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [
-            "task_id",
-            "cursor",
-            "limit"
-        ],
-        "queryArgs": [
-            {
-                "name": "cursor",
-                "wire": "cursor"
-            },
-            {
-                "name": "limit",
-                "wire": "limit"
-            },
-            {
-                "name": "task_id",
-                "wire": "task_id"
-            }
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "results": [
-                {
-                    "id": "x",
-                    "item_id": "x",
-                    "notify_uid": "x",
-                    "is_deleted": true,
-                    "is_urgent": true,
-                    "type": "x",
-                    "minute_offset": 1,
-                    "due": {}
-                }
-            ],
-            "next_cursor": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "notification_sync_view",
-        "accessor": "NotificationSyncView",
-        "op": "load",
-        "method": "GET",
-        "path": "/api/v1/reminders/{reminder_id}",
-        "args": [
-            {
-                "name": "reminder_id",
-                "wire": "reminder_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "id": "x",
-            "item_id": "x",
-            "notify_uid": "x",
-            "is_deleted": true,
-            "is_urgent": true,
-            "type": "x",
-            "minute_offset": 1,
-            "due": {}
-        },
+        "sample": {},
         "idField": "id"
     },
     {
@@ -2953,11 +2535,344 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "project_import_create_response_with_object",
-        "accessor": "ProjectImportCreateResponseWithObject",
+        "entity": "project_import",
+        "accessor": "ProjectImport",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/templates/import_into_project_from_file",
+        "action": "from_file",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "project_view_options_defaults": [
+                {
+                    "project_id": "x",
+                    "view_mode": "LIST",
+                    "calendar_settings": {
+                        "layout": "WEEK",
+                        "visible_day_count": 1,
+                        "color": "PRIORITY"
+                    }
+                }
+            ],
+            "status": "x",
+            "template_type": "x",
+            "projects": [
+                {
+                    "id": "x",
+                    "can_assign_tasks": true,
+                    "can_comment": true,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "color": "x",
+                    "icon": "x",
+                    "creator_uid": "x",
+                    "created_at": "x",
+                    "is_archived": true,
+                    "is_deleted": true,
+                    "is_favorite": true,
+                    "is_frozen": true,
+                    "name": "x",
+                    "is_shared": true,
+                    "updated_at": "x",
+                    "view_style": "x",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "description": "x",
+                    "public_key": "x",
+                    "access": {
+                        "visibility": "restricted"
+                    },
+                    "role": "x",
+                    "parent_id": "x",
+                    "inbox_project": true
+                }
+            ],
+            "sections": [
+                {
+                    "id": "x",
+                    "user_id": "x",
+                    "project_id": "x",
+                    "added_at": "2026-01-01T00:00:00Z",
+                    "updated_at": "x",
+                    "archived_at": "x",
+                    "name": "x",
+                    "description": "x",
+                    "section_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "is_archived": true,
+                    "is_deleted": true
+                }
+            ],
+            "tasks": [
+                {
+                    "user_id": "x",
+                    "id": "x",
+                    "project_id": "x",
+                    "section_id": "x",
+                    "parent_id": "x",
+                    "added_by_uid": "x",
+                    "assigned_by_uid": "x",
+                    "responsible_uid": "x",
+                    "labels": [
+                        "x"
+                    ],
+                    "deadline": {},
+                    "duration": {},
+                    "is_collapsed": true,
+                    "checked": true,
+                    "is_deleted": true,
+                    "added_at": "x",
+                    "completed_at": "x",
+                    "completed_by_uid": "x",
+                    "updated_at": "x",
+                    "due": {},
+                    "priority": 1,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "content": "x",
+                    "description": "x",
+                    "note_count": 1,
+                    "day_order": 1,
+                    "completed_count": 1,
+                    "postponed_count": 1
+                }
+            ],
+            "comments": [
+                {
+                    "id": "x",
+                    "posted_uid": "x",
+                    "content": "x",
+                    "file_attachment": {},
+                    "uids_to_notify": [
+                        "x"
+                    ],
+                    "is_deleted": true,
+                    "posted_at": "x",
+                    "reactions": {},
+                    "item_id": "x"
+                }
+            ],
+            "project_notes": [
+                {
+                    "id": "x",
+                    "posted_uid": "x",
+                    "content": "x",
+                    "file_attachment": {},
+                    "uids_to_notify": [
+                        "x"
+                    ],
+                    "is_deleted": true,
+                    "posted_at": "x",
+                    "reactions": {},
+                    "project_id": "x"
+                }
+            ],
+            "reminders": [
+                {
+                    "id": "x",
+                    "item_id": "x",
+                    "notify_uid": "x",
+                    "is_deleted": true,
+                    "is_urgent": true,
+                    "type": "x",
+                    "minute_offset": 1,
+                    "due": {}
+                }
+            ],
+            "discarded_fields": [
+                {
+                    "field": "deadline",
+                    "reason": "personal_plan_limit"
+                }
+            ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project_import",
+        "accessor": "ProjectImport",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/templates/import_into_project_from_template_id",
+        "action": "from_template",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "project_view_options_defaults": [
+                {
+                    "project_id": "x",
+                    "view_mode": "LIST",
+                    "calendar_settings": {
+                        "layout": "WEEK",
+                        "visible_day_count": 1,
+                        "color": "PRIORITY"
+                    }
+                }
+            ],
+            "status": "x",
+            "template_type": "x",
+            "projects": [
+                {
+                    "id": "x",
+                    "can_assign_tasks": true,
+                    "can_comment": true,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "color": "x",
+                    "icon": "x",
+                    "creator_uid": "x",
+                    "created_at": "x",
+                    "is_archived": true,
+                    "is_deleted": true,
+                    "is_favorite": true,
+                    "is_frozen": true,
+                    "name": "x",
+                    "is_shared": true,
+                    "updated_at": "x",
+                    "view_style": "x",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "description": "x",
+                    "public_key": "x",
+                    "access": {
+                        "visibility": "restricted"
+                    },
+                    "role": "x",
+                    "parent_id": "x",
+                    "inbox_project": true
+                }
+            ],
+            "sections": [
+                {
+                    "id": "x",
+                    "user_id": "x",
+                    "project_id": "x",
+                    "added_at": "2026-01-01T00:00:00Z",
+                    "updated_at": "x",
+                    "archived_at": "x",
+                    "name": "x",
+                    "description": "x",
+                    "section_order": 1,
+                    "order_key": "x",
+                    "is_collapsed": true,
+                    "is_archived": true,
+                    "is_deleted": true
+                }
+            ],
+            "tasks": [
+                {
+                    "user_id": "x",
+                    "id": "x",
+                    "project_id": "x",
+                    "section_id": "x",
+                    "parent_id": "x",
+                    "added_by_uid": "x",
+                    "assigned_by_uid": "x",
+                    "responsible_uid": "x",
+                    "labels": [
+                        "x"
+                    ],
+                    "deadline": {},
+                    "duration": {},
+                    "is_collapsed": true,
+                    "checked": true,
+                    "is_deleted": true,
+                    "added_at": "x",
+                    "completed_at": "x",
+                    "completed_by_uid": "x",
+                    "updated_at": "x",
+                    "due": {},
+                    "priority": 1,
+                    "child_order": 1,
+                    "order_key": "x",
+                    "content": "x",
+                    "description": "x",
+                    "note_count": 1,
+                    "day_order": 1,
+                    "completed_count": 1,
+                    "postponed_count": 1
+                }
+            ],
+            "comments": [
+                {
+                    "id": "x",
+                    "posted_uid": "x",
+                    "content": "x",
+                    "file_attachment": {},
+                    "uids_to_notify": [
+                        "x"
+                    ],
+                    "is_deleted": true,
+                    "posted_at": "x",
+                    "reactions": {},
+                    "item_id": "x"
+                }
+            ],
+            "project_notes": [
+                {
+                    "id": "x",
+                    "posted_uid": "x",
+                    "content": "x",
+                    "file_attachment": {},
+                    "uids_to_notify": [
+                        "x"
+                    ],
+                    "is_deleted": true,
+                    "posted_at": "x",
+                    "reactions": {},
+                    "project_id": "x"
+                }
+            ],
+            "reminders": [
+                {
+                    "id": "x",
+                    "item_id": "x",
+                    "notify_uid": "x",
+                    "is_deleted": true,
+                    "is_urgent": true,
+                    "type": "x",
+                    "minute_offset": 1,
+                    "due": {}
+                }
+            ],
+            "discarded_fields": [
+                {
+                    "field": "deadline",
+                    "reason": "personal_plan_limit"
+                }
+            ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "project_import",
+        "accessor": "ProjectImport",
         "op": "create",
         "method": "POST",
         "path": "/api/v1/templates/create_project_from_file",
+        "action": "new_project_from_file",
         "args": [],
         "select": {},
         "headers": [],
@@ -3119,67 +3034,8 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "reminder",
-        "accessor": "Reminder",
-        "op": "remove",
-        "method": "DELETE",
-        "path": "/api/v1/reminders/{reminder_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "reminder_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": null,
-        "idField": "id"
-    },
-    {
-        "entity": "remove_workspace_user",
-        "accessor": "RemoveWorkspaceUser",
-        "op": "remove",
-        "method": "DELETE",
-        "path": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "user_id",
-                "value": "p1"
-            },
-            {
-                "name": "workspace_id",
-                "wire": "workspace_id",
-                "value": "p2"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {
-            "status": "x"
-        },
-        "idField": "id"
-    },
-    {
-        "entity": "role_to_action_mapping_view",
-        "accessor": "RoleToActionMappingView",
+        "entity": "project_permission",
+        "accessor": "ProjectPermission",
         "op": "list",
         "method": "GET",
         "path": "/api/v1/projects/permissions",
@@ -3215,6 +3071,186 @@ const PLAN = [
                     ]
                 }
             ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "reminder",
+        "accessor": "Reminder",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/reminders",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "item_id": "x",
+            "notify_uid": "x",
+            "is_deleted": true,
+            "is_urgent": true,
+            "type": "x",
+            "minute_offset": 1,
+            "due": {}
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "reminder",
+        "accessor": "Reminder",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/reminders",
+        "args": [],
+        "select": {
+            "cursor": "v1",
+            "limit": 50,
+            "task_id": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "task_id",
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "task_id",
+                "wire": "task_id"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "results": [
+                {
+                    "id": "x",
+                    "item_id": "x",
+                    "notify_uid": "x",
+                    "is_deleted": true,
+                    "is_urgent": true,
+                    "type": "x",
+                    "minute_offset": 1,
+                    "due": {}
+                }
+            ],
+            "next_cursor": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "reminder",
+        "accessor": "Reminder",
+        "op": "load",
+        "method": "GET",
+        "path": "/api/v1/reminders/{reminder_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "reminder_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "item_id": "x",
+            "notify_uid": "x",
+            "is_deleted": true,
+            "is_urgent": true,
+            "type": "x",
+            "minute_offset": 1,
+            "due": {}
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "reminder",
+        "accessor": "Reminder",
+        "op": "remove",
+        "method": "DELETE",
+        "path": "/api/v1/reminders/{reminder_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "reminder_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": null,
+        "idField": "id"
+    },
+    {
+        "entity": "reminder",
+        "accessor": "Reminder",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/reminders/{reminder_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "reminder_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "id": "x",
+            "item_id": "x",
+            "notify_uid": "x",
+            "is_deleted": true,
+            "is_urgent": true,
+            "type": "x",
+            "minute_offset": 1,
+            "due": {}
         },
         "idField": "id"
     },
@@ -3681,39 +3717,79 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "status_ok",
-        "accessor": "StatusOk",
-        "op": "remove",
-        "method": "DELETE",
-        "path": "/api/v1/emails",
+        "entity": "subscription_info",
+        "accessor": "SubscriptionInfo",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/payments/get_subscription_info",
         "args": [],
-        "select": {
-            "obj_id": "v1",
-            "obj_type": "v1"
-        },
+        "select": {},
         "headers": [],
         "cookies": [],
         "responseMedia": [
             "application/json"
         ],
-        "query": [
-            "obj_type",
-            "obj_id"
-        ],
-        "queryArgs": [
-            {
-                "name": "obj_id",
-                "wire": "obj_id"
-            },
-            {
-                "name": "obj_type",
-                "wire": "obj_type"
-            }
-        ],
+        "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
-            "status": "x"
+            "status": "none",
+            "plan": "free",
+            "expiration_date": "x",
+            "activation_method": "stripe",
+            "plan_price": {
+                "amount": "x",
+                "raw_amount": 1,
+                "currency": "x",
+                "billing_cycle": "monthly",
+                "tax_behavior": "exclusive"
+            },
+            "billing_portal_url": "x",
+            "billing_portal_switch_to_annual_url": "x",
+            "has_billing_portal": true,
+            "has_billing_portal_switch_to_annual": true,
+            "invoice_credit_balance": {},
+            "has_switch_legacy_to_current": true
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "subscription_info",
+        "accessor": "SubscriptionInfo",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/payments/reactivate_plan",
+        "action": "reactivate_plan",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "status": "none",
+            "plan": "free",
+            "expiration_date": "x",
+            "activation_method": "stripe",
+            "plan_price": {
+                "amount": "x",
+                "raw_amount": 1,
+                "currency": "x",
+                "billing_cycle": "monthly",
+                "tax_behavior": "exclusive"
+            },
+            "billing_portal_url": "x",
+            "billing_portal_switch_to_annual_url": "x",
+            "has_billing_portal": true,
+            "has_billing_portal_switch_to_annual": true,
+            "invoice_credit_balance": {},
+            "has_switch_legacy_to_current": true
         },
         "idField": "id"
     },
@@ -4423,7 +4499,7 @@ const PLAN = [
     {
         "entity": "user",
         "accessor": "User",
-        "op": "list",
+        "op": "load",
         "method": "GET",
         "path": "/api/v1/user",
         "args": [],
@@ -4527,52 +4603,6 @@ const PLAN = [
             "avatar_small": "x",
             "websocket_url": "x"
         },
-        "idField": "id"
-    },
-    {
-        "entity": "user",
-        "accessor": "User",
-        "op": "update",
-        "method": "PUT",
-        "path": "/api/v1/notification_setting",
-        "args": [],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {},
-        "idField": "id"
-    },
-    {
-        "entity": "workspace",
-        "accessor": "Workspace",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/workspaces/{workspace_id}",
-        "args": [
-            {
-                "name": "id",
-                "wire": "workspace_id",
-                "value": "p1"
-            }
-        ],
-        "select": {},
-        "headers": [],
-        "cookies": [],
-        "responseMedia": [
-            "application/json"
-        ],
-        "query": [],
-        "queryArgs": [],
-        "auth": null,
-        "status": 200,
-        "sample": {},
         "idField": "id"
     },
     {
@@ -4820,12 +4850,18 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "workspace_invitation_view",
-        "accessor": "WorkspaceInvitationView",
-        "op": "create",
+        "entity": "workspace",
+        "accessor": "Workspace",
+        "op": "update",
         "method": "POST",
-        "path": "/api/v1/workspaces/invitations/delete",
-        "args": [],
+        "path": "/api/v1/workspaces/{workspace_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "workspace_id",
+                "value": "p1"
+            }
+        ],
         "select": {},
         "headers": [],
         "cookies": [],
@@ -4836,19 +4872,12 @@ const PLAN = [
         "queryArgs": [],
         "auth": null,
         "status": 200,
-        "sample": {
-            "inviter_id": "x",
-            "user_email": "x",
-            "workspace_id": "x",
-            "role": "ADMIN",
-            "id": "x",
-            "app": "todoist"
-        },
+        "sample": {},
         "idField": "id"
     },
     {
-        "entity": "workspace_invitation_view",
-        "accessor": "WorkspaceInvitationView",
+        "entity": "workspace_invitation",
+        "accessor": "WorkspaceInvitation",
         "op": "list",
         "method": "GET",
         "path": "/api/v1/workspaces/invitations/all",
@@ -4885,23 +4914,283 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "workspace_user_view",
-        "accessor": "WorkspaceUserView",
-        "op": "create",
+        "entity": "workspace_invitation",
+        "accessor": "WorkspaceInvitation",
+        "op": "remove",
         "method": "POST",
-        "path": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+        "path": "/api/v1/workspaces/invitations/delete",
+        "args": [],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "inviter_id": "x",
+            "user_email": "x",
+            "workspace_id": "x",
+            "role": "ADMIN",
+            "id": "x",
+            "app": "todoist"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_invitation",
+        "accessor": "WorkspaceInvitation",
+        "op": "update",
+        "method": "PUT",
+        "path": "/api/v1/workspaces/invitations/{invite_code}/accept",
+        "action": "accept",
         "args": [
             {
-                "name": "user_id",
-                "wire": "user_id",
+                "name": "invite_code",
+                "wire": "invite_code",
                 "value": "p1"
-            },
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "inviter_id": "x",
+            "user_email": "x",
+            "workspace_id": "x",
+            "role": "ADMIN",
+            "id": "x",
+            "app": "todoist"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_invitation",
+        "accessor": "WorkspaceInvitation",
+        "op": "update",
+        "method": "PUT",
+        "path": "/api/v1/workspaces/invitations/{invite_code}/reject",
+        "action": "reject",
+        "args": [
+            {
+                "name": "invite_code",
+                "wire": "invite_code",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "inviter_id": "x",
+            "user_email": "x",
+            "workspace_id": "x",
+            "role": "ADMIN",
+            "id": "x",
+            "app": "todoist"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_project",
+        "accessor": "WorkspaceProject",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/workspaces/{workspace_id}/projects/active",
+        "args": [
             {
                 "name": "workspace_id",
                 "wire": "workspace_id",
-                "value": "p2"
+                "value": "p1"
             }
         ],
+        "select": {
+            "cursor": "v1",
+            "limit": 100
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "has_more": true,
+            "next_cursor": "x",
+            "workspace_projects": [
+                {
+                    "initiated_by_uid": 1,
+                    "project_id": "x",
+                    "workspace_id": 1,
+                    "public_access": true,
+                    "access": {
+                        "visibility": "restricted",
+                        "configuration": {}
+                    },
+                    "folder_id": 1,
+                    "is_invite_only": true,
+                    "is_archived": true,
+                    "archived_timestamp": 1,
+                    "archived_date": "2026-01-01T00:00:00Z",
+                    "is_frozen": true,
+                    "name": "x",
+                    "color": 1,
+                    "icon": "x",
+                    "view_style": "LIST",
+                    "description": "x",
+                    "status": "PLANNED",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "is_project_insights_enabled": true,
+                    "_role": "CREATOR"
+                }
+            ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_project",
+        "accessor": "WorkspaceProject",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/workspaces/{workspace_id}/projects/archived",
+        "action": "archived",
+        "args": [
+            {
+                "name": "workspace_id",
+                "wire": "workspace_id",
+                "value": "p1"
+            }
+        ],
+        "select": {
+            "cursor": "v1",
+            "limit": 100
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "cursor",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "has_more": true,
+            "next_cursor": "x",
+            "workspace_projects": [
+                {
+                    "initiated_by_uid": 1,
+                    "project_id": "x",
+                    "workspace_id": 1,
+                    "public_access": true,
+                    "access": {
+                        "visibility": "restricted",
+                        "configuration": {}
+                    },
+                    "folder_id": 1,
+                    "is_invite_only": true,
+                    "is_archived": true,
+                    "archived_timestamp": 1,
+                    "archived_date": "2026-01-01T00:00:00Z",
+                    "is_frozen": true,
+                    "name": "x",
+                    "color": 1,
+                    "icon": "x",
+                    "view_style": "LIST",
+                    "description": "x",
+                    "status": "PLANNED",
+                    "default_order": 1,
+                    "default_order_key": "x",
+                    "is_project_insights_enabled": true,
+                    "_role": "CREATOR"
+                }
+            ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_user",
+        "accessor": "WorkspaceUser",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/workspaces/{workspace_id}/users/invite",
+        "action": "invite",
+        "args": [
+            {
+                "name": "workspace_id",
+                "wire": "workspace_id",
+                "value": "p1"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "invited_emails": [
+                "x"
+            ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_user",
+        "accessor": "WorkspaceUser",
+        "op": "create",
+        "method": "POST",
+        "path": "/api/v1/workspaces/join",
+        "args": [],
         "select": {},
         "headers": [],
         "cookies": [],
@@ -4922,12 +5211,118 @@ const PLAN = [
         "idField": "id"
     },
     {
-        "entity": "workspace_user_view",
-        "accessor": "WorkspaceUserView",
-        "op": "create",
-        "method": "POST",
-        "path": "/api/v1/workspaces/join",
+        "entity": "workspace_user",
+        "accessor": "WorkspaceUser",
+        "op": "list",
+        "method": "GET",
+        "path": "/api/v1/workspaces/users",
         "args": [],
+        "select": {
+            "cursor": "v1",
+            "limit": 100,
+            "sort": "id",
+            "workspace_id": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "workspace_id",
+            "cursor",
+            "limit",
+            "sort"
+        ],
+        "queryArgs": [
+            {
+                "name": "cursor",
+                "wire": "cursor"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            },
+            {
+                "name": "workspace_id",
+                "wire": "workspace_id"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "has_more": true,
+            "next_cursor": "x",
+            "workspace_users": [
+                {
+                    "user_id": "x",
+                    "workspace_id": "x",
+                    "user_email": "x",
+                    "full_name": "x",
+                    "timezone": "x",
+                    "role": "ADMIN",
+                    "image_id": "x",
+                    "is_deleted": true
+                }
+            ]
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_user",
+        "accessor": "WorkspaceUser",
+        "op": "remove",
+        "method": "DELETE",
+        "path": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "user_id",
+                "value": "p1"
+            },
+            {
+                "name": "workspace_id",
+                "wire": "workspace_id",
+                "value": "p2"
+            }
+        ],
+        "select": {},
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [],
+        "queryArgs": [],
+        "auth": null,
+        "status": 200,
+        "sample": {
+            "status": "x"
+        },
+        "idField": "id"
+    },
+    {
+        "entity": "workspace_user",
+        "accessor": "WorkspaceUser",
+        "op": "update",
+        "method": "POST",
+        "path": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+        "args": [
+            {
+                "name": "id",
+                "wire": "user_id",
+                "value": "p1"
+            },
+            {
+                "name": "workspace_id",
+                "wire": "workspace_id",
+                "value": "p2"
+            }
+        ],
         "select": {},
         "headers": [],
         "cookies": [],

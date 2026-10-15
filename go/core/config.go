@@ -37,10 +37,7 @@ func MakeConfig() map[string]any {
 				"content-type": "application/json",
 			},
 			"entity": map[string]any{
-				"active": map[string]any{},
 				"activity": map[string]any{},
-				"archived": map[string]any{},
-				"authorization": map[string]any{},
 				"backup": map[string]any{},
 				"billing_portal_url": map[string]any{},
 				"collaborator": map[string]any{},
@@ -52,24 +49,17 @@ func MakeConfig() map[string]any {
 				"folder": map[string]any{},
 				"history": map[string]any{},
 				"id_mapping": map[string]any{},
-				"invite": map[string]any{},
 				"label": map[string]any{},
 				"location_reminder": map[string]any{},
-				"member_view": map[string]any{},
-				"migrate_personal_token": map[string]any{},
-				"notification_location_sync_view": map[string]any{},
-				"notification_sync_view": map[string]any{},
+				"notification_setting": map[string]any{},
 				"plan_detail": map[string]any{},
 				"productivity_stat": map[string]any{},
 				"project": map[string]any{},
 				"project_import": map[string]any{},
-				"project_import_create_response_with_object": map[string]any{},
+				"project_permission": map[string]any{},
 				"reminder": map[string]any{},
-				"remove_workspace_user": map[string]any{},
-				"role_to_action_mapping_view": map[string]any{},
 				"section": map[string]any{},
 				"shared_label": map[string]any{},
-				"status_ok": map[string]any{},
 				"subscription_info": map[string]any{},
 				"task": map[string]any{},
 				"template": map[string]any{},
@@ -78,234 +68,12 @@ func MakeConfig() map[string]any {
 				"usage_summary": map[string]any{},
 				"user": map[string]any{},
 				"workspace": map[string]any{},
-				"workspace_invitation_view": map[string]any{},
-				"workspace_user_view": map[string]any{},
+				"workspace_invitation": map[string]any{},
+				"workspace_project": map[string]any{},
+				"workspace_user": map[string]any{},
 			},
 		},
 		"entity": map[string]any{
-			"active": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "access",
-						"title": "Access",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Project access configuration.",
-					},
-					map[string]any{
-						"name": "archived_date",
-						"title": "Archived Date",
-						"type": "`$ANY`",
-						"short": "Date and time when the project was archived, or `null` if active.",
-					},
-					map[string]any{
-						"name": "archived_timestamp",
-						"title": "Archived Timestamp",
-						"type": "`$INTEGER`",
-						"short": "Unix timestamp for when the project was archived, or 0 if active.",
-					},
-					map[string]any{
-						"name": "color",
-						"title": "Color",
-						"type": "`$ANY`",
-						"short": "Numeric project color code.",
-					},
-					map[string]any{
-						"name": "default_order",
-						"title": "Default Order",
-						"type": "`$INTEGER`",
-						"short": "Default order of the project in workspace views.",
-					},
-					map[string]any{
-						"name": "default_order_key",
-						"title": "Default Order Key",
-						"type": "`$ANY`",
-						"short": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together).",
-					},
-					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-						"short": "Project description.",
-					},
-					map[string]any{
-						"name": "folder_id",
-						"title": "Folder Id",
-						"type": "`$STRING`",
-						"short": "Numeric ID of the folder that contains the project, or `null`.",
-					},
-					map[string]any{
-						"name": "icon",
-						"title": "Icon",
-						"type": "`$ANY`",
-						"short": "Project icon name, or `null` for the default icon.",
-					},
-					map[string]any{
-						"name": "initiated_by_uid",
-						"title": "Initiated By Uid",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Numeric ID of the user requesting the workspace project.",
-					},
-					map[string]any{
-						"name": "is_archived",
-						"title": "Is Archived",
-						"type": "`$BOOLEAN`",
-						"short": "Whether the workspace project is archived.",
-					},
-					map[string]any{
-						"name": "is_frozen",
-						"title": "Is Frozen",
-						"type": "`$BOOLEAN`",
-						"short": "Whether the project is frozen and cannot be modified.",
-					},
-					map[string]any{
-						"name": "is_invite_only",
-						"title": "Is Invite Only",
-						"type": "`$BOOLEAN`",
-						"short": "Whether joining the workspace project requires an invitation.",
-					},
-					map[string]any{
-						"name": "is_project_insights_enabled",
-						"title": "Is Project Insights Enabled",
-						"type": "`$BOOLEAN`",
-						"short": "Whether project insights are enabled for the project.",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"short": "Project name.",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the project.",
-					},
-					map[string]any{
-						"name": "public_access",
-						"title": "Public Access",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the project is publicly accessible.",
-					},
-					map[string]any{
-						"name": "role",
-						"title": "Role",
-						"type": "`$ANY`",
-					},
-					map[string]any{
-						"name": "status",
-						"title": "Status",
-						"type": "`$STRING`",
-						"short": "Project status.",
-					},
-					map[string]any{
-						"name": "view_style",
-						"title": "View Style",
-						"type": "`$STRING`",
-						"short": "Project view style.",
-					},
-					map[string]any{
-						"name": "workspace_id",
-						"title": "Workspace Id",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Numeric ID of the workspace that contains the project.",
-					},
-				},
-				"name": "active",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/workspaces/{workspace_id}/projects/active",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "workspaces",
-									},
-									map[string]any{
-										"var": "workspace_id",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"lit": "active",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"workspaces",
-									"{workspace_id}",
-									"projects",
-									"active",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.workspace_projects`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 100,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"workspace_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.workspace",
-						},
-					},
-				},
-			},
 			"activity": map[string]any{
 				"fields": []any{
 					map[string]any{
@@ -533,358 +301,6 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"archived": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "access",
-						"title": "Access",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "Project access configuration.",
-					},
-					map[string]any{
-						"name": "archived_date",
-						"title": "Archived Date",
-						"type": "`$ANY`",
-						"short": "Date and time when the project was archived, or `null` if active.",
-					},
-					map[string]any{
-						"name": "archived_timestamp",
-						"title": "Archived Timestamp",
-						"type": "`$INTEGER`",
-						"short": "Unix timestamp for when the project was archived, or 0 if active.",
-					},
-					map[string]any{
-						"name": "color",
-						"title": "Color",
-						"type": "`$ANY`",
-						"short": "Numeric project color code.",
-					},
-					map[string]any{
-						"name": "default_order",
-						"title": "Default Order",
-						"type": "`$INTEGER`",
-						"short": "Default order of the project in workspace views.",
-					},
-					map[string]any{
-						"name": "default_order_key",
-						"title": "Default Order Key",
-						"type": "`$ANY`",
-						"short": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together).",
-					},
-					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-						"short": "Project description.",
-					},
-					map[string]any{
-						"name": "folder_id",
-						"title": "Folder Id",
-						"type": "`$STRING`",
-						"short": "Numeric ID of the folder that contains the project, or `null`.",
-					},
-					map[string]any{
-						"name": "icon",
-						"title": "Icon",
-						"type": "`$ANY`",
-						"short": "Project icon name, or `null` for the default icon.",
-					},
-					map[string]any{
-						"name": "initiated_by_uid",
-						"title": "Initiated By Uid",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Numeric ID of the user requesting the workspace project.",
-					},
-					map[string]any{
-						"name": "is_archived",
-						"title": "Is Archived",
-						"type": "`$BOOLEAN`",
-						"short": "Whether the workspace project is archived.",
-					},
-					map[string]any{
-						"name": "is_frozen",
-						"title": "Is Frozen",
-						"type": "`$BOOLEAN`",
-						"short": "Whether the project is frozen and cannot be modified.",
-					},
-					map[string]any{
-						"name": "is_invite_only",
-						"title": "Is Invite Only",
-						"type": "`$BOOLEAN`",
-						"short": "Whether joining the workspace project requires an invitation.",
-					},
-					map[string]any{
-						"name": "is_project_insights_enabled",
-						"title": "Is Project Insights Enabled",
-						"type": "`$BOOLEAN`",
-						"short": "Whether project insights are enabled for the project.",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"short": "Project name.",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the project.",
-					},
-					map[string]any{
-						"name": "public_access",
-						"title": "Public Access",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the project is publicly accessible.",
-					},
-					map[string]any{
-						"name": "role",
-						"title": "Role",
-						"type": "`$ANY`",
-					},
-					map[string]any{
-						"name": "status",
-						"title": "Status",
-						"type": "`$STRING`",
-						"short": "Project status.",
-					},
-					map[string]any{
-						"name": "view_style",
-						"title": "View Style",
-						"type": "`$STRING`",
-						"short": "Project view style.",
-					},
-					map[string]any{
-						"name": "workspace_id",
-						"title": "Workspace Id",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Numeric ID of the workspace that contains the project.",
-					},
-				},
-				"name": "archived",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/workspaces/{workspace_id}/projects/archived",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "workspaces",
-									},
-									map[string]any{
-										"var": "workspace_id",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"lit": "archived",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"workspaces",
-									"{workspace_id}",
-									"projects",
-									"archived",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.workspace_projects`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 100,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"workspace_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.workspace",
-						},
-					},
-				},
-			},
-			"authorization": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "token",
-						"title": "Token",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "The token to be revoked (access token).",
-					},
-					map[string]any{
-						"name": "token_type_hint",
-						"title": "Token Type Hint",
-						"type": "`$ANY`",
-						"short": "A hint about the type of the token being revoked (optional).",
-					},
-				},
-				"name": "authorization",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/revoke",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "revoke",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"revoke",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"remove": map[string]any{
-						"input": "data",
-						"name": "remove",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "DELETE",
-								"orig": "/api/v1/access_tokens",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "access_tokens",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"access_tokens",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "access_token",
-											"orig": "access_token",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "client_id",
-											"orig": "client_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "client_secret",
-											"orig": "client_secret",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"access_token",
-										"client_id",
-										"client_secret",
-									},
-								},
 								"response": map[string]any{
 									"kind": "json",
 									"media": "application/json",
@@ -2352,6 +1768,68 @@ func MakeConfig() map[string]any {
 				},
 				"name": "email",
 				"op": map[string]any{
+					"remove": map[string]any{
+						"input": "data",
+						"name": "remove",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "DELETE",
+								"orig": "/api/v1/emails",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "emails",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"emails",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "obj_id",
+											"orig": "obj_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"field": true,
+										},
+										map[string]any{
+											"name": "obj_type",
+											"orig": "obj_type",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"obj_id",
+										"obj_type",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
 					"update": map[string]any{
 						"input": "data",
 						"name": "update",
@@ -2506,6 +1984,9 @@ func MakeConfig() map[string]any {
 							"create": map[string]any{
 								"type": "`$ANY`",
 							},
+							"update": map[string]any{
+								"type": "`$ANY`",
+							},
 						},
 						"short": "Default position of the folder in the workspace.",
 					},
@@ -2536,7 +2017,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 						"req": true,
 						"op": map[string]any{
-							"create": map[string]any{
+							"update": map[string]any{
 								"type": "`$STRING`",
 							},
 						},
@@ -2560,60 +2041,6 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "create",
 						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/folders/{folder_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "folders",
-									},
-									map[string]any{
-										"var": "id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"folders",
-									"{id}",
-								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"folder_id": "id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "folder_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
@@ -2781,6 +2208,66 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "DELETE",
+								"orig": "/api/v1/folders/{folder_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "folders",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"folders",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"folder_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "folder_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
 								"orig": "/api/v1/folders/{folder_id}",
 								"segments": []any{
 									map[string]any{
@@ -3092,109 +2579,6 @@ func MakeConfig() map[string]any {
 				},
 				"relations": map[string]any{
 					"ancestors": []any{},
-				},
-			},
-			"invite": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "app",
-						"title": "App",
-						"type": "`$STRING`",
-						"short": "For first-party clients usage only.",
-					},
-					map[string]any{
-						"name": "email_list",
-						"title": "Email List",
-						"type": "`$ANY`",
-						"short": "List of user emails to invite to the workspace.",
-					},
-					map[string]any{
-						"name": "invited_emails",
-						"title": "Invited Emails",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Emails successfully invited to the workspace.",
-					},
-					map[string]any{
-						"name": "role",
-						"title": "Role",
-						"type": "`$ANY`",
-						"short": "Role assigned to invited users.",
-					},
-				},
-				"name": "invite",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/workspaces/{workspace_id}/users/invite",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "workspaces",
-									},
-									map[string]any{
-										"var": "workspace_id",
-									},
-									map[string]any{
-										"lit": "users",
-									},
-									map[string]any{
-										"lit": "invite",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"workspaces",
-									"{workspace_id}",
-									"users",
-									"invite",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"workspace_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.workspace",
-						},
-					},
 				},
 			},
 			"label": map[string]any{
@@ -3617,6 +3001,112 @@ func MakeConfig() map[string]any {
 						"name": "id",
 						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the location reminder",
+					},
+					map[string]any{
+						"name": "is_deleted",
+						"title": "Is Deleted",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"short": "Whether the location reminder is deleted",
+					},
+					map[string]any{
+						"name": "item_id",
+						"title": "Item Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the task",
+					},
+					map[string]any{
+						"name": "loc_lat",
+						"title": "Loc Lat",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$ANY`",
+							},
+						},
+						"short": "Latitude of the location",
+					},
+					map[string]any{
+						"name": "loc_long",
+						"title": "Loc Long",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$ANY`",
+							},
+						},
+						"short": "Longitude of the location",
+					},
+					map[string]any{
+						"name": "loc_trigger",
+						"title": "Loc Trigger",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$ANY`",
+							},
+						},
+						"short": "Trigger type for the location reminder",
+					},
+					map[string]any{
+						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"req": true,
+						"op": map[string]any{
+							"update": map[string]any{
+								"type": "`$STRING`",
+							},
+						},
+						"short": "Name of the location",
+					},
+					map[string]any{
+						"name": "notify_uid",
+						"title": "Notify Uid",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the user who will receive the reminder",
+					},
+					map[string]any{
+						"name": "project_id",
+						"title": "Project Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the project containing the task",
+					},
+					map[string]any{
+						"name": "radius",
+						"title": "Radius",
+						"type": "`$INTEGER`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$INTEGER`",
+							},
+							"update": map[string]any{
+								"type": "`$NUMBER`",
+							},
+						},
+						"short": "Radius in meters",
+					},
+					map[string]any{
+						"name": "task_id",
+						"title": "Task Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the task",
+					},
+					map[string]any{
+						"name": "type",
+						"title": "Type",
+						"type": "`$STRING`",
+						"short": "The reminder type",
 					},
 				},
 				"id": map[string]any{
@@ -3625,6 +3115,165 @@ func MakeConfig() map[string]any {
 				},
 				"name": "location_reminder",
 				"op": map[string]any{
+					"create": map[string]any{
+						"input": "data",
+						"name": "create",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/location_reminders",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "location_reminders",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"location_reminders",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/location_reminders",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "location_reminders",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"location_reminders",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "task_id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/location_reminders/{reminder_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "location_reminders",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"location_reminders",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"reminder_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "reminder_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
 					"remove": map[string]any{
 						"input": "data",
 						"name": "remove",
@@ -3685,368 +3334,9 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"member_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "full_name",
-						"title": "Full Name",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Full name of the workspace member.",
-					},
-					map[string]any{
-						"name": "image_id",
-						"title": "Image Id",
-						"type": "`$STRING`",
-						"short": "Avatar image ID of the workspace member, or `null`.",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"short": "Whether the workspace member is deleted.",
-					},
-					map[string]any{
-						"name": "role",
-						"title": "Role",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Workspace role assigned to the member.",
-					},
-					map[string]any{
-						"name": "timezone",
-						"title": "Timezone",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Timezone of the workspace member.",
-					},
-					map[string]any{
-						"name": "user_email",
-						"title": "User Email",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Email address of the workspace member.",
-					},
-					map[string]any{
-						"name": "user_id",
-						"title": "User Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the workspace member.",
-					},
-					map[string]any{
-						"name": "workspace_id",
-						"title": "Workspace Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the workspace.",
-					},
-				},
-				"name": "member_view",
-				"op": map[string]any{
-					"list": map[string]any{
+					"update": map[string]any{
 						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/workspaces/users",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "workspaces",
-									},
-									map[string]any{
-										"lit": "users",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"workspaces",
-									"users",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.workspace_users`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 100,
-										},
-										map[string]any{
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-											"kind": "query",
-											"example": "id",
-										},
-										map[string]any{
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"migrate_personal_token": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "access_token",
-						"title": "Access Token",
-						"type": "`$ANY`",
-						"req": true,
-						"short": "OAuth access token created from the personal token.",
-					},
-					map[string]any{
-						"name": "client_id",
-						"title": "Client Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "The unique Client ID of the Todoist application that you registered.",
-					},
-					map[string]any{
-						"name": "client_secret",
-						"title": "Client Secret",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "The unique Client Secret of the Todoist application that you registered.",
-					},
-					map[string]any{
-						"name": "expires_in",
-						"title": "Expires In",
-						"type": "`$INTEGER`",
-						"req": true,
-						"short": "Access token lifetime in seconds.",
-					},
-					map[string]any{
-						"name": "personal_token",
-						"title": "Personal Token",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Token obtained from the email/password authentication.",
-					},
-					map[string]any{
-						"name": "scope",
-						"title": "Scope",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Scopes of the OAuth token.",
-					},
-					map[string]any{
-						"name": "token_type",
-						"title": "Token Type",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "OAuth token type.",
-					},
-				},
-				"name": "migrate_personal_token",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/access_tokens/migrate_personal_token",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "access_tokens",
-									},
-									map[string]any{
-										"lit": "migrate_personal_token",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"access_tokens",
-									"migrate_personal_token",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"notification_location_sync_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the location reminder",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the location reminder is deleted",
-					},
-					map[string]any{
-						"name": "item_id",
-						"title": "Item Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the task",
-					},
-					map[string]any{
-						"name": "loc_lat",
-						"title": "Loc Lat",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "Latitude of the location",
-					},
-					map[string]any{
-						"name": "loc_long",
-						"title": "Loc Long",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "Longitude of the location",
-					},
-					map[string]any{
-						"name": "loc_trigger",
-						"title": "Loc Trigger",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "Trigger type for the location reminder",
-					},
-					map[string]any{
-						"name": "name",
-						"title": "Name",
-						"type": "`$STRING`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$STRING`",
-							},
-						},
-						"short": "Name of the location",
-					},
-					map[string]any{
-						"name": "notify_uid",
-						"title": "Notify Uid",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the user who will receive the reminder",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the project containing the task",
-					},
-					map[string]any{
-						"name": "radius",
-						"title": "Radius",
-						"type": "`$INTEGER`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$INTEGER`",
-							},
-						},
-						"short": "Radius in meters",
-					},
-					map[string]any{
-						"name": "task_id",
-						"title": "Task Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the task",
-					},
-					map[string]any{
-						"name": "type",
-						"title": "Type",
-						"type": "`$STRING`",
-						"short": "The reminder type",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "notification_location_sync_view",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
+						"name": "update",
 						"points": []any{
 							map[string]any{
 								"kind": "http",
@@ -4063,16 +3353,20 @@ func MakeConfig() map[string]any {
 										"lit": "location_reminders",
 									},
 									map[string]any{
-										"var": "reminder_id",
+										"var": "id",
 									},
 								},
 								"parts": []any{
 									"api",
 									"v1",
 									"location_reminders",
-									"{reminder_id}",
+									"{id}",
 								},
-								"rename": map[string]any{},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"reminder_id": "id",
+									},
+								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
@@ -4080,7 +3374,7 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"name": "reminder_id",
+											"name": "id",
 											"orig": "reminder_id",
 											"type": "`$STRING`",
 											"kind": "param",
@@ -4090,156 +3384,7 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"reminder_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/location_reminders",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "location_reminders",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"location_reminders",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/location_reminders",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "location_reminders",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"location_reminders",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"load": map[string]any{
-						"input": "data",
-						"name": "load",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/location_reminders/{reminder_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "location_reminders",
-									},
-									map[string]any{
-										"var": "reminder_id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"location_reminders",
-									"{reminder_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "reminder_id",
-											"orig": "reminder_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"reminder_id",
+										"id",
 									},
 								},
 								"response": map[string]any{
@@ -4251,120 +3396,42 @@ func MakeConfig() map[string]any {
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.location_reminder",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
-			"notification_sync_view": map[string]any{
+			"notification_setting": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "due",
-						"title": "Due",
+						"name": "dont_notify",
+						"title": "Dont Notify",
 						"type": "`$ANY`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "Datetime when the reminder fires, or `null` if unset.",
+						"short": "Whether notifications should be disabled for the selected type and channel.",
 					},
 					map[string]any{
-						"name": "id",
-						"title": "Id",
+						"name": "notification_type",
+						"title": "Notification Type",
 						"type": "`$STRING`",
 						"req": true,
-						"short": "String ID of the reminder.",
-					},
-					map[string]any{
-						"name": "is_deleted",
-						"title": "Is Deleted",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"short": "Whether the reminder is deleted.",
-					},
-					map[string]any{
-						"name": "is_urgent",
-						"title": "Is Urgent",
-						"type": "`$BOOLEAN`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$BOOLEAN`",
-							},
-						},
-						"short": "Whether the reminder should be delivered urgently.",
-					},
-					map[string]any{
-						"name": "item_id",
-						"title": "Item Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the task that owns the reminder.",
-					},
-					map[string]any{
-						"name": "minute_offset",
-						"title": "Minute Offset",
-						"type": "`$ANY`",
-						"req": true,
-						"op": map[string]any{
-							"create": map[string]any{
-								"type": "`$ANY`",
-							},
-						},
-						"short": "Minutes before the task due time for relative reminders.",
-					},
-					map[string]any{
-						"name": "notify_uid",
-						"title": "Notify Uid",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the user who receives the reminder.",
-					},
-					map[string]any{
-						"name": "reminder_type",
-						"title": "Reminder Type",
-						"type": "`$STRING`",
-						"short": "Type of the reminder: 'relative' or 'absolute'",
+						"short": "Notification type to update.",
 					},
 					map[string]any{
 						"name": "service",
 						"title": "Service",
 						"type": "`$STRING`",
-						"short": "Notification service type: 'email', 'push'.",
-					},
-					map[string]any{
-						"name": "task_id",
-						"title": "Task Id",
-						"type": "`$STRING`",
 						"req": true,
-						"short": "String ID of the task",
-					},
-					map[string]any{
-						"name": "type",
-						"title": "Type",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Reminder type.",
+						"short": "Notification channel to update.",
 					},
 				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "notification_sync_view",
+				"name": "notification_setting",
 				"op": map[string]any{
-					"create": map[string]any{
+					"update": map[string]any{
 						"input": "data",
-						"name": "create",
+						"name": "update",
 						"points": []any{
 							map[string]any{
 								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/reminders/{reminder_id}",
+								"method": "PUT",
+								"orig": "/api/v1/notification_setting",
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -4373,63 +3440,13 @@ func MakeConfig() map[string]any {
 										"lit": "v1",
 									},
 									map[string]any{
-										"lit": "reminders",
-									},
-									map[string]any{
-										"var": "reminder_id",
+										"lit": "notification_setting",
 									},
 								},
 								"parts": []any{
 									"api",
 									"v1",
-									"reminders",
-									"{reminder_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "reminder_id",
-											"orig": "reminder_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"reminder_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/reminders",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "reminders",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"reminders",
+									"notification_setting",
 								},
 								"rename": map[string]any{},
 								"transform": map[string]any{
@@ -4445,130 +3462,9 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/reminders",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "reminders",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"reminders",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.results`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "cursor",
-											"orig": "cursor",
-											"type": "`$ANY`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 50,
-										},
-										map[string]any{
-											"name": "task_id",
-											"orig": "task_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"field": true,
-										},
-									},
-								},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-					"load": map[string]any{
-						"input": "data",
-						"name": "load",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/reminders/{reminder_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "reminders",
-									},
-									map[string]any{
-										"var": "reminder_id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"reminders",
-									"{reminder_id}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "reminder_id",
-											"orig": "reminder_id",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"reminder_id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.reminder",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"plan_detail": map[string]any{
@@ -5464,98 +4360,7 @@ func MakeConfig() map[string]any {
 				},
 			},
 			"project_import": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "comments",
-						"title": "Comments",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Task comments created by the import.",
-					},
-					map[string]any{
-						"name": "discarded_fields",
-						"title": "Discarded Fields",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Task properties the importer dropped from one or more imported tasks because the plan in force does not include them.",
-					},
-					map[string]any{
-						"name": "locale",
-						"title": "Locale",
-						"type": "`$STRING`",
-						"short": "Locale to use for localized template content.",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "String ID of the project to import the template into.",
-					},
-					map[string]any{
-						"name": "project_notes",
-						"title": "Project Notes",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Project comments created by the import.",
-					},
-					map[string]any{
-						"name": "project_view_options_defaults",
-						"title": "Project View Options Defaults",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "View options defaults applied to the imported project.",
-					},
-					map[string]any{
-						"name": "projects",
-						"title": "Projects",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Projects created or updated by the import.",
-					},
-					map[string]any{
-						"name": "reminders",
-						"title": "Reminders",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Reminders created by the import.",
-					},
-					map[string]any{
-						"name": "sections",
-						"title": "Sections",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Sections created by the import.",
-					},
-					map[string]any{
-						"name": "status",
-						"title": "Status",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Always `ok` on success.",
-					},
-					map[string]any{
-						"name": "tasks",
-						"title": "Tasks",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Tasks created by the import.",
-					},
-					map[string]any{
-						"name": "template_id",
-						"title": "Template Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "ID of the saved template to import.",
-					},
-					map[string]any{
-						"name": "template_type",
-						"title": "Template Type",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Type of template that was imported.",
-					},
-				},
+				"fields": []any{},
 				"name": "project_import",
 				"op": map[string]any{
 					"create": map[string]any{
@@ -5592,7 +4397,9 @@ func MakeConfig() map[string]any {
 									"res": "`body`",
 								},
 								"args": map[string]any{},
-								"select": map[string]any{},
+								"select": map[string]any{
+									"$action": "from_file",
+								},
 								"body": map[string]any{
 									"fields": []any{
 										map[string]any{
@@ -5642,105 +4449,14 @@ func MakeConfig() map[string]any {
 									"res": "`body`",
 								},
 								"args": map[string]any{},
-								"select": map[string]any{},
+								"select": map[string]any{
+									"$action": "from_template",
+								},
 								"response": map[string]any{
 									"kind": "json",
 									"media": "application/json",
 								},
 							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"project_import_create_response_with_object": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "comments",
-						"title": "Comments",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Task comments created by the import.",
-					},
-					map[string]any{
-						"name": "discarded_fields",
-						"title": "Discarded Fields",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Task properties the importer dropped from one or more imported tasks because the plan in force does not include them.",
-					},
-					map[string]any{
-						"name": "project_id",
-						"title": "Project Id",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "ID of the project created from the template.",
-					},
-					map[string]any{
-						"name": "project_notes",
-						"title": "Project Notes",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Project comments created by the import.",
-					},
-					map[string]any{
-						"name": "project_view_options_defaults",
-						"title": "Project View Options Defaults",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "View options defaults applied to the imported project.",
-					},
-					map[string]any{
-						"name": "projects",
-						"title": "Projects",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Projects created by the import.",
-					},
-					map[string]any{
-						"name": "reminders",
-						"title": "Reminders",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Reminders created by the import.",
-					},
-					map[string]any{
-						"name": "sections",
-						"title": "Sections",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Sections created by the import.",
-					},
-					map[string]any{
-						"name": "status",
-						"title": "Status",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Always `ok` on success.",
-					},
-					map[string]any{
-						"name": "tasks",
-						"title": "Tasks",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Tasks created by the import.",
-					},
-					map[string]any{
-						"name": "template_type",
-						"title": "Template Type",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Type of template that was imported.",
-					},
-				},
-				"name": "project_import_create_response_with_object",
-				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
@@ -5771,7 +4487,9 @@ func MakeConfig() map[string]any {
 									"res": "`body`",
 								},
 								"args": map[string]any{},
-								"select": map[string]any{},
+								"select": map[string]any{
+									"$action": "new_project_from_file",
+								},
 								"body": map[string]any{
 									"fields": []any{
 										map[string]any{
@@ -5801,12 +4519,172 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
+			"project_permission": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "project_collaborator_actions",
+						"title": "Project Collaborator Actions",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "Project collaborator roles and their allowed actions.",
+					},
+					map[string]any{
+						"name": "workspace_collaborator_actions",
+						"title": "Workspace Collaborator Actions",
+						"type": "`$ARRAY`",
+						"req": true,
+						"short": "Workspace collaborator roles and their allowed actions.",
+					},
+				},
+				"name": "project_permission",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/projects/permissions",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"lit": "permissions",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"projects",
+									"permissions",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{},
+				},
+			},
 			"reminder": map[string]any{
 				"fields": []any{
+					map[string]any{
+						"name": "due",
+						"title": "Due",
+						"type": "`$ANY`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$ANY`",
+							},
+							"update": map[string]any{
+								"type": "`$ANY`",
+							},
+						},
+						"short": "Datetime when the reminder fires, or `null` if unset.",
+					},
 					map[string]any{
 						"name": "id",
 						"title": "Id",
 						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the reminder.",
+					},
+					map[string]any{
+						"name": "is_deleted",
+						"title": "Is Deleted",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"short": "Whether the reminder is deleted.",
+					},
+					map[string]any{
+						"name": "is_urgent",
+						"title": "Is Urgent",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$BOOLEAN`",
+							},
+							"update": map[string]any{
+								"type": "`$BOOLEAN`",
+							},
+						},
+						"short": "Whether the reminder should be delivered urgently.",
+					},
+					map[string]any{
+						"name": "item_id",
+						"title": "Item Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the task that owns the reminder.",
+					},
+					map[string]any{
+						"name": "minute_offset",
+						"title": "Minute Offset",
+						"type": "`$ANY`",
+						"req": true,
+						"op": map[string]any{
+							"create": map[string]any{
+								"type": "`$ANY`",
+							},
+							"update": map[string]any{
+								"type": "`$ANY`",
+							},
+						},
+						"short": "Minutes before the task due time for relative reminders.",
+					},
+					map[string]any{
+						"name": "notify_uid",
+						"title": "Notify Uid",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the user who receives the reminder.",
+					},
+					map[string]any{
+						"name": "reminder_type",
+						"title": "Reminder Type",
+						"type": "`$STRING`",
+						"short": "Type of the reminder: 'relative' or 'absolute'",
+					},
+					map[string]any{
+						"name": "service",
+						"title": "Service",
+						"type": "`$STRING`",
+						"short": "Notification service type: 'email', 'push'.",
+					},
+					map[string]any{
+						"name": "task_id",
+						"title": "Task Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the task",
+					},
+					map[string]any{
+						"name": "type",
+						"title": "Type",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Reminder type.",
 					},
 				},
 				"id": map[string]any{
@@ -5815,6 +4693,165 @@ func MakeConfig() map[string]any {
 				},
 				"name": "reminder",
 				"op": map[string]any{
+					"create": map[string]any{
+						"input": "data",
+						"name": "create",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/reminders",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "reminders",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"reminders",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/reminders",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "reminders",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"reminders",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.results`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 50,
+										},
+										map[string]any{
+											"name": "task_id",
+											"orig": "task_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"load": map[string]any{
+						"input": "data",
+						"name": "load",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/reminders/{reminder_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "reminders",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"reminders",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"reminder_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "reminder_id",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
 					"remove": map[string]any{
 						"input": "data",
 						"name": "remove",
@@ -5875,33 +4912,14 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
-			"remove_workspace_user": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
-				},
-				"name": "remove_workspace_user",
-				"op": map[string]any{
-					"remove": map[string]any{
+					"update": map[string]any{
 						"input": "data",
-						"name": "remove",
+						"name": "update",
 						"points": []any{
 							map[string]any{
 								"kind": "http",
-								"method": "DELETE",
-								"orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+								"method": "POST",
+								"orig": "/api/v1/reminders/{reminder_id}",
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -5910,13 +4928,7 @@ func MakeConfig() map[string]any {
 										"lit": "v1",
 									},
 									map[string]any{
-										"lit": "workspaces",
-									},
-									map[string]any{
-										"var": "workspace_id",
-									},
-									map[string]any{
-										"lit": "users",
+										"lit": "reminders",
 									},
 									map[string]any{
 										"var": "id",
@@ -5925,14 +4937,12 @@ func MakeConfig() map[string]any {
 								"parts": []any{
 									"api",
 									"v1",
-									"workspaces",
-									"{workspace_id}",
-									"users",
+									"reminders",
 									"{id}",
 								},
 								"rename": map[string]any{
 									"param": map[string]any{
-										"user_id": "id",
+										"reminder_id": "id",
 									},
 								},
 								"transform": map[string]any{
@@ -5943,15 +4953,8 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "user_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "workspace_id",
-											"orig": "workspace_id",
-											"type": "`$INTEGER`",
+											"orig": "reminder_id",
+											"type": "`$STRING`",
 											"kind": "param",
 											"reqd": true,
 										},
@@ -5960,79 +4963,8 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"id",
-										"workspace_id",
 									},
 								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"$.main.kit.entity.workspace",
-						},
-					},
-				},
-			},
-			"role_to_action_mapping_view": map[string]any{
-				"fields": []any{
-					map[string]any{
-						"name": "project_collaborator_actions",
-						"title": "Project Collaborator Actions",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Project collaborator roles and their allowed actions.",
-					},
-					map[string]any{
-						"name": "workspace_collaborator_actions",
-						"title": "Workspace Collaborator Actions",
-						"type": "`$ARRAY`",
-						"req": true,
-						"short": "Workspace collaborator roles and their allowed actions.",
-					},
-				},
-				"name": "role_to_action_mapping_view",
-				"op": map[string]any{
-					"list": map[string]any{
-						"input": "data",
-						"name": "list",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/api/v1/projects/permissions",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "projects",
-									},
-									map[string]any{
-										"lit": "permissions",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"projects",
-									"permissions",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"response": map[string]any{
 									"kind": "json",
 									"media": "application/json",
@@ -6871,75 +5803,6 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"status_ok": map[string]any{
-				"fields": []any{},
-				"name": "status_ok",
-				"op": map[string]any{
-					"remove": map[string]any{
-						"input": "data",
-						"name": "remove",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "DELETE",
-								"orig": "/api/v1/emails",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "emails",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"emails",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"name": "obj_id",
-											"orig": "obj_id",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "obj_type",
-											"orig": "obj_type",
-											"type": "`$STRING`",
-											"kind": "query",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"obj_id",
-										"obj_type",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
-				},
-				"relations": map[string]any{
-					"ancestors": []any{},
-				},
-			},
 			"subscription_info": map[string]any{
 				"fields": []any{
 					map[string]any{
@@ -7092,7 +5955,9 @@ func MakeConfig() map[string]any {
 									"res": "`body`",
 								},
 								"args": map[string]any{},
-								"select": map[string]any{},
+								"select": map[string]any{
+									"$action": "reactivate_plan",
+								},
 								"response": map[string]any{
 									"kind": "json",
 									"media": "application/json",
@@ -8578,12 +7443,6 @@ func MakeConfig() map[string]any {
 						"short": "Date when user was deleted (ISO 8601 format)",
 					},
 					map[string]any{
-						"name": "dont_notify",
-						"title": "Dont Notify",
-						"type": "`$ANY`",
-						"short": "Whether notifications should be disabled for the selected type and channel.",
-					},
-					map[string]any{
 						"name": "email",
 						"title": "Email",
 						"type": "`$STRING`",
@@ -8737,13 +7596,6 @@ func MakeConfig() map[string]any {
 						"short": "The day of the next week, that tasks will be postponed to (between 1 and 7, where 1 is Monday and 7 is Sunday)",
 					},
 					map[string]any{
-						"name": "notification_type",
-						"title": "Notification Type",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Notification type to update.",
-					},
-					map[string]any{
 						"name": "onboarded_dated_tasks_created",
 						"title": "Onboarded Dated Tasks Created",
 						"type": "`$ANY`",
@@ -8829,13 +7681,6 @@ func MakeConfig() map[string]any {
 						"title": "Premium Until",
 						"type": "`$ANY`",
 						"short": "The date when the user's Todoist Pro subscription ends (null if not a Todoist Pro user).",
-					},
-					map[string]any{
-						"name": "service",
-						"title": "Service",
-						"type": "`$STRING`",
-						"req": true,
-						"short": "Notification channel to update.",
 					},
 					map[string]any{
 						"name": "share_limit",
@@ -8945,9 +7790,9 @@ func MakeConfig() map[string]any {
 				},
 				"name": "user",
 				"op": map[string]any{
-					"list": map[string]any{
+					"load": map[string]any{
 						"input": "data",
-						"name": "list",
+						"name": "load",
 						"points": []any{
 							map[string]any{
 								"kind": "http",
@@ -8983,44 +7828,6 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
-					"update": map[string]any{
-						"input": "data",
-						"name": "update",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "PUT",
-								"orig": "/api/v1/notification_setting",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "notification_setting",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"notification_setting",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
 				},
 				"relations": map[string]any{
 					"ancestors": []any{},
@@ -9032,19 +7839,19 @@ func MakeConfig() map[string]any {
 						"name": "description",
 						"title": "Description",
 						"type": "`$STRING`",
-						"short": "Updated workspace description.",
+						"short": "Description of the workspace.",
 					},
 					map[string]any{
 						"name": "domain_discovery",
 						"title": "Domain Discovery",
-						"type": "`$ANY`",
-						"short": "Updated domain discovery setting.",
+						"type": "`$BOOLEAN`",
+						"short": "Whether users with matching email domains can discover this workspace.",
 					},
 					map[string]any{
 						"name": "domain_name",
 						"title": "Domain Name",
 						"type": "`$ANY`",
-						"short": "Updated workspace email domain.",
+						"short": "Workspace email domain.",
 					},
 					map[string]any{
 						"name": "id",
@@ -9067,37 +7874,37 @@ func MakeConfig() map[string]any {
 						"name": "is_guest_allowed",
 						"title": "Is Guest Allowed",
 						"type": "`$BOOLEAN`",
-						"short": "Updated guest access status.",
+						"short": "Whether guests are allowed in the workspace.",
 					},
 					map[string]any{
 						"name": "is_link_sharing_enabled",
 						"title": "Is Link Sharing Enabled",
 						"type": "`$BOOLEAN`",
-						"short": "Updated link sharing status.",
+						"short": "Whether link sharing is enabled for the workspace.",
 					},
 					map[string]any{
 						"name": "is_trial_pending",
 						"title": "Is Trial Pending",
 						"type": "`$BOOLEAN`",
-						"short": "Updated trial pending state.",
+						"short": "Whether the workspace is waiting for trial confirmation.",
 					},
 					map[string]any{
 						"name": "name",
 						"title": "Name",
 						"type": "`$STRING`",
-						"short": "Updated workspace name.",
+						"short": "Name of the workspace.",
 					},
 					map[string]any{
 						"name": "properties",
 						"title": "Properties",
 						"type": "`$ANY`",
-						"short": "Updated workspace properties.",
+						"short": "Workspace properties.",
 					},
 					map[string]any{
 						"name": "restrict_email_domains",
 						"title": "Restrict Email Domains",
-						"type": "`$ANY`",
-						"short": "Updated email domain restriction setting.",
+						"type": "`$BOOLEAN`",
+						"short": "Whether workspace invites are restricted to workspace domain.",
 					},
 				},
 				"id": map[string]any{
@@ -9110,60 +7917,6 @@ func MakeConfig() map[string]any {
 						"input": "data",
 						"name": "create",
 						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/workspaces/{workspace_id}",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "workspaces",
-									},
-									map[string]any{
-										"var": "id",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"workspaces",
-									"{id}",
-								},
-								"rename": map[string]any{
-									"param": map[string]any{
-										"workspace_id": "id",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "id",
-											"orig": "workspace_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-									},
-								},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
@@ -9462,12 +8215,72 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/workspaces/{workspace_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"workspaces",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"workspace_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "workspace_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
 				},
 				"relations": map[string]any{
 					"ancestors": []any{},
 				},
 			},
-			"workspace_invitation_view": map[string]any{
+			"workspace_invitation": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "app",
@@ -9514,54 +8327,8 @@ func MakeConfig() map[string]any {
 					"field": "id",
 					"name": "id",
 				},
-				"name": "workspace_invitation_view",
+				"name": "workspace_invitation",
 				"op": map[string]any{
-					"create": map[string]any{
-						"input": "data",
-						"name": "create",
-						"points": []any{
-							map[string]any{
-								"kind": "http",
-								"method": "POST",
-								"orig": "/api/v1/workspaces/invitations/delete",
-								"segments": []any{
-									map[string]any{
-										"lit": "api",
-									},
-									map[string]any{
-										"lit": "v1",
-									},
-									map[string]any{
-										"lit": "workspaces",
-									},
-									map[string]any{
-										"lit": "invitations",
-									},
-									map[string]any{
-										"lit": "delete",
-									},
-								},
-								"parts": []any{
-									"api",
-									"v1",
-									"workspaces",
-									"invitations",
-									"delete",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{},
-								"select": map[string]any{},
-								"response": map[string]any{
-									"kind": "json",
-									"media": "application/json",
-								},
-							},
-						},
-					},
 					"list": map[string]any{
 						"input": "data",
 						"name": "list",
@@ -9623,6 +8390,52 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
+					"remove": map[string]any{
+						"input": "data",
+						"name": "remove",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/workspaces/invitations/delete",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"lit": "invitations",
+									},
+									map[string]any{
+										"lit": "delete",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"workspaces",
+									"invitations",
+									"delete",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
 					"update": map[string]any{
 						"input": "data",
 						"name": "update",
@@ -9676,6 +8489,7 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{
+									"$action": "accept",
 									"exist": []any{
 										"invite_code",
 									},
@@ -9734,6 +8548,7 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{
+									"$action": "reject",
 									"exist": []any{
 										"invite_code",
 									},
@@ -9750,7 +8565,304 @@ func MakeConfig() map[string]any {
 					"ancestors": []any{},
 				},
 			},
-			"workspace_user_view": map[string]any{
+			"workspace_project": map[string]any{
+				"fields": []any{
+					map[string]any{
+						"name": "access",
+						"title": "Access",
+						"type": "`$ANY`",
+						"req": true,
+						"short": "Project access configuration.",
+					},
+					map[string]any{
+						"name": "archived_date",
+						"title": "Archived Date",
+						"type": "`$ANY`",
+						"short": "Date and time when the project was archived, or `null` if active.",
+					},
+					map[string]any{
+						"name": "archived_timestamp",
+						"title": "Archived Timestamp",
+						"type": "`$INTEGER`",
+						"short": "Unix timestamp for when the project was archived, or 0 if active.",
+					},
+					map[string]any{
+						"name": "color",
+						"title": "Color",
+						"type": "`$ANY`",
+						"short": "Numeric project color code.",
+					},
+					map[string]any{
+						"name": "default_order",
+						"title": "Default Order",
+						"type": "`$INTEGER`",
+						"short": "Default order of the project in workspace views.",
+					},
+					map[string]any{
+						"name": "default_order_key",
+						"title": "Default Order Key",
+						"type": "`$ANY`",
+						"short": "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together).",
+					},
+					map[string]any{
+						"name": "description",
+						"title": "Description",
+						"type": "`$STRING`",
+						"short": "Project description.",
+					},
+					map[string]any{
+						"name": "folder_id",
+						"title": "Folder Id",
+						"type": "`$STRING`",
+						"short": "Numeric ID of the folder that contains the project, or `null`.",
+					},
+					map[string]any{
+						"name": "icon",
+						"title": "Icon",
+						"type": "`$ANY`",
+						"short": "Project icon name, or `null` for the default icon.",
+					},
+					map[string]any{
+						"name": "initiated_by_uid",
+						"title": "Initiated By Uid",
+						"type": "`$INTEGER`",
+						"req": true,
+						"short": "Numeric ID of the user requesting the workspace project.",
+					},
+					map[string]any{
+						"name": "is_archived",
+						"title": "Is Archived",
+						"type": "`$BOOLEAN`",
+						"short": "Whether the workspace project is archived.",
+					},
+					map[string]any{
+						"name": "is_frozen",
+						"title": "Is Frozen",
+						"type": "`$BOOLEAN`",
+						"short": "Whether the project is frozen and cannot be modified.",
+					},
+					map[string]any{
+						"name": "is_invite_only",
+						"title": "Is Invite Only",
+						"type": "`$BOOLEAN`",
+						"short": "Whether joining the workspace project requires an invitation.",
+					},
+					map[string]any{
+						"name": "is_project_insights_enabled",
+						"title": "Is Project Insights Enabled",
+						"type": "`$BOOLEAN`",
+						"short": "Whether project insights are enabled for the project.",
+					},
+					map[string]any{
+						"name": "name",
+						"title": "Name",
+						"type": "`$STRING`",
+						"short": "Project name.",
+					},
+					map[string]any{
+						"name": "project_id",
+						"title": "Project Id",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "String ID of the project.",
+					},
+					map[string]any{
+						"name": "public_access",
+						"title": "Public Access",
+						"type": "`$BOOLEAN`",
+						"req": true,
+						"short": "Whether the project is publicly accessible.",
+					},
+					map[string]any{
+						"name": "role",
+						"title": "Role",
+						"type": "`$ANY`",
+					},
+					map[string]any{
+						"name": "status",
+						"title": "Status",
+						"type": "`$STRING`",
+						"short": "Project status.",
+					},
+					map[string]any{
+						"name": "view_style",
+						"title": "View Style",
+						"type": "`$STRING`",
+						"short": "Project view style.",
+					},
+					map[string]any{
+						"name": "workspace_id",
+						"title": "Workspace Id",
+						"type": "`$INTEGER`",
+						"req": true,
+						"short": "Numeric ID of the workspace that contains the project.",
+					},
+				},
+				"name": "workspace_project",
+				"op": map[string]any{
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/workspaces/{workspace_id}/projects/active",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"lit": "active",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"workspaces",
+									"{workspace_id}",
+									"projects",
+									"active",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.workspace_projects`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"workspace_id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/workspaces/{workspace_id}/projects/archived",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "projects",
+									},
+									map[string]any{
+										"lit": "archived",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"workspaces",
+									"{workspace_id}",
+									"projects",
+									"archived",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.workspace_projects`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+									},
+								},
+								"select": map[string]any{
+									"$action": "archived",
+									"exist": []any{
+										"workspace_id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+				},
+				"relations": map[string]any{
+					"ancestors": []any{
+						[]any{
+							"$.main.kit.entity.workspace",
+						},
+					},
+				},
+			},
+			"workspace_user": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "custom_sorting_applied",
@@ -9759,10 +8871,34 @@ func MakeConfig() map[string]any {
 						"short": "Whether the user has custom project sorting enabled.",
 					},
 					map[string]any{
+						"name": "full_name",
+						"title": "Full Name",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Full name of the workspace member.",
+					},
+					map[string]any{
+						"name": "id",
+						"title": "Id",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "image_id",
+						"title": "Image Id",
+						"type": "`$STRING`",
+						"short": "Avatar image ID of the workspace member, or `null`.",
+					},
+					map[string]any{
 						"name": "invite_code",
 						"title": "Invite Code",
 						"type": "`$ANY`",
 						"short": "Workspace invite code to join with.",
+					},
+					map[string]any{
+						"name": "is_deleted",
+						"title": "Is Deleted",
+						"type": "`$BOOLEAN`",
+						"short": "Whether the workspace member is deleted.",
 					},
 					map[string]any{
 						"name": "project_sort_preference",
@@ -9775,12 +8911,30 @@ func MakeConfig() map[string]any {
 						"title": "Role",
 						"type": "`$STRING`",
 						"op": map[string]any{
-							"create": map[string]any{
+							"list": map[string]any{
+								"req": true,
+								"type": "`$STRING`",
+							},
+							"update": map[string]any{
 								"req": true,
 								"type": "`$STRING`",
 							},
 						},
 						"short": "Workspace role assigned to the user.",
+					},
+					map[string]any{
+						"name": "timezone",
+						"title": "Timezone",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Timezone of the workspace member.",
+					},
+					map[string]any{
+						"name": "user_email",
+						"title": "User Email",
+						"type": "`$STRING`",
+						"req": true,
+						"short": "Email address of the workspace member.",
 					},
 					map[string]any{
 						"name": "user_id",
@@ -9802,7 +8956,11 @@ func MakeConfig() map[string]any {
 						"short": "String ID of the workspace.",
 					},
 				},
-				"name": "workspace_user_view",
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
+				"name": "workspace_user",
 				"op": map[string]any{
 					"create": map[string]any{
 						"input": "data",
@@ -9811,7 +8969,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "POST",
-								"orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+								"orig": "/api/v1/workspaces/{workspace_id}/users/invite",
 								"segments": []any{
 									map[string]any{
 										"lit": "api",
@@ -9829,7 +8987,7 @@ func MakeConfig() map[string]any {
 										"lit": "users",
 									},
 									map[string]any{
-										"var": "user_id",
+										"lit": "invite",
 									},
 								},
 								"parts": []any{
@@ -9838,7 +8996,7 @@ func MakeConfig() map[string]any {
 									"workspaces",
 									"{workspace_id}",
 									"users",
-									"{user_id}",
+									"invite",
 								},
 								"rename": map[string]any{},
 								"transform": map[string]any{
@@ -9847,13 +9005,6 @@ func MakeConfig() map[string]any {
 								},
 								"args": map[string]any{
 									"params": []any{
-										map[string]any{
-											"name": "user_id",
-											"orig": "user_id",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-										},
 										map[string]any{
 											"name": "workspace_id",
 											"orig": "workspace_id",
@@ -9864,8 +9015,8 @@ func MakeConfig() map[string]any {
 									},
 								},
 								"select": map[string]any{
+									"$action": "invite",
 									"exist": []any{
-										"user_id",
 										"workspace_id",
 									},
 								},
@@ -9912,12 +9063,235 @@ func MakeConfig() map[string]any {
 							},
 						},
 					},
+					"list": map[string]any{
+						"input": "data",
+						"name": "list",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
+								"orig": "/api/v1/workspaces/users",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"lit": "users",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"workspaces",
+									"users",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.workspace_users`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "cursor",
+											"orig": "cursor",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "id",
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"remove": map[string]any{
+						"input": "data",
+						"name": "remove",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "DELETE",
+								"orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "users",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"workspaces",
+									"{workspace_id}",
+									"users",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"user_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "user_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+										"workspace_id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
+					"update": map[string]any{
+						"input": "data",
+						"name": "update",
+						"points": []any{
+							map[string]any{
+								"kind": "http",
+								"method": "POST",
+								"orig": "/api/v1/workspaces/{workspace_id}/users/{user_id}",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "v1",
+									},
+									map[string]any{
+										"lit": "workspaces",
+									},
+									map[string]any{
+										"var": "workspace_id",
+									},
+									map[string]any{
+										"lit": "users",
+									},
+									map[string]any{
+										"var": "id",
+									},
+								},
+								"parts": []any{
+									"api",
+									"v1",
+									"workspaces",
+									"{workspace_id}",
+									"users",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"user_id": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "user_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "workspace_id",
+											"orig": "workspace_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+										"workspace_id",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+						},
+					},
 				},
 				"relations": map[string]any{
 					"ancestors": []any{
 						[]any{
 							"$.main.kit.entity.workspace",
-							"$.main.kit.entity.user",
 						},
 					},
 				},

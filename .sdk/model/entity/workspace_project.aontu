@@ -1,0 +1,316 @@
+# Entity: workspace_project
+
+main: kit: entity: workspace_project: {
+
+  alias: field: {}
+
+  fields: {
+    access: {
+      h: "Access"
+      n: "access"
+      r: true
+      sh: "Project access configuration."
+      t: "`$ANY`"
+      union: {
+        branches: 3
+        count: 1
+        depth: 4
+      }
+    }
+    archived_date: {
+      h: "Archived Date"
+      n: "archived_date"
+      r: false
+      sh: "Date and time when the project was archived, or `null` if active."
+      t: "`$ANY`"
+    }
+    archived_timestamp: {
+      h: "Archived Timestamp"
+      n: "archived_timestamp"
+      r: false
+      sh: "Unix timestamp for when the project was archived, or 0 if active."
+      t: "`$INTEGER`"
+    }
+    color: {
+      h: "Color"
+      n: "color"
+      r: false
+      sh: "Numeric project color code."
+      t: "`$ANY`"
+    }
+    default_order: {
+      h: "Default Order"
+      n: "default_order"
+      r: false
+      sh: "Default order of the project in workspace views."
+      t: "`$INTEGER`"
+    }
+    default_order_key: {
+      h: "Default Order Key"
+      n: "default_order_key"
+      r: false
+      sh: "Fractional-indexing key for the workspace's shared default-ordering scope (folders and workspace projects together)."
+      t: "`$ANY`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Project description."
+      t: "`$STRING`"
+    }
+    folder_id: {
+      h: "Folder Id"
+      n: "folder_id"
+      r: false
+      sh: "Numeric ID of the folder that contains the project, or `null`."
+      t: "`$STRING`"
+    }
+    icon: {
+      h: "Icon"
+      n: "icon"
+      r: false
+      sh: "Project icon name, or `null` for the default icon."
+      t: "`$ANY`"
+    }
+    initiated_by_uid: {
+      h: "Initiated By Uid"
+      n: "initiated_by_uid"
+      r: true
+      sh: "Numeric ID of the user requesting the workspace project."
+      t: "`$INTEGER`"
+    }
+    is_archived: {
+      h: "Is Archived"
+      n: "is_archived"
+      r: false
+      sh: "Whether the workspace project is archived."
+      t: "`$BOOLEAN`"
+    }
+    is_frozen: {
+      h: "Is Frozen"
+      n: "is_frozen"
+      r: false
+      sh: "Whether the project is frozen and cannot be modified."
+      t: "`$BOOLEAN`"
+    }
+    is_invite_only: {
+      h: "Is Invite Only"
+      n: "is_invite_only"
+      r: false
+      sh: "Whether joining the workspace project requires an invitation."
+      t: "`$BOOLEAN`"
+    }
+    is_project_insights_enabled: {
+      h: "Is Project Insights Enabled"
+      n: "is_project_insights_enabled"
+      r: false
+      sh: "Whether project insights are enabled for the project."
+      t: "`$BOOLEAN`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Project name."
+      t: "`$STRING`"
+    }
+    project_id: {
+      h: "Project Id"
+      n: "project_id"
+      r: true
+      sh: "String ID of the project."
+      t: "`$STRING`"
+    }
+    public_access: {
+      h: "Public Access"
+      n: "public_access"
+      r: true
+      sh: "Whether the project is publicly accessible."
+      t: "`$BOOLEAN`"
+    }
+    role: {
+      h: "Role"
+      n: "role"
+      r: false
+      t: "`$ANY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Project status."
+      t: "`$STRING`"
+    }
+    view_style: {
+      h: "View Style"
+      n: "view_style"
+      r: false
+      sh: "Project view style."
+      t: "`$STRING`"
+    }
+    workspace_id: {
+      h: "Workspace Id"
+      n: "workspace_id"
+      r: true
+      sh: "Numeric ID of the workspace that contains the project."
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "workspace_project"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/workspaces/{workspace_id}/projects/active"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/workspaces/{workspace_id}/projects/active"
+          q: {
+            exist: [
+              "workspace_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              lit: "active"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.workspace_projects`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/workspaces/{workspace_id}/projects/archived"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "workspace_id"
+                or: "workspace_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "cursor"
+                or: "cursor"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/workspaces/{workspace_id}/projects/archived"
+          q: {
+            "$action": "archived"
+            exist: [
+              "workspace_id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "workspaces"
+            }
+            {
+              var: "workspace_id"
+            }
+            {
+              lit: "projects"
+            }
+            {
+              lit: "archived"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.workspace_projects`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.workspace")]
+  ]
+
+}

@@ -1,0 +1,92 @@
+{
+  "existing": {
+    "workspace_user": {
+      "WORKSPACE_USER00": {
+        "custom_sorting_applied": true,
+        "full_name": "s79",
+        "id": "WORKSPACE_USER00",
+        "image_id": "IMAGE01",
+        "invite_code": "s7c",
+        "is_deleted": false,
+        "project_sort_preference": "s7e",
+        "role": "s7f",
+        "timezone": "s80",
+        "user_email": "s81",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      },
+      "WORKSPACE_USER01": {
+        "custom_sorting_applied": true,
+        "full_name": "sf1",
+        "id": "WORKSPACE_USER01",
+        "image_id": "IMAGE01",
+        "invite_code": "sf4",
+        "is_deleted": false,
+        "project_sort_preference": "sf6",
+        "role": "sf7",
+        "timezone": "sf8",
+        "user_email": "sf9",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      },
+      "WORKSPACE_USER02": {
+        "custom_sorting_applied": true,
+        "full_name": "s169",
+        "id": "WORKSPACE_USER02",
+        "image_id": "IMAGE01",
+        "invite_code": "s16c",
+        "is_deleted": false,
+        "project_sort_preference": "s16e",
+        "role": "s16f",
+        "timezone": "s170",
+        "user_email": "s171",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "new": {
+    "workspace_user": {
+      "workspace_user_ref01": {
+        "custom_sorting_applied": true,
+        "full_name": "s1e1",
+        "image_id": "IMAGE01",
+        "invite_code": "s1e4",
+        "is_deleted": false,
+        "project_sort_preference": "s1e6",
+        "role": "s1e7",
+        "timezone": "s1e8",
+        "user_email": "s1e9",
+        "user_id": "USER01",
+        "workspace_id": "WORKSPACE01"
+      }
+    }
+  },
+  "requests": {
+    "POST /api/v1/workspaces/{workspace_id}/users/invite": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/workspaces/join": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api/v1/workspaces/users": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api/v1/workspaces/{workspace_id}/users/{user_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /api/v1/workspaces/{workspace_id}/users/{user_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

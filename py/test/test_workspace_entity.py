@@ -129,7 +129,7 @@ class TestWorkspaceEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["create", "list", "load", "remove"]:
+        for _op in ["create", "list", "update", "load", "remove"]:
             _skip, _reason = runner.is_control_skipped("entityOp", "workspace." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
@@ -155,6 +155,20 @@ class TestWorkspaceEntity:
             runner.entity_list_to_data(workspace_ref01_list_result),
             {"id": workspace_ref01_data["id"]})
         assert not vs.isempty(found_item)
+
+        # UPDATE
+        workspace_ref01_data_up0_up = {
+            "id": workspace_ref01_data["id"],
+        }
+
+        workspace_ref01_markdef_up0_name = "description"
+        workspace_ref01_markdef_up0_value = "Mark01-workspace_ref01_" + str(setup["now"])
+        workspace_ref01_data_up0_up[workspace_ref01_markdef_up0_name] = workspace_ref01_markdef_up0_value
+
+        workspace_ref01_resdata_up0 = helpers.to_map(runner.entity_data(workspace_ref01_ent.update(workspace_ref01_data_up0_up, None)))
+        assert workspace_ref01_resdata_up0 is not None
+        assert workspace_ref01_resdata_up0["id"] == workspace_ref01_data_up0_up["id"]
+        assert workspace_ref01_resdata_up0[workspace_ref01_markdef_up0_name] == workspace_ref01_markdef_up0_value
 
         # LOAD
         workspace_ref01_match_dt0 = {

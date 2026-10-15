@@ -6,13 +6,7 @@ var NewBaseFeatureFunc func() Feature
 
 var NewTestFeatureFunc func() Feature
 
-var NewActiveEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
 var NewActivityEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewArchivedEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewAuthorizationEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
 var NewBackupEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
@@ -36,19 +30,11 @@ var NewHistoryEntityFunc func(client *TodoistSDK, entopts map[string]any) Todois
 
 var NewIdMappingEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
-var NewInviteEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
 var NewLabelEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
 var NewLocationReminderEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
-var NewMemberViewEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewMigratePersonalTokenEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewNotificationLocationSyncViewEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewNotificationSyncViewEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
+var NewNotificationSettingEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
 var NewPlanDetailEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
@@ -58,19 +44,13 @@ var NewProjectEntityFunc func(client *TodoistSDK, entopts map[string]any) Todois
 
 var NewProjectImportEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
-var NewProjectImportCreateResponseWithObjectEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
+var NewProjectPermissionEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
 var NewReminderEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewRemoveWorkspaceUserEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewRoleToActionMappingViewEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
 var NewSectionEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
 var NewSharedLabelEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
-
-var NewStatusOkEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
 var NewSubscriptionInfoEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
@@ -88,7 +68,9 @@ var NewUserEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEn
 
 var NewWorkspaceEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
-var NewWorkspaceInvitationViewEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
+var NewWorkspaceInvitationEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 
-var NewWorkspaceUserViewEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
+var NewWorkspaceProjectEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
+
+var NewWorkspaceUserEntityFunc func(client *TodoistSDK, entopts map[string]any) TodoistEntity
 

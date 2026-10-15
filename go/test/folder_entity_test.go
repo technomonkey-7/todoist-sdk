@@ -2,6 +2,7 @@ package sdktest
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -190,7 +191,7 @@ func TestFolderEntity(t *testing.T) {
 		if setup.live {
 			_mode = "live"
 		}
-		for _, _op := range []string{"create", "list", "load", "remove"} {
+		for _, _op := range []string{"create", "list", "update", "load", "remove"} {
 			if _shouldSkip, _reason := isControlSkipped("entityOp", "folder." + _op, _mode); _shouldSkip {
 				if _reason == "" {
 					_reason = "skipped via sdk-test-control.json"
@@ -234,6 +235,30 @@ func TestFolderEntity(t *testing.T) {
 		foundItem := vs.Select(entityListToData(folderRef01List), map[string]any{"id": folderRef01Data["id"]})
 		if vs.IsEmpty(foundItem) {
 			t.Fatal("expected to find created entity in list")
+		}
+
+		// UPDATE
+		folderRef01DataUp0Up := map[string]any{
+			"id": folderRef01Data["id"],
+		}
+
+		folderRef01MarkdefUp0Name := "name"
+		folderRef01MarkdefUp0Value := fmt.Sprintf("Mark01-folder_ref01_%d", setup.now)
+		folderRef01DataUp0Up[folderRef01MarkdefUp0Name] = folderRef01MarkdefUp0Value
+
+		folderRef01ResdataUp0Result, err := folderRef01Ent.Update(folderRef01DataUp0Up, nil)
+		if err != nil {
+			t.Fatalf("update failed: %v", err)
+		}
+		folderRef01ResdataUp0 := core.ToMapAny(entityData(folderRef01ResdataUp0Result))
+		if folderRef01ResdataUp0 == nil {
+			t.Fatal("expected update result to be a map")
+		}
+		if folderRef01ResdataUp0["id"] != folderRef01DataUp0Up["id"] {
+			t.Fatal("expected update result id to match")
+		}
+		if folderRef01ResdataUp0[folderRef01MarkdefUp0Name] != folderRef01MarkdefUp0Value {
+			t.Fatalf("expected %s to be updated, got %v", folderRef01MarkdefUp0Name, folderRef01ResdataUp0[folderRef01MarkdefUp0Name])
 		}
 
 		// LOAD

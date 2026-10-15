@@ -1,0 +1,29 @@
+# BasicNotificationSettingFlow
+
+main: kit: flow: BasicNotificationSettingFlow:
+{
+  entity: "notification_setting",
+  kind: "basic",
+  name: "BasicNotificationSettingFlow",
+  step: [
+    {
+      i: {
+        ref: "notification_setting_ref01",
+        srcdatavar: "notification_setting_ref01_data",
+        suffix: "_up0",
+        textfield: "notification_type"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-notification_setting_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicNotificationSettingFlow"
+}
