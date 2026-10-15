@@ -65,8 +65,8 @@ main: kit: text: {
 | --- | --- |
 | TypeScript | \`git clone https://github.com/technomonkey-7/todoist-sdk\`, then \`npm install ./todoist-sdk/ts\` |
 | Python | \`pip install "git+https://github.com/technomonkey-7/todoist-sdk#subdirectory=py"\` |
-| Go | \`go get github.com/technomonkey-7/todoist-sdk/go@main\` |
-| CLI, MCP server | in a clone: \`cd go-cli && go build -o todoist .\` and \`cd go-mcp && go build -o todoist-mcp .\` |
+| Go | \`go get github.com/technomonkey-7/todoist-sdk/go@latest\` |
+| CLI, MCP server | in a clone: \`cd go-cli && go build -o todoist-cli .\` and \`cd go-mcp && go build -o todoist-mcp .\` (add \`.exe\` to the name on Windows) |
 
 Get an API token in Todoist under Settings → Integrations → Developer. Pass it as \`apikey\`, or set \`TODOIST_APIKEY\` for the CLI and the MCP server.
 
@@ -92,13 +92,17 @@ console.log(inbox.map((t) => t.data().content))
 await client.Task().remove({ id: task.data().id })
 \`\`\`
 
+Save it as \`example.mts\` in a project where the package is installed and run \`node example.mts\` (Node 24 runs TypeScript files directly).
+
 ### Use it from Claude Code
 
 \`\`\`bash
 claude mcp add --scope user todoist -e TODOIST_APIKEY=<token> -- /abs/path/to/todoist-mcp -transport stdio
 \`\`\`
 
-The MCP server can create, update and delete Todoist data, so an agent can change your account. For a read-only server, set \`main: kit: target: 'go-mcp': tool: write: false\` in \`.sdk/model/project.aontu\` and regenerate.
+In a client that takes a JSON config, pass the token as \`"env": { "TODOIST_APIKEY": "<token>" }\`.
+
+The MCP server can create, update and delete Todoist data, so an agent can change your account. For a read-only server, set \`main: kit: target: 'go-mcp': tool: write: false\` in \`.sdk/model/project.aontu\`, then run \`npm install\` and \`npm run generate\` in \`.sdk\` (on Windows, see F4 in [report/FINDINGS.md](report/FINDINGS.md) first).
 
 ### Known issues
 
@@ -106,7 +110,7 @@ The MCP server can create, update and delete Todoist data, so an agent can chang
 - Claude Code rejects the result of the MCP server's \`todoist_list\` tool. Use \`todoist_load\` or the SDK.
 - Team workspace and billing endpoints are generated but untested: my test account has no team workspace, and billing calls were left out of the live tests on purpose.
 
-Tested against the live API on 15 October 2026: create, read, update and delete for tasks, projects, sections, comments and labels. Not production-tuned. How this SDK was built, and what I found along the way: [REPORT.md](REPORT.md).`
+Tested against the live API on 15 October 2026 through the TypeScript SDK: full create, read, update and delete on projects, tasks and labels; create, list, update and delete on comments; create and list on sections. Not tuned for production: the packages are not published and there is no release process yet. How this SDK was built, and what I found along the way: [REPORT.md](REPORT.md).`
 }
 
 # Auth. Todoist's definition declares no securitySchemes, so apidef writes

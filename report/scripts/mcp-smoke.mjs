@@ -5,6 +5,10 @@ import { spawn } from 'node:child_process'
 import { createInterface } from 'node:readline'
 
 const [bin, ...rest] = process.argv.slice(2)
+if (!bin) {
+  console.error("usage: node mcp-smoke.mjs <server-binary> [--call <tool> '<json-args>']")
+  process.exit(64)
+}
 const at = rest.indexOf('--call')
 const call = at >= 0 ? { name: rest[at + 1], args: JSON.parse(rest[at + 2] ?? '{}') } : null
 

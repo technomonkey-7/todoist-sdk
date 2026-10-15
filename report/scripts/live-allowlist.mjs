@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url'
 const root = process.argv[2] ?? join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const WRITE_OK = new Set(['task', 'project', 'section', 'comment', 'label'])
 const WRITES = ['create', 'update', 'remove']
-const REASON = 'Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section).'
+const REASON = 'Write outside the five core resources: not run live, it can change account settings or start a billing action (see F22 in report/FINDINGS.md).'
 
 const model = JSON.parse(readFileSync(join(root, '.sdk', 'model', 'sdk.json'), 'utf8'))
 const skips = []

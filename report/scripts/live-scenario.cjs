@@ -1,12 +1,13 @@
 // Canonical CRUD scenario against the live Todoist API, through the generated TypeScript SDK.
-// Reads TODOIST_APIKEY from <SDK_ROOT>/.env.local and never prints it.
+// Reads TODOIST_APIKEY from the environment, else from <SDK_ROOT>/.env.local, and never prints it.
 const { readFileSync } = require('node:fs')
 const { join } = require('node:path')
 
 const SDK_ROOT = process.env.SDK_ROOT ?? join(__dirname, '..', '..')
 const { TodoistSDK } = require(join(SDK_ROOT, 'ts'))
 
-const apikey = readFileSync(join(SDK_ROOT, '.env.local'), 'utf8').match(/^TODOIST_APIKEY=(.+)$/m)[1].trim()
+const apikey = process.env.TODOIST_APIKEY?.trim() ||
+  readFileSync(join(SDK_ROOT, '.env.local'), 'utf8').match(/^TODOIST_APIKEY=(.+)$/m)[1].trim()
 const client = new TodoistSDK({ apikey })
 const stamp = new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14)
 const name = `voxgig-sdk-live-ts-${stamp}`

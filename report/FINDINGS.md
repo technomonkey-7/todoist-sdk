@@ -1,6 +1,6 @@
 # Findings in full
 
-Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages on 2026-10-15: create-sdkgen 0.30.7, @voxgig/sdkgen 4.34.7, @voxgig/apidef 8.25.2, @voxgig/model 12.0.1, aontu 0.76.0. Environment: Windows 11, Node 24.20.0, Go 1.27.0, Python 3.13.7. "Who is affected" was checked against the generated code of voxgig-sdk/buggie-sdk and the issue trackers of voxgig/sdkgen, apidef, create-sdkgen and model.
+Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages on 2026-10-15: create-sdkgen 0.30.7, @voxgig/sdkgen 4.34.7, @voxgig/apidef 8.25.2, @voxgig/model 12.0.1, @voxgig/docgen 0.30.1, aontu 0.76.0. Environment: Windows 11, Node 24.20.0, Go 1.27.0, Python 3.13.7. "Who is affected" was checked against the generated code of voxgig-sdk/buggie-sdk and the issue trackers of voxgig/sdkgen, apidef, create-sdkgen, model and docgen.
 
 ### F1 — The Node 24 floor is stated in the agent guides but not in the human tutorial
 - Stage: Environment
@@ -18,7 +18,7 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Environment
 - Severity: papercut
 - Who is affected: Windows users.
-- Upstream: Related: sdkgen#234, create-sdkgen#64 (POSIX shell assumptions).
+- Upstream: Related: [sdkgen#234](https://github.com/voxgig/sdkgen/issues/234), [create-sdkgen#64](https://github.com/voxgig/create-sdkgen/issues/64) (POSIX shell assumptions).
 - Context: Stock Windows 11 with Git for Windows and python.org Python.
 - Steps: Check the commands the docs use: `python3 -m pytest` (create-sdkgen AGENTS.md, step 4), `make build` (go-mcp README), `make test` (rb).
 - Expected: Either the commands work on Windows or the docs give the Windows form.
@@ -30,7 +30,7 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Describe (scaffold)
 - Severity: major (the documented one-line quick start fails on every Windows machine)
 - Who is affected: Every Windows user of the documented quick start; reproduced independently by other contributors.
-- Upstream: Known: create-sdkgen#58 (open).
+- Upstream: Known: [create-sdkgen#58](https://github.com/voxgig/create-sdkgen/issues/58) (open).
 - Context: @voxgig/create-sdkgen 0.30.7 (via `npm create @voxgig/sdkgen@latest`), jostraca 0.31.2, Node 24.20.0, Windows 11.
 - Steps: `npm create --yes @voxgig/sdkgen@latest -- todoist -o todoist-sdk -d ./todoist-openapi.json -t ts,py,go,go-cli,go-mcp -f test`
 - Expected: Scaffold, `npm install` in `.sdk`, targets and features added.
@@ -43,10 +43,10 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Generate (model build)
 - Severity: blocker on Windows
 - Who is affected: Every Windows user.
-- Upstream: Known: create-sdkgen#62 (open) and apidef#118 (closed, but still reproduces on the latest published packages). The evidence below answers the question #62 leaves open.
+- Upstream: Known: [create-sdkgen#62](https://github.com/voxgig/create-sdkgen/issues/62) (open) and [apidef#118](https://github.com/voxgig/apidef/issues/118) (closed as not planned and moved into [create-sdkgen#62](https://github.com/voxgig/create-sdkgen/issues/62)). The evidence below answers the question #62 leaves open.
 - Steps: Fresh scaffold (see F3), then `cd .sdk && npm run generate`.
 - Expected: Model builds and SDKs are generated.
-- Actual: `[aontu/multisource_not_found]: source not found: api/api-info.aontu --> ....sdkmodelsdk.aontu:13:1`, although the file exists at `.sdkmodelapiapi-info.aontu`. The first search path printed is `/Users/sonar/.../.sdk/api/api-info.aontu`: no drive letter, and `.sdkapi` instead of `.sdkmodelapi`.
+- Actual: `[aontu/multisource_not_found]: source not found: api/api-info.aontu --> ...\.sdk\model\sdk.aontu:13:1`, although the file exists at `.sdk\model\api\api-info.aontu`. The first search path printed is `/Users/<user>/.../.sdk/api/api-info.aontu`: no drive letter, and `.sdk\api` instead of `.sdk\model\api`.
 - Cause: The scaffold writes bare includes (`@"api/api-info.aontu"` in `model/sdk.aontu`, `@"struct/test.aontu"` in `test/test.aontu`, 9 in all: 6 and 3). @voxgig/model injects the real fs into aontu, and `@tabnas/multisource` (`dist/resolver/file.js`, 0.5.8, and the same code in 0.6.3) then resolves a bare include with POSIX path rules: `path.posix.parse("C:\...\model\sdk.aontu").dir` is empty, so the include falls back to the current directory.
 - Answer to #62: Prefixing the 9 bare includes with `./`, with multisource left unpatched, makes `npm run generate` succeed on Windows, and the generated output is byte-identical to the output committed here (zero files differ). So the scaffold fix proposed in #62 is sufficient; the multisource behaviour only matters for bare includes.
 - Workaround used here: a one-line local patch to the resolver in the git-ignored `node_modules` (`report/scripts/patch-multisource-win.sh`), which gives the same output. Editing the two scaffold files the same way also works.
@@ -68,7 +68,7 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Model / Shape
 - Severity: major (the out-of-the-box surface does not match the API's resources)
 - Who is affected: Definitions produced by FastAPI-style frameworks.
-- Upstream: Partly apidef#103 (closed): paginated wrappers still become entities here (`/tasks/filter`, `/projects/search`, `/labels/shared`), and naming by `*SyncView` components is not covered.
+- Upstream: Partly [apidef#103](https://github.com/voxgig/apidef/issues/103) (closed): paginated wrappers still become entities here (`/tasks/filter`, `/projects/search`, `/labels/shared`), and naming by `*SyncView` components is not covered.
 - Context: apidef 8.25.2, Todoist definition (FastAPI: components named `ItemSyncView`, `AnyProjectSyncView`, `NoteSyncView`, `PaginatedList_ItemSyncView_`, `StatusOk`).
 - Steps: Generate; list entities (the baseline commit).
 - Expected: One entity per Todoist resource (Task, Project, Section, Comment, Label), following the paths `/tasks`, `/tasks/{task_id}`.
@@ -126,14 +126,14 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Verify
 - Severity: papercut (build) / observation (CLI scope)
 - Who is affected: Windows users (make); every generated CLI (scope).
-- Upstream: Related: sdkgen#234 (cross-platform scripts), sdkgen#392 (go install blocked by a replace directive).
+- Upstream: Related: [sdkgen#234](https://github.com/voxgig/sdkgen/issues/234) (cross-platform scripts), [sdkgen#392](https://github.com/voxgig/sdkgen/issues/392) (go install blocked by a replace directive).
 - Context: go-cli and go-mcp generated by sdkgen 4.34.7, Windows 11, Go 1.27.0.
 - Observed: `go-mcp/README.md` gives `make build` (-> `dist/<os>-<arch>/todoist-mcp`) as the build step; Git for Windows has no make. `go build -o ../.bin/todoist-mcp.exe .` works and the binary runs: `initialize` reports `todoist 0.0.1 (protocol 2025-06-18)` and `tools/list` returns `todoist_create, todoist_list, todoist_load, todoist_remove, todoist_update` once `main.kit.target.go-mcp.tool.write` is true. The CLI (`todoist-cli`, boru expressions plus a REPL) offers `list`, `load` and `update` only, while the MCP server can create and remove.
 - Suggested fix: Give the plain `go build -o <name> .` line beside `make build` in both READMEs. If create and remove are left out of the CLI on purpose (as for the MCP server's default), say so in its `--help`.
 
-### F12 — Each target looks for `.env.local` in a different place; the README says "the project root"
+### F12 — Each target looks for `.env.local` in a different place; each target's README says "the project root"
 - Stage: Verify (live)
-- Severity: major (a live run with the credential where the README says produces 401 on every call in ts, and nothing says the file was not found)
+- Severity: major (a live run with the credential where the target READMEs say produces 401 on every call in ts, and nothing says the file was not found)
 - Who is affected: Every generated SDK, on any OS (the same code is in voxgig-sdk/buggie-sdk).
 - Upstream: No existing issue found.
 - Context: sdkgen 4.34.7 test templates; `.env.local` at the repository root, as the root README and each target README ("Create a `.env.local` file at the project root") suggest.
@@ -157,9 +157,9 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 
 ### F14 — Live create flows cannot reach a parent created in the same run
 - Stage: Verify (live)
-- Severity: minor for Todoist (Section and Comment creation fails; 14 more flows are blocked on parent ids or required query values)
+- Severity: minor for Todoist (Section and Comment creation fails; 10 more flows and 8 direct tests are blocked on parent ids or required query values)
 - Who is affected: SDKs with nested resources whose parent id travels in the request body.
-- Upstream: No existing issue found (sdkgen#393 is a related parent-id problem in lua and perl tests).
+- Upstream: Related: [sdkgen#393](https://github.com/voxgig/sdkgen/issues/393) (a parent-id problem in the lua and perl tests).
 - Context: generated `ts/test/live-entity.ts`, `TODOIST_TEST_<ENTITY>_ENTID`.
 - Steps: Live run; read the Section flow's create step and the runner.
 - Expected: A way to give `section.create` a real `project_id` (a project created earlier in the run, or one supplied by the user).
@@ -169,14 +169,14 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 
 ### F15 — Generated direct tests call the first route of an op, even when it is an action
 - Stage: Verify (live)
-- Severity: minor (15 of 23 direct-test failures)
+- Severity: minor (11 of 23 direct-test failures)
 - Who is affected: SDKs where an op's first route is an action.
 - Upstream: No existing issue found.
 - Context: generated `ts/test/entity/*/<Entity>Direct.test.ts`.
 - Steps: Live run.
 - Expected: `direct-list-project` calls `GET /api/v1/projects`.
-- Actual: It calls the first point of `list`, which for project, task, label, section and workspace is an action route (`/projects/search`, `/tasks/filter`, `/labels/search`, `/sections/search`, `/workspaces/invitations`) with a required `query` or `workspace_id`; Todoist answers 400. The live entity runner handles this correctly ("an action route is taken only when the step names its action or the operation has no other route"); the direct-test template does not apply the same rule. The workspace case comes from the heuristic's own `invitation` action, so it is not caused by the guide corrections.
-- Suggested fix: Use the entity runner's route choice in the direct tests: skip points with `q.$action` unless the op has no other point.
+- Actual: It calls the first point of `list`, which for project, task, label, section and workspace is an action route (`/projects/search`, `/tasks/filter`, `/labels/search`, `/sections/search`, `/workspaces/invitations`) with a required `query` or `workspace_id`; Todoist answers 400. The live entity runner handles this correctly ("an action route is taken only when the step names its action or the operation has no other route"); the direct-test template does not apply the same rule. For project, task, label and section the action route comes first because the guide folded search and filter into `list` as actions; the workspace case comes from the heuristic's own `invitation` action. One more direct test, `direct-list-usage_summary`, gets HTTP 200 and fails with "Live list returned no list": it does not apply the op's response unwrap (`body.groups`).
+- Suggested fix: Use the entity runner's route choice in the direct tests (skip points with `q.$action` unless the op has no other point), and apply the point's `transform.res` before checking for a list.
 
 ### F16 — Excluding every step of a flow through sdk-test-control fails it instead of skipping it
 - Stage: Verify (live)
@@ -195,7 +195,7 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Severity: major (sdkgen's own AGENTS.md calls language parity "CRITICAL"; the same SDK model gives different live results per language)
 - Who is affected: Every generated SDK (the same py and go templates are in buggie-sdk).
 - Upstream: No existing issue found.
-- Context: generated tests in `ts/test/live-entity.ts` versus `py/test/test_<entity>_entity.py` and `go/test/<entity>_entity_test.go`; same model, same account, same run conditions .
+- Context: generated tests in `ts/test/live-entity.ts` versus `py/test/test_<entity>_entity.py` and `go/test/<entity>_entity_test.go`; same model, same account, same run conditions.
 - Observed:
   - Create input. ts synthesises the create body from the definition's request schema and examples; py and go send the offline mock fixture as the live body, e.g. project `{"color":"s231","folder_id":"FOLDER01","parent_id":"PARENT01","workspace_id":"WORKSPACE01","view_style":"s23c",...}`, which Todoist rejects with 400. So the Project flow passes 6/6 in ts and fails at its first step in py and go.
   - Singletons. ts loads `GET /api/v1/user` without an id; py and go block ("the flow loads a user record it has no list to find").
@@ -208,7 +208,7 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Severity: major (the list tool is unusable from a schema-validating MCP client such as Claude Code)
 - Who is affected: Every generated MCP server (the same `runOp` is in buggie-sdk).
 - Upstream: No existing issue found.
-- Context: go-mcp generated by sdkgen 4.34.7, `github.com/modelcontextprotocol/go-sdk v1.6.0`, Claude Code 2.1.300. Summary under "MCP server driven by Claude Code" above.
+- Context: go-mcp generated by sdkgen 4.34.7, `github.com/modelcontextprotocol/go-sdk v1.6.0`, Claude Code 2.1.300. Found by running Claude Code headless with only this server loaded (`claude -p ... --mcp-config mcp.json --strict-mcp-config --allowedTools "mcp__todoist__*"`): it created a project and a task, then rejected the list result.
 - Steps: Build go-mcp, run `claude -p "... list the tasks in that project ..." --mcp-config mcp.json --strict-mcp-config --allowedTools "mcp__todoist__*"`.
 - Expected: `todoist_list` returns the tasks.
 - Actual: `MCP server "todoist" returned a malformed result that failed schema validation: Invalid result for tools/call: [{"expected":"record","code":"invalid_type","path":["structuredContent"],"message":"Invalid input: expected record, received array"}]`. Create and load work.
@@ -220,7 +220,7 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Generate (ts)
 - Severity: major for TypeScript users of APIs whose responses mark most fields required (FastAPI/pydantic do by default)
 - Who is affected: Definitions whose responses mark fields required, as FastAPI/pydantic do by default. In buggie-sdk the same fields are optional because its definition marks fewer required.
-- Upstream: Known: sdkgen#215 (open).
+- Upstream: Known: [sdkgen#215](https://github.com/voxgig/sdkgen/issues/215) (open).
 - Context: sdkgen 4.34.7 `dist/helpers/opShape.js` (`opRequestShape`, `fieldInOp`, `fieldOptional`), `.sdk/src/cmp/ts/EntityTypes_ts.ts`.
 - Steps: Put `await client.Task().create({ content: 'Write the release notes' })` in the README; run `npm test` in `ts/`.
 - Expected: The README example type-checks: `content` is the only required body field of `POST /tasks`.
@@ -234,12 +234,13 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Shape / Verify (doctor)
 - Severity: papercut
 - Who is affected: Anyone who switches entities off in the guide.
-- Upstream: Related: sdkgen#198 (open).
+- Upstream: Related: [sdkgen#198](https://github.com/voxgig/sdkgen/issues/198) (open).
 - Context: apidef 8.25.2, `voxgig-sdkgen doctor` (sdkgen 4.34.7).
 - Steps: Switch entities off in the guide (`guide: entity: item_sync_view: active: false`), regenerate, run `npx voxgig-sdkgen doctor`.
 - Expected: Either apidef removes the flow files of entities it no longer generates, or doctor's summary names the problem.
 - Actual: The 24 `model/flow/Basic<Entity>Flow.aontu` files of switched-off entities stay on disk. doctor lists each as `ORPHAN MODEL FILE (on disk, included by nothing, read by nobody)`, exits 1, and ends with `.sdk has drifted: 0 forked, 0 edited, 0 stale, 0 missing, 0 outdated` and the advice to run `voxgig-sdkgen target add <lang>`, which does not remove them. Deleting the 24 files and regenerating gives `.sdk matches the scaffold (0 additive)`, exit 0; apidef does not recreate them.
 - Positive: The per-file finding itself is precise ("included by nothing, read by nobody"), which made it safe to delete them.
+- Same pattern: `.sdk/apidef-warnings.txt` is written only by a build that has warnings, so after the guide removed the last one the file still listed three stale warnings, one of them on an entity that no longer exists. I deleted it.
 - Suggested fix: Have apidef collect flow files for inactive entities as it already collects orphaned entity files, and count orphans in doctor's summary line with their own remedy.
 
 ### F21 — Generated README examples use the alphabetically first entity, with a naive plural
@@ -278,7 +279,7 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Stage: Verify (docs CI)
 - Severity: minor (a red workflow on a new public repository, from text the project does not own)
 - Who is affected: Any SDK whose API definition contains a repeated word, an em dash, an emoji or an exclamation mark in a description.
-- Upstream: Known: docgen#33 (closed). Its resolution keeps the repeated-word, em-dash, emoji and exclamation rules on vendor text on purpose.
+- Upstream: Known: [docgen#33](https://github.com/voxgig/docgen/issues/33) (closed). Its resolution notes that the repeated-word, em-dash, emoji and exclamation rules still read vendor text, and docgen's `checkText` (`dist/qa.js`) gives the reason: "A defect is a defect wherever it appears".
 - Steps: Push the generated repository; the Documentation workflow runs `voxgig-docgen qa`.
 - Expected: The check judges the project's own text, or offers a way to accept a known vendor defect.
 - Actual: `SUMMARY.md: Remove the repeated word`. Todoist's definition describes `inviter_id` as "ID of the user user who sent the invitation". The only levers in the model are switching the summary edition off (see F25) or the workflow off.

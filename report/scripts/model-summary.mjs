@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url'
 const args = process.argv.slice(2)
 const onlyAt = args.indexOf('--only')
 const only = onlyAt >= 0 ? new Set(args[onlyAt + 1].split(',')) : null
-const root = args.find((a, i) => !a.startsWith('--') && i !== onlyAt + 1)
+const root = args.find((a, i) => !a.startsWith('--') && i !== (onlyAt >= 0 ? onlyAt + 1 : -1))
   ?? join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
 const model = JSON.parse(readFileSync(join(root, '.sdk', 'model', 'sdk.json'), 'utf8'))

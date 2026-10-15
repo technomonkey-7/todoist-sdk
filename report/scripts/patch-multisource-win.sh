@@ -7,7 +7,7 @@ set -euo pipefail
 SDK_ROOT="${1:-$(cd "$(dirname "$0")/../.." && pwd)}"
 F="$SDK_ROOT/.sdk/node_modules/@tabnas/multisource/dist/resolver/file.js"
 ORIG='const P = null != ctx.meta?.fs ? Path.posix : Path;'
-FIXED='const P = null != ctx.meta?.fs \&\& process.platform !== "win32" ? Path.posix : Path; // local patch, see REPORT.md F4'
+FIXED='const P = null != ctx.meta?.fs \&\& process.platform !== "win32" ? Path.posix : Path; // local patch, see report/FINDINGS.md F4'
 
 if grep -qF 'process.platform !== "win32" ? Path.posix' "$F"; then
   echo "already patched: $F"

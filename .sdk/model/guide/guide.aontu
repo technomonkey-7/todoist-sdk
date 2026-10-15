@@ -309,6 +309,6 @@ guide: entity: subscription_info: path: "/api/v1/payments/reactivate_plan": acti
 
 # OAuth application endpoints. Revoking a token and migrating a personal token
 # take the app's client_id and client_secret, which a personal token cannot
-# supply, so these are left out of the SDK (listed under Coverage in the README).
+# supply, so these are left out of the SDK (see the coverage line in the README).
 guide: entity: authorization: active: false
 guide: entity: migrate_personal_token: active: false

@@ -1,15 +1,20 @@
 #!/usr/bin/env node
 // Classify every failing live entity flow and direct test in a TypeScript live-run log.
 //   node classify-live.mjs <ts-live.log>
-// Categories (finding ids in notes/findings.md):
+// Categories (finding ids in report/FINDINGS.md):
 //   excluded-only   flow has nothing left to run after sdk-test-control exclusions (F16)
 //   needs-input     a step is blocked: a parent id or required query value the flow cannot supply (F14)
 //   mark-field      update wrote the test mark into an id, enum or timestamp field (F13)
 //   example-parent  create sent the definition's example parent id (F14)
 //   one-of-params   list needs one of two optional params the definition does not tie together (definition)
 //   action-route    direct test called an action route that needs a required query param (F15)
+//   response-shape  direct test got a 200 but did not apply the op's response unwrap (F15)
 import { readFileSync } from 'node:fs'
 
+if (!process.argv[2]) {
+  console.error('usage: node classify-live.mjs <ts-live.log>')
+  process.exit(64)
+}
 const lines = readFileSync(process.argv[2], 'utf8').split('\n')
 const rows = []
 
@@ -42,8 +47,14 @@ for (let i = 0; i < lines.length; i++) {
   const m = l.match(/^ {2}✖ (direct-\S+)/)
   if (!m) continue
   const status = lastResponse ? Number(lastResponse.split(' ').pop()) : null
-  const actionRoute = /\/(search|filter|invitations|file|url|plan_details|by_completion_date)\b/.test(lastResponse ?? '')
-  const cat = status === 400 && actionRoute ? 'action-route' : status === 400 ? 'one-of-params' : 'needs-input'
+  // Action routes that come first in their op (F15).
+  const actionRoute = /\/(projects\/search|tasks\/filter|labels\/search|sections\/search|workspaces\/invitations) /.test(lastResponse ?? '')
+  // Lists that need one of two optional parameters the definition does not tie together.
+  const oneOf = /\/(comments|folders) /.test(lastResponse ?? '')
+  const cat = status === 400 && actionRoute ? 'action-route'
+    : status === 400 && oneOf ? 'one-of-params'
+    : status === 200 ? 'response-shape'
+    : 'needs-input'
   rows.push({ test: m[1], cat, detail: lastResponse ?? 'no request sent' })
 }
 

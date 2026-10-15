@@ -14,6 +14,7 @@ const BASE = 'https://api.todoist.com/api/v1'
 const KINDS = ['projects', 'sections', 'labels', 'tasks']
 
 function token() {
+  if (process.env.TODOIST_APIKEY) return process.env.TODOIST_APIKEY.trim()
   const env = readFileSync(join(SDK_ROOT, '.env.local'), 'utf8')
   const line = env.split(/\r?\n/).find((l) => l.startsWith('TODOIST_APIKEY='))
   if (!line) throw new Error('TODOIST_APIKEY not found in .env.local')
@@ -78,6 +79,8 @@ async function cleanup(beforeFile, afterFile, yes) {
 }
 
 const [cmd, a, b, flag] = process.argv.slice(2)
+const usage = 'usage: snap <out> | diff <before> <after> | cleanup <before> <after> [--yes]'
+if ((cmd === 'snap' && !a) || ((cmd === 'diff' || cmd === 'cleanup') && !(a && b))) { console.error(usage); process.exit(64) }
 if (cmd === 'snap') await snap(a)
 else if (cmd === 'diff') {
   const r = diff(a, b)
