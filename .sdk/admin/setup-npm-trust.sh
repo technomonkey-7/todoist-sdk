@@ -9,6 +9,6 @@ if [[ ! -f "$trust" ]]; then
   exit 1
 fi
 exec node "$trust" \
-  --repository 'voxgig-sdk/todoist-sdk' \
-  --publish '@voxgig-sdk/todoist-sdk=publish-ts.yml' \
+  --repository 'technomonkey-7/todoist-sdk' \
+  --publish '@technomonkey-7/todoist-sdk=publish-ts.yml' \
   "$@"

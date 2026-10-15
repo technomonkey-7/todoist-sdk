@@ -3,7 +3,7 @@ package utility
 import (
 	"fmt"
 
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 func resultBasicUtil(ctx *core.Context) *core.Result {

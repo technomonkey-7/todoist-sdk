@@ -1,6 +1,6 @@
 # Todoist TypeScript SDK
 
-
+Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Doist's OpenAPI definition.
 
 The TypeScript SDK for the Todoist API — a type-safe, entity-oriented client with full async/await support.
 
@@ -15,11 +15,11 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/todoist-sdk/tags)), or from a
+release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/technomonkey-7/todoist-sdk/tags)), or from a
 clone, which carries the compiled `dist/`:
 
 ```bash
-git clone https://github.com/voxgig-sdk/todoist-sdk
+git clone https://github.com/technomonkey-7/todoist-sdk
 npm install ./todoist-sdk/ts
 ```
 
@@ -32,7 +32,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TodoistSDK } from '@voxgig-sdk/todoist-sdk'
+import { TodoistSDK } from '@technomonkey-7/todoist-sdk'
 
 const client = new TodoistSDK()
 ```
@@ -3326,7 +3326,7 @@ todoist/
 Import the SDK from the package root:
 
 ```ts
-import { TodoistSDK } from '@voxgig-sdk/todoist-sdk'
+import { TodoistSDK } from '@technomonkey-7/todoist-sdk'
 ```
 
 ### Entity state

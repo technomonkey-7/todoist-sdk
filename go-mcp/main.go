@@ -9,7 +9,7 @@ import (
 	"os"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
 )
 
 func main() {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 // main.kit.test.live.strict is true (the default is true): a live

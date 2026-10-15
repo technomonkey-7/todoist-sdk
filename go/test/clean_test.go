@@ -12,8 +12,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 // Generated: the credential's wire placement is fixed when the SDK is built.

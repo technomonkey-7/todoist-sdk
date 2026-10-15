@@ -6,9 +6,9 @@ import (
 	"regexp"
 	"strings"
 
-	vs "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	vs "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 // The `body.<key>` form of an op's response transform: the mock wraps its

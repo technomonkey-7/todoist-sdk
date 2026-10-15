@@ -4,7 +4,7 @@ import (
 	"io"
 	"strings"
 
-	vs "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	vs "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 )
 
 // The media types a point declares: `response` (the model's `rs`) for the

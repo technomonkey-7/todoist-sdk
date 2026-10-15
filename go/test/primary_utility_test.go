@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
 
-	vs "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	vs "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 )
 
 var pendingSections = map[string]bool{

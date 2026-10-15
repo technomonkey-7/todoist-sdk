@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 
-	vs "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	vs "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 )
 
 // main.kit.test.live.strict is true (the default is true): a live

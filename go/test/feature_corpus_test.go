@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
 )
 
 // Features with a corpus section are read from the corpus itself (see

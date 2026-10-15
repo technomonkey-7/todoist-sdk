@@ -1,6 +1,6 @@
 # Todoist Golang SDK
 
-
+Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Doist's OpenAPI definition.
 
 The Golang SDK for the Todoist API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
@@ -12,18 +12,18 @@ It exposes the API as capitalised, semantic **Entities** — e.g. `client.Active
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/todoist-sdk/go@latest
+go get github.com/technomonkey-7/todoist-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Tags](https://github.com/voxgig-sdk/todoist-sdk/tags) for the available versions.
+release tag — see [Tags](https://github.com/technomonkey-7/todoist-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
 `go/` directory:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/todoist-sdk/go=../todoist-sdk/go
+go mod edit -replace github.com/technomonkey-7/todoist-sdk/go=../todoist-sdk/go
 ```
 
 
@@ -45,7 +45,7 @@ package main
 
 import (
     "fmt"
-    sdk "github.com/voxgig-sdk/todoist-sdk/go"
+    sdk "github.com/technomonkey-7/todoist-sdk/go"
 )
 
 func main() {
@@ -3623,7 +3623,7 @@ An operation returns the entity, and its `Data()` returns the record. Use
 ### Package structure
 
 ```
-github.com/voxgig-sdk/todoist-sdk/go/
+github.com/technomonkey-7/todoist-sdk/go/
 ├── todoist.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -3632,7 +3632,7 @@ github.com/voxgig-sdk/todoist-sdk/go/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/todoist-sdk/go`) re-exports everything needed
+The root package (`github.com/technomonkey-7/todoist-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

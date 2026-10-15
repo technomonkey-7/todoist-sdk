@@ -7,10 +7,10 @@ import (
 	"strings"
 	"sync"
 
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
-	omni "github.com/voxgig-sdk/todoist-sdk/go/test/omni"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
+	omni "github.com/technomonkey-7/todoist-sdk/go/test/omni"
 
-	vs "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	vs "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 )
 
 // The shared corpus, compiled by the project build. Relative to this

@@ -3,21 +3,21 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "voxgig-sdk-todoist-sdk"
+name = "technomonkey-todoist-sdk"
 version = "0.0.1"
 description = "Unofficial generated Python SDK for the Todoist public API. Not affiliated with or endorsed by the upstream API provider."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
-keywords = ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "todoist"]
+keywords = ["sdk", "generated-sdk", "openapi", "api-client", "todoist"]
 dependencies = [
     "requests>=2.33",
 ]
 
 [project.urls]
-Homepage = "https://github.com/voxgig-sdk/todoist-sdk"
-Repository = "https://github.com/voxgig-sdk/todoist-sdk"
-Issues = "https://github.com/voxgig-sdk/todoist-sdk/issues"
+Homepage = "https://github.com/technomonkey-7/todoist-sdk"
+Repository = "https://github.com/technomonkey-7/todoist-sdk"
+Issues = "https://github.com/technomonkey-7/todoist-sdk/issues"
 
 # ONE package. core/entity/feature/utility were previously top-level packages;
 # those names are real PyPI distributions and common scratch filenames, and

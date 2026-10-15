@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 type BaseFeature struct {

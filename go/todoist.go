@@ -1,10 +1,10 @@
 package voxgigtodoistsdk
 
 import (
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
-	"github.com/voxgig-sdk/todoist-sdk/go/entity"
-	"github.com/voxgig-sdk/todoist-sdk/go/feature"
-	_ "github.com/voxgig-sdk/todoist-sdk/go/utility"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
+	"github.com/technomonkey-7/todoist-sdk/go/entity"
+	"github.com/technomonkey-7/todoist-sdk/go/feature"
+	_ "github.com/technomonkey-7/todoist-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

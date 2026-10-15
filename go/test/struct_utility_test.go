@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	voxgigstruct "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	voxgigstruct "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 )
 
 const STRUCT_TEST_JSON = "../../.sdk/test/test.json"

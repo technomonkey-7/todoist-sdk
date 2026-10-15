@@ -8,7 +8,7 @@ import (
 
 	"github.com/google/jsonschema-go/jsonschema"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
 )
 
 // ListArgs is what an agent sends to todoist_list.
@@ -20,6 +20,24 @@ type ListArgs struct {
 // LoadArgs is what an agent sends to todoist_load.
 type LoadArgs struct {
 	Entity string         `json:"entity" jsonschema:"one of: any_project_sync_view | backup | credit_state | file_url | folder | item_sync_view | label | note_sync_view | notification_location_sync_view | notification_sync_view | section | template | workspace"`
+	Query  map[string]any `json:"query" jsonschema:"match map naming the record, such as {\"id\":1}"`
+}
+
+// CreateArgs is what an agent sends to todoist_create.
+type CreateArgs struct {
+	Entity string         `json:"entity" jsonschema:"one of: any_project_sync_view | authorization | billing_portal_url | comment | folder | invite | item_sync_view | label | migrate_personal_token | note_sync_view | notification_location_sync_view | notification_sync_view | project_import | project_import_create_response_with_object | section | subscription_info | task | top_up | upload | workspace | workspace_invitation_view | workspace_user_view"`
+	Data   map[string]any `json:"data" jsonschema:"the new record's fields"`
+}
+
+// UpdateArgs is what an agent sends to todoist_update.
+type UpdateArgs struct {
+	Entity string         `json:"entity" jsonschema:"one of: email | user | workspace_invitation_view"`
+	Data   map[string]any `json:"data" jsonschema:"the record's id and the fields to change"`
+}
+
+// RemoveArgs is what an agent sends to todoist_remove.
+type RemoveArgs struct {
+	Entity string         `json:"entity" jsonschema:"one of: authorization | comment | folder | label | location_reminder | project | reminder | remove_workspace_user | section | status_ok | task | upload | workspace"`
 	Query  map[string]any `json:"query" jsonschema:"match map naming the record, such as {\"id\":1}"`
 }
 
@@ -39,6 +57,30 @@ func registerTools(server *mcp.Server, client *sdk.TodoistSDK) {
 		InputSchema: entitySchema[LoadArgs]("any_project_sync_view", "backup", "credit_state", "file_url", "folder", "item_sync_view", "label", "note_sync_view", "notification_location_sync_view", "notification_sync_view", "section", "template", "workspace"),
 	}, func(ctx context.Context, req *mcp.CallToolRequest, args LoadArgs) (*mcp.CallToolResult, any, error) {
 		return runOp(ctx, client, "load", args.Entity, args.Query)
+	})
+	mcp.AddTool(server, &mcp.Tool{
+		Name:        "todoist_create",
+		Description: "Create a record in Todoist. Args: entity, data (the new record's fields). Returns the created record as JSON.",
+		Annotations: &mcp.ToolAnnotations{DestructiveHint: hint(false)},
+		InputSchema: entitySchema[CreateArgs]("any_project_sync_view", "authorization", "billing_portal_url", "comment", "folder", "invite", "item_sync_view", "label", "migrate_personal_token", "note_sync_view", "notification_location_sync_view", "notification_sync_view", "project_import", "project_import_create_response_with_object", "section", "subscription_info", "task", "top_up", "upload", "workspace", "workspace_invitation_view", "workspace_user_view"),
+	}, func(ctx context.Context, req *mcp.CallToolRequest, args CreateArgs) (*mcp.CallToolResult, any, error) {
+		return runOp(ctx, client, "create", args.Entity, args.Data)
+	})
+	mcp.AddTool(server, &mcp.Tool{
+		Name:        "todoist_update",
+		Description: "Update a record in Todoist. Args: entity, data (the record's id and the fields to change). Returns the updated record as JSON.",
+		Annotations: &mcp.ToolAnnotations{DestructiveHint: hint(true)},
+		InputSchema: entitySchema[UpdateArgs]("email", "user", "workspace_invitation_view"),
+	}, func(ctx context.Context, req *mcp.CallToolRequest, args UpdateArgs) (*mcp.CallToolResult, any, error) {
+		return runOp(ctx, client, "update", args.Entity, args.Data)
+	})
+	mcp.AddTool(server, &mcp.Tool{
+		Name:        "todoist_remove",
+		Description: "Remove a record from Todoist. Args: entity, query (match map naming the record, such as {\"id\":1}). Returns the removed record as JSON.",
+		Annotations: &mcp.ToolAnnotations{DestructiveHint: hint(true)},
+		InputSchema: entitySchema[RemoveArgs]("authorization", "comment", "folder", "label", "location_reminder", "project", "reminder", "remove_workspace_user", "section", "status_ok", "task", "upload", "workspace"),
+	}, func(ctx context.Context, req *mcp.CallToolRequest, args RemoveArgs) (*mcp.CallToolResult, any, error) {
+		return runOp(ctx, client, "remove", args.Entity, args.Query)
 	})
 }
 

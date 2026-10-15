@@ -6,9 +6,9 @@ import (
 	"sort"
 	"strings"
 
-	vs "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	vs "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 // {name} placeholders in a templated server URL (OpenAPI server variables).

@@ -1,14 +1,14 @@
 # todoist-mcp
 
 [MCP](https://modelcontextprotocol.io) server exposing the Todoist SDK as
-2 agent tools, `todoist_list` and `todoist_load`, built on the
+5 agent tools, `todoist_list`, `todoist_load`, `todoist_create`, `todoist_update` and `todoist_remove`, built on the
 [official Go MCP SDK](https://github.com/modelcontextprotocol/go-sdk) and the
 sibling Go SDK at `../go`. Runs over **stdio** (default, for spawnable installs)
 or **streamable HTTP** (one shared server for several agents).
 
-The server only reads. Create, update, patch and remove become tools too when the
-SDK's own model sets `main: kit: target: 'go-mcp': tool: write: true`; they are off by default, as an agent calling
-them changes the API's data.
+Create, update and remove are on, as the SDK's model sets
+`main: kit: target: 'go-mcp': tool: write: true`. Each tool carries the MCP hints an agent host reads before calling
+it, listed in the reference below.
 
 ## Examples
 
@@ -35,6 +35,15 @@ Tool-call arguments (what an agent sends):
 
 // todoist_load: one record
 { "entity": "any_project_sync_view", "query": { "project_id": "example" } }
+
+// todoist_create: a new record
+{ "entity": "any_project_sync_view", "data": { "project_id": "example", "next_cursor": "example", "results": [] } }
+
+// todoist_update: change a record's fields
+{ "entity": "email", "data": { "email": "example", "obj_id": "example", "obj_type": "example" } }
+
+// todoist_remove: delete a record
+{ "entity": "authorization", "query": { "access_token": "example", "client_id": "example", "client_secret": "example" } }
 ```
 
 > The rest of this guide follows the [Diátaxis](https://diataxis.fr) framework:
@@ -62,7 +71,7 @@ Tool-call arguments (what an agent sends):
      -- "$PWD"/dist/*/todoist-mcp -transport stdio
    ```
 
-4. **Restart Claude Code.** The `todoist_list` and `todoist_load` tools now appear in new
+4. **Restart Claude Code.** The `todoist_list`, `todoist_load`, `todoist_create`, `todoist_update` and `todoist_remove` tools now appear in new
    sessions. Ask the agent to *"list active using todoist"*
    and it calls `todoist_list` with `{"entity":"active","query":{"workspace_id":1}}`.
 
@@ -107,12 +116,39 @@ Returns the record as JSON:
 { "entity": "any_project_sync_view", "query": { "project_id": "example" } }
 ```
 
-### Turn on the write tools
+### Call the `todoist_create` tool
+
+Args: `entity` (required), `data` (required: the new record's fields).
+Returns the created record as JSON:
+
+```jsonc
+{ "entity": "any_project_sync_view", "data": { "project_id": "example", "next_cursor": "example", "results": [] } }
+```
+
+### Call the `todoist_update` tool
+
+Args: `entity` (required), `data` (required: the record's id and the fields to change).
+Returns the updated record as JSON:
+
+```jsonc
+{ "entity": "email", "data": { "email": "example", "obj_id": "example", "obj_type": "example" } }
+```
+
+### Call the `todoist_remove` tool
+
+Args: `entity` (required), `query` (required: match map naming the record, such as {"id":1}).
+Returns the removed record as JSON:
+
+```jsonc
+{ "entity": "authorization", "query": { "access_token": "example", "client_id": "example", "client_secret": "example" } }
+```
+
+### Turn the write tools off
 
 In the SDK's own model (`.sdk/model/sdk.aontu`), then regenerate:
 
 ```
-main: kit: target: 'go-mcp': tool: write: true
+main: kit: target: 'go-mcp': tool: write: false
 ```
 
 ### Cross-compile release binaries
@@ -130,6 +166,9 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 |------|------|---------|-----------|
 | `todoist_list` | `entity`, `query` (optional map) | The first page of records as JSON | read-only |
 | `todoist_load` | `entity`, `query` (required map) | The record as JSON | read-only |
+| `todoist_create` | `entity`, `data` (required map) | The created record as JSON | additive |
+| `todoist_update` | `entity`, `data` (required map) | The updated record as JSON | destructive |
+| `todoist_remove` | `entity`, `query` (required map) | The removed record as JSON | destructive |
 
 On error, a tool returns an MCP error result (`isError: true`) whose text is the
 failure message (e.g. unknown entity, or an API error).
@@ -143,6 +182,9 @@ operation, of the 51 the SDK has:
 |------|----------|
 | `todoist_list` | active, activity, any_project_sync_view, archived, backup, by_completion_date, by_due_date, collaborator, folder, history, id_mapping, item_sync_view, label, label_rest_view, member_view, note_sync_view, notification_location_sync_view, notification_sync_view, paginated_list_any_project_sync_view, paginated_list_item_sync_view, paginated_list_str, plan_detail, productivity_stat, role_to_action_mapping_view, section, section_sync_view, usage_summary, user, workspace, workspace_invitation_view |
 | `todoist_load` | any_project_sync_view, backup, credit_state, file_url, folder, item_sync_view, label, note_sync_view, notification_location_sync_view, notification_sync_view, section, template, workspace |
+| `todoist_create` | any_project_sync_view, authorization, billing_portal_url, comment, folder, invite, item_sync_view, label, migrate_personal_token, note_sync_view, notification_location_sync_view, notification_sync_view, project_import, project_import_create_response_with_object, section, subscription_info, task, top_up, upload, workspace, workspace_invitation_view, workspace_user_view |
+| `todoist_update` | email, user, workspace_invitation_view |
+| `todoist_remove` | authorization, comment, folder, label, location_reminder, project, reminder, remove_workspace_user, section, status_ok, task, upload, workspace |
 
 JSON schemas are emitted by the SDK from each tool's argument struct's
 `json` / `jsonschema` tags — no schema is hand-written. Each tool's

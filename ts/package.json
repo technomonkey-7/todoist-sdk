@@ -1,22 +1,21 @@
 {
-  "name": "@voxgig-sdk/todoist-sdk",
+  "name": "@technomonkey-7/todoist-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Todoist public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
-    "voxgig",
     "sdk",
     "generated-sdk",
     "openapi",
     "api-client",
     "todoist"
   ],
-  "homepage": "https://github.com/voxgig-sdk/todoist-sdk#readme",
+  "homepage": "https://github.com/technomonkey-7/todoist-sdk#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/voxgig-sdk/todoist-sdk.git"
+    "url": "git+https://github.com/technomonkey-7/todoist-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/voxgig-sdk/todoist-sdk/issues"
+    "url": "https://github.com/technomonkey-7/todoist-sdk/issues"
   },
   "main": "dist/TodoistSDK.js",
   "type": "commonjs",
@@ -42,8 +41,8 @@
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
   "author": {
-    "name": "Voxgig",
-    "url": "https://voxgig.com"
+    "name": "Arda Çankaya",
+    "url": "https://github.com/technomonkey-7"
   },
   "license": "MIT",
   "engines": {

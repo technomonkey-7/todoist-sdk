@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	eng "github.com/boru-lang/boru/eng/go"
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
 )
 
 func registerSDKWords(r *eng.Registry, client *sdk.TodoistSDK) {

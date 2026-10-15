@@ -9,7 +9,7 @@ package entity
 import (
 	"encoding/json"
 
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 // Active is the typed data model for the active entity.

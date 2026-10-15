@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/todoist-sdk/go/core"
+import "github.com/technomonkey-7/todoist-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

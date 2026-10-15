@@ -13,7 +13,7 @@ import (
 
 	eng "github.com/boru-lang/boru/eng/go"
 	"github.com/boru-lang/boru/eng/go/parser"
-	sdk "github.com/voxgig-sdk/todoist-sdk/go"
+	sdk "github.com/technomonkey-7/todoist-sdk/go"
 )
 
 // prompt is the REPL prompt prefix (matches the SDK slug).

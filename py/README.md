@@ -1,6 +1,6 @@
 # Todoist Python SDK
 
-
+Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Doist's OpenAPI definition.
 
 The Python SDK for the Todoist API — an entity-oriented client following Pythonic conventions.
 
@@ -15,7 +15,7 @@ keeps the cognitive load low.
 
 ## Install
 This package is not yet published to PyPI. Install it from the GitHub
-release tag (`py/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/todoist-sdk/tags)) or
+release tag (`py/vX.Y.Z`, see [Tags](https://github.com/technomonkey-7/todoist-sdk/tags)) or
 from a source checkout:
 
 ```bash

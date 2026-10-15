@@ -4,9 +4,9 @@ import (
 	"regexp"
 	"strings"
 
-	vs "github.com/voxgig-sdk/todoist-sdk/go/utility/struct"
+	vs "github.com/technomonkey-7/todoist-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/todoist-sdk/go/core"
+	"github.com/technomonkey-7/todoist-sdk/go/core"
 )
 
 var placeholderRe = regexp.MustCompile(`\{[^{}/]+\}`)

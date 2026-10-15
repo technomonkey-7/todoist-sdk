@@ -1,8 +1,8 @@
-module github.com/voxgig-sdk/todoist-sdk/go-mcp
+module github.com/technomonkey-7/todoist-sdk/go-mcp
 
 go 1.25.0
 
-require github.com/voxgig-sdk/todoist-sdk/go v0.0.0
+require github.com/technomonkey-7/todoist-sdk/go v0.0.0
 require github.com/modelcontextprotocol/go-sdk v1.6.0
 
 require github.com/google/jsonschema-go v0.4.3
@@ -15,4 +15,4 @@ require (
 	golang.org/x/sys v0.41.0 // indirect
 )
 
-replace github.com/voxgig-sdk/todoist-sdk/go => ../go
+replace github.com/technomonkey-7/todoist-sdk/go => ../go
