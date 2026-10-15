@@ -57,12 +57,12 @@ await client.Task().remove({ id: task.data().id })
 
 Every call above was run against the live API (see Honest state).
 
-### Using the MCP server
+### MCP server: credentials and write tools
+
+Build the server as shown under "Use it from an AI agent (MCP)" below. The server reads the token from its environment, so pass it when you register it, for example in Claude Code:
 
 ```bash
-cd go-mcp && go build -o todoist-mcp .
-export TODOIST_APIKEY=<token>
-claude mcp add --scope user todoist -- "$PWD/todoist-mcp" -transport stdio
+claude mcp add --scope user todoist -e TODOIST_APIKEY=<token> -- /abs/path/to/todoist-mcp -transport stdio
 ```
 
 The server registers `todoist_list`, `todoist_load`, `todoist_create`, `todoist_update` and `todoist_remove`. The last three change your Todoist data when an agent calls them; sdkgen leaves them off by default and this project turns them on. To build a read-only server, set `main: kit: target: 'go-mcp': tool: write: false` in `.sdk/model/project.aontu` and regenerate.
