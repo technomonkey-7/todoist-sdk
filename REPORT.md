@@ -9,7 +9,7 @@ I generated unofficial Todoist clients for **TypeScript, Python and Go**, plus a
 - **It works.** Through the TypeScript SDK, against the live API: full create, read, update and delete on projects, tasks and labels; create, list, update and delete on comments; create and list on sections. Claude Code can drive the MCP server.
 - **It needed shaping.** Out of the box the SDK had 51 entities, many named after internal schemas, no `update` on any core resource, and no authentication, and its offline tests still passed. About 250 lines of corrections in the generator's guide file brought it to 34 entities and full CRUD, without editing the definition or any generated code.
 - **25 findings.** 14 look new, 5 are already tracked upstream (fully or in part), 4 relate to open issues, and 2 are things that worked well. Most come from the generator's templates and tools rather than from Todoist.
-- **Time:** about 25 to 30 minutes of my own time; Claude Code did the hands-on work.
+- **Time:** my own time ran a little over the 30-minute time box, because of the issues found along the way; Claude Code did the hands-on work.
 
 **Why Todoist:** it is not in the voxgig-sdk catalogue, and a free account gives an API token, so I could test everything live. Todoist (the company, formerly Doist) publishes official SDKs for TypeScript and Python, an official CLI and a hosted MCP server, but nothing for Go. Its definition is produced by FastAPI, which made it a good test of how the generator reads framework-generated definitions.
 
