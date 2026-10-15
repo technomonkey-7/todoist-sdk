@@ -5,7 +5,148 @@
     "skip": {
       "live": {
         "direct": [],
-        "entityOp": []
+        "entityOp": [
+          {
+            "entity": "billing_portal_url",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "email",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "email",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "folder",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "folder",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "folder",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "location_reminder",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "location_reminder",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "location_reminder",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "notification_setting",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "project_import",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "reminder",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "reminder",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "reminder",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "shared_label",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "shared_label",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "subscription_info",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "top_up",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "upload",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "upload",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace_invitation",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace_invitation",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace_user",
+            "op": "create",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace_user",
+            "op": "update",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          },
+          {
+            "entity": "workspace_user",
+            "op": "remove",
+            "reason": "Write outside the five core resources: not run live, it can change account settings or start a billing action (see the README Coverage section)."
+          }
+        ]
       },
       "unit": {
         "direct": [],
