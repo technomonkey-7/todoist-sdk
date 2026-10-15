@@ -30,8 +30,17 @@ func init() {
 	core.NewBaseFeatureFunc = func() core.Feature {
 		return feature.NewBaseFeature()
 	}
+	core.NewPagingFeatureFunc = func() core.Feature {
+		return feature.NewPagingFeature()
+	}
+	core.NewRetryFeatureFunc = func() core.Feature {
+		return feature.NewRetryFeature()
+	}
 	core.NewTestFeatureFunc = func() core.Feature {
 		return feature.NewTestFeature()
+	}
+	core.NewTimeoutFeatureFunc = func() core.Feature {
+		return feature.NewTimeoutFeature()
 	}
 	core.NewActivityEntityFunc = func(client *core.TodoistSDK, entopts map[string]any) core.TodoistEntity {
 		return entity.NewActivityEntity(client, entopts)
@@ -155,4 +164,7 @@ var SharedConfig = core.SharedConfig
 func New() *TodoistSDK  { return NewTodoistSDK(nil) }
 func Test() *TodoistSDK { return TestSDK(nil, nil) }
 var NewBaseFeature = feature.NewBaseFeature
+var NewPagingFeature = feature.NewPagingFeature
+var NewRetryFeature = feature.NewRetryFeature
 var NewTestFeature = feature.NewTestFeature
+var NewTimeoutFeature = feature.NewTimeoutFeature

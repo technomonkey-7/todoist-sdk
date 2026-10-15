@@ -42,7 +42,10 @@ the runtime under `.sdk/tm/go/feature/` and regenerate.
 
 | Feature | Runtime file | Active hooks |
 | --- | --- | --- |
+| **paging** — Paging | `feature/paging_feature.go` | `PreRequest`, `PreResult` |
+| **retry** — Retry | `feature/retry_feature.go` | — |
 | **test** — Test transport | `feature/test_feature.go` | `GetData`, `GetMatch`, `PostConstruct`, `PostConstructEntity`, `PrePoint`, `PreRequest`, `PreResponse`, `PreResult`, `PreSpec`, `SetData`, `SetMatch` |
+| **timeout** — Timeout | `feature/timeout_feature.go` | — |
 
 ---
 

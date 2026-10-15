@@ -1,9 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FEATURE_PLUGINS = exports.config = void 0;
+const PagingFeature_1 = require("./feature/paging/PagingFeature");
+const RetryFeature_1 = require("./feature/retry/RetryFeature");
 const TestFeature_1 = require("./feature/test/TestFeature");
+const TimeoutFeature_1 = require("./feature/timeout/TimeoutFeature");
 const FEATURE_CLASS = {
+    paging: PagingFeature_1.PagingFeature,
+    retry: RetryFeature_1.RetryFeature,
     test: TestFeature_1.TestFeature,
+    timeout: TimeoutFeature_1.TimeoutFeature,
 };
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
@@ -26,6 +32,47 @@ class Config {
         target: "ts",
     };
     feature = {
+        paging: {
+            "options": {
+                "active": false,
+                "afterVar": "after",
+                "cursorParam": "cursor",
+                "firstVar": "first",
+                "limitParam": "limit",
+                "pageParam": "page",
+                "startPage": 1
+            },
+            "optspec": {
+                "limit": "`$NUMBER`",
+                "ops": "`$LIST`"
+            },
+            "strict": false,
+            "transport": "none"
+        },
+        retry: {
+            "options": {
+                "active": false,
+                "factor": 2,
+                "maxDelay": 2000,
+                "minDelay": 50,
+                "retries": 2,
+                "statuses": [
+                    408,
+                    425,
+                    429,
+                    500,
+                    502,
+                    503,
+                    504
+                ]
+            },
+            "optspec": {
+                "jitter": "`$BOOLEAN`",
+                "sleep": "`$FUNCTION`"
+            },
+            "strict": false,
+            "transport": "wrap"
+        },
         test: {
             "options": {
                 "active": false
@@ -36,6 +83,19 @@ class Config {
             },
             "strict": false,
             "transport": "base"
+        },
+        timeout: {
+            "options": {
+                "active": false,
+                "ms": 30000
+            },
+            "optspec": {
+                "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
+                "setTimer": "`$FUNCTION`"
+            },
+            "strict": false,
+            "transport": "wrap"
         },
     };
     options = {

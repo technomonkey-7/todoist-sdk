@@ -43,7 +43,10 @@ the runtime under `.sdk/tm/py/feature/` and regenerate.
 
 | Feature | Runtime file | Active hooks |
 | --- | --- | --- |
+| **paging** — Paging | `feature/paging_feature.py` | `PreRequest`, `PreResult` |
+| **retry** — Retry | `feature/retry_feature.py` | — |
 | **test** — Test transport | `feature/test_feature.py` | `GetData`, `GetMatch`, `PostConstruct`, `PostConstructEntity`, `PrePoint`, `PreRequest`, `PreResponse`, `PreResult`, `PreSpec`, `SetData`, `SetMatch` |
+| **timeout** — Timeout | `feature/timeout_feature.py` | — |
 
 ---
 

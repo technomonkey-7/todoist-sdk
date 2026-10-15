@@ -37,7 +37,10 @@ component.* After editing a component run `npm run build` before
 
 ## Features in this target
 
+- [`paging`](./src/feature/paging/AGENTS.md) — Paging
+- [`retry`](./src/feature/retry/AGENTS.md) — Retry
 - [`test`](./src/feature/test/AGENTS.md) — Test transport
+- [`timeout`](./src/feature/timeout/AGENTS.md) — Timeout
 
 Each feature's runtime and its own guide live in `src/feature/<name>/`.
 

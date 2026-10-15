@@ -51,11 +51,42 @@ declare const OPTSPEC: {
             "`$OPEN`": boolean;
             active: boolean;
         };
+        paging: (string | {
+            "`$OPEN`": boolean;
+            active: string[];
+            afterVar: (string | string[])[];
+            cursorParam: (string | string[])[];
+            firstVar: (string | string[])[];
+            limitParam: (string | string[])[];
+            pageParam: (string | string[])[];
+            startPage: string[];
+            limit: string[];
+            ops: string[];
+        })[];
+        retry: (string | {
+            "`$OPEN`": boolean;
+            active: string[];
+            factor: string[];
+            maxDelay: string[];
+            minDelay: string[];
+            retries: string[];
+            statuses: string[];
+            jitter: string[];
+            sleep: string[];
+        })[];
         test: (string | {
             "`$OPEN`": boolean;
             active: string[];
             entity: string[];
             net: string[];
+        })[];
+        timeout: (string | {
+            "`$OPEN`": boolean;
+            active: string[];
+            ms: string[];
+            clearTimer: string[];
+            now: string[];
+            setTimer: string[];
         })[];
     };
 };

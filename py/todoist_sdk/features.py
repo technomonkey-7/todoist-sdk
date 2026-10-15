@@ -1,12 +1,18 @@
 # Todoist SDK feature factory
 
 from todoist_sdk.feature.base_feature import TodoistBaseFeature
+from todoist_sdk.feature.paging_feature import TodoistPagingFeature
+from todoist_sdk.feature.retry_feature import TodoistRetryFeature
 from todoist_sdk.feature.test_feature import TodoistTestFeature
+from todoist_sdk.feature.timeout_feature import TodoistTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TodoistBaseFeature(),
+    "paging": lambda: TodoistPagingFeature(),
+    "retry": lambda: TodoistRetryFeature(),
     "test": lambda: TodoistTestFeature(),
+    "timeout": lambda: TodoistTimeoutFeature(),
 }
 
 

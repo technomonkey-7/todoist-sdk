@@ -1,11 +1,17 @@
 
 import { BaseFeature } from './feature/base/BaseFeature'
+import { PagingFeature } from './feature/paging/PagingFeature'
+import { RetryFeature } from './feature/retry/RetryFeature'
 import { TestFeature } from './feature/test/TestFeature'
+import { TimeoutFeature } from './feature/timeout/TimeoutFeature'
 
 
 
 const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
-   test: TestFeature,
+   paging: PagingFeature,
+ retry: RetryFeature,
+ test: TestFeature,
+ timeout: TimeoutFeature,
 
 }
 
@@ -41,7 +47,48 @@ class Config {
 
 
   feature = {
-     test:     {
+     paging:     {
+      "options": {
+        "active": false,
+        "afterVar": "after",
+        "cursorParam": "cursor",
+        "firstVar": "first",
+        "limitParam": "limit",
+        "pageParam": "page",
+        "startPage": 1
+      },
+      "optspec": {
+        "limit": "`$NUMBER`",
+        "ops": "`$LIST`"
+      },
+      "strict": false,
+      "transport": "none"
+    },
+ retry:     {
+      "options": {
+        "active": false,
+        "factor": 2,
+        "maxDelay": 2000,
+        "minDelay": 50,
+        "retries": 2,
+        "statuses": [
+          408,
+          425,
+          429,
+          500,
+          502,
+          503,
+          504
+        ]
+      },
+      "optspec": {
+        "jitter": "`$BOOLEAN`",
+        "sleep": "`$FUNCTION`"
+      },
+      "strict": false,
+      "transport": "wrap"
+    },
+ test:     {
       "options": {
         "active": false
       },
@@ -51,6 +98,19 @@ class Config {
       },
       "strict": false,
       "transport": "base"
+    },
+ timeout:     {
+      "options": {
+        "active": false,
+        "ms": 30000
+      },
+      "optspec": {
+        "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
+        "setTimer": "`$FUNCTION`"
+      },
+      "strict": false,
+      "transport": "wrap"
     },
 
   }

@@ -58,6 +58,125 @@ const OPTSPEC = {
             "`$OPEN`": true,
             "active": false
         },
+        "paging": [
+            "`$ONE`",
+            {
+                "`$OPEN`": true,
+                "active": [
+                    "`$ONE`",
+                    "`$BOOLEAN`",
+                    "`$NIL`"
+                ],
+                "afterVar": [
+                    "`$ONE`",
+                    "`$STRING`",
+                    [
+                        "`$EXACT`",
+                        ""
+                    ],
+                    "`$NIL`"
+                ],
+                "cursorParam": [
+                    "`$ONE`",
+                    "`$STRING`",
+                    [
+                        "`$EXACT`",
+                        ""
+                    ],
+                    "`$NIL`"
+                ],
+                "firstVar": [
+                    "`$ONE`",
+                    "`$STRING`",
+                    [
+                        "`$EXACT`",
+                        ""
+                    ],
+                    "`$NIL`"
+                ],
+                "limitParam": [
+                    "`$ONE`",
+                    "`$STRING`",
+                    [
+                        "`$EXACT`",
+                        ""
+                    ],
+                    "`$NIL`"
+                ],
+                "pageParam": [
+                    "`$ONE`",
+                    "`$STRING`",
+                    [
+                        "`$EXACT`",
+                        ""
+                    ],
+                    "`$NIL`"
+                ],
+                "startPage": [
+                    "`$ONE`",
+                    "`$NUMBER`",
+                    "`$NIL`"
+                ],
+                "limit": [
+                    "`$ONE`",
+                    "`$NUMBER`",
+                    "`$NIL`"
+                ],
+                "ops": [
+                    "`$ONE`",
+                    "`$LIST`",
+                    "`$NIL`"
+                ]
+            },
+            "`$NIL`"
+        ],
+        "retry": [
+            "`$ONE`",
+            {
+                "`$OPEN`": true,
+                "active": [
+                    "`$ONE`",
+                    "`$BOOLEAN`",
+                    "`$NIL`"
+                ],
+                "factor": [
+                    "`$ONE`",
+                    "`$NUMBER`",
+                    "`$NIL`"
+                ],
+                "maxDelay": [
+                    "`$ONE`",
+                    "`$NUMBER`",
+                    "`$NIL`"
+                ],
+                "minDelay": [
+                    "`$ONE`",
+                    "`$NUMBER`",
+                    "`$NIL`"
+                ],
+                "retries": [
+                    "`$ONE`",
+                    "`$NUMBER`",
+                    "`$NIL`"
+                ],
+                "statuses": [
+                    "`$ONE`",
+                    "`$LIST`",
+                    "`$NIL`"
+                ],
+                "jitter": [
+                    "`$ONE`",
+                    "`$BOOLEAN`",
+                    "`$NIL`"
+                ],
+                "sleep": [
+                    "`$ONE`",
+                    "`$FUNCTION`",
+                    "`$NIL`"
+                ]
+            },
+            "`$NIL`"
+        ],
         "test": [
             "`$ONE`",
             {
@@ -75,6 +194,38 @@ const OPTSPEC = {
                 "net": [
                     "`$ONE`",
                     "`$MAP`",
+                    "`$NIL`"
+                ]
+            },
+            "`$NIL`"
+        ],
+        "timeout": [
+            "`$ONE`",
+            {
+                "`$OPEN`": true,
+                "active": [
+                    "`$ONE`",
+                    "`$BOOLEAN`",
+                    "`$NIL`"
+                ],
+                "ms": [
+                    "`$ONE`",
+                    "`$NUMBER`",
+                    "`$NIL`"
+                ],
+                "clearTimer": [
+                    "`$ONE`",
+                    "`$FUNCTION`",
+                    "`$NIL`"
+                ],
+                "now": [
+                    "`$ONE`",
+                    "`$FUNCTION`",
+                    "`$NIL`"
+                ],
+                "setTimer": [
+                    "`$ONE`",
+                    "`$FUNCTION`",
                     "`$NIL`"
                 ]
             },
