@@ -5,7 +5,7 @@
 @"./base-guide.aontu"
 
 
-# Corrections to how apidef reads Doist's definition. The definition itself is
+# Corrections to how apidef reads Todoist's definition. The definition itself is
 # unmodified (see .sdk/def/PROVENANCE.md).
 #
 # Two patterns recur. apidef names entities after the response component, so

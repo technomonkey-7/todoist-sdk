@@ -1,6 +1,6 @@
 # Todoist TypeScript SDK
 
-Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Doist's OpenAPI definition.
+Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Todoist's OpenAPI definition.
 
 The TypeScript SDK for the Todoist API — a type-safe, entity-oriented client with full async/await support.
 

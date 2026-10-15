@@ -1,6 +1,6 @@
 # Provenance of the Todoist API definition
 
-`todoist-openapi.json` in this folder is Doist's own OpenAPI document for the Todoist API v1, used unmodified.
+`todoist-openapi.json` in this folder is the OpenAPI document Todoist Inc. (formerly Doist) publishes for the Todoist API v1, used unmodified.
 
 - Source: https://developer.todoist.com/openapi.json
 - Retrieved: 2026-10-15

@@ -1,6 +1,6 @@
 # Todoist Python SDK
 
-Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Doist's OpenAPI definition.
+Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Todoist's OpenAPI definition.
 
 The Python SDK for the Todoist API — an entity-oriented client following Pythonic conventions.
 

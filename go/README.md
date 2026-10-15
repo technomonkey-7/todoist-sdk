@@ -1,6 +1,6 @@
 # Todoist Golang SDK
 
-Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Doist's OpenAPI definition.
+Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Todoist's OpenAPI definition.
 
 The Golang SDK for the Todoist API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 

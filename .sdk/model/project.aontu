@@ -52,12 +52,12 @@ main: kit: target: py: publish: registry: package: 'technomonkey-todoist-sdk'
 # Code blocks in about_md are compiled and run by every target's
 # readme_examples test, so only verified examples go in.
 main: kit: text: {
-  tagline: 'Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Doist\'s OpenAPI definition.'
+  tagline: 'Unofficial Todoist API clients for TypeScript, Python and Go, with a CLI and an MCP server, generated from Todoist\'s OpenAPI definition.'
   summary: 'Todoist is a task manager. Its API v1 covers tasks, projects, sections, comments, labels, reminders and workspaces over REST, with cursor-paged lists.'
   website: 'https://developer.todoist.com'
   homepage: 'https://todoist.com'
   docs_url: 'https://developer.todoist.com/api/v1/'
-  about_md: `Generated with [Voxgig's SDK generator](https://github.com/voxgig/sdkgen) from the OpenAPI definition Doist publishes for the [Todoist API](https://developer.todoist.com/api/v1/). Todoist is a trademark of Doist.
+  about_md: `Generated with [Voxgig's SDK generator](https://github.com/voxgig/sdkgen) from the OpenAPI definition Todoist publishes for its [API](https://developer.todoist.com/api/v1/). Todoist is a trademark of Todoist Inc.
 
 ### Install
 
@@ -69,6 +69,8 @@ main: kit: text: {
 | CLI, MCP server | in a clone: \`cd go-cli && go build -o todoist .\` and \`cd go-mcp && go build -o todoist-mcp .\` |
 
 Get an API token in Todoist under Settings → Integrations → Developer. Pass it as \`apikey\`, or set \`TODOIST_APIKEY\` for the CLI and the MCP server.
+
+The SDK covers 105 of the API's 108 operations. The three left out (revoking and migrating tokens) need an OAuth app's client secret.
 
 ### Example
 
@@ -102,12 +104,12 @@ The MCP server can create, update and delete Todoist data, so an agent can chang
 
 - In TypeScript, \`create()\` asks for fields the server fills in, such as \`id\`. Cast the argument, as in the example.
 - Claude Code rejects the result of the MCP server's \`todoist_list\` tool. Use \`todoist_load\` or the SDK.
-- Workspace and billing endpoints are generated but untested: they need a Todoist Business plan.
+- Team workspace and billing endpoints are generated but untested: my test account has no team workspace, and billing calls were left out of the live tests on purpose.
 
 Tested against the live API on 15 October 2026: create, read, update and delete for tasks, projects, sections, comments and labels. Not production-tuned. How this SDK was built, and what I found along the way: [REPORT.md](REPORT.md).`
 }
 
-# Auth. Doist's definition declares no securitySchemes, so apidef writes
+# Auth. Todoist's definition declares no securitySchemes, so apidef writes
 # info.auth: false and the SDK would send no credential. Every Todoist endpoint
 # needs `Authorization: Bearer <token>`; the prefix defaults to Bearer.
 main: kit: config: auth: active: true
