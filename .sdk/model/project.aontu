@@ -113,3 +113,10 @@ Tested against the live API on 15 October 2026: create, read, update and delete 
 # info.auth: false and the SDK would send no credential. Every Todoist endpoint
 # needs `Authorization: Bearer <token>`; the prefix defaults to Bearer.
 main: kit: config: auth: active: true
+
+# No Documentation workflow. docgen's text QA treats a repeated word as a
+# defect even in text quoted from the API definition, and Todoist's definition
+# describes `inviter_id` as "ID of the user user who sent the invitation", so
+# the workflow would fail on text this project does not own. SUMMARY.md is
+# still generated.
+main: kit: doc: ci: active: false

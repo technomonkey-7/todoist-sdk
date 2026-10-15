@@ -48,7 +48,7 @@
           "url": ""
         },
         "ci": {
-          "active": true,
+          "active": false,
           "branch": "main"
         },
         "content": {

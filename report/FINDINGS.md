@@ -273,3 +273,24 @@ Companion to [REPORT.md](../REPORT.md). Checked on the latest published packages
 - Actual: `go-cli/.gitignore` lists `/dist/`, `/todoist-cli` and `/go-cli`, and `go-mcp/.gitignore` lists `/dist/`, `/todoist-mcp` and `/go-mcp`: the Unix names only. On Windows `go build` writes `go-cli.exe` and `go-mcp.exe` (20 MB and 18 MB here), which git picks up. Go embeds build paths in the binary, so a committed binary also publishes the builder's local directory names. I caught this in the pre-publish scan and removed both files from the unpublished history.
 - Workaround: `*.exe` in the repository's root `.gitignore`.
 - Suggested fix: Add `/go-cli.exe`, `/go-mcp.exe` and `/todoist-*.exe` (or `*.exe`) to the generated `.gitignore` files.
+
+### F24 — A typo in the vendor's definition fails the generated Documentation workflow
+- Stage: Verify (docs CI)
+- Severity: minor (a red workflow on a new public repository, from text the project does not own)
+- Who is affected: Any SDK whose API definition contains a repeated word, an em dash, an emoji or an exclamation mark in a description.
+- Upstream: Known: docgen#33 (closed). Its resolution keeps the repeated-word, em-dash, emoji and exclamation rules on vendor text on purpose.
+- Steps: Push the generated repository; the Documentation workflow runs `voxgig-docgen qa`.
+- Expected: The check judges the project's own text, or offers a way to accept a known vendor defect.
+- Actual: `SUMMARY.md: Remove the repeated word`. Todoist's definition describes `inviter_id` as "ID of the user user who sent the invitation". The only levers in the model are switching the summary edition off (see F25) or the workflow off.
+- Workaround: `main: kit: doc: ci: active: false` in `project.aontu`; docgen then removes the workflow itself, and `SUMMARY.md` is still generated. The generated SDK tests (the `ci` workflow) pass on GitHub.
+- Suggested fix: Report vendor-text defects as warnings, or let the project list accepted vendor passages in the model.
+
+### F25 — Switching off the last documentation edition leaves its workflow and QA manifest behind
+- Stage: Generate (docs)
+- Severity: papercut
+- Who is affected: Anyone who turns the summary edition off (`main: kit: doc: edition: summary: active: false`).
+- Upstream: No existing issue found.
+- Steps: Switch the only active edition off and regenerate.
+- Expected: The edition's output, its workflow and its QA manifest are removed.
+- Actual: `generate()` in `@voxgig/docgen` returns before pruning when no edition is active (`if (!editions.length) return { ..., prune: NOTHING }`), so `SUMMARY.md`, `.github/workflows/docgen.yml` and `.sdk/doc/qa-manifest.json` stay. After deleting `SUMMARY.md` by hand, `voxgig-docgen qa` fails with `ENOENT ... SUMMARY.md` because the stale manifest still lists it.
+- Suggested fix: Prune the ledger when no edition is active, as when one is.
