@@ -196,6 +196,7 @@ func labelDirectSetup(mockres any) *labelDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_LABEL_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -208,6 +209,7 @@ func labelDirectSetup(mockres any) *labelDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

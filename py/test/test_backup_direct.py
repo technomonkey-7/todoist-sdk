@@ -97,6 +97,7 @@ def _backup_direct_setup(mockres):
     env = runner.env_override({
         "TODOIST_TEST_BACKUP_ENTID": {},
         "TODOIST_TEST_LIVE": "FALSE",
+        "TODOIST_APIKEY": "",
     })
 
     live = env.get("TODOIST_TEST_LIVE") == "TRUE"
@@ -106,6 +107,7 @@ def _backup_direct_setup(mockres):
         # client; the generated fields below overwrite anything they name.
         merged_opts = dict(runner.live_client_options())
         merged_opts.update({
+            "apikey": env.get("TODOIST_APIKEY"),
         })
         client = TodoistSDK(merged_opts)
         idmap = env.get("TODOIST_TEST_BACKUP_ENTID")

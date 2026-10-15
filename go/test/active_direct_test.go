@@ -120,6 +120,7 @@ func activeDirectSetup(mockres any) *activeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_ACTIVE_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -132,6 +133,7 @@ func activeDirectSetup(mockres any) *activeDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

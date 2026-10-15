@@ -106,7 +106,9 @@ result, err := client.CreditState(nil).Load(
 ```ts
 import { TodoistSDK } from '@technomonkey-7/todoist-sdk'
 
-const client = new TodoistSDK()
+const client = new TodoistSDK({
+  apikey: process.env.TODOIST_APIKEY,
+})
 
 // List all actives (returns ActiveEntity[], one entity per record)
 const actives = await client.Active().list({ workspace_id: 1 })
@@ -219,9 +221,12 @@ own list above for exactly which it supports.
 ### Python
 
 ```python
+import os
 from todoist_sdk import TodoistSDK
 
-client = TodoistSDK()
+client = TodoistSDK({
+    "apikey": os.environ.get("TODOIST_APIKEY"),
+})
 
 # List all actives (a list of entities, one per record; raises on error)
 actives = client.Active().list({"workspace_id": 1})
@@ -234,7 +239,9 @@ for active in actives:
 ```go
 import sdk "github.com/technomonkey-7/todoist-sdk/go"
 
-client := sdk.New()
+client := sdk.NewTodoistSDK(map[string]any{
+    "apikey": os.Getenv("TODOIST_APIKEY"),
+})
 
 // List all actives (one entity per record; err is non-nil on failure)
 actives, err := client.Active(nil).List(map[string]any{"workspace_id": 1}, nil)

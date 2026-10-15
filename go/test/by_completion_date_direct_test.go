@@ -95,6 +95,7 @@ func by_completion_dateDirectSetup(mockres any) *by_completion_dateDirectSetupRe
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_BY_COMPLETION_DATE_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -107,6 +108,7 @@ func by_completion_dateDirectSetup(mockres any) *by_completion_dateDirectSetupRe
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

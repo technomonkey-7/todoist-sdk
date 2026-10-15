@@ -178,6 +178,7 @@ def _role_to_action_mapping_view_basic_setup(extra):
         "TODOIST_TEST_ROLE_TO_ACTION_MAPPING_VIEW_ENTID": idmap,
         "TODOIST_TEST_LIVE": "FALSE",
         "TODOIST_TEST_EXPLAIN": "FALSE",
+        "TODOIST_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -192,6 +193,7 @@ def _role_to_action_mapping_view_basic_setup(extra):
             # redirect it.
             runner.live_client_options(),
             {
+                "apikey": env.get("TODOIST_APIKEY"),
             },
             extra or {},
         ])

@@ -95,6 +95,7 @@ func paginated_list_any_project_sync_viewDirectSetup(mockres any) *paginated_lis
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_PAGINATED_LIST_ANY_PROJECT_SYNC_VIEW_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -107,6 +108,7 @@ func paginated_list_any_project_sync_viewDirectSetup(mockres any) *paginated_lis
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

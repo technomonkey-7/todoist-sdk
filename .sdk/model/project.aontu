@@ -75,3 +75,8 @@ The test suite needs no account or network: each SDK has a test mode that replac
 
 Create a personal API token in Todoist under Settings, Integrations, Developer. Pass it as \`apikey\`; the SDK sends it as \`Authorization: Bearer <token>\`. The CLI and the MCP server read it from \`TODOIST_APIKEY\`.`
 }
+
+# Auth. Doist's definition declares no securitySchemes, so apidef writes
+# info.auth: false and the SDK would send no credential. Every Todoist endpoint
+# needs `Authorization: Bearer <token>`; the prefix defaults to Bearer.
+main: kit: config: auth: active: true

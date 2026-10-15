@@ -205,6 +205,7 @@ func any_project_sync_viewDirectSetup(mockres any) *any_project_sync_viewDirectS
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_ANY_PROJECT_SYNC_VIEW_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -217,6 +218,7 @@ func any_project_sync_viewDirectSetup(mockres any) *any_project_sync_viewDirectS
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

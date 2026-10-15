@@ -95,6 +95,7 @@ func section_sync_viewDirectSetup(mockres any) *section_sync_viewDirectSetupResu
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_SECTION_SYNC_VIEW_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -107,6 +108,7 @@ func section_sync_viewDirectSetup(mockres any) *section_sync_viewDirectSetupResu
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

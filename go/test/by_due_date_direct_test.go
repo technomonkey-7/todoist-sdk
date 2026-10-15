@@ -95,6 +95,7 @@ func by_due_dateDirectSetup(mockres any) *by_due_dateDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_BY_DUE_DATE_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -107,6 +108,7 @@ func by_due_dateDirectSetup(mockres any) *by_due_dateDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

@@ -125,6 +125,7 @@ func project_import_create_response_with_objectBasicSetup(extra map[string]any) 
 		"TODOIST_TEST_PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT_ENTID": idmap,
 		"TODOIST_TEST_LIVE":      "FALSE",
 		"TODOIST_TEST_EXPLAIN":   "FALSE",
+		"TODOIST_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TODOIST_TEST_PROJECT_IMPORT_CREATE_RESPONSE_WITH_OBJECT_ENTID"])
@@ -147,6 +148,7 @@ func project_import_create_response_with_objectBasicSetup(extra map[string]any) 
 			// client, it does not redirect it.
 			liveClientOptions(),
 			map[string]any{
+				"apikey": env["TODOIST_APIKEY"],
 			},
 			extraOpts,
 		})

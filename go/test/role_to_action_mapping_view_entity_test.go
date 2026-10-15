@@ -258,6 +258,7 @@ func role_to_action_mapping_viewBasicSetup(extra map[string]any) *entityTestSetu
 		"TODOIST_TEST_ROLE_TO_ACTION_MAPPING_VIEW_ENTID": idmap,
 		"TODOIST_TEST_LIVE":      "FALSE",
 		"TODOIST_TEST_EXPLAIN":   "FALSE",
+		"TODOIST_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TODOIST_TEST_ROLE_TO_ACTION_MAPPING_VIEW_ENTID"])
@@ -280,6 +281,7 @@ func role_to_action_mapping_viewBasicSetup(extra map[string]any) *entityTestSetu
 			// client, it does not redirect it.
 			liveClientOptions(),
 			map[string]any{
+				"apikey": env["TODOIST_APIKEY"],
 			},
 			extraOpts,
 		})

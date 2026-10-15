@@ -205,6 +205,7 @@ func notification_location_sync_viewDirectSetup(mockres any) *notification_locat
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_NOTIFICATION_LOCATION_SYNC_VIEW_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -217,6 +218,7 @@ func notification_location_sync_viewDirectSetup(mockres any) *notification_locat
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

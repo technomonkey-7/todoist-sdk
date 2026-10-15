@@ -219,6 +219,7 @@ def _section_basic_setup(extra):
         "TODOIST_TEST_SECTION_ENTID": idmap,
         "TODOIST_TEST_LIVE": "FALSE",
         "TODOIST_TEST_EXPLAIN": "FALSE",
+        "TODOIST_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -233,6 +234,7 @@ def _section_basic_setup(extra):
             # redirect it.
             runner.live_client_options(),
             {
+                "apikey": env.get("TODOIST_APIKEY"),
             },
             extra or {},
         ])

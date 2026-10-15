@@ -271,6 +271,7 @@ func historyBasicSetup(extra map[string]any) *entityTestSetup {
 		"TODOIST_TEST_HISTORY_ENTID": idmap,
 		"TODOIST_TEST_LIVE":      "FALSE",
 		"TODOIST_TEST_EXPLAIN":   "FALSE",
+		"TODOIST_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TODOIST_TEST_HISTORY_ENTID"])
@@ -293,6 +294,7 @@ func historyBasicSetup(extra map[string]any) *entityTestSetup {
 			// client, it does not redirect it.
 			liveClientOptions(),
 			map[string]any{
+				"apikey": env["TODOIST_APIKEY"],
 			},
 			extraOpts,
 		})

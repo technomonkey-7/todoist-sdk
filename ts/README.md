@@ -34,7 +34,9 @@ loading a specific record.
 ```ts
 import { TodoistSDK } from '@technomonkey-7/todoist-sdk'
 
-const client = new TodoistSDK()
+const client = new TodoistSDK({
+  apikey: process.env.TODOIST_APIKEY,
+})
 ```
 
 ### 2. List active records
@@ -147,7 +149,7 @@ console.log(creditstate.data())
 You can also use the instance method:
 
 ```ts
-const client = new TodoistSDK()
+const client = new TodoistSDK({ apikey: '...' })
 const testClient = client.tester()
 ```
 
@@ -183,6 +185,7 @@ const logger = {
 }
 
 const client = new TodoistSDK({
+  apikey: '...',
   extend: [logger],
 })
 ```
@@ -193,6 +196,7 @@ Create a `.env.local` file at the project root:
 
 ```
 TODOIST_TEST_LIVE=TRUE
+TODOIST_APIKEY=<your-key>
 ```
 
 Then run:
@@ -215,6 +219,7 @@ API operations the generated scenarios cover.
 
 ```ts
 new TodoistSDK(options?: {
+  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -225,6 +230,7 @@ new TodoistSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

@@ -55,6 +55,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.todoist.com/",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },

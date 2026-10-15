@@ -45,11 +45,14 @@ package main
 
 import (
     "fmt"
+    "os"
     sdk "github.com/technomonkey-7/todoist-sdk/go"
 )
 
 func main() {
-    client := sdk.New()
+    client := sdk.NewTodoistSDK(map[string]any{
+        "apikey": os.Getenv("TODOIST_APIKEY"),
+    })
 
     // List active records — the value is a []any of entities, one per record.
     actives, err := client.Active(nil).List(map[string]any{"workspace_id": 1}, nil)
@@ -177,6 +180,7 @@ Create a `.env.local` file at the project root:
 
 ```
 TODOIST_TEST_LIVE=TRUE
+TODOIST_APIKEY=<your-key>
 ```
 
 Then run:
@@ -198,6 +202,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `"apikey"` | `string` | API key for authentication. |
 | `"base"` | `string` | Base URL of the API server. |
 | `"prefix"` | `string` | URL path prefix prepended to all requests. |
 | `"suffix"` | `string` | URL path suffix appended to all requests. |

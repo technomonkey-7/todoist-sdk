@@ -282,6 +282,7 @@ func notification_location_sync_viewBasicSetup(extra map[string]any) *entityTest
 		"TODOIST_TEST_NOTIFICATION_LOCATION_SYNC_VIEW_ENTID": idmap,
 		"TODOIST_TEST_LIVE":      "FALSE",
 		"TODOIST_TEST_EXPLAIN":   "FALSE",
+		"TODOIST_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TODOIST_TEST_NOTIFICATION_LOCATION_SYNC_VIEW_ENTID"])
@@ -304,6 +305,7 @@ func notification_location_sync_viewBasicSetup(extra map[string]any) *entityTest
 			// client, it does not redirect it.
 			liveClientOptions(),
 			map[string]any{
+				"apikey": env["TODOIST_APIKEY"],
 			},
 			extraOpts,
 		})

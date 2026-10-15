@@ -271,6 +271,7 @@ func paginated_list_item_sync_viewBasicSetup(extra map[string]any) *entityTestSe
 		"TODOIST_TEST_PAGINATED_LIST_ITEM_SYNC_VIEW_ENTID": idmap,
 		"TODOIST_TEST_LIVE":      "FALSE",
 		"TODOIST_TEST_EXPLAIN":   "FALSE",
+		"TODOIST_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TODOIST_TEST_PAGINATED_LIST_ITEM_SYNC_VIEW_ENTID"])
@@ -293,6 +294,7 @@ func paginated_list_item_sync_viewBasicSetup(extra map[string]any) *entityTestSe
 			// client, it does not redirect it.
 			liveClientOptions(),
 			map[string]any{
+				"apikey": env["TODOIST_APIKEY"],
 			},
 			extraOpts,
 		})

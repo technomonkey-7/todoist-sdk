@@ -95,6 +95,7 @@ func productivity_statDirectSetup(mockres any) *productivity_statDirectSetupResu
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_PRODUCTIVITY_STAT_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -107,6 +108,7 @@ func productivity_statDirectSetup(mockres any) *productivity_statDirectSetupResu
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

@@ -101,6 +101,7 @@ func credit_stateDirectSetup(mockres any) *credit_stateDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_CREDIT_STATE_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -113,6 +114,7 @@ func credit_stateDirectSetup(mockres any) *credit_stateDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

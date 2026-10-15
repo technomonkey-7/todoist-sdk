@@ -162,6 +162,7 @@ func backupDirectSetup(mockres any) *backupDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_BACKUP_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -174,6 +175,7 @@ func backupDirectSetup(mockres any) *backupDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

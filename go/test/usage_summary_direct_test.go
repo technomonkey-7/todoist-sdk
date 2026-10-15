@@ -95,6 +95,7 @@ func usage_summaryDirectSetup(mockres any) *usage_summaryDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_USAGE_SUMMARY_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -107,6 +108,7 @@ func usage_summaryDirectSetup(mockres any) *usage_summaryDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

@@ -180,6 +180,7 @@ function basicSetup(extra?: any) {
     'TODOIST_TEST_WORKSPACE_INVITATION_VIEW_ENTID': idmap,
     'TODOIST_TEST_LIVE': 'FALSE',
     'TODOIST_TEST_EXPLAIN': 'FALSE',
+    'TODOIST_APIKEY': '',
   })
 
   idmap = env['TODOIST_TEST_WORKSPACE_INVITATION_VIEW_ENTID']
@@ -198,6 +199,7 @@ function basicSetup(extra?: any) {
       // test.client.options adds to the live client, it does not redirect it.
       liveClientOptions(),
       {
+        apikey: env.TODOIST_APIKEY,
       },
       // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
       // last entry is undefined, and basicSetup is normally called with no

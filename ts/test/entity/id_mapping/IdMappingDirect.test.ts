@@ -101,6 +101,7 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'TODOIST_TEST_ID_MAPPING_ENTID': {},
     'TODOIST_TEST_LIVE': 'FALSE',
+    'TODOIST_APIKEY': '',
   })
 
   const live = 'TRUE' === env.TODOIST_TEST_LIVE
@@ -111,6 +112,7 @@ function directSetup(mockres?: any) {
     // test.client.options adds to the live client, it does not redirect it.
     const client = new TodoistSDK(
       Object.assign({}, liveClientOptions(), { system: { fetch: transport.fetch },
+      apikey: env.TODOIST_APIKEY,
       }))
 
     let idmap: any = env['TODOIST_TEST_ID_MAPPING_ENTID']

@@ -19,6 +19,9 @@
         "url": "https://github.com/technomonkey-7"
       },
       "config": {
+        "auth": {
+          "active": true
+        },
         "docs_order": [
           "ts",
           "py",

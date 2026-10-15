@@ -120,6 +120,7 @@ func archivedDirectSetup(mockres any) *archivedDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_ARCHIVED_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -132,6 +133,7 @@ func archivedDirectSetup(mockres any) *archivedDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

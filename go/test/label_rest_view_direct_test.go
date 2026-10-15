@@ -95,6 +95,7 @@ func label_rest_viewDirectSetup(mockres any) *label_rest_viewDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_LABEL_REST_VIEW_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -107,6 +108,7 @@ func label_rest_viewDirectSetup(mockres any) *label_rest_viewDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

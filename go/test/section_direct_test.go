@@ -196,6 +196,7 @@ func sectionDirectSetup(mockres any) *sectionDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_SECTION_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -208,6 +209,7 @@ func sectionDirectSetup(mockres any) *sectionDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}

@@ -101,6 +101,7 @@ func file_urlDirectSetup(mockres any) *file_urlDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TODOIST_TEST_FILE_URL_ENTID": map[string]any{},
 		"TODOIST_TEST_LIVE":    "FALSE",
+		"TODOIST_APIKEY":       "",
 	})
 
 	live := env["TODOIST_TEST_LIVE"] == "TRUE"
@@ -113,6 +114,7 @@ func file_urlDirectSetup(mockres any) *file_urlDirectSetupResult {
 			mergedOpts[k] = v
 		}
 		for k, v := range map[string]any{
+			"apikey": env["TODOIST_APIKEY"],
 		} {
 			mergedOpts[k] = v
 		}
